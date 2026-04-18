@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/thumbnail.png">
+    <title>Login - Letter to Osagyefo</title>
+    <meta name="description" content="Sign in to Letter to Osagyefo to write and manage your open letters to Kwame Nkrumah.">
+
+    <meta property="og:title" content="Login | Letter to Osagyefo">
+    <meta property="og:description" content="Sign in to write and manage your open letters to Kwame Nkrumah.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ato-kwamena.com/login.html">
+    <meta property="og:image" content="https://www.ato-kwamena.com/thumbnail.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login | Letter to Osagyefo">
+    <meta name="twitter:description" content="Sign in to write and manage your open letters to Kwame Nkrumah.">
+    <meta name="twitter:image" content="https://www.ato-kwamena.com/thumbnail.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --red: #D43F3A;
+            --gold: #E8B923;
+            --green: #2D5F3F;
+            --accent-warm: #C65911;
+            --black: #0f1419;
+            --bg: #fafaf8;
+            --white: #ffffff;
+            --gray-dark: #2a2a2a;
+            --gray-med: #5a5a5a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2d3b4a 50%, #1f2a38 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            line-height: 1.75;
+        }
+
+        .flag-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            display: flex;
+            z-index: 10001;
+        }
+        .flag-stripe span { flex: 1; height: 100%; }
+        .flag-stripe span:nth-child(1) { background: var(--red); }
+        .flag-stripe span:nth-child(2) { background: var(--gold); }
+        .flag-stripe span:nth-child(3) { background: var(--green); }
+
+        .login-container {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+            padding: 3.5rem 2.5rem;
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .login-logo {
+            font-family: 'DM Serif Display', serif;
+            color: var(--red);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .login-logo span { color: var(--green); }
+
+        .login-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-med);
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid #e0ddd9;
+            color: var(--gray-dark);
+            padding: 0.9rem 1.1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 4px rgba(212,63,58,0.15);
+            background: var(--white);
+        }
+
+        .form-group input::placeholder {
+            color: #ccc;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, #a84c0e 100%);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(198, 89, 17, 0.35);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(198, 89, 17, 0.45);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .login-footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0ddd9;
+            text-align: center;
+        }
+
+        .login-footer-text {
+            font-size: 0.85rem;
+            color: var(--gray-med);
+        }
+
+        .login-footer-link {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .login-footer-link:hover {
+            color: #b00d1f;
+        }
+
+        .error-message {
+            background: #ffe0e0;
+            color: #d43f3a;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1.5rem 1rem; }
+            .login-container {
+                padding: 2.5rem 2rem;
+                border-radius: 14px;
+            }
+            .login-title { font-size: 1.6rem; }
+            .login-subtitle { font-size: 0.85rem; }
+            .login-header { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.75rem; }
+            .login-container {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            .login-title {
+                font-size: 1.4rem;
+            }
+
+            .login-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .form-group input {
+                padding: 0.8rem 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            .login-btn {
+                padding: 0.9rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ── LOCK SCREEN ── */
+        #portal-lock {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            max-width: 420px;
+            width: 100%;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #portal-lock .lock-logo {
+            font-family: 'DM Serif Display', serif;
+            color: var(--red);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+        #portal-lock h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.7rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.4rem;
+        }
+        #portal-lock p {
+            font-size: 0.88rem;
+            color: var(--gray-med);
+            margin-bottom: 1.75rem;
+        }
+        #lock-error {
+            background: #ffe0e0;
+            color: var(--red);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        #lock-error.show { display: block; animation: shake 0.4s; }
+        #portal-lock input {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid #e0ddd9;
+            color: var(--gray-dark);
+            padding: 0.9rem 1.1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        #portal-lock input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 4px rgba(212,63,58,0.15);
+            background: var(--white);
+        }
+        #portal-lock .lock-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, #a84c0e 100%);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(198, 89, 17, 0.35);
+        }
+        #portal-lock .lock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(198, 89, 17, 0.45);
+        }
+        #portal-lock .lock-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    </style>
+</head>
+<body>
+    <div class="flag-stripe">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- LOCK SCREEN -->
+    <div id="portal-lock">
+        <div class="lock-logo">Letter to Osagyefo</div>
+        <h2>Writer's Portal</h2>
+        <p>Enter the portal passphrase to continue.</p>
+        <div id="lock-error">Incorrect passphrase. Try again.</div>
+        <input type="password" id="portal-secret-input" placeholder="Portal passphrase…" autocomplete="off" />
+        <button class="lock-btn" id="unlock-btn" onclick="unlockPortal()">Enter Portal</button>
+    </div>
+
+    <!-- LOGIN FORM (hidden until unlocked) -->
+    <div class="login-container" id="login-container" style="display:none">
+        <div class="login-header">
+            <div class="login-logo">Letter to <span>Osagyefo</span></div>
+            <h1 class="login-title">Writer's Portal</h1>
+            <p class="login-subtitle">Access your letter dashboard</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group" id="firstNameGroup" style="display:none">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Your first name" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required />
+            </div>
+
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+
+        <p style="text-align:center;margin-top:1rem;">
+          <a href="#" class="login-footer-link" style="font-size:0.82rem;font-weight:500;" onclick="showForgotPassword(event)">Forgot password?</a>
+        </p>
+
+        <!-- FORGOT PASSWORD FORM -->
+        <div id="forgotSection" style="display:none;">
+          <div style="border-top:1px solid #e0ddd9; margin-top:1.5rem; padding-top:1.5rem;">
+            <h3 style="font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--gray-dark); margin-bottom:0.5rem;">Reset Password</h3>
+
+            <!-- Step 1: Enter email -->
+            <div id="forgotStep1">
+              <p style="font-size:0.85rem; color:var(--gray-med); margin-bottom:1rem;">Enter your email to receive a reset code.</p>
+              <div class="form-group">
+                <label for="resetEmail">Email Address</label>
+                <input type="email" id="resetEmail" placeholder="your@email.com" required />
+              </div>
+              <button class="login-btn" onclick="sendResetCode()" id="sendCodeBtn">Send Reset Code</button>
+            </div>
+
+            <!-- Step 2: Enter code + new password -->
+            <div id="forgotStep2" style="display:none;">
+              <div id="resetCodeDisplay" style="display:none; background:#fffbe6; border:2px solid var(--gold); border-radius:8px; padding:1rem; margin-bottom:1rem; text-align:center;">
+                <p style="font-size:0.8rem; color:var(--gray-med); margin-bottom:0.3rem;">Your reset code:</p>
+                <span id="resetCodeValue" style="font-family:monospace; font-size:1.8rem; letter-spacing:6px; color:var(--red); font-weight:700;"></span>
+              </div>
+              <p id="resetEmailSentMsg" style="display:none; font-size:0.85rem; color:var(--green); margin-bottom:1rem;">✓ Reset code sent to your email.</p>
+              <div class="form-group">
+                <label for="resetCode">Reset Code</label>
+                <input type="text" id="resetCode" placeholder="6-digit code" maxlength="6" pattern="[0-9]{6}" required />
+              </div>
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="Min 6 characters" required />
+              </div>
+              <button class="login-btn" onclick="resetPassword()" id="resetBtn">Update Password</button>
+            </div>
+
+            <p id="resetMessage" style="text-align:center; margin-top:1rem; font-size:0.85rem; display:none;"></p>
+            <p style="text-align:center; margin-top:0.75rem;">
+              <a href="#" class="login-footer-link" style="font-size:0.82rem;font-weight:500;" onclick="hideForgotPassword(event)">← Back to login</a>
+            </p>
+          </div>
+        </div>
+
+    </div>
+
+    <script>
+        let isRegisterMode = false;
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            if (isRegisterMode) {
+                await doRegister(email, password);
+            } else {
+                await doLogin(email, password);
+            }
+        }
+
+        async function doLogin(email, password) {
+            try {
+                const res = await fetch('/api/users/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    showError(data.message || 'Login failed');
+                    return;
+                }
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('writerName', data.user.firstName || email.split('@')[0]);
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'dashboard.html';
+            } catch (_) {
+                showError('Could not connect to server. Make sure the server is running.');
+            }
+        }
+
+        async function doRegister(email, password) {
+            const firstName = document.getElementById('firstName').value.trim();
+            if (!firstName) {
+                showError('Please enter your first name');
+                return;
+            }
+            try {
+                const res = await fetch('/api/users/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, firstName })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    showError(data.message || 'Registration failed');
+                    return;
+                }
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('writerName', data.user.firstName);
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'dashboard.html';
+            } catch (_) {
+                showError('Could not connect to server. Make sure the server is running.');
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 4000);
+        }
+
+        function toggleSignup(event) {
+            event.preventDefault();
+            isRegisterMode = !isRegisterMode;
+            const firstNameGroup = document.getElementById('firstNameGroup');
+            const loginTitle = document.querySelector('.login-title');
+            const loginBtn = document.querySelector('.login-btn');
+            const footerText = document.getElementById('footerText');
+            if (isRegisterMode) {
+                firstNameGroup.style.display = 'block';
+                loginTitle.textContent = 'Create Account';
+                loginBtn.textContent = 'Create Account';
+                footerText.innerHTML = 'Already have an account? <a href="#" class="login-footer-link" onclick="toggleSignup(event)">Sign in</a>';
+            } else {
+                firstNameGroup.style.display = 'none';
+                loginTitle.textContent = 'Writer\'s Portal';
+                loginBtn.textContent = 'Sign In';
+                footerText.innerHTML = 'Don\'t have an account? <a href="#" class="login-footer-link" onclick="toggleSignup(event)">Create one</a>';
+            }
+        }
+
+        // ── PORTAL LOCK SCREEN ──────────────────────────────────────────
+        document.getElementById('portal-secret-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') unlockPortal();
+        });
+
+        // Check sessionStorage — stay unlocked within the same tab session
+        if (sessionStorage.getItem('portalUnlocked') === '1') {
+            showLoginForm();
+        }
+
+        async function unlockPortal() {
+            const input = document.getElementById('portal-secret-input').value.trim();
+            if (!input) return;
+
+            const btn = document.getElementById('unlock-btn');
+            btn.disabled = true;
+            btn.textContent = 'Checking…';
+
+            const res = await fetch('/api/portal/ping', {
+                headers: { 'x-portal-secret': input }
+            });
+
+            if (res.ok) {
+                sessionStorage.setItem('portalUnlocked', '1');
+                showLoginForm();
+            } else {
+                document.getElementById('lock-error').classList.add('show');
+                btn.disabled = false;
+                btn.textContent = 'Enter Portal';
+                document.getElementById('portal-secret-input').value = '';
+                document.getElementById('portal-secret-input').focus();
+            }
+        }
+
+        function showLoginForm() {
+            document.getElementById('portal-lock').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+        }
+
+        // ── FORGOT PASSWORD ──────────────────────────────────────────
+        function showForgotPassword(e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.querySelector('#login-container > p').style.display = 'none'; // hide forgot link
+            document.getElementById('forgotSection').style.display = 'block';
+            document.getElementById('forgotStep1').style.display = 'block';
+            document.getElementById('forgotStep2').style.display = 'none';
+            document.getElementById('resetMessage').style.display = 'none';
+        }
+
+        function hideForgotPassword(e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'block';
+            document.querySelector('#login-container > p').style.display = 'block';
+            document.getElementById('forgotSection').style.display = 'none';
+        }
+
+        async function sendResetCode() {
+            const email = document.getElementById('resetEmail').value.trim();
+            if (!email) return;
+            const btn = document.getElementById('sendCodeBtn');
+            btn.disabled = true; btn.textContent = 'Sending…';
+
+            try {
+                const res = await fetch('/api/users/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                document.getElementById('forgotStep1').style.display = 'none';
+                document.getElementById('forgotStep2').style.display = 'block';
+
+                if (data.code) {
+                    // SMTP not configured — show code on screen
+                    document.getElementById('resetCodeDisplay').style.display = 'block';
+                    document.getElementById('resetCodeValue').textContent = data.code;
+                    document.getElementById('resetEmailSentMsg').style.display = 'none';
+                } else {
+                    document.getElementById('resetCodeDisplay').style.display = 'none';
+                    document.getElementById('resetEmailSentMsg').style.display = 'block';
+                }
+            } catch (_) {
+                showResetMsg('Could not connect to server.', 'var(--red)');
+            } finally {
+                btn.disabled = false; btn.textContent = 'Send Reset Code';
+            }
+        }
+
+        async function resetPassword() {
+            const code = document.getElementById('resetCode').value.trim();
+            const newPassword = document.getElementById('newPassword').value;
+            if (!code || !newPassword) return;
+            if (newPassword.length < 6) { showResetMsg('Password must be at least 6 characters.', 'var(--red)'); return; }
+
+            const btn = document.getElementById('resetBtn');
+            btn.disabled = true; btn.textContent = 'Updating…';
+
+            try {
+                const res = await fetch('/api/users/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code, newPassword })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showResetMsg('✓ Password updated! Redirecting to login…', 'var(--green)');
+                    setTimeout(() => hideForgotPassword(new Event('click')), 2000);
+                } else {
+                    showResetMsg(data.message || 'Reset failed.', 'var(--red)');
+                }
+            } catch (_) {
+                showResetMsg('Could not connect to server.', 'var(--red)');
+            } finally {
+                btn.disabled = false; btn.textContent = 'Update Password';
+            }
+        }
+
+        function showResetMsg(text, color) {
+            const el = document.getElementById('resetMessage');
+            el.textContent = text; el.style.color = color; el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
+        }
+    </script>
+</body>
+</html>

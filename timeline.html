@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Timeline | Letter to Osagyefo</title>
+  <meta name="description" content="A timeline of key events in Kwame Nkrumah's life and Ghana's independence — from the past to the present.">
+
+  <meta property="og:title" content="Timeline | Letter to Osagyefo">
+  <meta property="og:description" content="A timeline of key events in Kwame Nkrumah's life and Ghana's independence.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/timeline.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timeline | Letter to Osagyefo">
+  <meta name="twitter:description" content="A timeline of key events in Kwame Nkrumah's life and Ghana's independence.">
+  <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:          #D43F3A;
+      --gold:         #E8B923;
+      --green:        #2D5F3F;
+      --accent-warm:  #C65911;
+      --black:        #0f1419;
+      --bg:           #fafaf8;
+      --white:        #ffffff;
+      --gray-dark:    #2a2a2a;
+      --gray-med:     #5a5a5a;
+      --gray-light:   #888;
+      --gray-border:  #e0ddd9;
+      --cream:        #f4f1ed;
+      --earth:        #8b7355;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fafaf8 0%, #f4f1ed 50%, #fbf9f5 100%);
+      color: var(--gray-dark);
+      line-height: 1.75;
+    }
+    @media (min-width: 1024px) {
+      body { background-attachment: fixed; }
+    }
+
+    .flag-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      display: flex;
+      z-index: 10001;
+    }
+    .flag-stripe span { flex: 1; height: 100%; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    nav {
+      background: rgba(255,255,255,0.72);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 8px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      color: var(--red);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-links { 
+      display: flex; 
+      gap: 3.5rem; 
+      list-style: none; 
+    }
+    .nav-links a {
+      color: var(--gray-med);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      transition: all 0.25s;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 0.4rem;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:hover { 
+      color: var(--red);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section { padding: 6rem 2rem; }
+    .section-header {
+      margin-bottom: 4rem;
+      border-bottom: 2px solid var(--gray-border);
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 1px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--red);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .section-tag::before {
+      content: '◆ ';
+      margin-right: 0.5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+      color: var(--gray-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      color: var(--gray-med);
+      font-size: 0.95rem;
+      max-width: 650px;
+      font-weight: 300;
+    }
+
+    #timeline {
+      background: linear-gradient(135deg, rgba(198,89,17,0.08) 0%, rgba(232,185,35,0.06) 50%, rgba(45,95,63,0.06) 100%);
+      border-top: 3px solid rgba(198, 89, 17, 0.15);
+      border-bottom: 3px solid rgba(198, 89, 17, 0.15);
+      position: relative;
+    }
+
+    /* ── STICKY SIDEBAR ── */
+    .timeline-sidebar {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 16px;
+      padding: 1.5rem 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+      min-width: 80px;
+    }
+
+    .timeline-sidebar h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--red);
+      padding: 0 1rem 1rem 1rem;
+      text-align: center;
+      border-bottom: 2px solid var(--gray-border);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .timeline-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 0.75rem;
+    }
+
+    .timeline-nav-item {
+      padding: 0.7rem 0.8rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-med);
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-nav-item:hover {
+      background: rgba(232, 185, 35, 0.1);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateX(-4px);
+    }
+
+    .timeline-nav-item.active {
+      background: linear-gradient(135deg, rgba(212,63,58,0.2), rgba(232,185,35,0.15));
+      border-color: var(--red);
+      color: var(--red);
+      font-weight: 700;
+      box-shadow: inset 0 0 10px rgba(212,63,58,0.2);
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 2.5rem;
+      padding-left: 4rem;
+      max-width: 700px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--red), var(--gold), var(--green), var(--red));
+      border-radius: 2px;
+      box-shadow: 0 0 25px rgba(206,17,38,0.25);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3rem 3rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      border-left: 3px solid transparent;
+      padding-left: 4rem;
+    }
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.15s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(3) { animation-delay: 0.2s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(4) { animation-delay: 0.25s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(5) { animation-delay: 0.3s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(6) { animation-delay: 0.35s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(7) { animation-delay: 0.4s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(8) { animation-delay: 0.45s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(9) { animation-delay: 0.5s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(10) { animation-delay: 0.55s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(11) { animation-delay: 0.6s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(12) { animation-delay: 0.65s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(13) { animation-delay: 0.7s; border-top: 2px solid rgba(232,185,35,0.3); padding-top: 2rem; }
+    .timeline-item:nth-child(14) { animation-delay: 0.75s; border-top: 3px solid var(--gold); padding-top: 3rem; }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.1rem;
+      top: 0.2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 4px solid var(--white);
+      box-shadow: 0 0 0 4px var(--gold), 0 0 20px rgba(206,17,38,0.35);
+      transition: all 0.3s;
+    }
+    .timeline-item:hover::before {
+      transform: scale(1.4);
+      box-shadow: 0 0 0 4px var(--gold), 0 0 35px rgba(206,17,38,0.5);
+      background: var(--red);
+    }
+    .timeline-year {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), #b00d1f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'DM Serif Display', serif;
+    }
+    .timeline-item h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--gray-dark);
+    }
+    .timeline-item p {
+      font-size: 0.9rem;
+      color: var(--gray-med);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-wit {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #0a0d11 0%, #121620 50%, #0d1117 100%);
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #999;
+      border-top: 2px solid rgba(198, 89, 17, 0.2);
+    }
+    .footer-title {
+      font-family: 'DM Serif Display', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: #777;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.25rem;
+    }
+    .footer-colors {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .footer-colors span {
+      width: 20px;
+      height: 4px;
+      border-radius: 2px;
+    }
+    .share-btn {
+      display: inline-block;
+      padding: 0.45rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #ccc;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .share-btn:hover {
+      color: #fff;
+      border-color: var(--gold);
+      background: rgba(232, 185, 35, 0.08);
+    }
+    .social-link {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .social-link:hover { color: #fff; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      background: none;
+      border: 2px solid var(--red);
+      border-radius: 5px;
+      color: var(--red);
+      font-size: 1.2rem;
+      padding: 0.3rem 0.55rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hamburger:hover { background: var(--red); color: #fff; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      nav { 
+        padding: 0.9rem 1.25rem;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+      }
+      .nav-logo { 
+        font-size: 1rem;
+        flex-basis: auto;
+        text-align: left;
+        margin-bottom: 0;
+      }
+      .nav-links { 
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 2px solid var(--red);
+        padding: 0.5rem 0 1rem;
+        z-index: 200;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        list-style: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 0.75rem 1.5rem; font-size: 0.8rem; border-bottom: none; }
+      section { padding: 2.5rem 1.25rem; }
+      .container { padding: 0 1.25rem; }
+      .section-header { margin-bottom: 3rem; padding-bottom: 1.5rem; }
+      .section-title { font-size: clamp(1.4rem, 2vw, 2rem); }
+      .section-tag { font-size: 0.65rem; }
+      
+      /* Hide sidebar on tablets */
+      .timeline-sidebar { display: none; }
+      
+      .timeline { padding-left: 2rem; }
+      .timeline::before { left: 0; width: 2px; }
+      .timeline-item { padding: 0 0 2rem 2.5rem; margin-bottom: 1rem; }
+      .timeline-item::before { left: -1.5rem; width: 14px; height: 14px; top: 0.1rem; }
+      .timeline-item h4 { font-size: 1rem; }
+      .timeline-item p { font-size: 0.8rem; }
+      .timeline-year { font-size: 0.9rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-logo { font-size: 0.9rem; margin-bottom: 0; }
+      section { padding: 2rem 1rem; }
+      .section-header { margin-bottom: 1.5rem; padding-bottom: 1rem; }
+      .section-title { font-size: 1.2rem; }
+      .section-tag { font-size: 0.7rem; }
+      
+      /* Hide sidebar on mobile */
+      .timeline-sidebar { display: none; }
+      
+      .timeline { padding-left: 1.5rem; }
+      .timeline::before { left: 0; }
+      .timeline-item { padding: 0 0 1.5rem 1.5rem; margin-bottom: 1rem; }
+      .timeline-item::before { left: -1.2rem; width: 12px; height: 12px; top: 0.05rem; }
+      .timeline-year { font-size: 0.85rem; }
+      .timeline-item h4 { font-size: 0.9rem; margin-bottom: 0.3rem; }
+      .timeline-item p { font-size: 0.75rem; }
+      .timeline-wit { font-size: 0.7rem; }
+      footer.site-footer .footer-top { padding: 2rem 1rem 0; }
+      footer.site-footer .footer-bottom { padding: 1.25rem 1rem; }
+    }
+
+    /* ═══════════════════════════════════════
+       GHANA HISTORY QUIZ
+    ═══════════════════════════════════════ */
+    #quiz-section {
+      background: linear-gradient(160deg, #0a0d11 0%, #1a2233 60%, #0d1117 100%);
+      padding: 5rem 2rem;
+      border-top: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    #quiz-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,185,35,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #quiz-section::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,63,58,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .quiz-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .quiz-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #f0c833, #d4a820);
+      color: var(--black);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 8px rgba(232,185,35,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .quiz-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+    .quiz-subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Progress bar */
+    .quiz-progress-wrap {
+      margin-bottom: 2rem;
+    }
+    .quiz-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .quiz-progress-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .quiz-progress-score {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .quiz-progress-track {
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      border-radius: 3px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    /* Question card */
+    .quiz-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+    }
+
+    .quiz-q-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .quiz-q-number::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(232,185,35,0.2);
+    }
+
+    .quiz-question {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    /* Options */
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+    .quiz-option {
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .quiz-option .opt-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      flex-shrink: 0;
+      transition: all 0.22s;
+    }
+    .quiz-option:hover:not(:disabled):not(.answered) {
+      background: rgba(232,185,35,0.1);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 2px 6px rgba(232,185,35,0.1);
+    }
+    .quiz-option:hover:not(:disabled):not(.answered) .opt-letter {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+    .quiz-option.correct {
+      background: rgba(45,95,63,0.35);
+      border-color: #4caf7d;
+      pointer-events: none;
+    }
+    .quiz-option.correct .opt-letter {
+      background: #4caf7d;
+      color: #fff;
+      border-color: #4caf7d;
+    }
+    .quiz-option.wrong {
+      background: rgba(212,63,58,0.25);
+      border-color: var(--red);
+      pointer-events: none;
+    }
+    .quiz-option.wrong .opt-letter {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+    .quiz-option.missed {
+      border-color: #4caf7d;
+      border-style: dashed;
+      pointer-events: none;
+    }
+    .quiz-option:disabled {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    /* Feedback banner */
+    .quiz-feedback {
+      display: none;
+      padding: 1rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-top: 1.2rem;
+      color: #fff;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb {
+      background: rgba(45,95,63,0.4);
+      border-left: 4px solid #4caf7d;
+    }
+    .quiz-feedback.wrong-fb {
+      background: rgba(212,63,58,0.3);
+      border-left: 4px solid var(--red);
+    }
+    .quiz-feedback strong { color: var(--gold); }
+
+    /* Next button */
+    .quiz-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+    .quiz-next-btn {
+      display: none;
+      padding: 0.8rem 2.2rem;
+      background: linear-gradient(180deg, #f0c833, #d4a820);
+      color: var(--black);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 4px 15px rgba(232,185,35,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-next-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+      border-radius: 10px 10px 0 0;
+      pointer-events: none;
+    }
+    .quiz-next-btn.show { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .quiz-next-btn:hover {
+      background: linear-gradient(180deg, #f5d040, #e0b825);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(232,185,35,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .quiz-next-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(232,185,35,0.3), inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Start screen */
+    .quiz-start-screen {
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .quiz-start-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(232,185,35,0.4));
+    }
+    .quiz-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0 2.5rem;
+      flex-wrap: wrap;
+    }
+    .quiz-stat {
+      text-align: center;
+    }
+    .quiz-stat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .quiz-stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+    .quiz-start-btn {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: linear-gradient(180deg, #e04a45 0%, #c0332e 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 8px 30px rgba(212,63,58,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-start-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+      border-radius: 12px 12px 0 0;
+      pointer-events: none;
+    }
+    .quiz-start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(212,63,58,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .quiz-start-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 15px rgba(212,63,58,0.3), inset 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Results screen */
+    .quiz-results {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .quiz-results.show { display: block; }
+    .quiz-score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) calc(var(--pct, 0) * 1%), rgba(255,255,255,0.08) 0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    .quiz-score-circle::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: #0a0d11;
+    }
+    .quiz-score-inner {
+      position: relative;
+      z-index: 2;
+    }
+    .quiz-score-pct {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .quiz-score-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+    }
+    .quiz-grade {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .quiz-grade-msg {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin: 0 auto 0.5rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .quiz-grade-wit {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .quiz-results-breakdown {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0 2.5rem;
+      flex-wrap: wrap;
+    }
+    .qrb-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1.2rem 1.8rem;
+      min-width: 110px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: transform 0.3s;
+    }
+    .qrb-item:hover {
+      transform: translateY(-3px);
+    }
+    .qrb-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .qrb-val.green { color: #4caf7d; }
+    .qrb-val.red   { color: var(--red); }
+    .qrb-val.gold  { color: var(--gold); }
+    .qrb-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+    }
+    .quiz-results-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .quiz-retry-btn {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .quiz-retry-btn:hover {
+      background: rgba(232,185,35,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232,185,35,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .quiz-retry-btn:active {
+      transform: translateY(0);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .quiz-write-btn {
+      padding: 0.85rem 2rem;
+      background: linear-gradient(180deg, #e04a45 0%, #c0332e 100%);
+      color: #fff;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      box-shadow: 0 4px 15px rgba(212,63,58,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-write-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+      border-radius: 10px 10px 0 0;
+      pointer-events: none;
+    }
+    .quiz-write-btn:hover {
+      background: linear-gradient(180deg, #e8524d 0%, #b02a25 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,63,58,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .quiz-write-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(212,63,58,0.3), inset 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Review list */
+    .quiz-review {
+      display: none;
+      text-align: left;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+    }
+    .quiz-review.show { display: block; }
+    .quiz-review-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .review-item {
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid rgba(255,255,255,0.1);
+      font-size: 0.83rem;
+    }
+    .review-item.got-it   { border-left-color: #4caf7d; }
+    .review-item.missed-it{ border-left-color: var(--red); }
+    .review-item .rev-q   { color: rgba(255,255,255,0.75); margin-bottom: 0.4rem; line-height: 1.5; }
+    .review-item .rev-ans { font-weight: 600; }
+    .review-item .rev-ans.correct  { color: #4caf7d; }
+    .review-item .rev-ans.incorrect{ color: var(--red); }
+    .review-item .rev-correct { color: rgba(255,255,255,0.5); font-size:0.78rem; margin-top:0.2rem; }
+
+    @media (max-width: 768px) {
+      #quiz-section { padding: 3rem 1.25rem; }
+      .quiz-options { grid-template-columns: 1fr; }
+      .quiz-card { padding: 1.5rem; border-radius: 14px; }
+      .quiz-results-breakdown { gap: 1rem; }
+      .qrb-item { padding: 0.9rem 1.2rem; min-width: 90px; border-radius: 12px; }
+    }
+    @media (max-width: 480px) {
+      #quiz-section { padding: 2rem 1rem; }
+      .quiz-stats-row { gap: 1.2rem; }
+      .quiz-results-btns { flex-direction: column; }
+      .quiz-retry-btn, .quiz-write-btn { width: 100%; text-align: center; }
+      .quiz-card { padding: 1.25rem; border-radius: 12px; }
+      .qrb-item { border-radius: 10px; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── PAGE FADE-IN ── */
+    @keyframes pageFadeIn { from{opacity:0;} to{opacity:1;} }
+    body { animation: pageFadeIn 0.5s ease both; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s cubic-bezier(.23,1,.32,1), transform 0.7s cubic-bezier(.23,1,.32,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+
+    /* ── ELEVATED FOOTER ── */
+    footer.site-footer { background:linear-gradient(180deg,#0a0d11 0%,#060809 100%); padding:0; border-top:none; text-align:left; color:inherit; box-shadow:inset 0 2px 30px rgba(0,0,0,0.2); }
+    footer.site-footer .footer-top { padding:3.5rem 3rem 0; }
+    footer.site-footer .footer-top-inner { max-width:1200px; margin:0 auto; }
+    footer.site-footer .footer-brand { text-align:center; margin-bottom:2.5rem; }
+    footer.site-footer .footer-brand .footer-title,
+    footer.site-footer .footer-brand .footer-brand-title { font-family:'DM Serif Display',serif; font-size:1.5rem; color:#fff; margin-bottom:0.8rem; display:block; }
+    footer.site-footer .footer-brand p { font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.8; max-width:420px; margin:0 auto 0.4rem; }
+    footer.site-footer .footer-brand .footer-socials { display:flex; gap:0.6rem; justify-content:center; margin-top:1.5rem; }
+    footer.site-footer .footer-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(232,185,35,0.35),transparent); margin-bottom:2.5rem; }
+    footer.site-footer .footer-nav-row { display:flex; justify-content:center; gap:6rem; padding-bottom:2.5rem; }
+    footer.site-footer .footer-nav-col h4 { font-size:0.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; position:relative; }
+    footer.site-footer .footer-nav-col h4::after { content:''; position:absolute; bottom:-4px; left:0; width:18px; height:2px; border-radius:2px; }
+    footer.site-footer .footer-nav-row .footer-nav-col:first-child h4::after { background:var(--red); }
+    footer.site-footer .footer-nav-row .footer-nav-col:last-child h4::after { background:var(--green); }
+    footer.site-footer .footer-nav-col a { display:block; font-size:0.82rem; color:rgba(255,255,255,0.5); text-decoration:none; margin-bottom:0.65rem; transition:color 0.2s,transform 0.2s; }
+    footer.site-footer .footer-nav-col a:hover { color:rgba(255,255,255,0.95); transform:translateX(3px); }
+    footer.site-footer .footer-nav-col a::after { display:none !important; }
+    footer.site-footer .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding:1.4rem 2rem; max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+    footer.site-footer .footer-bottom p { font-size:0.7rem; color:rgba(255,255,255,0.25); margin:0; }
+    footer.site-footer .footer-bottom a { color:rgba(255,255,255,0.35); transition:color 0.2s; }
+    footer.site-footer .footer-bottom a:hover { color:rgba(255,255,255,0.7); }
+    footer.site-footer .footer-flag { display:flex; gap:0; align-items:center; overflow:hidden; border-radius:2px; transition:transform 0.3s; }
+    footer.site-footer .footer-flag:hover { transform:scaleX(1.3); }
+    footer.site-footer .footer-flag span { width:22px; height:4px; }
+    footer.site-footer .social-icon-link { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.45); transition:all 0.3s; text-decoration:none; background:rgba(255,255,255,0.03); }
+    footer.site-footer .social-icon-link:hover { border-color:var(--gold); color:var(--gold); background:rgba(232,185,35,0.1); transform:translateY(-3px); box-shadow:0 6px 20px rgba(232,185,35,0.15); }
+    footer.site-footer .social-icon-link svg { width:16px; height:16px; fill:currentColor; }
+    @media (max-width:768px) {
+        footer.site-footer .footer-top { padding:2.5rem 1.5rem 0; }
+        footer.site-footer .footer-nav-row { flex-direction:column; align-items:center; gap:2rem; text-align:center; }
+        footer.site-footer .footer-nav-col h4::after { left:50%; transform:translateX(-50%); }
+        footer.site-footer .footer-nav-col a:hover { transform:none; }
+        footer.site-footer .footer-bottom { flex-direction:column; text-align:center; padding:1.4rem 1.5rem; }
+    }
+    .back-to-top { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:50%; border:none; background:linear-gradient(135deg,var(--red),var(--gold),var(--green)); color:#fff; font-size:1.2rem; cursor:pointer; opacity:0; transform:translateY(20px); transition:opacity 0.3s,transform 0.3s,box-shadow 0.3s; pointer-events:none; z-index:999; box-shadow:0 4px 16px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; }
+    .back-to-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .back-to-top:hover { box-shadow:0 8px 28px rgba(232,185,35,0.35); transform:translateY(-3px); }
+  </style>
+
+    <style>
+      @media (min-width: 1024px) {
+        .container {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .page-hero {
+          padding: 6rem 3rem 5rem;
+        }
+        .timeline {
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    </style>
+
+
+
+    <!-- Premium Feature Styles -->
+    <style>
+      .reading-progress {
+        position: fixed; top: 0; left: 0; width: 0%;
+        height: 3px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+        z-index: 10000; transition: width 0.1s linear;
+      }
+      .scroll-top {
+        position: fixed; bottom: 2rem; right: 2rem;
+        width: 48px; height: 48px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), var(--accent-warm));
+        color: #fff; border: none; cursor: pointer;
+        font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+        opacity: 0; visibility: hidden; transform: translateY(20px);
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 4px 15px rgba(212,63,58,0.4); z-index: 9999;
+      }
+      .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+      .scroll-top:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(212,63,58,0.5); }
+      .dark-toggle {
+        position: fixed; bottom: 2rem; left: 2rem;
+        width: 48px; height: 48px; border-radius: 50%;
+        background: var(--gray-dark); color: var(--gold);
+        border: 2px solid var(--gold); cursor: pointer;
+        font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999;
+      }
+      .dark-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+      html.dark body { background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%) !important; color: #e0ddd9 !important; }
+      html.dark nav { background: rgba(15,20,25,0.95) !important; border-bottom-color: rgba(212,63,58,0.3) !important; }
+      html.dark .nav-logo { color: #fff !important; }
+      html.dark .nav-links { background: rgba(15,20,25,0.98) !important; }
+      html.dark .nav-links li a { color: #e0ddd9 !important; }
+      html.dark .nav-links li a:hover { color: var(--gold) !important; }
+      html.dark .page-hero, html.dark .page-header { background: #1a1f2e !important; }
+      html.dark .timeline-item { border-color: rgba(232,185,35,0.2) !important; color: #e0ddd9 !important; }
+      html.dark .timeline-item h4 { color: #fff !important; }
+      html.dark .quiz-section { background: rgba(30,35,45,0.9) !important; color: #e0ddd9 !important; }
+      html.dark footer { background: #0a0d12 !important; color: #e0ddd9 !important; }
+      html.dark footer a { color: rgba(255,255,255,0.7) !important; }
+      html.dark .dark-toggle { background: var(--gold); color: var(--black); border-color: var(--gold); }
+      html.dark section { color: #e0ddd9 !important; }
+      html.dark h1, html.dark h2, html.dark h3, html.dark h4 { color: #fff !important; }
+      html.dark p { color: #c0bdb9 !important; }
+      .page-loader { position: fixed; inset: 0; background: #fafaf8; display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.5s, visibility 0.5s; }
+      html.dark .page-loader { background: #0f1419; }
+      .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+      .loader-spinner { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #e0ddd9; border-top-color: var(--red); animation: spin 0.7s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .reveal-enhanced { opacity: 0; transform: translateY(30px); transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+      .reveal-enhanced.revealed { opacity: 1; transform: translateY(0); }
+      @media (max-width: 768px) {
+        .scroll-top { bottom: 1.5rem; right: 1.25rem; width: 42px; height: 42px; font-size: 1rem; }
+        .dark-toggle { bottom: 1.5rem; left: 1.25rem; width: 42px; height: 42px; font-size: 1rem; }
+      }
+    </style>
+</head>
+<body>
+
+<div class="flag-stripe">
+  <span></span><span></span><span></span>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Letter to <span>Osagyefo</span></a>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">☰</button>
+  <ul class="nav-links" id="main-nav">
+    <li><a href="letters.html">Letters</a></li>
+    <li><a href="from-osagyefo.html">From Osagyefo</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="write.html">Write a Letter</a></li>
+  </ul>
+</nav>
+
+<section id="timeline">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Timeline</span>
+      <h2 class="section-title">Ghana's Moments in Time</h2>
+      <p class="section-desc">From independence to now — the milestones, missteps, and miracles that shaped us.</p>
+    </div>
+
+    <div class="timeline" style="max-width:700px;">
+      <div class="timeline-item" id="year-1957">
+        <p class="timeline-year">1957</p>
+        <h3>Independence Declared</h3>
+        <p>"The independence of Ghana is meaningless unless it is linked up with the total liberation of Africa." — Kwame Nkrumah</p>
+        <span class="timeline-wit">A bold opening statement. No notes.</span>
+      </div>
+      <div class="timeline-item" id="year-1963">
+        <p class="timeline-year">1963</p>
+        <h3>The OAU is Founded in Addis Ababa</h3>
+        <p>Nkrumah's Pan-African dream takes institutional form. 32 nations sign the charter. The continent, briefly, feels unified.</p>
+        <span class="timeline-wit">A united Africa — the idea was extraordinary. The sequel has been complicated.</span>
+      </div>
+      <div class="timeline-item" id="year-1965">
+        <p class="timeline-year">1965</p>
+        <h3>Akosombo Dam Opens</h3>
+        <p>The Volta River Project delivers hydroelectric power. Entire towns are displaced. Ghana lights up — at considerable human cost.</p>
+        <span class="timeline-wit">Progress has always been a transaction. We are still negotiating the terms.</span>
+      </div>
+      <div class="timeline-item" id="year-1966">
+        <p class="timeline-year">1966</p>
+        <h3>The Coup. First of Many.</h3>
+        <p>Nkrumah was in Hanoi when the military took over. He never returned home.</p>
+        <span class="timeline-wit">He received the news abroad.</span>
+      </div>
+      <div class="timeline-item" id="year-1979">
+        <p class="timeline-year">1979</p>
+        <h3>Rawlings' First Coup</h3>
+        <p>Flight Lieutenant Jerry Rawlings seizes power briefly, executes three former heads of state, then holds elections and hands power back. A most unusual coup.</p>
+        <span class="timeline-wit">He returned power. Briefly. He'd be back.</span>
+      </div>
+      <div class="timeline-item" id="year-1981">
+        <p class="timeline-year">1981</p>
+        <h3>Rawlings Returns — For Good This Time</h3>
+        <p>A second coup. The Provisional National Defence Council takes power. Ghana would be Rawlings' project for the next 19 years.</p>
+        <span class="timeline-wit">The encore was longer than the original performance.</span>
+      </div>
+      <div class="timeline-item" id="year-1983">
+        <p class="timeline-year">1983</p>
+        <h3>The Economic Recovery Programme</h3>
+        <p>Ghana turns to the IMF. Structural Adjustment arrives. Everyone adjusts, mostly downward.</p>
+        <span class="timeline-wit">The first of many partnerships with the Fund.</span>
+      </div>
+      <div class="timeline-item" id="year-1992">
+        <p class="timeline-year">1992</p>
+        <h3>Return to Multi-Party Democracy</h3>
+        <p>Ghana holds landmark elections. A new constitution. A new hope. And new promises.</p>
+        <span class="timeline-wit">The birth of our beloved four-year amnesia cycle.</span>
+      </div>
+      <div class="timeline-item" id="year-2001">
+        <p class="timeline-year">2001</p>
+        <h3>Ghana Joins the HIPC Initiative</h3>
+        <p>Heavily Indebted Poor Countries. We acquired the certificate. Debt relief arrives, slowly, with conditions attached like trailing paperwork.</p>
+        <span class="timeline-wit">We were highly qualified for that particular designation.</span>
+      </div>
+      <div class="timeline-item" id="year-2006">
+        <p class="timeline-year">2006</p>
+        <h3>Ghana Hosts AFCON. The World Watches.</h3>
+        <p>The Africa Cup of Nations comes home. Stadiums gleam. The Black Stars exit in the quarter-finals, with maximum dignity and minimum goals.</p>
+        <span class="timeline-wit">We built the stage. The performance was aspirational.</span>
+      </div>
+      <div class="timeline-item" id="year-2007">
+        <p class="timeline-year">2007</p>
+        <h3>Oil is Discovered</h3>
+        <p>"Ghana will be the next Dubai," said several uncles at Christmas.</p>
+        <span class="timeline-wit">Dubai was unavailable for comment.</span>
+      </div>
+      <div class="timeline-item" id="year-2019">
+        <p class="timeline-year">2019</p>
+        <h3>The Year of Return</h3>
+        <p>Diasporans arrive in droves. Accra glows. Beyoncé visits. A nation loses its collective cool.</p>
+        <span class="timeline-wit">We were most calm about Beyoncé. This is a lie.</span>
+      </div>
+      <div class="timeline-item" id="year-2022">
+        <p class="timeline-year">2022</p>
+        <h3>Economic Crisis & IMF Programme</h3>
+        <p>Debt restructuring, cedi at historic lows. A very dignified queue at the IMF's door.</p>
+        <span class="timeline-wit">Neo-colonialism with a polite repayment schedule.</span>
+      </div>
+      <div class="timeline-item" id="year-2026">
+        <p class="timeline-year">2026</p>
+        <h3>You Are Here</h3>
+        <p>69 years on. The star still burns on the flag. The potholes still test our faith.</p>
+        <span class="timeline-wit">We persist, Osagyefo. We always do.</span>
+        <div style="margin-top:2rem; padding-top:1.5rem; border-top:2px dashed rgba(232,185,35,0.4);">
+          <p style="font-size:0.9rem; color:var(--gray-med); margin-bottom:1rem; line-height:1.6;">You've seen the journey. Now add your voice to it.</p>
+          <a href="write.html" style="display:inline-block; background:var(--red); color:#fff; padding:0.75rem 1.8rem; border-radius:6px; text-decoration:none; font-size:0.85rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; transition:all 0.2s;" onmouseover="this.style.background='#b00d1f'" onmouseout="this.style.background='var(--red)'">Write Your Letter →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GHANA HISTORY QUIZ ═══════════ -->
+<section id="quiz-section" aria-label="Ghana History Quiz">
+  <div class="quiz-inner">
+    <header class="quiz-header">
+      <span class="quiz-label">Quiz</span>
+      <h2 class="quiz-title">How Well Do You Know Ghana's Story?</h2>
+      <p class="quiz-subtitle">15 questions spanning independence to the present day. Nkrumah is watching the scoreboard.</p>
+    </header>
+
+    <!-- START SCREEN -->
+    <div id="quiz-start" class="quiz-card quiz-start-screen">
+      <span class="quiz-start-icon" role="img" aria-label="star">⭐</span>
+      <h3 class="quiz-title" style="font-size:1.4rem; margin-bottom:0.6rem;">Ready to be tested?</h3>
+      <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; margin-bottom:0;">No calculators. No colonialism to blame.</p>
+      <div class="quiz-stats-row">
+        <div class="quiz-stat"><span class="quiz-stat-val">15</span><span class="quiz-stat-label">Questions</span></div>
+        <div class="quiz-stat"><span class="quiz-stat-val">4</span><span class="quiz-stat-label">Options each</span></div>
+        <div class="quiz-stat"><span class="quiz-stat-val">69</span><span class="quiz-stat-label">Years covered</span></div>
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()" aria-label="Start quiz">Begin the Reckoning →</button>
+    </div>
+
+    <!-- QUIZ INTERFACE (hidden at start) -->
+    <div id="quiz-interface" style="display:none;">
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-meta">
+          <span class="quiz-progress-label" id="quiz-q-label">Question 1 of 15</span>
+          <span class="quiz-progress-score" id="quiz-score-label">Score: 0</span>
+        </div>
+        <div class="quiz-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="quiz-progressbar">
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="quiz-card" tabindex="-1">
+        <p class="quiz-q-number" id="quiz-q-number">Q1</p>
+        <p class="quiz-question" id="quiz-question">Loading question…</p>
+        <div class="quiz-options" id="quiz-options" role="list"></div>
+        <div class="quiz-feedback" id="quiz-feedback" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div class="quiz-btn-row">
+        <button class="quiz-next-btn" id="quiz-next-btn" onclick="nextQuestion()" aria-label="Next question">
+          Next <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- RESULTS SCREEN (hidden until done) -->
+    <div class="quiz-results" id="quiz-results">
+      <div class="quiz-score-circle" id="quiz-score-circle" style="--pct:0">
+        <div class="quiz-score-inner">
+          <span class="quiz-score-pct" id="quiz-score-pct">0/15</span>
+          <span class="quiz-score-label">Score</span>
+        </div>
+      </div>
+      <p class="quiz-grade" id="quiz-grade-title">Grade: —</p>
+      <p class="quiz-grade-msg" id="quiz-grade-msg"></p>
+      <p class="quiz-grade-wit" id="quiz-grade-wit"></p>
+
+      <div class="quiz-results-breakdown">
+        <div class="qrb-item">
+          <span class="qrb-val green" id="res-correct">0</span>
+          <span class="qrb-label">Correct</span>
+        </div>
+        <div class="qrb-item">
+          <span class="qrb-val red" id="res-wrong">0</span>
+          <span class="qrb-label">Wrong</span>
+        </div>
+        <div class="qrb-item">
+          <span class="qrb-val gold" id="res-pct">0%</span>
+          <span class="qrb-label">Accuracy</span>
+        </div>
+      </div>
+
+      <div class="quiz-results-btns">
+        <button class="quiz-retry-btn" onclick="restartQuiz()">↺ Try Again</button>
+        <a href="write.html" class="quiz-write-btn">Write Osagyefo a Letter →</a>
+      </div>
+
+      <div id="quiz-review">
+        <button onclick="toggleReview()" class="quiz-retry-btn" style="margin-top:2rem; font-size:0.78rem;" id="review-toggle-btn">
+          Show Answer Review ▼
+        </button>
+        <div class="quiz-review" id="quiz-review-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ── Quiz Data ── */
+  const QUIZ_QUESTIONS = [
+    {
+      q: "In what year did Ghana gain independence from British colonial rule?",
+      options: ["1954", "1957", "1960", "1963"],
+      answer: 1,
+      wit: "<strong>1957.</strong> March 6th, to be precise. Osagyefo declared it loud enough to be heard across the continent."
+    },
+    {
+      q: "What does the honorific title <em>\"Osagyefo\"</em> mean?",
+      options: ["Father of the Nation", "Liberator of Men", "Redeemer", "Chosen One"],
+      answer: 2,
+      wit: "<strong>Redeemer.</strong> A title fitting for a man who bore the weight of a continent's expectations on both shoulders."
+    },
+    {
+      q: "The Organisation of African Unity (OAU) was founded in which year?",
+      options: ["1957", "1960", "1963", "1966"],
+      answer: 2,
+      wit: "<strong>1963</strong>, in Addis Ababa. The dream of Pan-African unity took institutional form. Paper structure, enormous ambition."
+    },
+    {
+      q: "What major infrastructure project was completed in 1965, partly displacing entire lakeside communities?",
+      options: ["Tema Oil Refinery", "Accra–Kumasi Railway", "Akosombo Dam", "Tema Motorway"],
+      answer: 2,
+      wit: "<strong>Akosombo Dam.</strong> Progress, as always, is a transaction. Lake Volta was born; so was a generation of the displaced."
+    },
+    {
+      q: "While abroad, Nkrumah was overthrown by a military coup. In which year did this occur?",
+      options: ["1963", "1964", "1965", "1966"],
+      answer: 3,
+      wit: "<strong>1966.</strong> He was en route to Hanoi when the coup came. He received the news. He never came home."
+    },
+    {
+      q: "Who led the first military takeover of Ghana in 1979?",
+      options: ["General Acheampong", "General Afrifa", "J.J. Rawlings", "General Kotoka"],
+      answer: 2,
+      wit: "<strong>J.J. Rawlings.</strong> The first of two interventions. He had apparently not finished his business with the nation."
+    },
+    {
+      q: "Ghana's IMF-backed Economic Recovery Programme (ERP) began in which year?",
+      options: ["1979", "1981", "1983", "1986"],
+      answer: 2,
+      wit: "<strong>1983.</strong> Structural adjustment arrived. Everyone adjusted — mostly downward — and called it progress."
+    },
+    {
+      q: "Multi-party democracy was formally restored to Ghana in which year?",
+      options: ["1990", "1991", "1992", "1994"],
+      answer: 2,
+      wit: "<strong>1992.</strong> The fourth republic commenced. Speeches were written. The four-year promise cycle recommenced."
+    },
+    {
+      q: "Ghana joined the Heavily Indebted Poor Countries (HIPC) Initiative in which year?",
+      options: ["1998", "2001", "2003", "2005"],
+      answer: 1,
+      wit: "<strong>2001.</strong> Ghana qualified emphatically. The criteria, we appeared to have studied in intimate detail."
+    },
+    {
+      q: "Ghana hosted the Africa Cup of Nations (AFCON) in which year?",
+      options: ["2004", "2006", "2008", "2010"],
+      answer: 1,
+      wit: "<strong>2006.</strong> The Black Stars were excellent hosts. They exited the tournament with what could charitably be called dignified restraint."
+    },
+    {
+      q: "What significant natural resource was discovered offshore in Ghana in 2007?",
+      options: ["Natural Gas", "Cobalt", "Gold", "Oil"],
+      answer: 3,
+      wit: "<strong>Oil.</strong> Jubilee Field, offshore Cape Three Points. Several uncles immediately began comparing Accra to Dubai."
+    },
+    {
+      q: "The 'Year of Return', when the African diaspora was invited to reconnect with the homeland, was declared for which year?",
+      options: ["2017", "2018", "2019", "2020"],
+      answer: 2,
+      wit: "<strong>2019.</strong> They came in extraordinary numbers. Beyoncé came. Ghana was most calm about this. (This is a lie.)"
+    },
+    {
+      q: "Complete Nkrumah's declaration: \"The independence of Ghana is meaningless unless it is linked up with...\"",
+      options: ["\"…freedom for all peoples.\"", "\"…Africa standing as one.\"", "\"…the total liberation of Africa.\"", "\"…every child being fed.\""],
+      answer: 2,
+      wit: "<strong>\"…the total liberation of Africa.\"</strong> He set the ambition deliberately high. The rest of us have been catching up since."
+    },
+    {
+      q: "Amid severe economic crisis in 2022, Ghana formally turned to which institution for financial support?",
+      options: ["World Bank", "African Development Bank", "IMF", "European Central Bank"],
+      answer: 2,
+      wit: "<strong>The IMF.</strong> A very organised, if quietly humbling, queue accompanied Ghana's return to their door."
+    },
+    {
+      q: "By 2026, how many years of independence will Ghana have celebrated?",
+      options: ["64 years", "67 years", "69 years", "71 years"],
+      answer: 2,
+      wit: "<strong>69 years.</strong> The black star still burns on the flag. That alone is no small thing. Write the letter."
+    }
+  ];
+
+  const GRADE_MAP = [
+    { min:13, grade:"A+", title:"Historian of the First Order", msg:"You know this story the way Nkrumah knew colonialism: from every angle, at every hour.", wit:"The Osagyefo would like a word. He is pleased." },
+    { min:10, grade:"A",  title:"Paying Close Attention", msg:"Solid knowledge. The timeline was not wasted on you. Ghana notices.", wit:"You may speak at the state occasion. Briefly." },
+    { min:7,  grade:"B",  title:"A Commendable Effort", msg:"More than half the answers correct. The syllabus was partially absorbed.", wit:"Revisit the timeline. It is patient and free." },
+    { min:4,  grade:"C",  title:"Present, But Distracted", msg:"There were correct answers in there. They were surrounded, it must be said.", wit:"The independence of Ghana is meaningful. So is revision." },
+    { min:0,  grade:"F",  title:"Ghana's History Wants a Word", msg:"The nation has been independent for 69 years. That story deserved more preparation.", wit:"Begin again. The timeline is right above. It waits." }
+  ];
+
+  let quizState = { current: 0, score: 0, answers: [], answered: false };
+
+  function startQuiz() {
+    document.getElementById('quiz-start').style.display = 'none';
+    document.getElementById('quiz-interface').style.display = 'block';
+    quizState = { current: 0, score: 0, answers: [], answered: false };
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = QUIZ_QUESTIONS[quizState.current];
+    const n = quizState.current;
+    const total = QUIZ_QUESTIONS.length;
+    quizState.answered = false;
+
+    document.getElementById('quiz-q-label').textContent = `Question ${n + 1} of ${total}`;
+    document.getElementById('quiz-score-label').textContent = `Score: ${quizState.score}`;
+    document.getElementById('quiz-q-number').textContent = `Q${n + 1}`;
+    document.getElementById('quiz-question').innerHTML = q.q;
+
+    const fill = document.getElementById('quiz-progress-fill');
+    fill.style.width = (n / total * 100) + '%';
+    document.getElementById('quiz-progressbar').setAttribute('aria-valuenow', n);
+
+    const feedback = document.getElementById('quiz-feedback');
+    feedback.className = 'quiz-feedback';
+    feedback.textContent = '';
+
+    const nxtBtn = document.getElementById('quiz-next-btn');
+    nxtBtn.className = 'quiz-next-btn';
+
+    const optContainer = document.getElementById('quiz-options');
+    optContainer.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.setAttribute('role', 'listitem');
+      btn.setAttribute('aria-label', `Option ${letters[i]}: ${opt.replace(/<[^>]*>/g, '')}`);
+      btn.innerHTML = `<span class="opt-letter" aria-hidden="true">${letters[i]}</span><span>${opt}</span>`;
+      btn.addEventListener('click', () => selectAnswer(i));
+      optContainer.appendChild(btn);
+    });
+
+    const card = document.getElementById('quiz-card');
+    card.style.animation = 'none';
+    requestAnimationFrame(() => {
+      card.style.animation = 'fadeUp 0.4s ease forwards';
+    });
+  }
+
+  function selectAnswer(idx) {
+    if (quizState.answered) return;
+    quizState.answered = true;
+
+    const q = QUIZ_QUESTIONS[quizState.current];
+    const isCorrect = idx === q.answer;
+    if (isCorrect) quizState.score++;
+    quizState.answers.push({ q: quizState.current, chosen: idx, correct: isCorrect });
+
+    const optBtns = document.getElementById('quiz-options').querySelectorAll('.quiz-option');
+    optBtns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.answer) btn.classList.add('correct');
+      else if (i === idx) btn.classList.add('wrong');
+      else if (!isCorrect && i === q.answer) btn.classList.add('missed');
+    });
+
+    const feedback = document.getElementById('quiz-feedback');
+    feedback.innerHTML = (isCorrect ? '✓ Correct — ' : '✗ Not quite — ') + q.wit;
+    feedback.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+
+    const nxtBtn = document.getElementById('quiz-next-btn');
+    nxtBtn.textContent = quizState.current < QUIZ_QUESTIONS.length - 1 ? 'Next →' : 'See Results →';
+    nxtBtn.className = 'quiz-next-btn show';
+
+    document.getElementById('quiz-score-label').textContent = `Score: ${quizState.score}`;
+  }
+
+  function nextQuestion() {
+    quizState.current++;
+    if (quizState.current < QUIZ_QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      showResults();
+    }
+    const fill = document.getElementById('quiz-progress-fill');
+    fill.style.width = (quizState.current / QUIZ_QUESTIONS.length * 100) + '%';
+    document.getElementById('quiz-progressbar').setAttribute('aria-valuenow', quizState.current);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-interface').style.display = 'none';
+    const results = document.getElementById('quiz-results');
+    results.className = 'quiz-results show';
+
+    const score = quizState.score;
+    const total = QUIZ_QUESTIONS.length;
+    const pct = Math.round(score / total * 100);
+
+    document.getElementById('quiz-score-pct').textContent = score + '/' + total;
+    document.getElementById('res-correct').textContent = score;
+    document.getElementById('res-wrong').textContent = total - score;
+    document.getElementById('res-pct').textContent = pct + '%';
+
+    const circle = document.getElementById('quiz-score-circle');
+    requestAnimationFrame(() => {
+      setTimeout(() => { circle.style.setProperty('--pct', pct); }, 100);
+    });
+
+    const grade = GRADE_MAP.find(g => score >= g.min);
+    document.getElementById('quiz-grade-title').textContent = `Grade ${grade.grade} — ${grade.title}`;
+    document.getElementById('quiz-grade-msg').textContent = grade.msg;
+    document.getElementById('quiz-grade-wit').textContent = grade.wit;
+
+    /* Build review list */
+    const reviewList = document.getElementById('quiz-review-list');
+    reviewList.innerHTML = '<p class="quiz-review-title">Review — All 15 Questions</p>';
+    quizState.answers.forEach(a => {
+      const q = QUIZ_QUESTIONS[a.q];
+      const item = document.createElement('div');
+      item.className = 'review-item ' + (a.correct ? 'got-it' : 'missed-it');
+      item.innerHTML = `
+        <p class="rev-q">${a.q + 1}. ${q.q.replace(/<[^>]*>/g,'')}</p>
+        <p class="rev-ans ${a.correct ? 'correct' : 'incorrect'}">
+          ${a.correct ? '✓ Correct' : '✗ You chose: ' + q.options[a.chosen].replace(/<[^>]*>/g,'')}
+        </p>
+        ${!a.correct ? `<p class="rev-correct">Correct answer: ${q.options[q.answer].replace(/<[^>]*>/g,'')}</p>` : ''}
+      `;
+      reviewList.appendChild(item);
+    });
+  }
+
+  function restartQuiz() {
+    document.getElementById('quiz-results').className = 'quiz-results';
+    document.getElementById('quiz-review-list').className = 'quiz-review';
+    document.getElementById('review-toggle-btn').textContent = 'Show Answer Review ▼';
+    const circle = document.getElementById('quiz-score-circle');
+    circle.style.setProperty('--pct', 0);
+    quizState = { current: 0, score: 0, answers: [], answered: false };
+    document.getElementById('quiz-interface').style.display = 'block';
+    renderQuestion();
+    document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function toggleReview() {
+    const list = document.getElementById('quiz-review-list');
+    const btn  = document.getElementById('review-toggle-btn');
+    const isOpen = list.classList.contains('show');
+    list.className = 'quiz-review' + (isOpen ? '' : ' show');
+    btn.textContent = isOpen ? 'Show Answer Review ▼' : 'Hide Answer Review ▲';
+  }
+</script>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-top-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-title">Dear Osagyefo</span>
+        <p>A living archive of open letters to Kwame Nkrumah — witty dispatches from the present to the past.</p>
+        <p>By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        <div class="footer-socials">
+          <a href="https://twitter.com/share" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://facebook.com/sharer.php" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/?text=Dear%20Osagyefo%20%E2%80%94%20www.dearosagyefo.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-nav-row">
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="letters.html">Letters</a>
+          <a href="from-osagyefo.html">From Osagyefo</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="about.html">About</a>
+          <a href="write.html">Write a Letter</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>The Project</h4>
+          <a href="about.html">About Dr. Danso</a>
+          <a href="quiz.html">History Quiz</a>
+          <a href="write.html">Submit Your Letter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Dr. Ato Kwamena Danso. All rights reserved.</p>
+    <div class="footer-flag">
+      <span style="background:var(--red);"></span>
+      <span style="background:var(--gold);"></span>
+      <span style="background:var(--green);"></span>
+    </div>
+    <p>Independence Day &middot; March 6, 1957</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+// Back to top
+(function(){var b=document.getElementById('backToTop');if(b)window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400)},{passive:true})})();
+</script>
+
+<script>
+  // Support for browsers that don't support native lazy loading
+  if (!('loading' in HTMLImageElement.prototype)) {
+    // Fallback: use Intersection Observer for lazy loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          // Image already has src attribute
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    });
+  }
+
+  // Timeline Navigation - Active state tracking
+  function updateTimelineNav() {
+    const items = document.querySelectorAll('.timeline-item');
+    const navItems = document.querySelectorAll('.timeline-nav-item');
+    
+    let currentActive = null;
+    
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      // Check if item is in viewport (within 25% from top)
+      if (rect.top >= 0 && rect.top <= window.innerHeight * 0.25) {
+        currentActive = item.id;
+      }
+    });
+    
+    // Update active state on all nav items
+    navItems.forEach(navItem => {
+      navItem.classList.remove('active');
+      if (navItem.getAttribute('data-year') && currentActive) {
+        const year = navItem.getAttribute('data-year');
+        if (currentActive === `year-${year}`) {
+          navItem.classList.add('active');
+        }
+      }
+    });
+  }
+  
+  // Update on scroll
+  window.addEventListener('scroll', updateTimelineNav);
+  
+  // Update on page load
+  updateTimelineNav();
+  
+  // Smooth scroll behavior for nav items
+  document.querySelectorAll('.timeline-nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const year = this.getAttribute('data-year');
+      const targetElement = document.getElementById(`year-${year}`);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Update active state immediately
+        setTimeout(updateTimelineNav, 100);
+      }
+    });
+  });
+</script>
+
+<script>
+function toggleMobileNav() {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('open');
+}
+document.querySelectorAll('#main-nav a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open'));
+});
+</script>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  // Timeline items have their own CSS fadeInUp animation — do NOT add .reveal
+})();
+</script>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress"></div>
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
+<!-- Dark Mode Toggle -->
+<button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">&#9790;</button>
+
+<script>
+window.addEventListener('load', () => { setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 300); });
+window.addEventListener('scroll', () => {
+  const s = document.documentElement.scrollTop, h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('readingProgress').style.width = (h > 0 ? (s/h)*100 : 0) + '%';
+}, { passive: true });
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+const darkToggle = document.getElementById('darkToggle');
+function setDarkMode(on) { document.documentElement.classList.toggle('dark', on); darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; try { localStorage.setItem('darkMode', on ? '1' : '0'); } catch(e) {} }
+darkToggle.addEventListener('click', () => { setDarkMode(!document.documentElement.classList.contains('dark')); });
+try { if (localStorage.getItem('darkMode') === '1') setDarkMode(true); } catch(e) {}
+</script>
+
+<script src="magic.js"></script>
+
+</body>
+</html>

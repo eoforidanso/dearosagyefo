@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Letter Review — Admin | Letter to Osagyefo</title>
+  <meta name="description" content="Admin review panel for submitted letters to Osagyefo Kwame Nkrumah.">
+
+  <meta property="og:title" content="Letter Review — Admin | Letter to Osagyefo">
+  <meta property="og:description" content="Admin review panel for submitted letters to Osagyefo Kwame Nkrumah.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/review.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Letter Review — Admin | Letter to Osagyefo">
+  <meta name="twitter:description" content="Admin review panel for submitted letters to Osagyefo Kwame Nkrumah.">
+  <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #D43F3A;
+      --gold:   #E8B923;
+      --green:  #2D5F3F;
+      --white:  #ffffff;
+      --bg:     #fafaf8;
+      --border: #e0ddd8;
+      --text:   #1a1a1a;
+      --muted:  #666666;
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans:  'Inter', sans-serif;
+      --radius: 8px;
+      --shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── FLAG STRIPE ── */
+    .flag-stripe {
+      display: flex;
+      height: 5px;
+    }
+    .flag-stripe span { flex: 1; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    /* ── LOCK SCREEN ── */
+    #lock-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .lock-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .lock-card h1 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .lock-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .lock-card input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    .lock-card input:focus { border-color: var(--red); }
+    .lock-error {
+      color: var(--red);
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      display: none;
+    }
+
+    /* ── MAIN APP ── */
+    #app { display: none; }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-brand {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+    }
+    .header-brand span { color: var(--red); }
+    .header-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      background: var(--white);
+      padding: 0 2rem;
+    }
+    .tab {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+      color: var(--muted);
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--red); border-bottom-color: var(--red); }
+    .tab-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      border-radius: 99px;
+      font-size: 0.72rem;
+      padding: 1px 7px;
+      margin-left: 6px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    /* ── CONTENT ── */
+    main { padding: 2rem; max-width: 960px; margin: 0 auto; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.25rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .stat-box .val {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .stat-box .lbl {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .stat-box.pending .val { color: var(--gold); }
+    .stat-box.approved .val { color: var(--green); }
+    .stat-box.rejected .val { color: var(--red); }
+
+    /* ── LETTER CARDS ── */
+    .letter-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .empty-state .big { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    .letter-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .letter-card-header {
+      padding: 1rem 1.25rem 0.6rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .letter-card-meta { flex: 1; min-width: 0; }
+    .letter-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .letter-byline {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .letter-byline strong { color: var(--text); }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .badge-pending  { background: #fff8e1; color: #b08000; border: 1px solid #ffe082; }
+    .badge-approved { background: #e8f5e9; color: var(--green); border: 1px solid #a5d6a7; }
+    .badge-rejected { background: #ffebee; color: var(--red);   border: 1px solid #ef9a9a; }
+
+    .letter-body {
+      padding: 0 1.25rem;
+      display: none;
+    }
+    .letter-body.open { display: block; }
+
+    .letter-preview {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.5rem 0;
+      border-top: 1px solid var(--border);
+      line-height: 1.7;
+    }
+    .letter-full-content {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      padding: 0.75rem 0 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .letter-extra {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.4rem 1rem;
+      padding: 0.6rem 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .letter-extra span { word-break: break-all; }
+    .letter-extra strong { color: var(--text); }
+
+    .letter-actions {
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0.5rem 1.1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-primary   { background: var(--red);   color: #fff; }
+    .btn-approve   { background: var(--green);  color: #fff; }
+    .btn-reject    { background: #b71c1c;        color: #fff; }
+    .btn-ghost     { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-sm        { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      z-index: 9999;
+    }
+    #toast.show { opacity: 1; }
+
+    /* ── LOADING ── */
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--red);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-row {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .stats-bar { flex-wrap: wrap; }
+      main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="flag-stripe"><span></span><span></span><span></span></div>
+
+<!-- ── LOCK SCREEN ── -->
+<div id="lock-screen">
+  <div class="lock-card">
+    <h1>Admin Review</h1>
+    <p>Enter your admin secret to access the letter review panel.</p>
+    <div class="lock-error" id="lock-error">Incorrect secret. Try again.</div>
+    <input type="password" id="secret-input" placeholder="Admin secret…" autocomplete="off" />
+    <button class="btn btn-primary" style="width:100%" onclick="unlock()">Unlock</button>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app">
+
+  <header>
+    <div>
+      <div class="header-brand">Letter to <span>Osagyefo</span> — Admin Review</div>
+    </div>
+    <div class="header-right">
+      <span class="header-meta" id="header-meta"></span>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">Lock</button>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-pending" onclick="switchTab('pending')">
+      Pending <span class="tab-badge" id="badge-pending">0</span>
+    </div>
+    <div class="tab" id="tab-history" onclick="switchTab('history')">History</div>
+  </div>
+
+  <main>
+    <!-- Stats -->
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-box pending">
+        <div class="val" id="stat-pending">–</div>
+        <div class="lbl">Awaiting review</div>
+      </div>
+      <div class="stat-box approved">
+        <div class="val" id="stat-approved">–</div>
+        <div class="lbl">Approved</div>
+      </div>
+      <div class="stat-box rejected">
+        <div class="val" id="stat-rejected">–</div>
+        <div class="lbl">Rejected</div>
+      </div>
+    </div>
+
+    <!-- Pending panel -->
+    <div class="panel active" id="panel-pending">
+      <div class="loading-row" id="pending-loading"><span class="spinner"></span> Loading…</div>
+      <div class="letter-list" id="pending-list"></div>
+    </div>
+
+    <!-- History panel -->
+    <div class="panel" id="panel-history">
+      <div class="loading-row" id="history-loading"></div>
+      <div class="letter-list" id="history-list"></div>
+    </div>
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  let adminSecret = '';
+  let pendingLetters = [];
+  let historyLetters = [];
+  let historyLoaded = false;
+
+  // ── STORAGE HELPERS ──────────────────────────────────────
+  function getSubs() { try { return JSON.parse(localStorage.getItem('visitor_submissions') || '[]'); } catch(_) { return []; } }
+  function saveSubs(arr) { localStorage.setItem('visitor_submissions', JSON.stringify(arr)); }
+
+  // ── AUTH ────────────────────────────────────────────────────
+  document.getElementById('secret-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') unlock();
+  });
+
+  async function unlock() {
+    const input = document.getElementById('secret-input').value.trim();
+    if (!input) return;
+
+    // Client-side admin secret check
+    if (input !== 'osagyefo_admin_2024_secret') {
+      document.getElementById('lock-error').style.display = 'block';
+      return;
+    }
+
+    adminSecret = input;
+    document.getElementById('lock-error').style.display = 'none';
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+
+    const subs = getSubs();
+    pendingLetters = subs.filter(s => s.status === 'pending');
+    renderPending();
+    loadStats();
+  }
+
+  function logout() {
+    adminSecret = '';
+    document.getElementById('lock-screen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('secret-input').value = '';
+    pendingLetters = [];
+    historyLetters = [];
+    historyLoaded = false;
+  }
+
+  // ── STATS ───────────────────────────────────────────────────
+  function loadStats() {
+    const subs = getSubs();
+    const pending = subs.filter(s => s.status === 'pending');
+    const approved = subs.filter(s => s.status === 'approved');
+    const rejected = subs.filter(s => s.status === 'rejected');
+
+    document.getElementById('stat-pending').textContent  = pending.length;
+    document.getElementById('stat-approved').textContent = approved.length;
+    document.getElementById('stat-rejected').textContent = rejected.length;
+    document.getElementById('badge-pending').textContent = pending.length;
+
+    const now = new Date().toLocaleTimeString();
+    document.getElementById('header-meta').textContent = `Last refreshed: ${now}`;
+  }
+
+  // ── TABS ────────────────────────────────────────────────────
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+
+    if (tab === 'history' && !historyLoaded) loadHistory();
+  }
+
+  // ── PENDING ─────────────────────────────────────────────────
+  function renderPending() {
+    const el = document.getElementById('pending-list');
+    document.getElementById('pending-loading').style.display = 'none';
+
+    if (!pendingLetters.length) {
+      el.innerHTML = '<div class="empty-state"><div class="big">✅</div>No letters awaiting review.</div>';
+      return;
+    }
+    el.innerHTML = '';
+    pendingLetters.forEach(letter => el.appendChild(buildCard(letter, 'pending')));
+  }
+
+  // ── HISTORY ─────────────────────────────────────────────────
+  async function loadHistory() {
+    document.getElementById('history-loading').innerHTML = '<span class="spinner"></span> Loading…';
+    const subs = getSubs();
+    historyLetters = subs.filter(s => s.status === 'approved' || s.status === 'rejected');
+    historyLoaded = true;
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const el = document.getElementById('history-list');
+    document.getElementById('history-loading').innerHTML = '';
+
+    if (!historyLetters.length) {
+      el.innerHTML = '<div class="empty-state"><div class="big">📂</div>No reviewed letters yet.</div>';
+      return;
+    }
+    el.innerHTML = '';
+    historyLetters.forEach(letter => el.appendChild(buildCard(letter, letter.status)));
+  }
+
+  // ── CARD BUILDER ────────────────────────────────────────────
+  function buildCard(letter, status) {
+    const card = document.createElement('div');
+    card.className = 'letter-card';
+    card.id = 'card-' + letter.id;
+
+    const date = new Date(letter.submittedAt).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'short', year: 'numeric'
+    });
+
+    const badgeClass = `badge badge-${status}`;
+    const badgeLabel = status === 'pending' ? 'Pending review'
+                     : status === 'approved' ? 'Approved'
+                     : 'Rejected';
+
+    const emailInfo = letter.email ? `<strong>Email:</strong> ${escHtml(letter.email)}` : '';
+    const locationInfo = letter.location ? `<strong>Location:</strong> ${escHtml(letter.location)}` : '';
+    const tagsInfo = letter.tags ? `<strong>Tags:</strong> ${escHtml(letter.tags)}` : '';
+    const catInfo = `<strong>Category:</strong> ${escHtml(letter.category || 'General')}`;
+
+    const actionButtons = status === 'pending' ? `
+      <button class="btn btn-approve" onclick="approve(${letter.id})">✓ Approve</button>
+      <button class="btn btn-reject"  onclick="reject(${letter.id})">✗ Reject</button>
+    ` : '';
+
+    card.innerHTML = `
+      <div class="letter-card-header">
+        <div class="letter-card-meta">
+          <div class="letter-title">${escHtml(letter.title)}</div>
+          <div class="letter-byline">by <strong>${escHtml(letter.penName)}</strong> · ${date}</div>
+        </div>
+        <span class="${badgeClass}">${badgeLabel}</span>
+      </div>
+      <div class="letter-body" id="body-${letter.id}">
+        <div class="letter-preview">${escHtml(letter.preview || '')}</div>
+        ${letter.content ? `<div class="letter-full-content">${escHtml(letter.content)}</div>` : ''}
+        <div class="letter-extra">
+          ${emailInfo ? `<span>${emailInfo}</span>` : ''}
+          ${locationInfo ? `<span>${locationInfo}</span>` : ''}
+          ${tagsInfo ? `<span>${tagsInfo}</span>` : ''}
+          <span>${catInfo}</span>
+        </div>
+      </div>
+      <div class="letter-actions">
+        ${actionButtons}
+        <button class="btn btn-ghost btn-sm" onclick="toggleBody(${letter.id})">Read full letter</button>
+      </div>
+    `;
+    return card;
+  }
+
+  function toggleBody(id) {
+    const body = document.getElementById('body-' + id);
+    const isOpen = body.classList.toggle('open');
+    const btn = body.nextElementSibling.querySelector('.btn-ghost');
+    btn.textContent = isOpen ? 'Collapse' : 'Read full letter';
+  }
+
+  // ── APPROVE / REJECT ────────────────────────────────────────
+  async function approve(id) {
+    await reviewAction(id, 'approve', 'Letter approved and published ✓');
+  }
+
+  async function reject(id) {
+    await reviewAction(id, 'reject', 'Letter rejected.');
+  }
+
+  async function reviewAction(id, action, successMsg) {
+    const card = document.getElementById('card-' + id);
+    const buttons = card.querySelectorAll('.btn');
+    buttons.forEach(b => b.disabled = true);
+
+    // Update in localStorage
+    const subs = getSubs();
+    const idx = subs.findIndex(s => s.id === id);
+    if (idx === -1) {
+      showToast('Error: Letter not found');
+      buttons.forEach(b => b.disabled = false);
+      return;
+    }
+    subs[idx].status = action === 'approve' ? 'approved' : 'rejected';
+    subs[idx].reviewedAt = new Date().toISOString();
+    saveSubs(subs);
+
+    showToast(successMsg);
+
+    // Remove from pending list and re-render
+    pendingLetters = pendingLetters.filter(l => l.id !== id);
+    card.style.transition = 'opacity 0.3s';
+    card.style.opacity = '0';
+    setTimeout(() => {
+      card.remove();
+      if (!pendingLetters.length) {
+        document.getElementById('pending-list').innerHTML =
+          '<div class="empty-state"><div class="big">✅</div>No letters awaiting review.</div>';
+      }
+    }, 300);
+
+    // Refresh stats
+    loadStats();
+    historyLoaded = false;
+
+    // Refresh stats
+    loadStats();
+    historyLoaded = false; // force history reload next visit
+  }
+
+  // ── HELPERS ─────────────────────────────────────────────────
+  function escHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>

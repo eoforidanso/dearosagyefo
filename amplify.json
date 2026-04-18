@@ -1,0 +1,54 @@
+{
+  "name": "dearosagyefo",
+  "type": "javascript",
+  "source": {
+    "buildspec": {
+      "version": 1,
+      "applications": [
+        {
+          "appRoot": ".",
+          "frontend": {
+            "phases": {
+              "preBuild": {
+                "commands": [
+                  "npm install"
+                ]
+              },
+              "build": {
+                "commands": [
+                  "npm run build"
+                ]
+              }
+            },
+            "artifacts": {
+              "baseDirectory": ".",
+              "files": [
+                "**/*"
+              ],
+              "exclude": [
+                "node_modules/**/*",
+                "backend/**/*",
+                "tts-env/**/*",
+                ".git/**/*"
+              ]
+            }
+          },
+          "backend": {
+            "phases": {
+              "preBuild": {
+                "commands": [
+                  "npm install"
+                ]
+              },
+              "build": {
+                "commands": [
+                  "npm run start"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

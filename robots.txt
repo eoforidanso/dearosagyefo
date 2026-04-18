@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.ato-kwamena.com/sitemap.xml
+
+Disallow: /login.html
+Disallow: /dashboard.html
+Disallow: /review.html
+Disallow: /api/
+Disallow: /data/
+Disallow: /backend/

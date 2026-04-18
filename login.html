@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#D43F3A">
+    <link rel="icon" type="image/png" href="/thumbnail.png">
+    <title>Login - Letter to Osagyefo</title>
+    <meta name="description" content="Sign in to Letter to Osagyefo to write and manage your open letters to Kwame Nkrumah.">
+
+    <meta property="og:title" content="Login | Letter to Osagyefo">
+    <meta property="og:description" content="Sign in to write and manage your open letters to Kwame Nkrumah.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.dearosagyefo.com/login.html">
+    <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login | Letter to Osagyefo">
+    <meta name="twitter:description" content="Sign in to write and manage your open letters to Kwame Nkrumah.">
+    <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --red: #D43F3A;
+            --gold: #E8B923;
+            --green: #2D5F3F;
+            --accent-warm: #C65911;
+            --black: #0f1419;
+            --bg: #fafaf8;
+            --white: #ffffff;
+            --gray-dark: #2a2a2a;
+            --gray-med: #5a5a5a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2d3b4a 50%, #1f2a38 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            line-height: 1.75;
+        }
+
+        .flag-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            display: flex;
+            z-index: 10001;
+        }
+        .flag-stripe span { flex: 1; height: 100%; }
+        .flag-stripe span:nth-child(1) { background: var(--red); }
+        .flag-stripe span:nth-child(2) { background: var(--gold); }
+        .flag-stripe span:nth-child(3) { background: var(--green); }
+
+        .login-container {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+            padding: 3.5rem 2.5rem;
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .login-logo {
+            font-family: 'DM Serif Display', serif;
+            color: var(--red);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .login-logo span { color: var(--green); }
+
+        .login-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-med);
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid #e0ddd9;
+            color: var(--gray-dark);
+            padding: 0.9rem 1.1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 4px rgba(212,63,58,0.15);
+            background: var(--white);
+        }
+
+        .form-group input::placeholder {
+            color: #ccc;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, #a84c0e 100%);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(198, 89, 17, 0.35);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(198, 89, 17, 0.45);
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .login-footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0ddd9;
+            text-align: center;
+        }
+
+        .login-footer-text {
+            font-size: 0.85rem;
+            color: var(--gray-med);
+        }
+
+        .login-footer-link {
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .login-footer-link:hover {
+            color: #b00d1f;
+        }
+
+        .error-message {
+            background: #ffe0e0;
+            color: #d43f3a;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1.5rem 1rem; }
+            .login-container {
+                padding: 2.5rem 2rem;
+                border-radius: 14px;
+            }
+            .login-title { font-size: 1.6rem; }
+            .login-subtitle { font-size: 0.85rem; }
+            .login-header { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.75rem; }
+            .login-container {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            .login-title {
+                font-size: 1.4rem;
+            }
+
+            .login-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .form-group input {
+                padding: 0.8rem 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            .login-btn {
+                padding: 0.9rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag-stripe">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="login-container" id="login-container">
+        <div class="login-header">
+            <div class="login-logo">Letter to <span>Osagyefo</span></div>
+            <h1 class="login-title">Owner Access</h1>
+            <p class="login-subtitle">Dashboard login for site owner</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group" id="firstNameGroup" style="display:none">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Your first name" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required />
+            </div>
+
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+
+        <p style="text-align:center;margin-top:1rem;">
+          <a href="#" class="login-footer-link" style="font-size:0.82rem;font-weight:500;" onclick="showForgotPassword(event)">Forgot password?</a>
+        </p>
+
+        <!-- FORGOT PASSWORD FORM -->
+        <div id="forgotSection" style="display:none;">
+          <div style="border-top:1px solid #e0ddd9; margin-top:1.5rem; padding-top:1.5rem;">
+            <h3 style="font-family:'DM Serif Display',serif; font-size:1.2rem; color:var(--gray-dark); margin-bottom:0.5rem;">Reset Password</h3>
+
+            <!-- Step 1: Enter email -->
+            <div id="forgotStep1">
+              <p style="font-size:0.85rem; color:var(--gray-med); margin-bottom:1rem;">Enter your email to receive a reset code.</p>
+              <div class="form-group">
+                <label for="resetEmail">Email Address</label>
+                <input type="email" id="resetEmail" placeholder="your@email.com" required />
+              </div>
+              <button class="login-btn" onclick="sendResetCode()" id="sendCodeBtn">Send Reset Code</button>
+            </div>
+
+            <!-- Step 2: Enter code + new password -->
+            <div id="forgotStep2" style="display:none;">
+              <div id="resetCodeDisplay" style="display:none; background:#fffbe6; border:2px solid var(--gold); border-radius:8px; padding:1rem; margin-bottom:1rem; text-align:center;">
+                <p style="font-size:0.8rem; color:var(--gray-med); margin-bottom:0.3rem;">Your reset code:</p>
+                <span id="resetCodeValue" style="font-family:monospace; font-size:1.8rem; letter-spacing:6px; color:var(--red); font-weight:700;"></span>
+              </div>
+              <p id="resetEmailSentMsg" style="display:none; font-size:0.85rem; color:var(--green); margin-bottom:1rem;">✓ Reset code sent to your email.</p>
+              <div class="form-group">
+                <label for="resetCode">Reset Code</label>
+                <input type="text" id="resetCode" placeholder="6-digit code" maxlength="6" pattern="[0-9]{6}" required />
+              </div>
+              <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" placeholder="Min 6 characters" required />
+              </div>
+              <button class="login-btn" onclick="resetPassword()" id="resetBtn">Update Password</button>
+            </div>
+
+            <p id="resetMessage" style="text-align:center; margin-top:1rem; font-size:0.85rem; display:none;"></p>
+            <p style="text-align:center; margin-top:0.75rem;">
+              <a href="#" class="login-footer-link" style="font-size:0.82rem;font-weight:500;" onclick="hideForgotPassword(event)">← Back to login</a>
+            </p>
+          </div>
+        </div>
+
+    </div>
+
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/users/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    showError(data.message || 'Invalid email or password');
+                    return;
+                }
+                // Store JWT token + basic info
+                sessionStorage.setItem('authToken', data.token);
+                sessionStorage.setItem('writerName', data.user.firstName || email.split('@')[0]);
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userEmail', email);
+                window.location.href = 'dashboard.html';
+            } catch (err) {
+                showError('Could not connect to server. Please try again.');
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 4000);
+        }
+
+        function toggleSignup(event) {
+            event.preventDefault();
+            // Registration disabled — owner-only access
+            showError('Registration is not available. Owner access only.');
+        }
+
+        function showForgotPassword(e) {
+            e.preventDefault();
+            showError('Contact the site owner to reset your password.');
+        }
+
+        function hideForgotPassword(e) { if(e) e.preventDefault(); }
+        function sendResetCode() {}
+        function resetPassword() {}
+        function showResetMsg() {}
+    </script>
+</body>
+</html>

@@ -1,0 +1,1547 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/thumbnail.png">
+    <title>Writer Dashboard - Letter to Osagyefo</title>
+    <meta name="description" content="Your writer dashboard — manage and track your open letters to Kwame Nkrumah.">
+
+    <meta property="og:title" content="Writer Dashboard | Letter to Osagyefo">
+    <meta property="og:description" content="Manage and track your open letters to Kwame Nkrumah.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ato-kwamena.com/dashboard.html">
+    <meta property="og:image" content="https://www.ato-kwamena.com/thumbnail.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Writer Dashboard | Letter to Osagyefo">
+    <meta name="twitter:description" content="Manage and track your open letters to Kwame Nkrumah.">
+    <meta name="twitter:image" content="https://www.ato-kwamena.com/thumbnail.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --red: #D43F3A;
+            --gold: #E8B923;
+            --green: #2D5F3F;
+            --accent-warm: #C65911;
+            --black: #0f1419;
+            --bg: #fafaf8;
+            --white: #ffffff;
+            --gray-dark: #2a2a2a;
+            --gray-med: #5a5a5a;
+            --gray-light: #888;
+            --gray-border: #e0ddd9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--gray-dark);
+            line-height: 1.75;
+        }
+
+        .flag-stripe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            display: flex;
+            z-index: 10001;
+        }
+        .flag-stripe span { flex: 1; height: 100%; }
+        .flag-stripe span:nth-child(1) { background: var(--red); }
+        .flag-stripe span:nth-child(2) { background: var(--gold); }
+        .flag-stripe span:nth-child(3) { background: var(--green); }
+
+        /* HEADER */
+        .header {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 8px;
+            z-index: 100;
+        }
+
+        .header-logo {
+            font-family: 'DM Serif Display', serif;
+            color: var(--red);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .header-logo span { color: var(--green); }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .logout-btn {
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #b00d1f;
+            transform: translateY(-2px);
+        }
+
+        /* STATS ROW */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-top: 4px solid var(--red);
+        }
+        .stat-card:nth-child(2) { border-top-color: var(--gold); }
+        .stat-card:nth-child(3) { border-top-color: var(--green); }
+        .stat-card:nth-child(4) { border-top-color: #6c757d; }
+        .stat-card-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            line-height: 1;
+        }
+        .stat-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-top: 0.35rem;
+        }
+        @media (max-width: 600px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* DASHBOARD TITLE */
+        .dashboard-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-dark);
+        }
+
+        .dashboard-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* ACTIONS BAR */
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .new-letter-btn {
+            background: linear-gradient(135deg, var(--red) 0%, #a63834 100%);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(212,63,58,0.2);
+        }
+
+        .new-letter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212,63,58,0.3);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--gray-border);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            width: 250px;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        /* LETTERS TABLE */
+        .letters-table {
+            background: var(--white);
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-border);
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #f8f8f8 0%, #f2f2f2 100%);
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid var(--gray-border);
+            display: grid;
+            grid-template-columns: 82px 95px 105px 120px minmax(140px, 1fr) minmax(120px, 1fr) 200px;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-dark);
+        }
+
+        .letter-row {
+            display: grid;
+            grid-template-columns: 82px 95px 105px 120px minmax(140px, 1fr) minmax(120px, 1fr) 200px;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-border);
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .letter-row:hover {
+            background-color: #fafaf8;
+        }
+
+        .letter-row:last-child {
+            border-bottom: none;
+        }
+
+        .letter-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: var(--gray-border);
+            /* Image optimization */
+            contain: layout style paint;
+            background-color: #e0ddd9;
+            /* Lazy loading placeholder */
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Image loading state */
+        .letter-image:not([src]),
+        .letter-image[src=""] {
+            opacity: 0.5;
+        }
+
+        @supports (content-visibility: auto) {
+            .letter-image {
+                content-visibility: auto;
+            }
+        }
+
+        .letter-date {
+            font-size: 0.8rem;
+            color: var(--gray-med);
+        }
+
+        .letter-status {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-published {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #e7d4f5;
+            color: #553399;
+        }
+
+        .letter-category {
+            font-size: 0.8rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .letter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+        }
+
+        .tag-badge {
+            background: linear-gradient(135deg, rgba(212,63,58,0.15), rgba(232,185,35,0.15));
+            color: var(--red);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid rgba(212,63,58,0.3);
+        }
+
+        .tag-empty {
+            color: var(--gray-light);
+            font-weight: 500;
+        }
+
+        .letter-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .letter-summary {
+            font-size: 0.82rem;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--gray-border);
+            background: var(--white);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .action-btn.delete {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        .action-btn.publish {
+            color: #2D5F3F;
+            border-color: #2D5F3F;
+        }
+        .action-btn.publish:hover {
+            background: #2D5F3F;
+            color: #fff;
+            border-color: #2D5F3F;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* MODALS */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--gray-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--gray-dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid var(--gray-border);
+            color: var(--gray-dark);
+            padding: 0.85rem 1.1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 4px rgba(212,63,58,0.15);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .file-input {
+            position: relative;
+        }
+
+        .file-input input[type="file"] {
+            display: none;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 1rem;
+            background: var(--bg);
+            border: 2px dashed var(--gray-border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--red);
+            background: rgba(212,63,58,0.05);
+        }
+
+        .file-input-text {
+            font-size: 0.9rem;
+            color: var(--gray-med);
+        }
+
+        .tags-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--gray-border);
+        }
+
+        .tag-label {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            user-select: none;
+        }
+
+        .tag-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+            accent-color: var(--red);
+        }
+
+        .tag-label:hover {
+            color: var(--red);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, #a84c0e 100%);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(198, 89, 17, 0.35);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(198, 89, 17, 0.45);
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: var(--gray-border);
+            color: var(--gray-dark);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #555;
+            color: var(--white);
+        }
+
+        /* ── COMPOSE VIEW ── */
+        #compose-view {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 200;
+            overflow-y: auto;
+            padding-top: 8px; /* flag stripe */
+        }
+        #compose-view.open { display: block; }
+
+        .compose-topbar {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-border);
+            padding: 0.85rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 50;
+            gap: 1rem;
+        }
+        .compose-topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .compose-back-btn {
+            background: none;
+            border: 1px solid var(--gray-border);
+            border-radius: 6px;
+            padding: 0.45rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--gray-dark);
+            transition: all 0.2s;
+        }
+        .compose-back-btn:hover { border-color: var(--gray-dark); }
+        
+        .compose-instructions {
+            background: rgba(232,185,35,0.08);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 2rem;
+            margin: 0;
+        }
+        .compose-instructions p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+        .compose-instructions strong {
+            color: #7a5f00;
+        }
+        .compose-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+        }
+        .compose-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .btn-draft {
+            background: var(--white);
+            border: 2px solid var(--gray-border);
+            color: var(--gray-dark);
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-draft:hover { border-color: var(--gold); color: #7a5f00; }
+        .btn-post {
+            background: linear-gradient(135deg, var(--red) 0%, #a63834 100%);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(212,63,58,0.25);
+            transition: all 0.2s;
+        }
+        .btn-post:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,63,58,0.35); }
+        .btn-post:disabled, .btn-draft:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .compose-body {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        /* Letter paper */
+        .letter-paper {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-border);
+            padding: 3rem 3.5rem;
+        }
+        .letter-meta-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .compose-field-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-med);
+            margin-bottom: 0.4rem;
+        }
+        .compose-title-input {
+            width: 100%;
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--gray-dark);
+            border: none;
+            border-bottom: 2px solid var(--gray-border);
+            background: transparent;
+            padding: 0.4rem 0;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 2rem;
+        }
+        .compose-title-input:focus { border-bottom-color: var(--red); }
+        .compose-title-input::placeholder { color: #ccc; }
+        .compose-select {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid var(--gray-border);
+            color: var(--gray-dark);
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .compose-select:focus { border-color: var(--red); }
+        
+        .compose-textarea {
+            width: 100%;
+            background: var(--bg);
+            border: 2px solid var(--gray-border);
+            color: var(--gray-dark);
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.2s;
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.6;
+        }
+        .compose-textarea:focus { border-color: var(--red); }
+        .compose-textarea::placeholder { color: #999; }
+        
+        .field-help-text {
+            font-size: 0.75rem;
+            color: var(--gray-light);
+            margin-top: 0.4rem;
+            line-height: 1.4;
+        }
+        .letter-salutation {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+        }
+        .letter-divider {
+            border: none;
+            border-top: 1px solid var(--gray-border);
+            margin: 1.5rem 0;
+        }
+        .letter-body-area {
+            width: 100%;
+            min-height: 380px;
+            border: none;
+            outline: none;
+            resize: vertical;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--gray-dark);
+            background: transparent;
+            padding: 0;
+        }
+        .letter-body-area::placeholder { color: #ccc; font-style: italic; }
+        .compose-tags-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gray-med);
+            margin: 1.5rem 0 0.6rem;
+        }
+        .compose-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+        .compose-tag-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: var(--gray-dark);
+            cursor: pointer;
+            padding: 0.35rem 0.8rem;
+            border: 1px solid var(--gray-border);
+            border-radius: 20px;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .compose-tag-label:hover { border-color: var(--red); color: var(--red); }
+        .compose-tag-label input { display: none; }
+        .compose-tag-label.checked { background: rgba(212,63,58,0.1); border-color: var(--red); color: var(--red); font-weight: 600; }
+
+        /* Photo Upload */
+        .photo-upload-zone {
+            position: relative;
+            border: 2px dashed var(--gray-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg);
+            margin-bottom: 1.5rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-upload-zone:hover,
+        .photo-upload-zone.dragover {
+            border-color: var(--red);
+            background: rgba(212,63,58,0.04);
+        }
+        .photo-upload-zone.has-image {
+            border-style: solid;
+            border-color: var(--green);
+            padding: 0.5rem;
+        }
+        .photo-upload-placeholder p {
+            margin: 0.3rem 0 0;
+            font-size: 0.8rem;
+            color: var(--gray-med);
+        }
+        .photo-preview-img {
+            max-width: 100%;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .photo-remove-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(212,63,58,0.9);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .photo-remove-btn:hover { background: #b00d1f; }
+
+        @media (max-width: 600px) {
+            .compose-body { padding: 1rem 1rem 3rem; }
+            .letter-paper { padding: 1.75rem 1.5rem; }
+            .letter-meta-row { grid-template-columns: 1fr; }
+            .compose-title-input { font-size: 1.5rem; }
+            .compose-topbar { padding: 0.7rem 1rem; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .header-right {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .letters-table {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .table-header,
+            .letter-row {
+                min-width: 600px;
+            }
+
+            .letter-title {
+                font-size: 0.85rem;
+            }
+
+            .letter-summary {
+                display: none;
+            }
+
+            .modal {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .dashboard-title {
+                font-size: 1.4rem;
+            }
+
+            .table-header,
+            .letter-row {
+                min-width: 500px;
+                font-size: 0.7rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .letter-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .letter-category {
+                display: none;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            .action-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.65rem;
+            }
+
+            .modal {
+                padding: 1.2rem;
+                max-width: 95%;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flag-stripe">
+        <span></span><span></span><span></span>
+    </div>
+
+    <div class="header">
+        <div class="header-logo">Letter to <span>Osagyefo</span></div>
+        <div class="header-right">
+            <div class="user-info">
+                <div class="user-name" id="userName">Welcome, Writer</div>
+                <div class="user-role">Writer Dashboard</div>
+            </div>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="dashboard-title">Your Letters</h1>
+        <p class="dashboard-subtitle">Manage and publish your open letters to Osagyefo</p>
+
+        <!-- STATS ROW -->
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-card-number" id="stat-total">—</div><div class="stat-card-label">Total Letters</div></div>
+            <div class="stat-card"><div class="stat-card-number" id="stat-drafts">—</div><div class="stat-card-label">Drafts</div></div>
+            <div class="stat-card"><div class="stat-card-number" id="stat-sent">—</div><div class="stat-card-label">Sent</div></div>
+            <div class="stat-card"><div class="stat-card-number" id="stat-archived">—</div><div class="stat-card-label">Archived</div></div>
+        </div>
+
+        <div class="actions-bar">
+            <button class="new-letter-btn" onclick="openNewLetterModal()">+ New Letter</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search letters..." onkeyup="filterLetters()">
+            </div>
+        </div>
+
+        <div class="letters-table">
+            <div class="table-header">
+                <div>Date</div>
+                <div>Status</div>
+                <div>Category</div>
+                <div>Tags</div>
+                <div>Title</div>
+                <div>Summary</div>
+                <div>Actions</div>
+            </div>
+            <div id="lettersContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📝</div>
+                    <p>No letters yet. Start by creating your first letter!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW LETTER MODAL (kept for backwards compat, hidden) -->
+    <div id="newLetterModal" style="display:none"></div>
+
+    <!-- COMPOSE VIEW -->
+    <div id="compose-view">
+        <div class="flag-stripe" style="position:fixed;top:0;left:0;right:0;height:8px;display:flex;z-index:9999">
+            <span style="flex:1;background:var(--red)"></span>
+            <span style="flex:1;background:var(--gold)"></span>
+            <span style="flex:1;background:var(--green)"></span>
+        </div>
+        <div class="compose-topbar">
+            <div class="compose-topbar-left">
+                <button class="compose-back-btn" onclick="closeCompose()">← Back</button>
+                <span class="compose-label" id="compose-label">Write New Letter</span>
+            </div>
+            <div class="compose-actions">
+                <button class="btn-draft" id="btn-draft" onclick="saveCompose('draft')">Save Draft</button>
+                <button class="btn-post" id="btn-post" onclick="saveCompose('published')">Post Letter ✉</button>
+            </div>
+        </div>
+        
+        <div class="compose-instructions">
+            <p><strong>💡 Writing Tips:</strong> Your summary helps readers understand the purpose and relevance of your letter. Think of it as the preview that draws people in to read your full thoughts.</p>
+        </div>
+
+        <div class="compose-body">
+
+            <!-- Letter paper -->
+            <div class="letter-paper">
+                <div class="compose-field-label">Letter Title</div>
+                <input
+                    type="text"
+                    class="compose-title-input"
+                    id="compose-title"
+                    placeholder="On the Matter Of…"
+                    autocomplete="off"
+                />
+
+                <div class="letter-meta-row">
+                    <div>
+                        <div class="compose-field-label">Category</div>
+                        <select class="compose-select" id="compose-category">
+                            <option value="">Select category</option>
+                            <option>Politics</option>
+                            <option>Culture</option>
+                            <option>Satire</option>
+                            <option>Diaspora</option>
+                            <option>Economy</option>
+                            <option>Pan-Africanism</option>
+                            <option>Environment</option>
+                            <option>Education</option>
+                            <option>Health</option>
+                            <option>Youth</option>
+                            <option>Technology</option>
+                            <option>History</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="compose-field-label">Letter Summary</div>
+                        <textarea class="compose-textarea" id="compose-summary" placeholder="Write a compelling summary of your letter... This will help readers understand what your letter is about and why it matters. Include key themes, questions you're raising, or issues you're addressing." rows="4"></textarea>
+                        <div class="field-help-text">Write 2-3 sentences that capture the essence of your letter and its relevance to Ghana today.</div>
+                    </div>
+                </div>
+
+                <!-- Photo Upload -->
+                <div class="compose-field-label" style="margin-top:0.5rem">Cover Image (optional)</div>
+                <div class="photo-upload-zone" id="photo-upload-zone" onclick="document.getElementById('compose-image').click()">
+                    <input type="file" id="compose-image" accept="image/*" style="display:none" onchange="handleImagePreview(this)">
+                    <div class="photo-upload-placeholder" id="photo-placeholder">
+                        <span style="font-size:2rem">📷</span>
+                        <p>Click or drag an image here</p>
+                        <p style="font-size:0.7rem;color:#aaa">JPG, PNG or WebP — auto-compressed to fit</p>
+                    </div>
+                    <img id="photo-preview" class="photo-preview-img" style="display:none" alt="Preview">
+                    <button type="button" class="photo-remove-btn" id="photo-remove-btn" style="display:none" onclick="removeImage(event)">✕ Remove</button>
+                </div>
+
+                <hr class="letter-divider" />
+
+                <textarea
+                    class="letter-body-area"
+                    id="compose-body"
+                    placeholder="Write your letter here…"
+                ></textarea>
+
+                <div class="compose-tags-label">Tags</div>
+                <div class="compose-tags-row" id="compose-tags-row">
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="dumsor"> Dumsor
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="elections"> Elections
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="IMF"> IMF
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="jollof"> Jollof
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="unity"> Unity
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="youth"> Youth
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="pan-africanism"> Pan-Africanism
+                    </label>
+                    <label class="compose-tag-label" onclick="toggleTag(this)">
+                        <input type="checkbox" value="economy"> Economy
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== IMAGE UPLOAD =====
+        let selectedImageFile = null;
+        const MAX_WIDTH = 2400;
+        const MAX_HEIGHT = 3200;
+        const QUALITY = 0.85;
+        const MAX_SIZE = 50 * 1024 * 1024;
+
+        function compressImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let w = img.width, h = img.height;
+                        if (w > MAX_WIDTH) { h = Math.round(h * MAX_WIDTH / w); w = MAX_WIDTH; }
+                        if (h > MAX_HEIGHT) { w = Math.round(w * MAX_HEIGHT / h); h = MAX_HEIGHT; }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        canvas.toBlob(blob => {
+                            resolve(new File([blob], file.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' }));
+                        }, 'image/jpeg', QUALITY);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function handleImagePreview(input) {
+            let file = input.files[0];
+            if (!file) return;
+
+            // Show compressing indicator
+            const placeholder = document.getElementById('photo-placeholder');
+            placeholder.innerHTML = '<p style="color:var(--red)">Compressing image…</p>';
+
+            // Auto-compress if over 1MB or too large
+            if (file.size > 1 * 1024 * 1024) {
+                file = await compressImage(file);
+            }
+
+            if (file.size > MAX_SIZE) { alert('Image still too large after compression. Try a smaller image.'); placeholder.innerHTML = '<span style="font-size:2rem">📷</span><p>Click or drag an image here</p><p style="font-size:0.7rem;color:#aaa">JPG, PNG or WebP — auto-compressed</p>'; input.value = ''; return; }
+
+            selectedImageFile = file;
+            const reader = new FileReader();
+            reader.onload = e => {
+                document.getElementById('photo-preview').src = e.target.result;
+                document.getElementById('photo-preview').style.display = 'block';
+                document.getElementById('photo-placeholder').style.display = 'none';
+                document.getElementById('photo-remove-btn').style.display = 'block';
+                document.getElementById('photo-upload-zone').classList.add('has-image');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage(e) {
+            e.stopPropagation();
+            selectedImageFile = null;
+            document.getElementById('compose-image').value = '';
+            document.getElementById('photo-preview').style.display = 'none';
+            document.getElementById('photo-placeholder').style.display = '';
+            document.getElementById('photo-remove-btn').style.display = 'none';
+            document.getElementById('photo-upload-zone').classList.remove('has-image');
+        }
+
+        // Drag & drop
+        (function() {
+            const zone = document.getElementById('photo-upload-zone');
+            if (!zone) return;
+            ['dragenter','dragover'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.add('dragover'); }));
+            ['dragleave','drop'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.remove('dragover'); }));
+            zone.addEventListener('drop', e => {
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const input = document.getElementById('compose-image');
+                    const dt = new DataTransfer();
+                    dt.items.add(file);
+                    input.files = dt.files;
+                    handleImagePreview(input);
+                }
+            });
+        })();
+
+        // ===== IMAGE OPTIMIZATION & LAZY LOADING POLYFILL =====
+        if (!('loading' in HTMLImageElement.prototype)) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) observer.unobserve(entry.target);
+                });
+            }, { rootMargin: '50px' });
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => imageObserver.observe(img));
+            });
+        }
+
+        // ===== UTILITIES =====
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+        function getToken() { return localStorage.getItem('authToken'); }
+        function authHeaders() {
+            return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` };
+        }
+
+        // ===== STATE =====
+        let editingLetterId = null;
+        // ===== INIT =====
+        window.addEventListener('load', async function() {
+            if (!localStorage.getItem('isLoggedIn') || !getToken()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const userName = localStorage.getItem('writerName') || 'Writer';
+            document.getElementById('userName').textContent = `Welcome, ${userName}`;
+            await Promise.all([loadLetters(), loadStats()]);
+        });
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/letters/stats/dashboard', { headers: authHeaders() });
+                if (!res.ok) return;
+                const stats = await res.json();
+                document.getElementById('stat-total').textContent = stats.totalLetters ?? 0;
+                document.getElementById('stat-drafts').textContent = stats.drafts ?? 0;
+                document.getElementById('stat-sent').textContent = stats.sent ?? 0;
+                document.getElementById('stat-archived').textContent = stats.archived ?? 0;
+            } catch (_) {}
+        }
+
+        function handleLogout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+
+        // ===== COMPOSE VIEW =====
+        function openNewLetterModal() {
+            editingLetterId = null;
+            document.getElementById('compose-title').value = '';
+            document.getElementById('compose-category').value = '';
+            document.getElementById('compose-summary').value = '';
+            document.getElementById('compose-body').value = '';
+            document.querySelectorAll('.compose-tag-label').forEach(l => {
+                l.classList.remove('checked');
+                l.querySelector('input').checked = false;
+            });
+            // Reset image
+            selectedImageFile = null;
+            document.getElementById('compose-image').value = '';
+            document.getElementById('photo-preview').style.display = 'none';
+            document.getElementById('photo-placeholder').style.display = '';
+            document.getElementById('photo-remove-btn').style.display = 'none';
+            document.getElementById('photo-upload-zone').classList.remove('has-image');
+
+            document.getElementById('compose-label').textContent = 'Write New Letter';
+            document.getElementById('btn-post').textContent = 'Post Letter ✉';
+            document.getElementById('compose-view').classList.add('open');
+            document.getElementById('compose-title').focus();
+        }
+
+        function closeCompose() {
+            document.getElementById('compose-view').classList.remove('open');
+            editingLetterId = null;
+        }
+
+        // kept for keyboard shortcut compatibility
+        function closeModal(id) { closeCompose(); }
+        function closeModalOnOverlay() {}
+
+        // ===== TAG TOGGLE =====
+        function toggleTag(label) {
+            // small timeout so click registers on checkbox first
+            setTimeout(() => {
+                const checked = label.querySelector('input').checked;
+                label.classList.toggle('checked', checked);
+            }, 0);
+        }
+
+        // ===== SAVE LETTER =====
+        async function saveCompose(statusOverride) {
+            const title = document.getElementById('compose-title').value.trim();
+            const body  = document.getElementById('compose-body').value.trim();
+            if (!title) { alert('Please add a title for your letter.'); document.getElementById('compose-title').focus(); return; }
+            if (!body)  { alert('Please write the body of your letter.'); document.getElementById('compose-body').focus(); return; }
+
+            const tags = Array.from(document.querySelectorAll('.compose-tag-label input:checked'))
+                .map(cb => cb.value).join(',');
+
+            const payload = {
+                recipientName: 'Osagyefo',
+                subject: title,
+                category: document.getElementById('compose-category').value || 'General',
+                tags,
+                summary: document.getElementById('compose-summary').value.trim(),
+                content: body,
+                status: statusOverride,
+            };
+
+            const btns = [document.getElementById('btn-draft'), document.getElementById('btn-post')];
+            btns.forEach(b => b.disabled = true);
+
+            try {
+                const url    = editingLetterId ? `/api/letters/${editingLetterId}` : '/api/letters';
+                const method = editingLetterId ? 'PUT' : 'POST';
+
+                let res;
+                if (selectedImageFile) {
+                    const fd = new FormData();
+                    Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
+                    fd.append('image', selectedImageFile);
+                    res = await fetch(url, { method, headers: { 'Authorization': `Bearer ${getToken()}` }, body: fd });
+                } else {
+                    res = await fetch(url, { method, headers: authHeaders(), body: JSON.stringify(payload) });
+                }
+                const data   = await res.json();
+                if (!res.ok) { alert(data.message || 'Failed to save letter'); return; }
+
+                // If posting (not drafting), also publish to public site immediately
+                if (statusOverride === 'published') {
+                    const letterId = editingLetterId || data.letterId;
+                    if (letterId) {
+                        await fetch(`/api/letters/${letterId}/publish-to-site`, { method: 'POST', headers: authHeaders() });
+                    }
+                }
+
+                closeCompose();
+                await Promise.all([loadLetters(), loadStats()]);
+            } catch (_) {
+                alert('Server error. Please try again.');
+            } finally {
+                btns.forEach(b => b.disabled = false);
+            }
+        }
+
+        // ===== LOAD / RENDER LETTERS =====
+        async function loadLetters() {
+            try {
+                const res = await fetch('/api/letters', { headers: authHeaders() });
+                if (res.status === 401) { localStorage.clear(); window.location.href = 'login.html'; return; }
+                const letters = await res.json();
+                renderLetters(Array.isArray(letters) ? letters : []);
+            } catch (_) {
+                document.getElementById('lettersContainer').innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Could not load letters. Is the server running?</p></div>';
+            }
+        }
+
+        function renderLetters(letters) {
+            const container = document.getElementById('lettersContainer');
+            if (!letters.length) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📝</div><p>No letters yet. Start by creating your first letter!</p></div>';
+                return;
+            }
+            container.innerHTML = letters.map(letter => {
+                const tags = letter.tags ? letter.tags.split(',').filter(Boolean) : [];
+                const date = letter.createdAt ? new Date(letter.createdAt).toLocaleDateString() : '';
+                return `
+                <div class="letter-row" data-id="${letter.id}">
+                    <div class="letter-date">${escapeHtml(date)}</div>
+                    <div><span class="letter-status status-${escapeHtml(letter.status)}">${escapeHtml(letter.status)}</span></div>
+                    <div class="letter-category">${escapeHtml(letter.category)}</div>
+                    <div class="letter-tags">${tags.length > 0 ? tags.map(t => `<span class="tag-badge">${escapeHtml(t)}</span>`).join('') : '<span class="tag-empty">-</span>'}</div>
+                    <div class="letter-title">${escapeHtml(letter.subject)}</div>
+                    <div class="letter-summary">${escapeHtml(letter.summary)}</div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="editLetter(${letter.id})">Edit</button>
+                        ${letter.status !== 'published' ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : '<span style="font-size:0.7rem;color:#2D5F3F;font-weight:600;">&#10003; Live</span>'}
+                        <button class="action-btn delete" onclick="deleteLetter(${letter.id})">Delete</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ===== EDIT LETTER =====
+        async function editLetter(id) {
+            try {
+                const res = await fetch(`/api/letters/${id}`, { headers: authHeaders() });
+                const letter = await res.json();
+                if (!res.ok) { alert('Could not load letter'); return; }
+
+                editingLetterId = id;
+
+
+                document.getElementById('compose-title').value    = letter.subject || '';
+                document.getElementById('compose-category').value = letter.category || '';
+                document.getElementById('compose-summary').value  = letter.summary || '';
+                document.getElementById('compose-body').value     = letter.content || '';
+
+                // Restore tags
+                const existingTags = letter.tags ? letter.tags.split(',') : [];
+                document.querySelectorAll('.compose-tag-label').forEach(lbl => {
+                    const cb = lbl.querySelector('input');
+                    cb.checked = existingTags.includes(cb.value);
+                    lbl.classList.toggle('checked', cb.checked);
+                });
+
+                document.getElementById('compose-label').textContent = 'Edit Letter';
+                document.getElementById('btn-post').textContent = 'Update & Post ✉';
+                document.getElementById('compose-view').classList.add('open');
+                document.getElementById('compose-title').focus();
+            } catch (_) {
+                alert('Could not load letter for editing.');
+            }
+        }
+
+        // ===== DELETE LETTER =====
+        async function deleteLetter(id) {
+            if (!confirm('Are you sure you want to delete this letter?')) return;
+            try {
+                const res = await fetch(`/api/letters/${id}`, { method: 'DELETE', headers: authHeaders() });
+                if (res.ok) {
+                    await Promise.all([loadLetters(), loadStats()]);
+                } else {
+                    const data = await res.json();
+                    alert(data.message || 'Delete failed');
+                }
+            } catch (_) {
+                alert('Server error. Please try again.');
+            }
+        }
+
+        // ===== PUBLISH TO SITE =====
+        async function publishToSite(id) {
+            if (!confirm('Publish this letter to the public letters page?')) return;
+            try {
+                const res = await fetch(`/api/letters/${id}/publish-to-site`, { method: 'POST', headers: authHeaders() });
+                const data = await res.json();
+                if (res.ok) {
+                    await loadLetters();
+                    alert('Letter published! It is now live on the letters page.');
+                } else {
+                    alert(data.message || 'Could not publish letter');
+                }
+            } catch (_) {
+                alert('Server error. Please try again.');
+            }
+        }
+
+        // ===== SEARCH =====
+        function filterLetters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.letter-row').forEach(row => {
+                const title    = row.querySelector('.letter-title').textContent.toLowerCase();
+                const category = row.querySelector('.letter-category').textContent.toLowerCase();
+                const tags     = row.querySelector('.letter-tags').textContent.toLowerCase();
+                row.style.display = (title.includes(searchTerm) || category.includes(searchTerm) || tags.includes(searchTerm)) ? '' : 'none';
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCompose();
+        });
+    </script>
+</body>
+</html>

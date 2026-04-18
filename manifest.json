@@ -1,0 +1,22 @@
+{
+  "name": "Letter to Osagyefo",
+  "short_name": "Letter to Osagyefo",
+  "description": "A living archive of open letters to Kwame Nkrumah",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafaf8",
+  "theme_color": "#D43F3A",
+  "orientation": "portrait-primary",
+  "categories": ["education", "books", "reference"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "thumbnail.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

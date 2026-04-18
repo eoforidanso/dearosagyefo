@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Preview — Letters to Osagyefo</title>
+  <meta name="description" content="A preview of the open letters to Kwame Nkrumah — witty, sharp, and deeply Ghanaian dispatches from the present to the past." />
+
+  <meta property="og:title" content="Preview — Letters to Osagyefo">
+  <meta property="og:description" content="A preview of the open letters to Kwame Nkrumah — witty, sharp, and deeply Ghanaian dispatches from the present to the past.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ato-kwamena.com/preview.html">
+  <meta property="og:image" content="https://www.ato-kwamena.com/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Preview — Letters to Osagyefo">
+  <meta name="twitter:description" content="A preview of the open letters to Kwame Nkrumah from the present to the past.">
+  <meta name="twitter:image" content="https://www.ato-kwamena.com/thumbnail.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:   #D43F3A;
+      --gold:  #E8B923;
+      --green: #2D5F3F;
+      --accent-warm: #C65911;
+      --black: #0f1419;
+      --bg:    #fafaf8;
+      --cream: #f5f0e8;
+      --gray-border: rgba(0,0,0,0.08);
+      --shadow-sm: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-lg: 0 20px 48px rgba(0,0,0,0.14), 0 8px 20px rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #1a1a1a;
+      width: 100%;
+      overflow-x: hidden;
+      animation: pageFadeIn 0.5s ease forwards;
+    }
+
+    /* ─── FLAG STRIPE ──────────────────────────────────────── */
+    .flag-stripe {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      display: flex;
+      z-index: 10001;
+    }
+    .flag-stripe span { flex: 1; height: 100%; }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 8px;
+      z-index: 1000;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand em { color: var(--red); font-style: italic; }
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #444;
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { background: rgba(0,0,0,0.05); color: #111; }
+    .nav-links a.active { background: var(--red); color: #fff; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.1rem;
+      background: linear-gradient(180deg, #e04a45, #c0332e);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(212,63,58,0.35);
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(212,63,58,0.45); }
+
+    /* ─── PAGE HERO ────────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(160deg, #0a0d11 0%, #141b27 60%, #0d1117 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,185,35,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-hero-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(232,185,35,0.12);
+      border: 1px solid rgba(232,185,35,0.2);
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 em { color: var(--gold); font-style: italic; }
+    .page-hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .hero-ornament-line { flex: 1; max-width: 80px; height: 1px; background: rgba(232,185,35,0.25); }
+    .hero-ornament-star { color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; }
+
+    /* ─── FILTER BAR ───────────────────────────────────────── */
+    .filter-section {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-border);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+    }
+    .filter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888;
+      margin-right: 0.5rem;
+    }
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.38rem 0.85rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--gray-border);
+      background: transparent;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .filter-btn:hover { border-color: var(--red); color: var(--red); background: rgba(212,63,58,0.04); }
+    .filter-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .filter-btn.active .filter-count { background: rgba(255,255,255,0.25); }
+    .filter-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.07);
+      border-radius: 10px;
+      padding: 0 0.4rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      min-width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    /* ─── SPOTLIGHT LETTER ─────────────────────────────────── */
+    .spotlight {
+      background: linear-gradient(135deg, #0a0d11 0%, #1a1f2e 100%);
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(232,185,35,0.015) 40px,
+        rgba(232,185,35,0.015) 41px
+      );
+    }
+    .spotlight-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .spotlight-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .spotlight-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: #000;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+    }
+    .spotlight-category {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .spotlight-letter-num {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      margin-left: auto;
+    }
+    .spotlight-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .spotlight-excerpt {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.4rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .spotlight-body {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .spotlight-body p { margin-bottom: 1rem; }
+    .spotlight-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .spotlight-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .author-info-name { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 600; }
+    .author-info-date { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 0.1rem; }
+    .spotlight-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.6rem;
+      background: var(--gold);
+      color: #000;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .spotlight-read-btn:hover { background: #d4a91e; transform: translateY(-1px); }
+
+    /* ─── LETTERS GRID ─────────────────────────────────────── */
+    .letters-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+    .section-title span { color: var(--red); }
+    .section-count { font-size: 0.78rem; color: #888; font-weight: 500; }
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.6rem;
+    }
+
+    /* ─── LETTER CARD ──────────────────────────────────────── */
+    .letter-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.97) 0%, rgba(250,248,245,0.92) 100%);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 16px;
+      padding: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s cubic-bezier(.23,1,.32,1);
+      box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative;
+      overflow: hidden;
+      border-left: 5px solid var(--green);
+    }
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, transparent 100%);
+      border-radius: 16px 16px 0 0;
+      pointer-events: none;
+    }
+    .letter-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .letter-card.red   { border-left-color: var(--red); }
+    .letter-card.gold  { border-left-color: var(--gold); }
+    .letter-card.green { border-left-color: var(--green); }
+    .letter-card.hidden { display: none; }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.9rem;
+      gap: 0.5rem;
+    }
+    .card-category {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      background: rgba(45,95,63,0.1);
+      color: var(--green);
+    }
+    .letter-card.red  .card-category { background: rgba(212,63,58,0.1);  color: var(--red); }
+    .letter-card.gold .card-category { background: rgba(232,185,35,0.15); color: var(--accent-warm); }
+    .card-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #ccc;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: #1a1a1a;
+      line-height: 1.35;
+      margin-bottom: 0.7rem;
+    }
+    .card-excerpt {
+      font-size: 0.84rem;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 1.1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .card-author { font-size: 0.7rem; color: #aaa; font-style: italic; }
+    .card-date   { font-size: 0.65rem; color: #ccc; }
+    .card-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--red);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .card-read-btn:hover { color: #b00d1f; }
+    .card-read-btn .arrow { transition: transform 0.2s; }
+    .card-read-btn:hover .arrow { transform: translateX(3px); }
+
+    /* ─── MODAL ────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 5000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+    .modal {
+      background: linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(252,250,248,0.96) 100%);
+      max-width: 700px;
+      width: 100%;
+      border-radius: 20px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 3rem;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+      animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.04);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #555;
+      transition: all 0.2s;
+    }
+    .modal-close:hover { background: rgba(212,63,58,0.1); border-color: var(--red); color: var(--red); }
+    .modal-category {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--red);
+      background: rgba(212,63,58,0.1);
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      margin-bottom: 1rem;
+    }
+    .modal-letter-num {
+      font-size: 0.7rem;
+      color: #bbb;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      color: var(--black);
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+    .modal-subtitle {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .modal-body {
+      font-size: 0.95rem;
+      color: #333;
+      line-height: 1.85;
+    }
+    .modal-body p { margin-bottom: 1.1rem; }
+    .modal-body em { font-style: italic; color: #555; }
+    .modal-body strong { font-weight: 600; color: #1a1a1a; }
+    .modal-body .sign-off {
+      margin-top: 1.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      font-style: italic;
+      color: #666;
+    }
+    .modal-flag {
+      display: flex;
+      height: 3px;
+      border-radius: 0 0 2px 2px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .modal-flag span { flex: 1; }
+
+    /* ─── SEPARATOR ────────────────────────────────────────── */
+    .section-sep {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section-sep hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+    }
+
+    /* ─── CALL TO ACTION ───────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, #0a0d11 0%, #141b27 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .cta-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+    .cta-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: #fff;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .cta-section p { font-size: 0.92rem; color: rgba(255,255,255,0.55); max-width: 440px; margin: 0 auto 2rem; line-height: 1.7; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.5px; text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.5px; text-decoration: none;
+      background: linear-gradient(180deg, #e04a45, #c0332e);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(212,63,58,0.4);
+      transition: all 0.2s;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(212,63,58,0.5); }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    .site-footer {
+      background: linear-gradient(180deg, #0a0d11 0%, #060809 100%);
+      padding: 0;
+      border-top: none;
+      text-align: left;
+      color: inherit;
+      box-shadow: inset 0 2px 30px rgba(0,0,0,0.2);
+    }
+    .site-footer .footer-top { padding: 3.5rem 3rem 0; }
+    .site-footer .footer-top-inner { max-width: 1200px; margin: 0 auto; }
+    .site-footer .footer-brand { text-align: center; margin-bottom: 2.5rem; }
+    .site-footer .footer-brand .footer-brand-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.8rem; display: block; }
+    .site-footer .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 420px; margin: 0 auto 0.4rem; }
+    .site-footer .footer-brand .footer-socials { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; }
+    .site-footer .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,185,35,0.35), transparent); margin-bottom: 2.5rem; }
+    .site-footer .footer-nav-row { display: flex; justify-content: center; gap: 6rem; padding-bottom: 2.5rem; }
+    .site-footer .footer-nav-col h4 { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; position: relative; }
+    .site-footer .footer-nav-col h4::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 18px; height: 2px; border-radius: 2px; }
+    .site-footer .footer-nav-row .footer-nav-col:first-child h4::after { background: var(--red); }
+    .site-footer .footer-nav-row .footer-nav-col:last-child h4::after { background: var(--green); }
+    .site-footer .footer-nav-col a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s, transform 0.2s; }
+    .site-footer .footer-nav-col a:hover { color: rgba(255,255,255,0.95); transform: translateX(3px); }
+    .site-footer .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 1.4rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .site-footer .footer-bottom p { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin: 0; }
+    .site-footer .footer-bottom a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .site-footer .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+    .site-footer .footer-flag { display: flex; gap: 0; align-items: center; overflow: hidden; border-radius: 2px; transition: transform 0.3s; }
+    .site-footer .footer-flag:hover { transform: scaleX(1.3); }
+    .site-footer .footer-flag span { width: 22px; height: 4px; }
+    .site-footer .social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.45); transition: all 0.3s; text-decoration: none; background: rgba(255,255,255,0.03); }
+    .site-footer .social-icon-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(232,185,35,0.1); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(232,185,35,0.15); }
+    .site-footer .social-icon-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ─── ANIMATIONS ───────────────────────────────────────── */
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: none; }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+
+    /* ─── HAMBURGER ────────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+    }
+    .nav-hamburger span {
+      width: 22px; height: 2px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s;
+      display: block;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .letters-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.97); padding: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-links li a { padding: 0.75rem 1rem; border-radius: 8px; display: block; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      nav { position: sticky; }
+
+      .page-hero { padding: 3.5rem 1.25rem 3rem; }
+      .spotlight { padding: 2.5rem 1.25rem; }
+      .letters-section { padding: 2.5rem 1.25rem; }
+      .letters-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .letter-card { padding: 1.4rem; }
+      .filter-section { padding: 0.9rem 1.25rem; top: 60px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .cta-section { padding: 3.5rem 1.25rem; }
+      .site-footer .footer-top { padding: 2.5rem 1.5rem 0; }
+      .site-footer .footer-nav-row { flex-direction: column; align-items: center; gap: 2rem; text-align: center; }
+      .site-footer .footer-nav-col h4::after { left: 50%; transform: translateX(-50%); }
+      .site-footer .footer-nav-col a:hover { transform: none; }
+      .site-footer .footer-bottom { flex-direction: column; text-align: center; padding: 1.4rem 1.5rem; }
+      .modal { padding: 2rem 1.5rem; margin: 0.5rem; max-height: 90vh; border-radius: 16px; }
+      .spotlight-footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+      .spotlight-title { font-size: clamp(1.3rem, 6vw, 1.8rem); }
+      .filter-inner { gap: 0.35rem; }
+      .filter-btn { padding: 0.3rem 0.65rem; font-size: 0.7rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn-ghost, .btn-cta { width: 100%; max-width: 280px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe">
+  <span style="background:#D43F3A;"></span>
+  <span style="background:#E8B923;"></span>
+  <span style="background:#2D5F3F;"></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Dear <em>Osagyefo</em></a>
+    <ul class="nav-links" id="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="letters.html">Letters</a></li>
+      <li><a href="preview.html" class="active">Preview</a></li>
+      <li><a href="from-osagyefo.html">From Osagyefo</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="write.html" class="nav-cta">Write a Letter ✦</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-tag">✦ Preview Edition</div>
+  <h1>Letters to <em>Osagyefo</em></h1>
+  <p>Ten open letters to Kwame Nkrumah — witty, sharp, heartfelt dispatches from the present to the past. A nation writes home.</p>
+  <div class="hero-ornament">
+    <div class="hero-ornament-line"></div>
+    <span class="hero-ornament-star">★ ★ ★</span>
+    <div class="hero-ornament-line"></div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-section">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all" onclick="filterCards('all', this)">All <span class="filter-count">10</span></button>
+    <button class="filter-btn" data-filter="Politics" onclick="filterCards('Politics', this)">Politics <span class="filter-count">5</span></button>
+    <button class="filter-btn" data-filter="Culture" onclick="filterCards('Culture', this)">Culture <span class="filter-count">3</span></button>
+    <button class="filter-btn" data-filter="Diaspora" onclick="filterCards('Diaspora', this)">Diaspora <span class="filter-count">1</span></button>
+    <button class="filter-btn" data-filter="Satire" onclick="filterCards('Satire', this)">Satire <span class="filter-count">1</span></button>
+  </div>
+</div>
+
+<!-- SPOTLIGHT LETTER -->
+<div class="spotlight">
+  <div class="spotlight-inner reveal">
+    <div class="spotlight-eyebrow">
+      <span class="spotlight-badge">Spotlight</span>
+      <span class="spotlight-category">Culture</span>
+      <span class="spotlight-letter-num">Letter I</span>
+    </div>
+    <h2 class="spotlight-title">On the Matter of "Dumsor" and the Audacity of Darkness</h2>
+    <blockquote class="spotlight-excerpt">
+      "Dear Osagyefo, I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here."
+    </blockquote>
+    <div class="spotlight-body">
+      <p>You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.</p>
+      <p>We created something called <em>Dumsor</em> — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours. We have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.</p>
+      <p>We do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.</p>
+    </div>
+    <div class="spotlight-footer">
+      <div class="spotlight-author">
+        <div class="author-avatar">G</div>
+        <div>
+          <div class="author-info-name">A Ghanaian with a Melting Fridge</div>
+          <div class="author-info-date">March 6, 2024</div>
+        </div>
+      </div>
+      <button class="spotlight-read-btn" onclick="openModal('modal1')">Read Full Letter →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ALL LETTERS GRID -->
+<section class="letters-section">
+  <div class="section-header reveal">
+    <h2 class="section-title">All <span>Letters</span></h2>
+    <span class="section-count" id="visible-count">Showing 10 of 10 letters</span>
+  </div>
+
+  <div class="letters-grid" id="letters-grid">
+
+    <!-- Letter I -->
+    <article class="letter-card red reveal" data-category="Culture" onclick="openModal('modal1')">
+      <div class="card-header">
+        <span class="card-category">Culture</span>
+        <span class="card-num">I</span>
+      </div>
+      <h3 class="card-title">On the Matter of "Dumsor" and the Audacity of Darkness</h3>
+      <p class="card-excerpt">"Dear Osagyefo, you spoke of industrialisation. You built the Akosombo Dam. Then Ghana got creative. We created Dumsor — a portmanteau from Twi meaning 'off-on.'"</p>
+      <div class="card-footer">
+        <span class="card-author">A Ghanaian with a Melting Fridge</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal1')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter II -->
+    <article class="letter-card gold reveal reveal-delay-1" data-category="Politics" onclick="openModal('modal2')">
+      <div class="card-header">
+        <span class="card-category">Politics</span>
+        <span class="card-num">II</span>
+      </div>
+      <h3 class="card-title">On Mobile Money, and How We Accidentally Built Socialism in Our Phones</h3>
+      <p class="card-excerpt">"You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones."</p>
+      <div class="card-footer">
+        <span class="card-author">A MoMo Agent in Kumasi</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal2')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter III -->
+    <article class="letter-card green reveal reveal-delay-2" data-category="Diaspora" onclick="openModal('modal3')">
+      <div class="card-header">
+        <span class="card-category">Diaspora</span>
+        <span class="card-num">III</span>
+      </div>
+      <h3 class="card-title">The Year of Return: A Homecoming in Four Acts</h3>
+      <p class="card-excerpt">"You declared: 'Africa must unite.' We listened. For decades, the diaspora lived the dream elsewhere — Boston, London, Toronto. Then 2019 came."</p>
+      <div class="card-footer">
+        <span class="card-author">A Diaspora Returnee</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal3')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter IV -->
+    <article class="letter-card red reveal" data-category="Politics" onclick="openModal('modal4')">
+      <div class="card-header">
+        <span class="card-category">Politics</span>
+        <span class="card-num">IV</span>
+      </div>
+      <h3 class="card-title">On the Cedi, the IMF, and the Arithmetic of Survival</h3>
+      <p class="card-excerpt">"The Cedi has weakened. Against the dollar, the pound, even the East African shilling — it shrinks like a sweater in hot water. We have invited the IMF back."</p>
+      <div class="card-footer">
+        <span class="card-author">An Economist with Anxiety</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal4')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter V -->
+    <article class="letter-card gold reveal reveal-delay-1" data-category="Politics" onclick="openModal('modal5')">
+      <div class="card-header">
+        <span class="card-category">Politics</span>
+        <span class="card-num">V</span>
+      </div>
+      <h3 class="card-title">On Elections: Democracy's Quarterly Fever</h3>
+      <p class="card-excerpt">"Every four years, we do this: we queue in the sun, we vote, we hope. Then promises dissolve like sugar in rain."</p>
+      <div class="card-footer">
+        <span class="card-author">A Jaded Voter</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal5')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter VI -->
+    <article class="letter-card gold reveal reveal-delay-2" data-category="Culture" onclick="openModal('modal6')">
+      <div class="card-header">
+        <span class="card-category">Culture</span>
+        <span class="card-num">VI</span>
+      </div>
+      <h3 class="card-title">On Jollof Rice: A Culinary Declaration of Independence</h3>
+      <p class="card-excerpt">"You liberated a nation. We liberated rice from mediocrity. Jollof is our national dish — or rather, it's the dish we wage national wars over."</p>
+      <div class="card-footer">
+        <span class="card-author">A Ghanaian Food Nationalist</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal6')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter VII -->
+    <article class="letter-card red reveal" data-category="Politics" onclick="openModal('modal7')">
+      <div class="card-header">
+        <span class="card-category">Politics</span>
+        <span class="card-num">VII</span>
+      </div>
+      <h3 class="card-title">High Definition Hypocrisy</h3>
+      <p class="card-excerpt">"We preach freedom while silencing voices. We champion transparency while drawing darkened curtains. We speak of unity while fracturing along the thinnest lines."</p>
+      <div class="card-footer">
+        <span class="card-author">A Political Observer</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal7')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter VIII -->
+    <article class="letter-card gold reveal reveal-delay-1" data-category="Satire" onclick="openModal('modal8')">
+      <div class="card-header">
+        <span class="card-category">Satire</span>
+        <span class="card-num">VIII</span>
+      </div>
+      <h3 class="card-title">DVLA World Tour</h3>
+      <p class="card-excerpt">"The Driver and Vehicle Licensing Authority: where innovation goes to retire and bureaucracy goes to thrive. To renew a license takes an odyssey."</p>
+      <div class="card-footer">
+        <span class="card-author">A Frustrated Driver</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal8')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter IX -->
+    <article class="letter-card green reveal reveal-delay-2" data-category="Culture" onclick="openModal('modal9')">
+      <div class="card-header">
+        <span class="card-category">Culture</span>
+        <span class="card-num">IX</span>
+      </div>
+      <h3 class="card-title">Obimanso, the Struggle is Real</h3>
+      <p class="card-excerpt">"Obimanso: where the sun beats down with the fury of a scorned lover and progress seems a luxury imported from elsewhere. The roads are rough. The water is scarce."</p>
+      <div class="card-footer">
+        <span class="card-author">A Villager's Diary</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal9')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+    <!-- Letter X -->
+    <article class="letter-card red reveal" data-category="Politics" onclick="openModal('modal10')">
+      <div class="card-header">
+        <span class="card-category">Politics</span>
+        <span class="card-num">X</span>
+      </div>
+      <h3 class="card-title">The Lagoon's Revenge</h3>
+      <p class="card-excerpt">"We built on faith and shortsighted ambition. We built where the lagoon had always been, as if water and gravity were merely suggestions. The lagoon remembers."</p>
+      <div class="card-footer">
+        <span class="card-author">An Environmental Witness</span>
+        <button class="card-read-btn" onclick="event.stopPropagation(); openModal('modal10')">Read <span class="arrow">→</span></button>
+      </div>
+    </article>
+
+  </div><!-- /.letters-grid -->
+</section>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <div class="cta-icon">✉</div>
+  <h2>Have Something to Say to Osagyefo?</h2>
+  <p>The archive is living. Add your voice — write your own open letter to Kwame Nkrumah.</p>
+  <div class="cta-buttons">
+    <a href="letters.html" class="btn-ghost">Browse All Letters</a>
+    <a href="write.html" class="btn-cta">Write Your Letter →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-top-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-title">Dear Osagyefo</span>
+        <p>A living archive of open letters to Kwame Nkrumah — witty dispatches from the present to the past.</p>
+        <p>By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        <div class="footer-socials">
+          <a href="https://twitter.com/share" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://facebook.com/sharer.php" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/?text=Dear%20Osagyefo%20%E2%80%94%20www.ato-kwamena.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-nav-row">
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="letters.html">Letters</a>
+          <a href="from-osagyefo.html">From Osagyefo</a>
+          <a href="about.html">About</a>
+          <a href="write.html">Write a Letter</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>The Project</h4>
+          <a href="about.html">About Dr. Danso</a>
+          <a href="quiz.html">History Quiz</a>
+          <a href="write.html">Submit Your Letter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Dr. Ato Kwamena Danso. All rights reserved.</p>
+    <div class="footer-flag">
+      <span style="background:var(--red);"></span>
+      <span style="background:var(--gold);"></span>
+      <span style="background:var(--green);"></span>
+    </div>
+    <p>Independence Day &middot; March 6, 1957</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════ -->
+
+<!-- Modal 1 -->
+<div class="modal-overlay" id="modal1" onclick="closeOnOverlay(event,'modal1')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Culture</span>
+    <span class="modal-letter-num">LETTER I</span>
+    <h2 class="modal-title">On the Matter of "Dumsor" and the Audacity of Darkness</h2>
+    <p class="modal-subtitle">A letter about load-shedding, resilience, and the ecosystem of darkness</p>
+    <div class="modal-body">
+      <p>Dear Osagyefo, I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here.</p>
+      <p>You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.</p>
+      <p>We created something called <em>Dumsor</em> — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours.</p>
+      <p>We have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.</p>
+      <p>We do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.</p>
+      <div class="sign-off"><em>Yours faithfully, with a charged power bank,</em><br /><strong>A Ghanaian with a Melting Fridge</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal-overlay" id="modal2" onclick="closeOnOverlay(event,'modal2')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Politics</span>
+    <span class="modal-letter-num">LETTER II</span>
+    <h2 class="modal-title">On Mobile Money, and How We Accidentally Built Socialism in Our Phones</h2>
+    <p class="modal-subtitle">On digital redistribution, MTN, and the socialism you never saw coming</p>
+    <div class="modal-body">
+      <p>You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones.</p>
+      <p>Mobile Money — MoMo — launched in 2009. It allows anyone with a phone to send, receive, and store money through agents at roadside kiosks, barbershops, and churches.</p>
+      <p>The redistribution is staggering. A market woman in Tamale can receive payment from her daughter in Accra within seconds. The unbanked were, within a decade, sending money like texts.</p>
+      <p>You tried to build state infrastructure. The market built its own through the air.</p>
+      <p>We found your socialism, Kwame. It was yellow, fit in a pocket, and was MTN-branded.</p>
+      <div class="sign-off"><em>With mobile-transferred regards,</em><br /><strong>A MoMo Agent in Kumasi</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal-overlay" id="modal3" onclick="closeOnOverlay(event,'modal3')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Diaspora</span>
+    <span class="modal-letter-num">LETTER III</span>
+    <h2 class="modal-title">The Year of Return: A Homecoming in Four Acts</h2>
+    <p class="modal-subtitle">On pilgrimages, belonging, and what it means to come home</p>
+    <div class="modal-body">
+      <p>You declared: "Africa must unite." We listened. For decades, the diaspora lived the dream elsewhere — Boston, London, Toronto, Accra-in-spirit.</p>
+      <p>Then 2019 came. The year you would have turned 110. Ghana declared it the "Year of Return" — a homecoming for all those who'd left.</p>
+      <p>And we came. Millions. We came to Elmina and Gorée, to face the ghosts of our origins. We came to Accra, to taste our mother's cooking. We came to reclaim something we didn't know we'd lost.</p>
+      <p>For a moment, the diaspora became the home. The prodigals returned not as visitors, but as inheritors. Tourism became pilgrimage.</p>
+      <p>The Year of Return asked: what does it mean to belong? Not to a place, but to a people, a history, a reckoning?</p>
+      <div class="sign-off"><em>From the soil of remembrance,</em><br /><strong>A Diaspora Returnee</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="modal-overlay" id="modal4" onclick="closeOnOverlay(event,'modal4')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Politics</span>
+    <span class="modal-letter-num">LETTER IV</span>
+    <h2 class="modal-title">On the Cedi, the IMF, and the Arithmetic of Survival</h2>
+    <p class="modal-subtitle">On currency, dignity, and the mathematics of borrowed sovereignty</p>
+    <div class="modal-body">
+      <p>The Cedi has weakened. Against the dollar, the pound, even the East African shilling — it shrinks like a sweater in hot water.</p>
+      <p>We have invited the IMF back. They arrive with briefcases and recommendations, speaking in the language of structural adjustments and fiscal discipline.</p>
+      <p>This is the arithmetic of modern Africa: borrow to grow, cut to survive, privatize to stabilize. It's mathematics written in the language of distant creditors.</p>
+      <p>You fought for dignity. We're fighting for solvency. It's not the same war, Kwame.</p>
+      <p>Yet here's the thing: we keep going. The market women still sell, the hawkers still hawk, the traders adapt. We are not our currency.</p>
+      <div class="sign-off"><em>From the marketplace of resilience,</em><br /><strong>An Economist with Anxiety</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5 -->
+<div class="modal-overlay" id="modal5" onclick="closeOnOverlay(event,'modal5')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Politics</span>
+    <span class="modal-letter-num">LETTER V</span>
+    <h2 class="modal-title">On Elections: Democracy's Quarterly Fever</h2>
+    <p class="modal-subtitle">On queues, hope, and democracy's wandering eye</p>
+    <div class="modal-body">
+      <p>Every four years, we do this: we queue in the sun, we vote, we hope. Then promises dissolve like sugar in rain.</p>
+      <p>Politicians speak of growth and development. Of jobs that never arrive on schedule, of hospitals half-built, of roads that become rivers in season.</p>
+      <p>Yet we return. We queue again, four years later. Hope is a chronic disease here, and we never seem to find the cure.</p>
+      <p>You said democracy must come to Africa. She came. She wore a beautiful dress and made beautiful promises. We married her anyway, knowing she had a wandering eye.</p>
+      <p>Still, Kwame — she's ours. Imperfect, unreliable, occasionally bewildering. But ours.</p>
+      <div class="sign-off"><em>From the poll lines,</em><br /><strong>A Jaded Voter</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6 -->
+<div class="modal-overlay" id="modal6" onclick="closeOnOverlay(event,'modal6')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Culture</span>
+    <span class="modal-letter-num">LETTER VI</span>
+    <h2 class="modal-title">On Jollof Rice: A Culinary Declaration of Independence</h2>
+    <p class="modal-subtitle">On rice, national pride, and the wars worth fighting</p>
+    <div class="modal-body">
+      <p>You liberated a nation. We liberated rice from mediocrity.</p>
+      <p>Jollof is our national dish — or rather, it's the dish we wage national wars over. We claim ownership like territorial champions. "Ghanaian jollof is the best." "No, Nigerian jollof..." And so it goes.</p>
+      <p>It's rice, tomato, pepper. Simple. Yet somehow it represents everything: pride, identity, the small victories we take for ourselves.</p>
+      <p>While you were changing the course of history, we perfected the art of the one-pot meal. Both are achievements, aren't they?</p>
+      <p>You gave us the nation. We gave it flavour.</p>
+      <div class="sign-off"><em>From the kitchen, with love,</em><br /><strong>A Ghanaian Food Nationalist</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7 -->
+<div class="modal-overlay" id="modal7" onclick="closeOnOverlay(event,'modal7')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal7')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Politics</span>
+    <span class="modal-letter-num">LETTER VII</span>
+    <h2 class="modal-title">High Definition Hypocrisy</h2>
+    <p class="modal-subtitle">On contradiction, clarity, and the flaws we see in HD</p>
+    <div class="modal-body">
+      <p>We preach freedom while silencing voices. We champion transparency while drawing darkened curtains. We speak of unity while fracturing along the thinnest lines.</p>
+      <p>The hypocrisy isn't malicious — it's human. We want to be the nation you envisioned, but we're creatures of contradiction and compromise.</p>
+      <p>In HD clarity, our flaws are impossible to ignore. Yet we persist anyway, believing that the next generation might get it right.</p>
+      <div class="sign-off"><em>In recognition,</em><br /><strong>A Political Observer</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 8 -->
+<div class="modal-overlay" id="modal8" onclick="closeOnOverlay(event,'modal8')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal8')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Satire</span>
+    <span class="modal-letter-num">LETTER VIII</span>
+    <h2 class="modal-title">DVLA World Tour</h2>
+    <p class="modal-subtitle">An odyssey through bureaucracy, forms, and the human spirit</p>
+    <div class="modal-body">
+      <p>The Driver and Vehicle Licensing Authority is where innovation goes to retire and bureaucracy goes to thrive.</p>
+      <p>To renew a license takes an odyssey. Forms must be gathered. Offices must be visited. Officers must be appeased. It's an expedition, not a transaction.</p>
+      <p>Yet somehow, miraculously, people still drive. The system doesn't work, yet it persists. Rather like the nation itself.</p>
+      <div class="sign-off"><em>From the DVLA queue,</em><br /><strong>A Frustrated Driver</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 9 -->
+<div class="modal-overlay" id="modal9" onclick="closeOnOverlay(event,'modal9')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal9')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Culture</span>
+    <span class="modal-letter-num">LETTER IX</span>
+    <h2 class="modal-title">Obimanso, the Struggle is Real</h2>
+    <p class="modal-subtitle">On village life, quiet endurance, and grace under pressure</p>
+    <div class="modal-body">
+      <p>Obimanso: where the sun beats down with the fury of a scorned lover and progress seems a luxury imported from elsewhere.</p>
+      <p>The roads are rough. The water is scarce. The schools lack basic things and the clinics are pharmacies without the pharmacy.</p>
+      <p>Yet the people endure with a grace that borders on the miraculous. They plant. They build. They dream despite everything.</p>
+      <p>The struggle here isn't romantic, Kwame. It's daily. It's real.</p>
+      <div class="sign-off"><em>From a village perspective,</em><br /><strong>A Villager's Diary</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 10 -->
+<div class="modal-overlay" id="modal10" onclick="closeOnOverlay(event,'modal10')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal10')">&times;</button>
+    <div class="modal-flag">
+      <span style="background:#D43F3A;"></span>
+      <span style="background:#E8B923;"></span>
+      <span style="background:#2D5F3F;"></span>
+    </div>
+    <span class="modal-category">Politics</span>
+    <span class="modal-letter-num">LETTER X</span>
+    <h2 class="modal-title">The Lagoon's Revenge</h2>
+    <p class="modal-subtitle">On environmental hubris, water memory, and what nature collects</p>
+    <div class="modal-body">
+      <p>We built on faith and shortsighted ambition. We built where the lagoon had always been, as if water and gravity were merely suggestions.</p>
+      <p>The lagoon remembers. It collects its debts with the patience of geological time. When the rains come, when the tides rise, it reclaims.</p>
+      <p>We are learning, slowly, that the land has its own logic. We can't negotiate with geography.</p>
+      <div class="sign-off"><em>From the waterfront, watching,</em><br /><strong>An Environmental Witness</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+  // ── Nav hamburger ──────────────────────────────────────────
+  function toggleNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+
+  // ── Modal open/close ───────────────────────────────────────
+  function openModal(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeOnOverlay(e, id) {
+    if (e.target === document.getElementById(id)) closeModal(id);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ── Filter ─────────────────────────────────────────────────
+  function filterCards(cat, btn) {
+    // Update button states
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+
+    // Show/hide cards
+    var cards = document.querySelectorAll('#letters-grid .letter-card');
+    var count = 0;
+    cards.forEach(function(card) {
+      if (cat === 'all' || card.dataset.category === cat) {
+        card.classList.remove('hidden');
+        count++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    document.getElementById('visible-count').textContent =
+      'Showing ' + count + ' of 10 letters';
+  }
+
+  // ── Scroll reveal ──────────────────────────────────────────
+  (function () {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+</script>
+</body>
+</html>

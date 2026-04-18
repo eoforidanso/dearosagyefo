@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Design System | Letter to Osagyefo</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── ROOT & RESET ── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #D43F3A;
+      --gold: #E8B923;
+      --green: #2D5F3F;
+      --white: #ffffff;
+      --off-white: #f5f5f5;
+      --light-gray: #eeeeee;
+      --medium-gray: #dddddd;
+      --dark-gray: #666666;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --border: #cccccc;
+      
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+
+      /* Typography */
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      --font-size-sm: 0.85rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.2rem;
+      --font-size-xl: 1.5rem;
+      --font-size-2xl: 1.8rem;
+      --font-size-3xl: 2.5rem;
+      --font-size-4xl: 3.5rem;
+
+      /* Border radius */
+      --radius-none: 0px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--white);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: var(--space-2xl) var(--space-xl);
+      background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+      border-bottom: 2px solid var(--border);
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    header p {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-md) var(--space-xl);
+      z-index: 100;
+      display: flex;
+      gap: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: var(--font-size-sm);
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: all 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    /* ── CONTAINER & LAYOUT ── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .section {
+      padding: var(--space-3xl) var(--space-xl);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--medium-gray);
+    }
+
+    /* ── SUBSECTION ── */
+    .subsection {
+      margin-bottom: var(--space-3xl);
+    }
+
+    .subsection-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-lg);
+      color: var(--red);
+    }
+
+    .description {
+      font-size: var(--font-size-base);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      line-height: 1.8;
+    }
+
+    /* ── COLOR PALETTE ── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .color-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .color-swatch {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+    }
+
+    .color-info {
+      padding: var(--space-md);
+      background: var(--off-white);
+    }
+
+    .color-name {
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .color-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      word-break: break-all;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .type-sample {
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .type-label {
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .h1-sample {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-4xl);
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .h2-sample {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-3xl);
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .h3-sample {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-2xl);
+      line-height: 1.3;
+      margin-bottom: var(--space-md);
+    }
+
+    .p-sample {
+      font-size: var(--font-size-base);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+
+    .small-sample {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+
+    /* ── COMPONENT SHOWCASE ── */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .component-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .component-preview {
+      padding: var(--space-xl);
+      background: var(--off-white);
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .component-info {
+      padding: var(--space-lg);
+    }
+
+    .component-name {
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .component-code {
+      font-family: monospace;
+      font-size: 0.8rem;
+      background: #f9f9f9;
+      padding: var(--space-sm);
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      color: #333;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+
+    .btn-primary:hover {
+      background: #b00d1f;
+      border-color: #b00d1f;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--text-primary);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .btn-outline:hover {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .btn-small {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.75rem;
+    }
+
+    /* ── FORMS ── */
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: var(--space-md);
+      border: 2px solid var(--medium-gray);
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: var(--font-size-base);
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(212, 63, 58, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      background: var(--white);
+      transition: all 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--red);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .card-text {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── BADGES & TAGS ── */
+    .badge {
+      display: inline-block;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--light-gray);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .badge-gold {
+      background: var(--gold);
+      color: var(--text-primary);
+    }
+
+    .badge-green {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* ── SPACING & GRID ── */
+    .grid-example {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .grid-item {
+      background: var(--off-white);
+      border: 2px dashed var(--border);
+      padding: var(--space-lg);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── STATES ── */
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .state-box {
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .state-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+    }
+
+    .state-element {
+      font-size: var(--font-size-lg);
+    }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #f5f5f5;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      overflow-x: auto;
+      margin: var(--space-lg) 0;
+      font-family: monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    /* ── PATTERNS ── */
+    .pattern-section {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .pattern-example {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      margin: var(--space-lg) 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--off-white);
+      border-top: 2px solid var(--border);
+      padding: var(--space-2xl) var(--space-xl);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--space-lg);
+      }
+
+      .section {
+        padding: var(--space-2xl) var(--space-lg);
+      }
+
+      .section-title {
+        font-size: var(--font-size-2xl);
+      }
+
+      nav {
+        gap: var(--space-lg);
+        flex-direction: column;
+      }
+
+      .component-grid,
+      .color-grid,
+      .states-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Design System</h1>
+  <p>Letter to Osagyefo — Complete UX & Visual Guidelines</p>
+</header>
+
+<nav class="container">
+  <a href="#principles">Principles</a>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#forms">Forms</a>
+  <a href="#cards">Cards</a>
+  <a href="#patterns">UI Patterns</a>
+  <a href="#accessibility">Accessibility</a>
+</nav>
+
+<!-- PRINCIPLES -->
+<section class="section container" id="principles">
+  <h2 class="section-title">Design Principles</h2>
+
+  <div class="subsection">
+    <h3 class="subsection-title">1. Clarity Over Decoration</h3>
+    <p class="description">Clean wireframe-style design prioritizes information hierarchy and readability. No unnecessary visual elements—every design choice serves purpose.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">2. Respect Ghana's Heritage</h3>
+    <p class="description">The Ghana flag colors (red, gold, green) are integrated thoughtfully into the design, honoring national identity without overwhelming the experience.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">3. Accessibility First</h3>
+    <p class="description">All components meet WCAG AA standards. Color is never the only differentiator. Text has sufficient contrast. Interactive elements are clearly defined.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">4. Mobile-First Responsive</h3>
+    <p class="description">Design begins mobile, then scales up. Touch targets are always 44x44px minimum. Content reflows gracefully across all screen sizes.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">5. Semantic & Meaningful</h3>
+    <p class="description">User interface patterns align with user mental models. Navigation is predictable. Content is organized logically. Actions are discoverable.</p>
+  </div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="section container" id="colors">
+  <h2 class="section-title">Color Palette</h2>
+
+  <p class="description">Our color system uses the Ghana flag colors as primary accents, supplemented by a neutral grayscale for clarity and accessibility.</p>
+
+  <h3 class="subsection-title">Primary Colors (Ghana Flag)</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #D43F3A;">—</div>
+      <div class="color-info">
+        <div class="color-name">Red (Primary Action)</div>
+        <div class="color-code">#D43F3A</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Buttons, links, accents</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #E8B923;">—</div>
+      <div class="color-info">
+        <div class="color-name">Gold (Highlight)</div>
+        <div class="color-code">#E8B923</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Emphasis, interactive states</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #2D5F3F; color: white;">—</div>
+      <div class="color-info">
+        <div class="color-name">Green (Secondary)</div>
+        <div class="color-code">#2D5F3F</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Badges, status, validation</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Neutral Colors (Grayscale)</h3>
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1a1a1a; color: white;">■</div>
+      <div class="color-info">
+        <div class="color-name">Text Primary</div>
+        <div class="color-code">#1a1a1a</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Headings, body text</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #666666; color: white;">■</div>
+      <div class="color-info">
+        <div class="color-name">Text Secondary</div>
+        <div class="color-code">#666666</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Descriptions, metadata</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #ffffff; border: 2px dashed #ccc;"></div>
+      <div class="color-info">
+        <div class="color-name">White (Background)</div>
+        <div class="color-code">#ffffff</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Base background</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #f5f5f5; border: 1px solid #ccc;"></div>
+      <div class="color-info">
+        <div class="color-name">Off-White (Subtle)</div>
+        <div class="color-code">#f5f5f5</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Panel backgrounds</div>
+      </div>
+    </div>
+
+    <div class="color-card">
+      <div class="color-swatch" style="background: #dddddd;"></div>
+      <div class="color-info">
+        <div class="color-name">Border/Divider</div>
+        <div class="color-code">#dddddd</div>
+        <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--text-secondary);">Borders, lines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section container" id="typography">
+  <h2 class="section-title">Typography</h2>
+
+  <p class="description">Two-font system: DM Serif Display for headings, Inter for body text. Consistent sizing scale ensures visual harmony across all pages.</p>
+
+  <h3 class="subsection-title">Font Stack</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <div class="component-preview">
+        <span style="font-family: 'DM Serif Display', serif; font-size: 2rem;">Serif Display</span>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Headings</div>
+        <div class="component-code">DM Serif Display<br>700 weight<br>Elegant, authoritative</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <span style="font-family: 'Inter', sans-serif; font-size: 1rem;">Clean Sans Serif</span>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Body Text</div>
+        <div class="component-code">Inter<br>300–700 weights<br>Clear, readable</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Type Sizes</h3>
+  
+  <div class="type-sample">
+    <div class="type-label">H1 – Display Heading</div>
+    <div class="h1-sample">Letter to Osagyefo</div>
+    <div class="component-code">3.5rem | line-height: 1.2 | DM Serif Display 700</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">H2 – Section Heading</div>
+    <div class="h2-sample">About This Section</div>
+    <div class="component-code">2.5rem | line-height: 1.2 | DM Serif Display 700</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">H3 – Subsection</div>
+    <div class="h3-sample">Important Details</div>
+    <div class="component-code">1.8rem | line-height: 1.3 | DM Serif Display 700</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Body Text</div>
+    <div class="p-sample">Explore thoughtful commentary on Ghana's present through reflections on our shared past. Write a letter, read perspectives, engage in dialogue.</div>
+    <div class="component-code">1rem | line-height: 1.6 | Inter 400</div>
+  </div>
+
+  <div class="type-sample">
+    <div class="type-label">Small Text / Caption</div>
+    <div class="small-sample">By Dr. Ato Kwamena Danso · March 6, 1957 · Ghana Independence</div>
+    <div class="component-code">0.85rem | line-height: 1.4 | Inter 500 | color: #666</div>
+  </div>
+</section>
+
+<!-- SPACING & SCALE -->
+<section class="section container" id="spacing">
+  <h2 class="section-title">Spacing & Scale System</h2>
+
+  <p class="description">Spacing follows a consistent 0.5rem base unit. This creates predictable, rhythmic layouts that scale beautifully across devices.</p>
+
+  <h3 class="subsection-title">Spacing Scale</h3>
+  <div class="pattern-example">
+    <div style="display: grid; gap: 1rem;">
+      <div><div class="type-label">xs</div><div style="height: 0.25rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">0.25rem (4px)</div></div>
+      <div><div class="type-label">sm</div><div style="height: 0.5rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">0.5rem (8px)</div></div>
+      <div><div class="type-label">md</div><div style="height: 1rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">1rem (16px) — Base unit</div></div>
+      <div><div class="type-label">lg</div><div style="height: 1.5rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">1.5rem (24px)</div></div>
+      <div><div class="type-label">xl</div><div style="height: 2rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">2rem (32px)</div></div>
+      <div><div class="type-label">2xl</div><div style="height: 3rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">3rem (48px)</div></div>
+      <div><div class="type-label">3xl</div><div style="height: 4rem; background: var(--red); margin-bottom: 0.5rem;"></div><div class="component-code">4rem (64px)</div></div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Usage Guidelines</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><strong>Padding:</strong> Use md–lg for component interiors</li>
+    <li><strong>Margins:</strong> Use lg–xl between sections</li>
+    <li><strong>Gap:</strong> Use md for layout grids, lg for major components</li>
+    <li><strong>Container padding:</strong> xl on desktop, lg on tablet, md on mobile</li>
+  </ul>
+</section>
+
+<!-- BUTTONS -->
+<section class="section container" id="buttons">
+  <h2 class="section-title">Buttons & CTAs</h2>
+
+  <h3 class="subsection-title">Button Variants</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn btn-primary">Primary Action</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Primary Button</div>
+        <div class="component-code">Red background<br>White text<br>Main call-to-action</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn btn-secondary">Secondary Action</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Secondary Button</div>
+        <div class="component-code">White background<br>Black border & text<br>Alternative action</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn btn-outline">Outline Button</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Outline Button</div>
+        <div class="component-code">Transparent background<br>Red border & text<br>Tertiary action</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn btn-primary btn-small">Small Button</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Small Button</div>
+        <div class="component-code">Compact size<br>0.75rem font<br>Supplementary actions</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Button States</h3>
+  <div class="states-grid">
+    <div class="state-box">
+      <div class="state-label">Default</div>
+      <div class="state-element">
+        <button class="btn btn-primary" style="cursor: default; opacity: 1;">Click Me</button>
+      </div>
+    </div>
+    <div class="state-box">
+      <div class="state-label">Hover</div>
+      <div class="state-element">
+        <button class="btn btn-primary" style="background: #b00d1f; transform: translateY(-2px); box-shadow: var(--shadow-md);">Click Me</button>
+      </div>
+    </div>
+    <div class="state-box">
+      <div class="state-label">Active</div>
+      <div class="state-element">
+        <button class="btn btn-primary" style="transform: translateY(0); opacity: 0.8;">Click Me</button>
+      </div>
+    </div>
+    <div class="state-box">
+      <div class="state-label">Disabled</div>
+      <div class="state-element">
+        <button class="btn btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">Click Me</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Button Best Practices</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><strong>Minimum size:</strong> 44x44px (tap targets on mobile)</li>
+    <li><strong>Label clarity:</strong> Action-oriented text ("Write Letter" not "Submit")</li>
+    <li><strong>Hierarchy:</strong> One primary CTA per section/page</li>
+    <li><strong>Spacing:</strong> Minimum 8px gap between adjacent buttons</li>
+    <li><strong>Transitions:</strong> 0.2s smooth on all state changes</li>
+  </ul>
+</section>
+
+<!-- FORMS -->
+<section class="section container" id="forms">
+  <h2 class="section-title">Forms & Inputs</h2>
+
+  <p class="description">Form design prioritizes clarity and accessibility. Each input has descriptive labeling, clear focus states, and helpful validation messaging.</p>
+
+  <h3 class="subsection-title">Form Elements</h3>
+  <div class="pattern-example">
+    <form>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="topic">Select Topic</label>
+        <select id="topic">
+          <option>— Choose a topic —</option>
+          <option>Economy</option>
+          <option>Politics</option>
+          <option>Culture</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Share your thoughts..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 1rem;">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Clear</button>
+      </div>
+    </form>
+  </div>
+
+  <h3 class="subsection-title">Form Guidelines</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><strong>Labels:</strong> Always visible, positioned above input (not placeholder)</li>
+    <li><strong>Input height:</strong> Minimum 44px for mobile touch targets</li>
+    <li><strong>Focus state:</strong> 3px red border with light red background</li>
+    <li><strong>Placeholder:</strong> Optional, lighter color (#999), not replacement for label</li>
+    <li><strong>Error messaging:</strong> Clear, specific, actionable</li>
+    <li><strong>Spacing between fields:</strong> 1.5rem (lg)</li>
+  </ul>
+</section>
+
+<!-- CARDS & COMPONENTS -->
+<section class="section container" id="cards">
+  <h2 class="section-title">Cards & Components</h2>
+
+  <h3 class="subsection-title">Card Component</h3>
+  <div class="pattern-example">
+    <div class="card">
+      <div class="card-title">Component Title</div>
+      <div class="card-text">
+        Cards provide a contained, grouped presentation of related content. Use them for highlights, testimonials, feature showcases, and sectional grouping.
+      </div>
+      <div style="margin-top: var(--space-lg);">
+        <a href="#" style="color: var(--red); text-decoration: none; font-weight: 600;">Learn more →</a>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Badges & Tags</h3>
+  <div class="pattern-example">
+    <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+      <span class="badge">Standard Badge</span>
+      <span class="badge badge-primary">Primary</span>
+      <span class="badge badge-gold">Gold Accent</span>
+      <span class="badge badge-green">Status: Active</span>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Border Radius Values</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <div class="component-preview">
+        <div style="width: 60px; height: 60px; background: var(--red);"></div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">None (0px)</div>
+        <div class="component-code">Sharp corners<br>Forms, tables</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <div style="width: 60px; height: 60px; background: var(--red); border-radius: 4px;"></div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Small (4px)</div>
+        <div class="component-code">Subtle curves<br>Buttons, inputs</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <div style="width: 60px; height: 60px; background: var(--red); border-radius: 8px;"></div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Medium (8px)</div>
+        <div class="component-code">Balanced curves<br>Cards, modals</div>
+      </div>
+    </div>
+
+    <div class="component-card">
+      <div class="component-preview">
+        <div style="width: 60px; height: 60px; background: var(--red); border-radius: 12px;"></div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">Large (12px)</div>
+        <div class="component-code">Soft appearance<br>Hero sections</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UI PATTERNS -->
+<section class="section container" id="patterns">
+  <h2 class="section-title">UI Patterns & Layouts</h2>
+
+  <h3 class="subsection-title">Grid System (12-column responsive)</h3>
+  <div class="pattern-example">
+    <div class="grid-example">
+      <div class="grid-item">1</div>
+      <div class="grid-item">2</div>
+      <div class="grid-item">3</div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">5</div>
+      <div class="grid-item">6</div>
+    </div>
+  </div>
+  <p class="description">Desktop: 1200px max-width. Tablet: Full width with padding. Mobile: Single column with 1rem padding.</p>
+
+  <h3 class="subsection-title">Header Pattern</h3>
+  <div class="pattern-example" style="background: var(--off-white); border: 1px solid var(--border);">
+    <div style="border-bottom: 2px solid var(--border); padding: var(--space-xl);">
+      <div class="type-label" style="margin-bottom: var(--space-md);">Page Section</div>
+      <h2 style="font-family: var(--font-serif); font-size: var(--font-size-3xl); margin-bottom: var(--space-sm);">Section Title</h2>
+      <p style="color: var(--text-secondary);">Descriptive text explaining the purpose of this section.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Two-Column Content + Sidebar</h3>
+  <div class="pattern-example">
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg);">
+      <div style="background: var(--light-gray); padding: var(--space-lg); border: 1px dashed var(--border);">
+        <div style="text-align: center; color: var(--dark-gray);">Main Content Area (2fr)</div>
+      </div>
+      <div style="background: var(--light-gray); padding: var(--space-lg); border: 1px dashed var(--border);">
+        <div style="text-align: center; color: var(--dark-gray);">Sidebar (1fr)</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Navigation States</h3>
+  <div class="pattern-example">
+    <nav style="display: flex; gap: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: var(--space-md);">
+      <a href="#" style="color: var(--red); border-bottom: 2px solid var(--red); padding-bottom: 0.25rem; text-decoration: none; font-weight: 600;">Active Link</a>
+      <a href="#" style="color: var(--text-secondary); border-bottom: 2px solid transparent; padding-bottom: 0.25rem; text-decoration: none;">Inactive Link</a>
+      <a href="#" style="color: var(--text-secondary); border-bottom: 2px solid transparent; padding-bottom: 0.25rem; text-decoration: none; opacity: 0.5; cursor: not-allowed;">Disabled</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ACCESSIBILITY -->
+<section class="section container" id="accessibility">
+  <h2 class="section-title">Accessibility Guidelines</h2>
+
+  <h3 class="subsection-title">Color Contrast</h3>
+  <div class="pattern-example">
+    <div style="display: grid; gap: 1rem;">
+      <div>
+        <div class="type-label">AAA Compliant (Enhanced)</div>
+        <div style="background: var(--red); color: white; padding: var(--space-lg); border-radius: var(--radius-md);">
+          Contrast ratio: 7:1 — Excellent readability
+        </div>
+      </div>
+      <div>
+        <div class="type-label">AA Compliant (Standard)</div>
+        <div style="background: #f5e6e6; color: #333; padding: var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--border);">
+          Contrast ratio: 4.5:1 — Acceptable for body text
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Touch Targets</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><strong>Minimum size:</strong> 44×44px (buttons, links, interactive elements)</li>
+    <li><strong>Spacing:</strong> Minimum 8px between adjacent touch targets</li>
+    <li><strong>Focus indicators:</strong> Always visible, minimum 3px outline</li>
+    <li><strong>Keyboard navigation:</strong> All interactive elements must be keyboard accessible</li>
+  </ul>
+
+  <h3 class="subsection-title">Text Readability</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><strong>Line height:</strong> Minimum 1.5x font size (1.5–1.8 recommended)</li>
+    <li><strong>Line length:</strong> 50–75 characters optimal for body text</li>
+    <li><strong>Font size:</strong> Minimum 16px for body text on mobile</li>
+    <li><strong>Color only:</strong> Never use color alone to convey information</li>
+    <li><strong>All caps:</strong> Avoid extensive use; use lowercase with capitals for emphasis</li>
+  </ul>
+
+  <h3 class="subsection-title">Semantic HTML</h3>
+  <div class="code-block">
+&lt;!-- Use semantic elements --&gt;
+&lt;nav&gt;, &lt;header&gt;, &lt;main&gt;, &lt;footer&gt;
+&lt;article&gt;, &lt;section&gt;, &lt;aside&gt;
+
+&lt;!-- Always pair buttons with proper types --&gt;
+&lt;button type="submit"&gt;Submit&lt;/button&gt;
+
+&lt;!-- Always use proper heading hierarchy --&gt;
+&lt;h1&gt;Page Title&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+
+&lt;!-- Always associate labels with inputs --&gt;
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" type="email"&gt;
+  </div>
+
+  <h3 class="subsection-title">ARIA Attributes</h3>
+  <ul style="margin: var(--space-lg) 0; padding-left: var(--space-xl); line-height: 1.8;">
+    <li><code>aria-label="..."</code> — For icon-only buttons or unlabeled elements</li>
+    <li><code>aria-describedby="..."</code> — For extended descriptions of form errors</li>
+    <li><code>aria-live="polite"</code> — For dynamic content updates (toast notifications)</li>
+    <li><code>aria-hidden="true"</code> — For purely decorative elements</li>
+    <li><code>role="..."</code> — Only when semantic HTML doesn't suffice</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Design System for Letter to Osagyefo | Dr. Ato Kwamena Danso</p>
+  <p style="margin-top: var(--space-md);">Last updated: March 2026 | Version 1.0</p>
+</footer>
+
+</body>
+</html>

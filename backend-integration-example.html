@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Integration Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        h2 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>📩 Letter Backend Integration Examples</h1>
+
+<!-- Load the API client library -->
+<script src="backend/utils/apiClient.js"></script>
+
+<div class="section">
+    <h2>🔐 Authentication</h2>
+    
+    <h3>Register New User</h3>
+    <input id="registerEmail" type="email" placeholder="Email" value="eoforid@gmail.com">
+    <input id="registerPassword" type="password" placeholder="Password" value="password123">
+    <input id="registerFirst" type="text" placeholder="First Name" value="Osagyefo">
+    <input id="registerLast" type="text" placeholder="Last Name" value="Frimpong">
+    <button onclick="register()">Register</button>
+    
+    <h3>Login</h3>
+    <input id="loginEmail" type="email" placeholder="Email" value="eoforid@gmail.com">
+    <input id="loginPassword" type="password" placeholder="Password" value="password123">
+    <button onclick="login()">Login</button>
+    
+    <h3>Get Profile</h3>
+    <button onclick="getProfile()">Get My Profile</button>
+    
+    <h3>Update Profile</h3>
+    <input id="updateFirst" type="text" placeholder="First Name">
+    <input id="updateLast" type="text" placeholder="Last Name">
+    <button onclick="updateProfile()">Update Profile</button>
+    
+    <h3>Logout</h3>
+    <button onclick="logout()">Logout</button>
+    
+    <div id="authOutput" class="output"></div>
+</div>
+
+<div class="section">
+    <h2>📝 Letter Management</h2>
+    
+    <h3>Create Letter</h3>
+    <input id="letterRecipient" type="text" placeholder="Recipient Name" value="Dear Friend">
+    <input id="letterEmail" type="email" placeholder="Recipient Email" value="friend@example.com">
+    <input id="letterSubject" type="text" placeholder="Subject" value="Hello">
+    <textarea id="letterContent" placeholder="Letter Content" rows="5">This is my letter content...</textarea>
+    <button onclick="createLetter()">Create Letter</button>
+    
+    <h3>View Letters</h3>
+    <button onclick="getLetters()">View All My Letters</button>
+    
+    <h3>Get Specific Letter</h3>
+    <input id="letterId" type="number" placeholder="Letter ID" value="1">
+    <button onclick="getLetter()">Get Letter</button>
+    
+    <h3>Update Letter</h3>
+    <input id="updateLetterId" type="number" placeholder="Letter ID" value="1">
+    <input id="updateRecipient" type="text" placeholder="Recipient Name">
+    <input id="updateLetterEmail" type="email" placeholder="Recipient Email">
+    <input id="updateLetterSubject" type="text" placeholder="Subject">
+    <textarea id="updateLetterContent" placeholder="Updated Content" rows="4"></textarea>
+    <input id="updateStatus" type="text" placeholder="Status (draft/sent/archived)" value="draft">
+    <button onclick="updateLetter()">Update Letter</button>
+    
+    <h3>Delete Letter</h3>
+    <input id="deleteLetterId" type="number" placeholder="Letter ID" value="1">
+    <button onclick="deleteLetter()">Delete Letter</button>
+    
+    <div id="letterOutput" class="output"></div>
+</div>
+
+<div class="section">
+    <h2>📊 Dashboard & PDF</h2>
+    
+    <h3>Dashboard Statistics</h3>
+    <button onclick="getDashboard()">Show Dashboard Stats</button>
+    
+    <h3>Generate PDF</h3>
+    <input id="pdfLetterId" type="number" placeholder="Letter ID" value="1">
+    <button onclick="generatePDF()">Download as PDF</button>
+    
+    <div id="dashboardOutput" class="output"></div>
+</div>
+
+<script>
+// Helper functions to display output
+function log(element, message, isError = false) {
+    const output = document.getElementById(element);
+    const timestamp = new Date().toLocaleTimeString();
+    const className = isError ? 'error' : 'success';
+    output.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>\n`;
+    output.scrollTop = output.scrollHeight;
+}
+
+function logObject(element, obj, isError = false) {
+    log(element, JSON.stringify(obj, null, 2), isError);
+}
+
+// Authentication Functions
+async function register() {
+    try {
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const firstName = document.getElementById('registerFirst').value;
+        const lastName = document.getElementById('registerLast').value;
+        
+        const user = await UserAPI.register(email, password, firstName, lastName);
+        log('authOutput', `✓ Registered successfully! Token saved.`);
+        logObject('authOutput', { user });
+    } catch (err) {
+        log('authOutput', `✗ Registration failed: ${err.message}`, true);
+    }
+}
+
+async function login() {
+    try {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        const user = await UserAPI.login(email, password);
+        log('authOutput', `✓ Logged in successfully!`);
+        logObject('authOutput', { user });
+    } catch (err) {
+        log('authOutput', `✗ Login failed: ${err.message}`, true);
+    }
+}
+
+async function getProfile() {
+    try {
+        const user = await UserAPI.getProfile();
+        log('authOutput', `✓ Profile retrieved`);
+        logObject('authOutput', user);
+    } catch (err) {
+        log('authOutput', `✗ Failed to get profile: ${err.message}`, true);
+    }
+}
+
+async function updateProfile() {
+    try {
+        const firstName = document.getElementById('updateFirst').value;
+        const lastName = document.getElementById('updateLast').value;
+        
+        const result = await UserAPI.updateProfile(firstName, lastName);
+        log('authOutput', `✓ Profile updated`);
+        logObject('authOutput', result);
+    } catch (err) {
+        log('authOutput', `✗ Failed to update profile: ${err.message}`, true);
+    }
+}
+
+function logout() {
+    UserAPI.logout();
+    log('authOutput', `✓ Logged out`);
+}
+
+// Letter Functions
+async function createLetter() {
+    try {
+        const recipient = document.getElementById('letterRecipient').value;
+        const email = document.getElementById('letterEmail').value;
+        const subject = document.getElementById('letterSubject').value;
+        const content = document.getElementById('letterContent').value;
+        
+        const result = await LetterAPI.createLetter(recipient, email, subject, content);
+        log('letterOutput', `✓ Letter created with ID: ${result.letterId}`);
+        logObject('letterOutput', result);
+    } catch (err) {
+        log('letterOutput', `✗ Failed to create letter: ${err.message}`, true);
+    }
+}
+
+async function getLetters() {
+    try {
+        const letters = await LetterAPI.getLetters();
+        log('letterOutput', `✓ Retrieved ${letters.length} letters`);
+        logObject('letterOutput', letters);
+    } catch (err) {
+        log('letterOutput', `✗ Failed to get letters: ${err.message}`, true);
+    }
+}
+
+async function getLetter() {
+    try {
+        const id = document.getElementById('letterId').value;
+        const letter = await LetterAPI.getLetter(id);
+        log('letterOutput', `✓ Letter retrieved`);
+        logObject('letterOutput', letter);
+    } catch (err) {
+        log('letterOutput', `✗ Failed to get letter: ${err.message}`, true);
+    }
+}
+
+async function updateLetter() {
+    try {
+        const id = document.getElementById('updateLetterId').value;
+        const recipient = document.getElementById('updateRecipient').value;
+        const email = document.getElementById('updateLetterEmail').value;
+        const subject = document.getElementById('updateLetterSubject').value;
+        const content = document.getElementById('updateLetterContent').value;
+        const status = document.getElementById('updateStatus').value;
+        
+        const result = await LetterAPI.updateLetter(id, recipient, email, subject, content, status);
+        log('letterOutput', `✓ Letter updated`);
+        logObject('letterOutput', result);
+    } catch (err) {
+        log('letterOutput', `✗ Failed to update letter: ${err.message}`, true);
+    }
+}
+
+async function deleteLetter() {
+    try {
+        const id = document.getElementById('deleteLetterId').value;
+        const result = await LetterAPI.deleteLetter(id);
+        log('letterOutput', `✓ Letter deleted`);
+        logObject('letterOutput', result);
+    } catch (err) {
+        log('letterOutput', `✗ Failed to delete letter: ${err.message}`, true);
+    }
+}
+
+// Dashboard & PDF Functions
+async function getDashboard() {
+    try {
+        const stats = await LetterAPI.getDashboardStats();
+        log('dashboardOutput', `✓ Dashboard stats retrieved`);
+        logObject('dashboardOutput', stats);
+    } catch (err) {
+        log('dashboardOutput', `✗ Failed to get stats: ${err.message}`, true);
+    }
+}
+
+async function generatePDF() {
+    try {
+        const id = document.getElementById('pdfLetterId').value;
+        log('dashboardOutput', `Generating PDF for letter ${id}...`);
+        await LetterAPI.generatePDF(id);
+        log('dashboardOutput', `✓ PDF downloaded!`);
+    } catch (err) {
+        log('dashboardOutput', `✗ Failed to generate PDF: ${err.message}`, true);
+    }
+}
+
+// On page load
+window.addEventListener('load', function() {
+    log('authOutput', 'Welcome! Backend is ready to test.');
+    if (AuthService.isAuthenticated()) {
+        log('authOutput', '✓ You are already logged in');
+    } else {
+        log('authOutput', 'Start by registering a new user or logging in');
+    }
+});
+</script>
+
+</body>
+</html>

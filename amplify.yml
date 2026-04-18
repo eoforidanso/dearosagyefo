@@ -1,0 +1,30 @@
+version: 1
+applications:
+  - appRoot: .
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - echo "Building static frontend..."
+      artifacts:
+        baseDirectory: .
+        files:
+          - '**/*'
+        exclude:
+          - node_modules/**/*
+          - backend/**/*
+          - tts-env/**/*
+          - .git/**/*
+          - '*.log'
+    backend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+            - echo "Installing backend dependencies..."
+        build:
+          commands:
+            - echo "Backend ready for deployment"
