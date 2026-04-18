@@ -1928,13 +1928,14 @@ const darkToggle = document.getElementById('darkToggle');
 function setDarkMode(on) {
   document.documentElement.classList.toggle('dark', on);
   darkToggle.innerHTML = on ? '&#9788;' : '&#9790;';
-  try { localStorage.setItem('darkMode', on ? '1' : '0'); } catch(e) {}
+  document.cookie = `darkMode=${on ? '1' : '0'}; path=/; max-age=31536000`;
 }
 darkToggle.addEventListener('click', () => {
   setDarkMode(!document.documentElement.classList.contains('dark'));
 });
 // Restore saved preference
-try { if (localStorage.getItem('darkMode') === '1') setDarkMode(true); } catch(e) {}
+const darkCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
 
 // === Enhanced Reveal Animations ===
 (function() {

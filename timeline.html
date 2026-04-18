@@ -1857,9 +1857,14 @@ const scrollTopBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
 scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 const darkToggle = document.getElementById('darkToggle');
-function setDarkMode(on) { document.documentElement.classList.toggle('dark', on); darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; try { localStorage.setItem('darkMode', on ? '1' : '0'); } catch(e) {} }
+function setDarkMode(on) { 
+  document.documentElement.classList.toggle('dark', on); 
+  darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; 
+  document.cookie = `darkMode=${on ? '1' : '0'}; path=/; max-age=31536000`; 
+}
 darkToggle.addEventListener('click', () => { setDarkMode(!document.documentElement.classList.contains('dark')); });
-try { if (localStorage.getItem('darkMode') === '1') setDarkMode(true); } catch(e) {}
+const darkCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
 </script>
 
 <script src="magic.js"></script>

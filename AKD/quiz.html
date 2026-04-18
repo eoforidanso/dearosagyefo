@@ -753,9 +753,40 @@
         ${!a.correct ? `<p class="rev-correct">Correct answer: ${q.options[q.answer].replace(/<[^>]*>/g,'')}</p>` : ''}`;
       reviewList.appendChild(item);
     });
+    
+    // Play ET Mensah celebration music when quiz is complete
+    playETMensahMusic();
+  }
+
+  // ET Mensah music player for quiz completion
+  let celebrationAudio = null;
+  function playETMensahMusic() {
+    // Stop any previously playing music
+    if (celebrationAudio) {
+      celebrationAudio.pause();
+      celebrationAudio.currentTime = 0;
+    }
+    
+    // Create and play ET Mensah music (Yaa Amponsah) - soft background
+    celebrationAudio = new Audio('audio/yaa-amponsah.mp3');
+    celebrationAudio.volume = 0.25; // Soft background music (25% volume)
+    celebrationAudio.loop = false; // Play once
+    celebrationAudio.play().catch(err => {
+      console.log('Audio autoplay prevented. User interaction required.');
+    });
+  }
+
+  function stopCelebrationMusic() {
+    if (celebrationAudio) {
+      celebrationAudio.pause();
+      celebrationAudio.currentTime = 0;
+    }
   }
 
   function restartQuiz() {
+    // Stop celebration music when restarting
+    stopCelebrationMusic();
+    
     document.getElementById('quiz-results').className = 'quiz-results';
     document.getElementById('quiz-review-list').className = 'quiz-review';
     document.getElementById('review-toggle-btn').textContent = 'Show Answer Review ▼';
@@ -838,9 +869,14 @@
 <script>
 window.addEventListener('load', () => { setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 300); });
 const darkToggle = document.getElementById('darkToggle');
-function setDarkMode(on) { document.documentElement.classList.toggle('dark', on); darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; try { localStorage.setItem('darkMode', on ? '1' : '0'); } catch(e) {} }
+function setDarkMode(on) { 
+  document.documentElement.classList.toggle('dark', on); 
+  darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; 
+  document.cookie = `darkMode=${on ? '1' : '0'}; path=/; max-age=31536000`; 
+}
 darkToggle.addEventListener('click', () => { setDarkMode(!document.documentElement.classList.contains('dark')); });
-try { if (localStorage.getItem('darkMode') === '1') setDarkMode(true); } catch(e) {}
+const darkCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
 function toggleMobileNav() { document.getElementById('main-nav').classList.toggle('open'); }
 document.querySelectorAll('#main-nav a').forEach(a => { a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open')); });
 </script>

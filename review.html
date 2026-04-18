@@ -423,9 +423,9 @@
   let historyLetters = [];
   let historyLoaded = false;
 
-  // ── STORAGE HELPERS ──────────────────────────────────────
-  function getSubs() { try { return JSON.parse(localStorage.getItem('visitor_submissions') || '[]'); } catch(_) { return []; } }
-  function saveSubs(arr) { localStorage.setItem('visitor_submissions', JSON.stringify(arr)); }
+  // ── STORAGE HELPERS (DEPRECATED - Use dashboard.html with API) ──────────────────────────────────────
+  function getSubs() { return []; }
+  function saveSubs(arr) { /* No-op - use dashboard API instead */ }
 
   // ── AUTH ────────────────────────────────────────────────────
   document.getElementById('secret-input').addEventListener('keydown', e => {

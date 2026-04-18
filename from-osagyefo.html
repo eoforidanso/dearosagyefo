@@ -1239,9 +1239,14 @@ window.addEventListener('load', () => { setTimeout(() => document.getElementById
 
 /* ═══ DARK MODE ═══ */
 const darkToggle = document.getElementById('darkToggle');
-function setDarkMode(on) { document.documentElement.classList.toggle('dark', on); darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; try { localStorage.setItem('darkMode', on ? '1' : '0'); } catch(e) {} }
+function setDarkMode(on) { 
+  document.documentElement.classList.toggle('dark', on); 
+  darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; 
+  document.cookie = `darkMode=${on ? '1' : '0'}; path=/; max-age=31536000`; 
+}
 darkToggle.addEventListener('click', () => { setDarkMode(!document.documentElement.classList.contains('dark')); });
-try { if (localStorage.getItem('darkMode') === '1') setDarkMode(true); } catch(e) {}
+const darkCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
 
 /* ═══ MOBILE NAV ═══ */
 function toggleMobileNav() { document.getElementById('main-nav').classList.toggle('open'); }
