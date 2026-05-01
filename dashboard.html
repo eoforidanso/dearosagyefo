@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Manage and track your open letters to Kwame Nkrumah.">
     <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"/>
     <style>
         :root {
@@ -264,6 +264,10 @@
             align-items: center;
         }
 
+        #published-table .letter-row {
+            grid-template-columns: 100px 80px 1fr 1fr 160px !important;
+        }
+
         .letter-row {
             display: grid;
             grid-template-columns: 82px 95px 105px 120px minmax(140px, 1fr) minmax(120px, 1fr) 200px;
@@ -432,6 +436,58 @@
         .empty-state-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+        }
+
+        /* TOAST NOTIFICATION */
+        .toast-notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--green) 0%, #1e4d33 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(45, 95, 63, 0.4);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: 500;
+            font-size: 0.95rem;
+            max-width: 400px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toast-notification.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .toast-message {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .toast-text {
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
         /* MODALS */
@@ -1058,7 +1114,32 @@
                 flex-direction: column;
             }
         }
+
+        /* Drop cap for submission preview & letter read views */
+        .letter-read-body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.05rem;
+            color: #ddd;
+            line-height: 1.9;
+        }
+        .letter-read-body p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5rem;
+        }
+        .letter-read-body p:first-child {
+            text-indent: 0;
+        }
+        .letter-read-body p:first-child::first-letter {
+            font-size: 4.2rem;
+            font-family: 'DM Serif Display', serif;
+            color: #c9a84c;
+            float: left;
+            line-height: 0.85;
+            margin-right: 0.35rem;
+            margin-top: 0.15rem;
+        }
     </style>
+    <script src="api-config.js"></script>
 </head>
 <body>
     <div class="flag-stripe">
@@ -1113,6 +1194,80 @@
             </div>
         </div>
 
+        <!-- ALL PUBLISHED LETTERS (ADMIN EDIT) -->
+        <h2 style="margin-top:3rem; color:var(--gold); font-family:var(--font-serif); font-size:1.5rem;">
+            ✏️ All Published Letters
+            <span id="published-count-badge" style="background:var(--green,#2D5F3F); color:#fff; font-size:0.75rem; padding:2px 8px; border-radius:12px; margin-left:0.5rem;">0</span>
+        </h2>
+        <p style="color:#aaa; font-size:0.85rem; margin-bottom:1rem;">Edit or hide any letter on the public Open Letters page. Hidden letters stay in the database but won't appear publicly.</p>
+
+        <div class="letters-table" id="published-table">
+            <div class="table-header" style="grid-template-columns: 90px 70px 1fr 140px 80px 200px;">
+                <div>Published</div>
+                <div>Letter #</div>
+                <div>Title</div>
+                <div>Author</div>
+                <div>Status</div>
+                <div>Actions</div>
+            </div>
+            <div id="publishedLettersContainer">
+                <div class="empty-state"><div class="empty-state-icon">📖</div><p>Loading published letters…</p></div>
+            </div>
+        </div>
+
+        <!-- EDIT PUBLISHED LETTER MODAL -->
+        <div id="editPublishedModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:2000; overflow-y:auto; padding:1rem;">
+            <div style="max-width:780px; margin:2rem auto; background:#1a1a1a; border:1px solid var(--gold); border-radius:14px; overflow:hidden;">
+                <div style="background:linear-gradient(90deg,var(--red),var(--gold),var(--green)); height:4px;"></div>
+                <div style="padding:2rem 2.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                        <h3 id="edit-pub-modal-title" style="color:var(--gold); font-family:var(--font-serif); margin:0; font-size:1.3rem;">Edit Published Letter</h3>
+                        <button onclick="closeEditPublished()" style="background:none; border:none; color:#aaa; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+                    </div>
+                    <input type="hidden" id="edit-pub-id">
+                    <div style="margin-bottom:1rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Title</label>
+                        <input id="edit-pub-title" type="text" style="width:100%; background:#111; border:1px solid #333; color:#fff; border-radius:8px; padding:0.75rem 1rem; font-size:0.95rem; font-family:'Inter',sans-serif;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Author Name</label>
+                        <input id="edit-pub-author" type="text" style="width:100%; background:#111; border:1px solid #333; color:#fff; border-radius:8px; padding:0.75rem 1rem; font-size:0.95rem; font-family:'Inter',sans-serif;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Category</label>
+                        <input id="edit-pub-category" type="text" style="width:100%; background:#111; border:1px solid #333; color:#fff; border-radius:8px; padding:0.75rem 1rem; font-size:0.95rem; font-family:'Inter',sans-serif;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Preview / Summary</label>
+                        <textarea id="edit-pub-preview" rows="3" style="width:100%; background:#111; border:1px solid #333; color:#fff; border-radius:8px; padding:0.75rem 1rem; font-size:0.95rem; font-family:'Inter',sans-serif; resize:vertical;"></textarea>
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.6rem;">Cover Image</label>
+                        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+                            <img id="edit-pub-img-preview" src="" alt="" style="display:none; width:120px; height:80px; object-fit:cover; border-radius:8px; border:1px solid #444;">
+                            <div id="edit-pub-img-placeholder" style="width:120px; height:80px; background:#222; border:1px dashed #444; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#555; font-size:0.75rem;">No image</div>
+                            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                                <label style="padding:0.5rem 1rem; background:#2a2a2a; border:1px solid #555; border-radius:6px; color:#ccc; font-size:0.78rem; font-weight:600; cursor:pointer; text-align:center;">
+                                    📷 Change Image
+                                    <input type="file" id="edit-pub-img-input" accept="image/*" style="display:none;" onchange="handleEditPubImage(this)">
+                                </label>
+                                <button type="button" id="edit-pub-img-remove" onclick="removeEditPubImage()" style="display:none; padding:0.4rem 1rem; background:transparent; border:1px solid #6b2222; border-radius:6px; color:#ff9999; font-size:0.75rem; cursor:pointer;">✕ Remove</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="edit-pub-imagedata">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="color:#aaa; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Full Letter Content <span style="color:#555; font-weight:400; text-transform:none;">(HTML preserved)</span></label>
+                        <textarea id="edit-pub-content" rows="12" style="width:100%; background:#111; border:1px solid #333; color:#fff; border-radius:8px; padding:0.75rem 1rem; font-size:0.95rem; font-family:'Crimson Pro',Georgia,serif; line-height:1.8; resize:vertical;"></textarea>
+                    </div>
+                    <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                        <button onclick="closeEditPublished()" style="padding:0.65rem 1.4rem; background:#333; color:#ccc; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Cancel</button>
+                        <button onclick="saveEditPublished()" style="padding:0.65rem 1.8rem; background:linear-gradient(135deg,var(--green),#1a6b3a); color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:700; font-family:'Inter',sans-serif;">Save Changes ✓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- VISITOR SUBMISSIONS REVIEW -->
         <h2 style="margin-top:3rem; color:var(--gold); font-family:var(--font-serif); font-size:1.5rem;">
             📬 Visitor Submissions
@@ -1150,12 +1305,21 @@
                     <span>Category: <strong id="preview-category" style="color:#ccc;"></strong></span>
                     <span>Date: <strong id="preview-date" style="color:#ccc;"></strong></span>
                 </div>
-                <div id="preview-content" style="color:#ddd; line-height:1.8; font-size:0.95rem; white-space:pre-wrap; border-top:1px solid #333; padding-top:1rem;"></div>
+                <div id="preview-content" class="letter-read-body" style="border-top:1px solid #333; padding-top:1rem;"></div>
                 <div style="display:flex; gap:1rem; margin-top:2rem; justify-content:flex-end;">
                     <button onclick="rejectSubmission(previewingId)" style="background:#c0392b; color:#fff; border:none; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:600;">✗ Reject</button>
                     <button onclick="approveSubmission(previewingId)" style="background:var(--green,#2D5F3F); color:#fff; border:none; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer; font-weight:600;">✓ Approve</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast-notification">
+        <div class="toast-icon">✓</div>
+        <div class="toast-message">
+            <div class="toast-title">Success!</div>
+            <div class="toast-text">Your letter has been published to the site</div>
         </div>
     </div>
 
@@ -1181,7 +1345,7 @@
         </div>
         
         <div class="compose-instructions">
-            <p><strong>💡 Writing Tips:</strong> Your summary helps readers understand the purpose and relevance of your letter. Think of it as the preview that draws people in to read your full thoughts.</p>
+            <p><strong>💡 Writing Tips:</strong> Your letter will be formatted with a salutation, your message body, and a closing with your name. You can customize the salutation and closing below, or leave them blank to use the defaults ("Dear Osagyefo," and "With respect and hope for a better Ghana,"). The summary helps readers understand your letter's purpose before reading the full content.</p>
         </div>
 
         <div class="compose-body">
@@ -1216,11 +1380,7 @@
                             <option>History</option>
                         </select>
                     </div>
-                    <div>
-                        <div class="compose-field-label">Letter Summary</div>
-                        <textarea class="compose-textarea" id="compose-summary" placeholder="Write a compelling summary of your letter... This will help readers understand what your letter is about and why it matters. Include key themes, questions you're raising, or issues you're addressing." rows="4"></textarea>
-                        <div class="field-help-text">Write 2-3 sentences that capture the essence of your letter and its relevance to Ghana today.</div>
-                    </div>
+
                 </div>
 
                 <!-- Photo Upload -->
@@ -1236,7 +1396,48 @@
                     <button type="button" class="photo-remove-btn" id="photo-remove-btn" style="display:none" onclick="removeImage(event)">✕ Remove</button>
                 </div>
 
+                <div class="compose-field-label" style="margin-top:1rem;">Summary</div>
+                <textarea
+                    class="compose-select"
+                    id="compose-summary"
+                    placeholder="Write a brief summary of your letter — this helps readers understand what it's about before they open it."
+                    rows="3"
+                    style="padding:0.7rem 1rem; font-size:0.9rem; resize:vertical; min-height:80px;"
+                ></textarea>
+                <div class="field-help-text" style="margin-bottom:0.5rem;">Shown as a short teaser on the letters listing page</div>
+
                 <hr class="letter-divider" />
+
+                <!-- Letter Format Options -->
+                <div style="margin-bottom: 2rem; padding: 1rem; background: rgba(232,185,35,0.05); border-radius: 8px; border: 1px solid var(--gray-border);">
+                    <div class="compose-field-label" style="margin-bottom: 0.8rem;">Letter Format (optional customization)</div>
+                    
+                    <div style="display: grid; gap: 1rem;">
+                        <div>
+                            <label style="font-size: 0.75rem; color: var(--gray-med); margin-bottom: 0.3rem; display: block;">Salutation</label>
+                            <input
+                                type="text"
+                                class="compose-select"
+                                id="compose-salutation"
+                                placeholder="Dear Osagyefo,"
+                                style="padding: 0.6rem 1rem; font-size: 0.9rem;"
+                            />
+                            <div class="field-help-text">Leave blank to use default "Dear Osagyefo,"</div>
+                        </div>
+                        
+                        <div>
+                            <label style="font-size: 0.75rem; color: var(--gray-med); margin-bottom: 0.3rem; display: block;">Closing Message</label>
+                            <input
+                                type="text"
+                                class="compose-select"
+                                id="compose-closing"
+                                placeholder="With respect and hope for a better Ghana,"
+                                style="padding: 0.6rem 1rem; font-size: 0.9rem;"
+                            />
+                            <div class="field-help-text">Leave blank to use default closing</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div id="compose-body" style="min-height:300px; font-size:1rem; line-height:1.8; color:#222;"></div>
 
@@ -1274,9 +1475,9 @@
     <script>
         // ===== IMAGE UPLOAD =====
         let selectedImageFile = null;
-        const MAX_WIDTH = 2400;
-        const MAX_HEIGHT = 3200;
-        const QUALITY = 0.85;
+        const MAX_WIDTH = 1200;   // Optimized for web display
+        const MAX_HEIGHT = 1600;  // Portrait ratio to fit subjects better
+        const QUALITY = 0.90;     // High quality
         const MAX_SIZE = 50 * 1024 * 1024;
 
         function compressImage(file) {
@@ -1286,11 +1487,23 @@
                     const img = new Image();
                     img.onload = () => {
                         let w = img.width, h = img.height;
-                        if (w > MAX_WIDTH) { h = Math.round(h * MAX_WIDTH / w); w = MAX_WIDTH; }
-                        if (h > MAX_HEIGHT) { w = Math.round(w * MAX_HEIGHT / h); h = MAX_HEIGHT; }
+                        
+                        // Calculate scaling to fit within max dimensions while maintaining aspect ratio
+                        const scale = Math.min(MAX_WIDTH / w, MAX_HEIGHT / h, 1);
+                        w = Math.round(w * scale);
+                        h = Math.round(h * scale);
+                        
                         const canvas = document.createElement('canvas');
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        canvas.width = w; 
+                        canvas.height = h;
+                        
+                        // Use high-quality image smoothing for portraits
+                        const ctx = canvas.getContext('2d');
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = 'high';
+                        // Better rendering for portraits - prioritize top of image
+                        ctx.drawImage(img, 0, 0, w, h);
+                        
                         canvas.toBlob(blob => {
                             resolve(new File([blob], file.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' }));
                         }, 'image/jpeg', QUALITY);
@@ -1385,25 +1598,44 @@
         let cachedLetters = [];
 
         // ===== API HELPERS =====
+        // API_BASE is set by api-config.js
         async function apiGet(url) {
-            const res = await fetch(url, { headers: authHeaders() });
+            const res = await fetch(API_BASE + url, { headers: authHeaders() });
             if (res.status === 401 || res.status === 403) { sessionStorage.clear(); window.location.href = 'login.html'; return null; }
             return res.json();
         }
         async function apiPost(url, body) {
-            const res = await fetch(url, { method: 'POST', headers: authHeaders(), body: JSON.stringify(body) });
+            const res = await fetch(API_BASE + url, { method: 'POST', headers: authHeaders(), body: JSON.stringify(body) });
             if (res.status === 401 || res.status === 403) { sessionStorage.clear(); window.location.href = 'login.html'; return null; }
             return res.json();
         }
         async function apiPut(url, body) {
-            const res = await fetch(url, { method: 'PUT', headers: authHeaders(), body: JSON.stringify(body) });
+            const res = await fetch(API_BASE + url, { method: 'PUT', headers: authHeaders(), body: JSON.stringify(body) });
             if (res.status === 401 || res.status === 403) { sessionStorage.clear(); window.location.href = 'login.html'; return null; }
             return res.json();
         }
         async function apiDelete(url) {
-            const res = await fetch(url, { method: 'DELETE', headers: authHeaders() });
+            const res = await fetch(API_BASE + url, { method: 'DELETE', headers: authHeaders() });
             if (res.status === 401 || res.status === 403) { sessionStorage.clear(); window.location.href = 'login.html'; return null; }
             return res.json();
+        }
+
+        // ===== TOAST NOTIFICATION =====
+        function showToast(title, message, icon = '✓', duration = 4000) {
+            const toast = document.getElementById('toast-notification');
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastTitle = toast.querySelector('.toast-title');
+            const toastText = toast.querySelector('.toast-text');
+
+            toastIcon.textContent = icon;
+            toastTitle.textContent = title;
+            toastText.textContent = message;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
         }
 
         // ===== INIT =====
@@ -1417,6 +1649,12 @@
             loadLetters();
             loadStats();
             loadSubmissions();
+            loadPublishedLetters();
+            
+            // Auto-refresh visitor submissions every 10 seconds
+            setInterval(() => {
+                loadSubmissions();
+            }, 10000);
         });
 
         async function loadStats() {
@@ -1443,6 +1681,8 @@
             document.getElementById('compose-title').value = '';
             document.getElementById('compose-category').value = '';
             document.getElementById('compose-summary').value = '';
+            document.getElementById('compose-salutation').value = '';
+            document.getElementById('compose-closing').value = '';
             if (typeof quill !== 'undefined') quill.setContents([]);
             document.querySelectorAll('.compose-tag-label').forEach(l => {
                 l.classList.remove('checked');
@@ -1498,6 +1738,10 @@
                 coverImage = preview.src;
             }
 
+            // Get custom format fields
+            const customSalutation = document.getElementById('compose-salutation').value.trim();
+            const customClosing = document.getElementById('compose-closing').value.trim();
+
             const letterData = {
                 recipientName: 'Osagyefo Kwame Nkrumah',
                 subject: title,
@@ -1506,22 +1750,41 @@
                 tags,
                 summary: document.getElementById('compose-summary').value.trim(),
                 status: statusOverride,
-                imageData: coverImage
+                imageData: coverImage,
+                customSalutation: customSalutation || null,
+                customClosing: customClosing || null
             };
 
             try {
                 let result;
                 if (editingLetterId) {
                     result = await apiPut(`/api/letters/${editingLetterId}`, letterData);
+                    showToast('✓ Letter Updated!', 'Your changes have been saved successfully', '✓', 3000);
+                    // If updating and status is published, also update on public site
+                    if (statusOverride === 'published') {
+                        try { await apiPost(`/api/letters/${editingLetterId}/publish-to-site`, {}); } catch(e2) {}
+                    }
                 } else {
                     result = await apiPost('/api/letters', letterData);
+                    const letterId = result?.letterId;
+                    // Auto-publish to public site when posting (not drafting)
+                    if (statusOverride === 'published' && letterId) {
+                        try {
+                            await apiPost(`/api/letters/${letterId}/publish-to-site`, {});
+                            showToast('🎉 Letter Published!', 'Your letter is now live on the Open Letters page', '✓', 5000);
+                        } catch(e2) {
+                            showToast('✓ Letter Saved', 'Saved but auto-publish failed. Use "Publish to Site" button.', '⚠', 4000);
+                        }
+                    } else {
+                        showToast('✓ Letter Saved!', 'Your letter has been saved as draft', '✓', 3000);
+                    }
                 }
                 if (!result) return;
                 closeCompose();
                 await loadLetters();
                 await loadStats();
             } catch(e) {
-                alert('Error saving letter: ' + e.message);
+                showToast('Error', 'Failed to save letter: ' + e.message, '✗', 4000);
             }
         }
 
@@ -1556,7 +1819,7 @@
                     <div class="letter-summary">${escapeHtml(letter.summary)}</div>
                     <div class="action-buttons">
                         <button class="action-btn" onclick="editLetter(${letter.id})">Edit</button>
-                        ${letter.status !== 'published' ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : '<span style="font-size:0.7rem;color:#2D5F3F;font-weight:600;">&#10003; Live</span>'}
+                        ${letter.status !== 'published' ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : `<button class="action-btn" style="color:#2D5F3F;border-color:#2D5F3F;" onclick="viewPublishedLetter(${letter.id})">👁 View</button>`}
                         <button class="action-btn delete" onclick="deleteLetter(${letter.id})">Delete</button>
                     </div>
                 </div>`;
@@ -1572,9 +1835,11 @@
             } catch(e) { alert('Could not load letter'); return; }
 
             editingLetterId = id;
-            document.getElementById('compose-title').value    = letter.subject || '';
-            document.getElementById('compose-category').value = letter.category || '';
-            document.getElementById('compose-summary').value  = letter.summary || '';
+            document.getElementById('compose-title').value      = letter.subject || '';
+            document.getElementById('compose-category').value   = letter.category || '';
+            document.getElementById('compose-summary').value    = letter.summary || '';
+            document.getElementById('compose-salutation').value = letter.customSalutation || '';
+            document.getElementById('compose-closing').value    = letter.customClosing || '';
             if (typeof quill !== 'undefined') quill.clipboard.dangerouslyPasteHTML(letter.content || '');
 
             const existingTags = letter.tags ? letter.tags.split(',') : [];
@@ -1584,13 +1849,20 @@
                 lbl.classList.toggle('checked', cb.checked);
             });
 
-            // Load cover image if exists
+            // Load cover image if exists, otherwise clear any leftover image
             if (letter.imageData) {
                 document.getElementById('photo-preview').src = letter.imageData;
                 document.getElementById('photo-preview').style.display = 'block';
                 document.getElementById('photo-placeholder').style.display = 'none';
                 document.getElementById('photo-remove-btn').style.display = '';
                 document.getElementById('photo-upload-zone').classList.add('has-image');
+            } else {
+                selectedImageFile = null;
+                document.getElementById('compose-image').value = '';
+                document.getElementById('photo-preview').style.display = 'none';
+                document.getElementById('photo-placeholder').style.display = '';
+                document.getElementById('photo-remove-btn').style.display = 'none';
+                document.getElementById('photo-upload-zone').classList.remove('has-image');
             }
 
             document.getElementById('compose-label').textContent = 'Edit Letter';
@@ -1606,8 +1878,9 @@
                 await apiDelete(`/api/letters/${id}`);
                 await loadLetters();
                 await loadStats();
+                showToast('✓ Letter Deleted', 'The letter has been removed', '🗑️', 3000);
             } catch(e) {
-                alert('Error deleting letter');
+                showToast('Error', 'Failed to delete letter: ' + e.message, '✗', 4000);
             }
         }
 
@@ -1619,10 +1892,30 @@
                 if (!result) return;
                 await loadLetters();
                 await loadStats();
-                alert('Letter published to the site!');
+                
+                // Show success toast notification
+                showToast(
+                    '🎉 Letter Published!',
+                    'Your letter is now live on the open letters page',
+                    '✓',
+                    5000
+                );
             } catch(e) {
-                alert('Error publishing letter: ' + e.message);
+                showToast('Error', 'Failed to publish letter: ' + e.message, '✗', 4000);
             }
+        }
+
+        // ===== VIEW PUBLISHED LETTER =====
+        function viewPublishedLetter(id) {
+            window.open(`letters.html?letter=${id}`, '_blank');
+            
+            // Show toast to guide user
+            showToast(
+                '👁 Opening Letters Page',
+                'Your published letter is visible on the Open Letters page',
+                '🔗',
+                3000
+            );
         }
 
         // ===== SEARCH =====
@@ -1639,16 +1932,25 @@
         // ===== VISITOR SUBMISSIONS =====
         let previewingId = null;
         let cachedSubmissions = [];
+        let previousPendingCount = 0;
 
         function getAdminSecret() { return 'osagyefo-admin-review-2026'; }
 
         async function loadSubmissions() {
             try {
                 const [pending, history] = await Promise.all([
-                    fetch('/api/visitors/admin/pending', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json()),
-                    fetch('/api/visitors/admin/history', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json())
+                    fetch(API_BASE + '/api/visitors/admin/pending', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json()),
+                    fetch(API_BASE + '/api/visitors/admin/history', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json())
                 ]);
                 cachedSubmissions = [...pending, ...history];
+                
+                // Show notification if new submissions arrived
+                if (previousPendingCount > 0 && pending.length > previousPendingCount) {
+                    const newCount = pending.length - previousPendingCount;
+                    showToast('📬 New Submission!', `${newCount} new visitor letter${newCount > 1 ? 's' : ''} awaiting review`, '📬', 5000);
+                }
+                previousPendingCount = pending.length;
+                
                 renderSubmissions(cachedSubmissions, pending.length);
             } catch(e) {
                 console.error('Submissions error:', e);
@@ -1702,7 +2004,12 @@
             document.getElementById('preview-author').textContent = s.penName || 'Anonymous';
             document.getElementById('preview-category').textContent = s.category || '-';
             document.getElementById('preview-date').textContent = s.submittedAt ? new Date(s.submittedAt).toLocaleDateString() : '';
-            document.getElementById('preview-content').textContent = s.content || s.preview || '';
+            const rawText = s.content || s.preview || '';
+            const paragraphs = rawText.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+            const html = paragraphs.length
+                ? paragraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')
+                : `<p>${rawText}</p>`;
+            document.getElementById('preview-content').innerHTML = html;
             document.getElementById('submission-preview').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -1715,26 +2022,31 @@
 
         async function approveSubmission(id) {
             try {
-                await fetch(`/api/visitors/admin/${id}/approve`, {
+                await fetch(API_BASE + `/api/visitors/admin/${id}/approve`, {
                     method: 'PUT',
                     headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 closeSubmissionPreview();
                 await loadSubmissions();
-                alert('✓ Letter approved and published!');
-            } catch(e) { alert('Error approving letter'); }
+                showToast('✓ Letter Approved!', 'The visitor letter has been published to the site', '✓', 4000);
+            } catch(e) { 
+                showToast('Error', 'Failed to approve letter', '✗', 4000);
+            }
         }
 
         async function rejectSubmission(id) {
             if (!confirm('Reject this submission?')) return;
             try {
-                await fetch(`/api/visitors/admin/${id}/reject`, {
+                await fetch(API_BASE + `/api/visitors/admin/${id}/reject`, {
                     method: 'PUT',
                     headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 closeSubmissionPreview();
                 await loadSubmissions();
-            } catch(e) { alert('Error rejecting letter'); }
+                showToast('Letter Rejected', 'The submission has been rejected', '✗', 3000);
+            } catch(e) { 
+                showToast('Error', 'Failed to reject letter', '✗', 4000);
+            }
         }
 
         document.addEventListener('keydown', function(e) {
@@ -1744,7 +2056,7 @@
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
     <script>
         // Initialize Quill rich text editor
-        const quill = new Quill('#compose-body', {
+        var quill = new Quill('#compose-body', {
             theme: 'snow',
             placeholder: 'Dear Osagyefo, …',
             modules: {
@@ -1776,6 +2088,188 @@
             qlToolbar.style.background = '#fafaf8';
             qlToolbar.style.borderRadius = '6px 6px 0 0';
         }
+
+        // ===== ALL PUBLISHED LETTERS (ADMIN EDIT) =====
+        async function loadPublishedLetters() {
+            try {
+                const res = await fetch(API_BASE + '/api/letters/admin/public/all', {
+                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                });
+                if (!res.ok) throw new Error('Failed');
+                const letters = await res.json();
+                renderPublishedLetters(letters);
+            } catch(e) {
+                document.getElementById('publishedLettersContainer').innerHTML =
+                    '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Could not load published letters.</p></div>';
+            }
+        }
+
+        function renderPublishedLetters(letters) {
+            const container = document.getElementById('publishedLettersContainer');
+            document.getElementById('published-count-badge').textContent = letters.length;
+            if (!letters.length) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📖</div><p>No published letters yet.</p></div>';
+                return;
+            }
+            container.innerHTML = letters.map(l => {
+                const date = l.publishedAt ? new Date(l.publishedAt).toLocaleDateString() : '—';
+                const isHidden = !l.isApproved;
+                const rowOpacity = isHidden ? 'opacity:0.5;' : '';
+                const statusBadge = isHidden
+                    ? `<span style="background:#6b2222;color:#ff9999;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:600;">Hidden</span>`
+                    : `<span style="background:#1a3d2a;color:#6fcf97;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:600;">Live</span>`;
+                return `<div class="letter-row" style="grid-template-columns:90px 70px 1fr 140px 80px 200px!important;${rowOpacity}">
+                    <div class="letter-date">${escapeHtml(date)}</div>
+                    <div><span class="letter-status status-published">#${l.letterNumber || l.id}</span></div>
+                    <div class="letter-title" style="font-weight:600;">${escapeHtml(l.title || '')}</div>
+                    <div class="letter-summary">${escapeHtml(l.authorName || '—')}</div>
+                    <div>${statusBadge}</div>
+                    <div class="action-buttons" style="gap:0.3rem;">
+                        <button class="action-btn" onclick="openEditPublished(${l.id})" title="Edit">✏️ Edit</button>
+                        ${!isHidden
+                            ? `<button class="action-btn" onclick="deletePublicLetter(${l.id})" title="Hide from public" style="background:#3d1a1a;color:#ff9999;border-color:#6b2222;">🗑 Delete</button>`
+                            : `<button class="action-btn" onclick="restorePublicLetter(${l.id})" title="Restore to public" style="background:#1a2e1a;color:#6fcf97;border-color:#2d5f3f;">↩ Restore</button>`
+                        }
+                        ${!isHidden ? `<a href="letters.html?letter=${l.id}" target="_blank" class="action-btn" style="text-decoration:none;">👁 View</a>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        async function openEditPublished(publicId) {
+            try {
+                const res = await fetch(API_BASE + '/api/letters/admin/public/' + publicId, {
+                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                });
+                if (!res.ok) throw new Error('Not found');
+                const letter = await res.json();
+                document.getElementById('edit-pub-id').value = publicId;
+                document.getElementById('edit-pub-modal-title').textContent = 'Edit: ' + (letter.title || 'Letter');
+                document.getElementById('edit-pub-title').value = letter.title || '';
+                document.getElementById('edit-pub-author').value = letter.authorName || '';
+                document.getElementById('edit-pub-category').value = letter.category || '';
+                document.getElementById('edit-pub-preview').value = letter.preview || '';
+                // Preserve raw HTML — do NOT strip tags
+                document.getElementById('edit-pub-content').value = letter.content || '';
+                // Load cover image
+                const imgPreview = document.getElementById('edit-pub-img-preview');
+                const imgPlaceholder = document.getElementById('edit-pub-img-placeholder');
+                const imgRemove = document.getElementById('edit-pub-img-remove');
+                document.getElementById('edit-pub-imagedata').value = letter.imageData || '';
+                if (letter.imageData) {
+                    imgPreview.src = letter.imageData;
+                    imgPreview.style.display = 'block';
+                    imgPlaceholder.style.display = 'none';
+                    imgRemove.style.display = 'block';
+                } else {
+                    imgPreview.src = '';
+                    imgPreview.style.display = 'none';
+                    imgPlaceholder.style.display = 'flex';
+                    imgRemove.style.display = 'none';
+                }
+                document.getElementById('editPublishedModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } catch(e) {
+                showToast('Error', 'Could not load letter for editing', '⚠️', 3000);
+            }
+        }
+
+        function handleEditPubImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                document.getElementById('edit-pub-imagedata').value = dataUrl;
+                const imgPreview = document.getElementById('edit-pub-img-preview');
+                imgPreview.src = dataUrl;
+                imgPreview.style.display = 'block';
+                document.getElementById('edit-pub-img-placeholder').style.display = 'none';
+                document.getElementById('edit-pub-img-remove').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeEditPubImage() {
+            document.getElementById('edit-pub-imagedata').value = '__remove__';
+            document.getElementById('edit-pub-img-preview').style.display = 'none';
+            document.getElementById('edit-pub-img-preview').src = '';
+            document.getElementById('edit-pub-img-placeholder').style.display = 'flex';
+            document.getElementById('edit-pub-img-remove').style.display = 'none';
+            document.getElementById('edit-pub-img-input').value = '';
+        }
+
+        function closeEditPublished() {
+            document.getElementById('editPublishedModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        async function saveEditPublished() {
+            const id = document.getElementById('edit-pub-id').value;
+            const title    = document.getElementById('edit-pub-title').value.trim();
+            const author   = document.getElementById('edit-pub-author').value.trim();
+            const category = document.getElementById('edit-pub-category').value.trim();
+            const preview  = document.getElementById('edit-pub-preview').value.trim();
+            // Send raw HTML content as-is (preserves images and formatting)
+            const content  = document.getElementById('edit-pub-content').value.trim();
+            // Image: new data URL, '__remove__' to clear, or empty to leave unchanged
+            const imgVal   = document.getElementById('edit-pub-imagedata').value;
+            const imageData = imgVal === '__remove__' ? null : (imgVal || undefined);
+
+            if (!title) { alert('Title is required'); return; }
+
+            const payload = { title, authorName: author, category, preview, content };
+            if (imgVal === '__remove__') payload.imageData = null;
+            else if (imgVal) payload.imageData = imgVal;
+
+            try {
+                const res = await fetch(API_BASE + '/api/letters/admin/public/' + id, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'x-admin-secret': 'osagyefo-admin-review-2026' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error('Save failed');
+                closeEditPublished();
+                await loadPublishedLetters();
+                showToast('✓ Letter Updated', 'The published letter has been updated', '✏️', 3500);
+            } catch(e) {
+                showToast('Error', 'Could not save changes: ' + e.message, '⚠️', 4000);
+            }
+        }
+
+        async function deletePublicLetter(id) {
+            if (!confirm('Hide this letter from the public Open Letters page?\n\nIt will remain in the database and can be restored at any time.')) return;
+            try {
+                const res = await fetch(API_BASE + '/api/letters/admin/public/' + id, {
+                    method: 'DELETE',
+                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                });
+                if (!res.ok) throw new Error('Delete failed');
+                await loadPublishedLetters();
+                showToast('Letter Hidden', 'The letter is now hidden from the public site', '🗑', 3500);
+            } catch(e) {
+                showToast('Error', 'Could not hide letter: ' + e.message, '⚠️', 4000);
+            }
+        }
+
+        async function restorePublicLetter(id) {
+            try {
+                const res = await fetch(API_BASE + '/api/letters/admin/public/' + id + '/restore', {
+                    method: 'PUT',
+                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                });
+                if (!res.ok) throw new Error('Restore failed');
+                await loadPublishedLetters();
+                showToast('Letter Restored', 'The letter is now live on the public site', '✅', 3500);
+            } catch(e) {
+                showToast('Error', 'Could not restore letter: ' + e.message, '⚠️', 4000);
+            }
+        }
+
+        // Close edit modal on backdrop click
+        document.getElementById('editPublishedModal').addEventListener('click', function(e) {
+            if (e.target === this) closeEditPublished();
+        });
     </script>
 </body>
 </html>

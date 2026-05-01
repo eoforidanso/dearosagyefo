@@ -1,8 +1,9 @@
 const db = require('../config/database');
+const { generateAndStoreAudio } = require('./audioController');
 
 // Create a new letter
 exports.createLetter = (req, res) => {
-  const { recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData } = req.body;
+  const { recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData, customSalutation, customClosing } = req.body;
 
   // Support file upload via multer
   let img = imageData || null;
@@ -16,10 +17,11 @@ exports.createLetter = (req, res) => {
   }
 
   db.run(
-    `INSERT INTO letters (userId, recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO letters (userId, recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData, customSalutation, customClosing)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [req.user.id, recipientName, recipientEmail || '', subject || '', content,
-     category || 'General', tags || '', summary || '', status || 'draft', img],
+     category || 'General', tags || '', summary || '', status || 'draft', img,
+     customSalutation || null, customClosing || null],
     function(err) {
       if (err) {
         return res.status(500).json({ message: 'Server error' });
@@ -73,7 +75,7 @@ exports.getLetter = (req, res) => {
 // Update letter
 exports.updateLetter = (req, res) => {
   const { id } = req.params;
-  const { recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData } = req.body;
+  const { recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData, customSalutation, customClosing } = req.body;
 
   // Support file upload via multer
   let img = imageData !== undefined ? imageData : null;
@@ -83,9 +85,11 @@ exports.updateLetter = (req, res) => {
 
   db.run(
     `UPDATE letters 
-     SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?, updatedAt = CURRENT_TIMESTAMP
+     SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?,
+         customSalutation = ?, customClosing = ?, updatedAt = CURRENT_TIMESTAMP
      WHERE id = ? AND userId = ?`,
-    [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img, id, req.user.id],
+    [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img,
+     customSalutation || null, customClosing || null, id, req.user.id],
     (err) => {
       if (err) {
         return res.status(500).json({ message: 'Server error' });
@@ -109,6 +113,130 @@ exports.deleteLetter = (req, res) => {
       }
 
       res.json({ message: 'Letter deleted successfully' });
+    }
+  );
+};
+
+// ADMIN: Get ALL letters across all users
+exports.adminGetAllLetters = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  db.all(
+    `SELECT l.id, l.userId, l.recipientName, l.subject, l.content, l.category, l.tags, l.summary, l.status, l.imageData, l.createdAt, l.updatedAt,
+            pl.id as publicId, pl.title as publicTitle, pl.authorName, pl.publishedAt, pl.isApproved
+     FROM letters l
+     LEFT JOIN public_letters pl ON pl.userId = l.userId AND pl.title = l.subject AND pl.isApproved = 1
+     ORDER BY l.createdAt DESC`,
+    [],
+    (err, rows) => {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      res.json(rows);
+    }
+  );
+};
+
+// ADMIN: Update any public letter by publicId
+exports.adminUpdatePublicLetter = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const { id } = req.params;
+  const { title, content, preview, authorName, category, tags, imageData } = req.body;
+  // imageData === null means explicitly remove; undefined means leave unchanged
+  const imgUpdate = imageData === null ? null : (imageData !== undefined ? imageData : undefined);
+  const useImgCoalesce = imgUpdate === undefined; // if not provided, keep existing value
+
+  let sql, params;
+  if (useImgCoalesce) {
+    sql = `UPDATE public_letters SET title = COALESCE(?, title), content = COALESCE(?, content), preview = COALESCE(?, preview),
+     authorName = COALESCE(?, authorName), category = COALESCE(?, category), tags = COALESCE(?, tags),
+     updatedAt = datetime('now')
+     WHERE id = ?`;
+    params = [title || null, content || null, preview || null, authorName || null, category || null, tags || null, id];
+  } else {
+    sql = `UPDATE public_letters SET title = COALESCE(?, title), content = COALESCE(?, content), preview = COALESCE(?, preview),
+     authorName = COALESCE(?, authorName), category = COALESCE(?, category), tags = COALESCE(?, tags),
+     imageData = ?,
+     updatedAt = datetime('now')
+     WHERE id = ?`;
+    params = [title || null, content || null, preview || null, authorName || null, category || null, tags || null, imgUpdate, id];
+  }
+
+  db.run(sql, params, function(err) {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
+      res.json({ message: 'Letter updated', id });
+    }
+  );
+};
+
+// ADMIN: Get single public letter by publicId
+exports.adminGetPublicLetter = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const { id } = req.params;
+  db.get(`SELECT * FROM public_letters WHERE id = ?`, [id], (err, row) => {
+    if (err) return res.status(500).json({ message: 'Server error' });
+    if (!row) return res.status(404).json({ message: 'Not found' });
+    res.json(row);
+  });
+};
+
+// ADMIN: Get ALL public letters directly (includes seeded ones with userId=null)
+exports.adminGetAllPublicLetters = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  db.all(
+    `SELECT id, letterNumber, title, authorName, category, publishedAt, isApproved, preview, content, audioUrl
+     FROM public_letters
+     ORDER BY id DESC`,
+    [],
+    (err, rows) => {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      res.json(rows);
+    }
+  );
+};
+
+// ADMIN: Soft-delete (hide) a public letter — sets isApproved=0 so it's hidden from public pages
+exports.adminDeletePublicLetter = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const { id } = req.params;
+  db.run(
+    `UPDATE public_letters SET isApproved = 0, updatedAt = datetime('now') WHERE id = ?`,
+    [id],
+    function(err) {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
+      res.json({ message: 'Letter hidden from public site', id });
+    }
+  );
+};
+
+// ADMIN: Restore (unhide) a public letter — sets isApproved=1
+exports.adminRestorePublicLetter = (req, res) => {
+  const adminSecret = req.headers['x-admin-secret'];
+  if (adminSecret !== 'osagyefo-admin-review-2026') {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const { id } = req.params;
+  db.run(
+    `UPDATE public_letters SET isApproved = 1, updatedAt = datetime('now') WHERE id = ?`,
+    [id],
+    function(err) {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
+      res.json({ message: 'Letter restored to public site', id });
     }
   );
 };
@@ -174,19 +302,27 @@ exports.publishToSite = (req, res) => {
             if (err3) return res.status(500).json({ message: 'Server error' });
 
             const letterNumber = row.nextNum;
-            const authorName = req.user.firstName || 'Anonymous';
-            const preview = letter.summary || letter.content.substring(0, 200);
+            // Use customClosing as the public author/signature if set; fall back to user's name
+            const authorName = letter.customClosing || req.user.firstName || 'A Concerned Ghanaian';
+            const rawPreview = letter.summary || letter.content || '';
+            const preview = rawPreview.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().substring(0, 200);
 
             db.run(
-              `INSERT INTO public_letters (letterNumber, authorName, title, preview, content, category, tags, accentColor, publishedAt, isApproved, userId, imageData)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, date('now'), 1, ?, ?)`,
+              `INSERT INTO public_letters (letterNumber, authorName, title, preview, content, category, tags, accentColor, publishedAt, isApproved, userId, imageData, customSalutation, customClosing)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, date('now'), 1, ?, ?, ?, ?)`,
               [letterNumber, authorName, letter.subject || 'Untitled', preview, letter.content,
-               letter.category || 'General', letter.tags || '', '#D43F3A', req.user.id, letter.imageData || null],
+               letter.category || 'General', letter.tags || '', '#D43F3A', req.user.id, letter.imageData || null,
+               letter.customSalutation || null, letter.customClosing || null],
               function(err4) {
                 if (err4) return res.status(500).json({ message: 'Server error' });
 
                 // Mark the private letter as published
                 db.run(`UPDATE letters SET status = 'published', updatedAt = CURRENT_TIMESTAMP WHERE id = ?`, [id]);
+
+                // Fire-and-forget: generate Kokoro TTS audio in the background
+                generateAndStoreAudio(this.lastID || id, letter.content, 'af_bella')
+                  .then(url => console.log(`[Audio] Pre-generated for letter ${id}: ${url}`))
+                  .catch(err => console.error(`[Audio] Failed for letter ${id}:`, err.message));
 
                 res.json({ message: 'Letter published to site', publicId: this.lastID });
               }
