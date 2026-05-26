@@ -1742,6 +1742,7 @@
             const customSalutation = document.getElementById('compose-salutation').value.trim();
             const customClosing = document.getElementById('compose-closing').value.trim();
 
+            // Always create/save as draft first — publishToSite is what promotes it to 'published'
             const letterData = {
                 recipientName: 'Osagyefo Kwame Nkrumah',
                 subject: title,
@@ -1749,7 +1750,7 @@
                 category: document.getElementById('compose-category').value || 'General',
                 tags,
                 summary: document.getElementById('compose-summary').value.trim(),
-                status: statusOverride,
+                status: statusOverride === 'published' ? 'draft' : statusOverride,
                 imageData: coverImage,
                 customSalutation: customSalutation || null,
                 customClosing: customClosing || null
@@ -1759,27 +1760,32 @@
                 let result;
                 if (editingLetterId) {
                     result = await apiPut(`/api/letters/${editingLetterId}`, letterData);
-                    showToast('✓ Letter Updated!', 'Your changes have been saved successfully', '✓', 3000);
-                    // If updating and status is published, also update on public site
+                    if (!result) return;
                     if (statusOverride === 'published') {
-                        try { await apiPost(`/api/letters/${editingLetterId}/publish-to-site`, {}); } catch(e2) {}
+                        const pubRes = await apiPost(`/api/letters/${editingLetterId}/publish-to-site`, {});
+                        if (pubRes && (pubRes.publicId || pubRes.message === 'Letter already published to site')) {
+                            showToast('✓ Letter Updated & Live!', 'Your changes are now visible on the site', '✓', 4000);
+                        } else {
+                            showToast('✓ Letter Saved', 'Saved but could not publish. Use "Publish to Site" button.', '⚠', 4000);
+                        }
+                    } else {
+                        showToast('✓ Letter Updated!', 'Your changes have been saved successfully', '✓', 3000);
                     }
                 } else {
                     result = await apiPost('/api/letters', letterData);
+                    if (!result) return;
                     const letterId = result?.letterId;
-                    // Auto-publish to public site when posting (not drafting)
                     if (statusOverride === 'published' && letterId) {
-                        try {
-                            await apiPost(`/api/letters/${letterId}/publish-to-site`, {});
+                        const pubRes = await apiPost(`/api/letters/${letterId}/publish-to-site`, {});
+                        if (pubRes && (pubRes.publicId || pubRes.message === 'Letter already published to site')) {
                             showToast('🎉 Letter Published!', 'Your letter is now live on the Open Letters page', '✓', 5000);
-                        } catch(e2) {
-                            showToast('✓ Letter Saved', 'Saved but auto-publish failed. Use "Publish to Site" button.', '⚠', 4000);
+                        } else {
+                            showToast('⚠ Saved as Draft', 'Letter saved but publishing failed — use the "Publish to Site" button.', '⚠', 5000);
                         }
                     } else {
                         showToast('✓ Letter Saved!', 'Your letter has been saved as draft', '✓', 3000);
                     }
                 }
-                if (!result) return;
                 closeCompose();
                 await loadLetters();
                 await loadStats();
@@ -1819,7 +1825,7 @@
                     <div class="letter-summary">${escapeHtml(letter.summary)}</div>
                     <div class="action-buttons">
                         <button class="action-btn" onclick="editLetter(${letter.id})">Edit</button>
-                        ${letter.status !== 'published' ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : `<button class="action-btn" style="color:#2D5F3F;border-color:#2D5F3F;" onclick="viewPublishedLetter(${letter.id})">👁 View</button>`}
+                        ${!letter.publicId ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : `<button class="action-btn" style="color:#2D5F3F;border-color:#2D5F3F;" onclick="viewPublishedLetter(${letter.id})">👁 View</button>`}
                         <button class="action-btn delete" onclick="deleteLetter(${letter.id})">Delete</button>
                     </div>
                 </div>`;
@@ -1934,26 +1940,53 @@
         let cachedSubmissions = [];
         let previousPendingCount = 0;
 
-        function getAdminSecret() { return 'osagyefo-admin-review-2026'; }
+        function getAdminSecret() {
+            let s = sessionStorage.getItem('_adm');
+            if (!s) {
+                s = prompt('Enter admin secret:');
+                if (!s) throw new Error('Admin secret required');
+                sessionStorage.setItem('_adm', s);
+            }
+            return s;
+        }
 
         async function loadSubmissions() {
+            const container = document.getElementById('submissionsContainer');
             try {
-                const [pending, history] = await Promise.all([
-                    fetch(API_BASE + '/api/visitors/admin/pending', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json()),
-                    fetch(API_BASE + '/api/visitors/admin/history', { headers: { 'x-admin-secret': getAdminSecret() } }).then(r => r.json())
+                let secret;
+                try { secret = getAdminSecret(); } catch(e) { return; }
+
+                const [pendingRes, historyRes] = await Promise.all([
+                    fetch(API_BASE + '/api/visitors/admin/pending', { headers: { 'x-admin-secret': secret } }),
+                    fetch(API_BASE + '/api/visitors/admin/history', { headers: { 'x-admin-secret': secret } })
                 ]);
-                cachedSubmissions = [...pending, ...history];
-                
+
+                if (pendingRes.status === 401 || historyRes.status === 401) {
+                    // Bad secret — clear it so user is prompted again next time
+                    sessionStorage.removeItem('_adm');
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔒</div><p>Admin secret invalid. Please refresh to try again.</p></div>';
+                    return;
+                }
+
+                const [pending, history] = await Promise.all([pendingRes.json(), historyRes.json()]);
+
+                const pendingArr = Array.isArray(pending) ? pending : [];
+                const historyArr = Array.isArray(history) ? history : [];
+                cachedSubmissions = [...pendingArr, ...historyArr];
+
                 // Show notification if new submissions arrived
-                if (previousPendingCount > 0 && pending.length > previousPendingCount) {
-                    const newCount = pending.length - previousPendingCount;
+                if (previousPendingCount > 0 && pendingArr.length > previousPendingCount) {
+                    const newCount = pendingArr.length - previousPendingCount;
                     showToast('📬 New Submission!', `${newCount} new visitor letter${newCount > 1 ? 's' : ''} awaiting review`, '📬', 5000);
                 }
-                previousPendingCount = pending.length;
-                
-                renderSubmissions(cachedSubmissions, pending.length);
+                previousPendingCount = pendingArr.length;
+
+                renderSubmissions(cachedSubmissions, pendingArr.length);
             } catch(e) {
                 console.error('Submissions error:', e);
+                if (container && !cachedSubmissions.length) {
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Could not load submissions. Check that the backend is running.</p></div>';
+                }
             }
         }
 
@@ -2093,7 +2126,7 @@
         async function loadPublishedLetters() {
             try {
                 const res = await fetch(API_BASE + '/api/letters/admin/public/all', {
-                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                    headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 if (!res.ok) throw new Error('Failed');
                 const letters = await res.json();
@@ -2126,10 +2159,7 @@
                     <div>${statusBadge}</div>
                     <div class="action-buttons" style="gap:0.3rem;">
                         <button class="action-btn" onclick="openEditPublished(${l.id})" title="Edit">✏️ Edit</button>
-                        ${!isHidden
-                            ? `<button class="action-btn" onclick="deletePublicLetter(${l.id})" title="Hide from public" style="background:#3d1a1a;color:#ff9999;border-color:#6b2222;">🗑 Delete</button>`
-                            : `<button class="action-btn" onclick="restorePublicLetter(${l.id})" title="Restore to public" style="background:#1a2e1a;color:#6fcf97;border-color:#2d5f3f;">↩ Restore</button>`
-                        }
+                        <button class="action-btn" onclick="deletePublicLetter(${l.id})" title="Permanently delete" style="background:#3d1a1a;color:#ff9999;border-color:#6b2222;">🗑 Delete</button>
                         ${!isHidden ? `<a href="letters.html?letter=${l.id}" target="_blank" class="action-btn" style="text-decoration:none;">👁 View</a>` : ''}
                     </div>
                 </div>`;
@@ -2139,7 +2169,7 @@
         async function openEditPublished(publicId) {
             try {
                 const res = await fetch(API_BASE + '/api/letters/admin/public/' + publicId, {
-                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                    headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 if (!res.ok) throw new Error('Not found');
                 const letter = await res.json();
@@ -2225,7 +2255,7 @@
             try {
                 const res = await fetch(API_BASE + '/api/letters/admin/public/' + id, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'x-admin-secret': 'osagyefo-admin-review-2026' },
+                    headers: { 'Content-Type': 'application/json', 'x-admin-secret': getAdminSecret() },
                     body: JSON.stringify(payload)
                 });
                 if (!res.ok) throw new Error('Save failed');
@@ -2238,17 +2268,17 @@
         }
 
         async function deletePublicLetter(id) {
-            if (!confirm('Hide this letter from the public Open Letters page?\n\nIt will remain in the database and can be restored at any time.')) return;
+            if (!confirm('Permanently delete this letter from the public site?\n\nThis cannot be undone.')) return;
             try {
                 const res = await fetch(API_BASE + '/api/letters/admin/public/' + id, {
                     method: 'DELETE',
-                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                    headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 if (!res.ok) throw new Error('Delete failed');
                 await loadPublishedLetters();
-                showToast('Letter Hidden', 'The letter is now hidden from the public site', '🗑', 3500);
+                showToast('Letter Deleted', 'The letter has been permanently removed from the public site', '🗑', 3500);
             } catch(e) {
-                showToast('Error', 'Could not hide letter: ' + e.message, '⚠️', 4000);
+                showToast('Error', 'Could not delete letter: ' + e.message, '⚠️', 4000);
             }
         }
 
@@ -2256,7 +2286,7 @@
             try {
                 const res = await fetch(API_BASE + '/api/letters/admin/public/' + id + '/restore', {
                     method: 'PUT',
-                    headers: { 'x-admin-secret': 'osagyefo-admin-review-2026' }
+                    headers: { 'x-admin-secret': getAdminSecret() }
                 });
                 if (!res.ok) throw new Error('Restore failed');
                 await loadPublishedLetters();

@@ -6,7 +6,7 @@ const visitorController = require('../controllers/visitorController');
 function requireAdmin(req, res, next) {
   const ADMIN_SECRET = process.env.ADMIN_SECRET;
   if (!ADMIN_SECRET) {
-    return res.status(503).json({ message: 'Admin access not configured. Set ADMIN_SECRET in .env.' });
+    return res.status(503).json({ message: 'Admin not configured. Set ADMIN_SECRET in .env.' });
   }
   const provided = req.headers['x-admin-secret'];
   if (!provided || provided !== ADMIN_SECRET) {

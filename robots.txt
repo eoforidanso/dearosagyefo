@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.ato-kwamena.com/sitemap.xml
+Sitemap: https://dearosagyefo.com/sitemap.xml
 
 Disallow: /login.html
 Disallow: /dashboard.html

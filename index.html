@@ -27,15 +27,16 @@
   <meta property="og:title" content="Dear Osagyefo, We Need to Talk">
   <meta property="og:description" content="Open letters to Kwame Nkrumah about independence, unfinished revolutions, and the futures we're still building.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.ato-kwamena.com">
-  <meta property="og:image" content="https://www.ato-kwamena.com/thumbnail.png">
+  <link rel="canonical" href="https://dearosagyefo.com/">
+  <meta property="og:url" content="https://dearosagyefo.com/">
+  <meta property="og:image" content="https://dearosagyefo.com/thumbnail.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dear Osagyefo, We Need to Talk">
   <meta name="twitter:description" content="A living archive of letters to Kwame Nkrumah from the present.">
-  <meta name="twitter:image" content="https://www.ato-kwamena.com/thumbnail.png">
+  <meta name="twitter:image" content="https://dearosagyefo.com/thumbnail.png">
 
   <!-- Structured Data for Homepage -->
   <script type="application/ld+json">
@@ -45,7 +46,7 @@
     "name": "Letter to Osagyefo",
     "alternateName": "Dear Osagyefo, We Need to Talk",
     "description": "A living archive of open letters to Kwame Nkrumah, written from the present to the past by writers across the diaspora",
-    "url": "https://www.ato-kwamena.com",
+    "url": "https://dearosagyefo.com",
     "mainEntity": {
       "@type": "CreativeWork",
       "name": "Letters to Osagyefo Collection",
@@ -70,10 +71,10 @@
     "@type": "Organization",
     "name": "Letter to Osagyefo",
     "description": "Educational platform promoting understanding of Ghanaian history through contemporary letters to Kwame Nkrumah",
-    "url": "https://www.ato-kwamena.com",
-    "logo": "https://www.ato-kwamena.com/thumbnail.png",
+    "url": "https://dearosagyefo.com",
+    "logo": "https://dearosagyefo.com/thumbnail.png",
     "sameAs": [
-      "https://www.ato-kwamena.com"
+      "https://dearosagyefo.com"
     ]
   }
   </script>
@@ -94,6 +95,18 @@
       --gray-border:  #e0ddd9;
       --cream:        #f4f1ed;
       --earth:        #8b7355;
+
+      /* ── CTA System Tokens ── */
+      --cta-sm:          0.55rem 1.1rem;
+      --cta-md:          0.75rem 1.35rem;
+      --cta-lg:          1rem 1.75rem;
+      --radius-sm:       4px;
+      --radius-md:       6px;
+      --radius-lg:       8px;
+      --cta-hover-lift:  translateY(-2px);
+      --cta-press:       translateY(1px);
+      --cta-duration:    180ms;
+      --cta-ease:        cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -168,8 +181,9 @@
 
     /*  SITE HEADER / NAV — GLASSMORPHISM  */
     .site-header {
-      background: rgba(255,255,255,0.72);
-      padding: 1.2rem 2rem;
+      background: rgba(255,255,255,0.78);
+      padding: 0 2.5rem;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -179,7 +193,18 @@
       border-bottom: 1px solid rgba(255,255,255,0.35);
       box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
+    .site-header.scrolled {
+      background: rgba(10,10,16,0.88);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 28px rgba(0,0,0,0.35);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .site-header.scrolled .logo { color: #fff; }
+    .site-header.scrolled .main-nav a { color: rgba(255,255,255,0.65); }
+    .site-header.scrolled .main-nav a:hover { color: var(--gold); }
+    .site-header.scrolled .main-nav a.active { color: var(--gold); }
     .site-header .logo {
       font-family: 'DM Serif Display', serif;
       color: var(--red);
@@ -194,44 +219,66 @@
     }
     .main-nav {
       display: flex;
-      gap: 3.5rem;
+      gap: 2.5rem;
       align-items: center;
       justify-content: center;
     }
     .main-nav a {
       color: var(--gray-med);
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 1.2px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      font-variant: small-caps;
-      transition: all 0.25s;
-      border-bottom: 3px solid transparent;
-      padding-bottom: 0.4rem;
+      transition: color 0.2s ease;
       position: relative;
+      padding-bottom: 2px;
     }
     .main-nav a::after {
       content: '';
       position: absolute;
-      bottom: -3px;
+      bottom: -2px;
       left: 0;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--red), var(--gold));
-      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
     }
     .main-nav a:hover {
-      color: var(--red);
+      color: var(--gold);
     }
     .main-nav a:hover::after {
-      width: 100%;
+      transform: scaleX(1);
     }
     .main-nav a.active {
-      color: var(--red);
+      color: var(--gold);
+      font-weight: 700;
     }
     .main-nav a.active::after {
-      width: 100%;
+      transform: scaleX(1);
+    }
+    .main-nav a:last-child {
+      background: transparent;
+      color: var(--gold) !important;
+      border: 1.5px solid var(--gold);
+      padding: var(--cta-sm);
+      border-radius: var(--radius-sm);
+      font-variant: normal;
+      letter-spacing: 0.3px;
+      transition:
+        background var(--cta-duration) var(--cta-ease),
+        color var(--cta-duration) var(--cta-ease),
+        box-shadow var(--cta-duration) var(--cta-ease),
+        transform var(--cta-duration) var(--cta-ease);
+    }
+    .main-nav a:last-child::after { display: none !important; }
+    .main-nav a:last-child:hover {
+      background: var(--gold);
+      color: #0a0a0a !important;
+      box-shadow: 0 0 18px rgba(232,185,35,0.45);
+      transform: var(--cta-hover-lift);
     }
 
     /*  HERO  */
@@ -300,36 +347,32 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20%;
-      opacity: 0.88;
+      object-position: 30% 15%;
+      opacity: 1;
       pointer-events: none;
-      z-index: 1;
-      contain: layout style paint;
-      filter: contrast(1.12) saturate(1.2) brightness(1.05);
-      transition: transform 8s ease-out, opacity 1.2s ease;
+      z-index: 0;
+      filter: contrast(1.05) saturate(0.95) brightness(0.82);
+      will-change: transform;
     }
-    .hero:hover .hero-bg-image { transform: scale(1.03); }
     @media (min-width: 1024px) {
       .hero-bg-image {
-        object-position: center 20% !important;
+        object-position: 30% 15% !important;
         width: 100vw !important;
         left: 50%;
         transform: translateX(-50%);
         min-width: 100%; min-height: 100%;
         max-width: none; max-height: none;
       }
-      .hero:hover .hero-bg-image { transform: translateX(-50%) scale(1.03); }
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5,5,10,0.08) 0%,
-        rgba(5,5,10,0.30) 40%,
-        rgba(5,5,10,0.72) 100%
-      );
-      z-index: 2;
+      /* Bottom anchor stage — headline sits on a dark ledge */
+      background:
+        linear-gradient(to top,  rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.50) 28%, transparent 58%),
+        /* Tonal veil — even exposure across the photo */
+        linear-gradient(to bottom, rgba(0,0,0,0.44) 0%, rgba(0,0,0,0.14) 45%, transparent 68%);
+      z-index: 1;
       pointer-events: none;
     }
     @keyframes floatingStar {
@@ -342,7 +385,7 @@
       font-size: 2rem;
       color: var(--gold);
       pointer-events: none;
-      z-index: 3;
+      z-index: 2;
       animation: floatingStar 6s ease-in-out infinite;
     }
     .floating-star:nth-child(3) { top: 20%; left: 10%;  animation-delay: 0s;   font-size: 1.8rem; }
@@ -353,7 +396,7 @@
     .floating-star:nth-child(8) { top: 45%; left: 70%;  animation-delay: 0.5s; font-size: 1.9rem; }
     .hero-content {
       position: relative;
-      z-index: 4;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -362,14 +405,19 @@
       margin-left: auto;
       margin-right: auto;
     }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     .hero-content h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.2rem, 7vw, 4.5rem);
+      font-size: clamp(2.8rem, 8.5vw, 5.8rem);
       color: #fff;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-shadow: 0 2px 28px rgba(0,0,0,0.8), 0 4px 56px rgba(0,0,0,0.45);
+      animation: heroFadeUp 0.75s cubic-bezier(0.4,0,0.2,1) both;
     }
     .hero-content h1 em {
       color: var(--gold);
@@ -381,49 +429,128 @@
       background-clip: text;
     }
     .hero-content p {
-      color: #bbb;
-      font-size: 1.05rem;
-      max-width: 620px;
-      margin-top: 1.5rem;
-      font-weight: 300;
-      font-style: italic;
-      letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.88);
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 1.15rem;
+      max-width: 62ch;
+      margin-top: 1.75rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0.5px;
+      line-height: 1.65;
+      animation: heroFadeUp 0.75s cubic-bezier(0.4,0,0.2,1) both;
+      animation-delay: 80ms;
     }
     .hero-actions {
-      margin-top: 3rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.5rem;
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      animation: heroFadeUp 0.75s cubic-bezier(0.4,0,0.2,1) both;
+      animation-delay: 140ms;
     }
+    /* ═══════════════════════════════════════════
+       CTA SYSTEM — Primary · Secondary · Tertiary
+    ═══════════════════════════════════════════ */
+
+    /* Base */
     .btn {
-      display: inline-block;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: var(--cta-md);
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+      text-transform: uppercase;
       text-decoration: none;
-      border: 1px solid transparent;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition:
+        background var(--cta-duration) var(--cta-ease),
+        color var(--cta-duration) var(--cta-ease),
+        border-color 200ms var(--cta-ease),
+        transform var(--cta-duration) var(--cta-ease),
+        box-shadow var(--cta-duration) var(--cta-ease);
     }
-    /* Support both old .btn.primary and new .btn-primary */
+
+    /* Size modifiers */
+    .btn.btn-sm { padding: var(--cta-sm); font-size: 0.72rem; border-radius: var(--radius-sm); }
+    .btn.btn-lg { padding: var(--cta-lg); font-size: 0.9rem;  border-radius: var(--radius-lg); }
+
+    /* ── Primary CTA — Action of Record ── */
     .btn.primary, .btn-primary {
-      background: #8b3a2b;
-      color: #fdfaf6;
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
     }
     .btn.primary:hover, .btn-primary:hover {
-      background: #6f2d21;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(139,58,43,0.4);
+      background: #c0332e;
+      box-shadow: 0 6px 24px rgba(212,63,58,0.5), 0 0 16px rgba(232,185,35,0.18);
+      transform: var(--cta-hover-lift);
     }
+    .btn.primary:active, .btn-primary:active {
+      transform: var(--cta-press);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ── Secondary CTA — Reflective Action ── */
     .btn.secondary, .btn-secondary {
       background: transparent;
-      color: #8b3a2b;
-      border-color: #8b3a2b;
+      color: var(--gold);
+      border-color: var(--gold);
+      border-width: 1.5px;
     }
     .btn.secondary:hover, .btn-secondary:hover {
-      background: #f4e4d7;
-      transform: translateY(-2px);
+      background: var(--gold);
+      color: #0f0f0f;
+      box-shadow: 0 0 18px rgba(232,185,35,0.45);
+      transform: var(--cta-hover-lift);
+      border-color: var(--gold);
+    }
+    .btn.secondary:active, .btn-secondary:active {
+      transform: var(--cta-press);
+    }
+
+    /* ── Tertiary CTA — Quiet Utility ── */
+    .btn.tertiary, .btn-tertiary {
+      background: none;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      line-height: inherit;
+      text-transform: none;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      transition: color 120ms var(--cta-ease), opacity 120ms var(--cta-ease);
+    }
+    .btn.tertiary::after, .btn-tertiary::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 100%;
+      height: 1.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 120ms var(--cta-ease);
+    }
+    .btn.tertiary:hover, .btn-tertiary:hover {
+      color: var(--gold);
+      opacity: 0.9;
+    }
+    .btn.tertiary:hover::after, .btn-tertiary:hover::after {
+      transform: scaleX(1);
     }
 
     /*  FOOTER  */
@@ -503,52 +630,97 @@
     .hamburger {
       display: none;
       background: none;
-      border: 2px solid var(--red);
+      border: 1.5px solid var(--gold);
       border-radius: 5px;
-      color: var(--red);
-      font-size: 1.2rem;
-      padding: 0.3rem 0.55rem;
+      color: var(--gold);
+      font-size: 1.15rem;
+      width: 38px;
+      height: 38px;
       cursor: pointer;
       line-height: 1;
       transition: background 0.2s, color 0.2s;
       flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
     }
-    .hamburger:hover { background: var(--red); color: #fff; }
+    .hamburger:hover { background: var(--gold); color: #0a0a0a; }
+    .hamburger.open { background: var(--gold); color: #0a0a0a; }
+
+    @keyframes mobileNavLinkIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /*  MOBILE  */
     @media (max-width: 768px) {
-      .hamburger { display: block; }
-      .site-header { 
-        padding: 0.75rem 1.25rem;
+      .hamburger { display: flex; }
+      .site-header {
+        padding: 0 1.25rem;
+        height: 58px;
         flex-wrap: nowrap;
         justify-content: space-between;
         position: relative;
       }
-      .site-header .logo { 
+      .site-header .logo {
         font-size: 1rem;
       }
-      .main-nav { 
-        display: none;
+      .main-nav {
+        display: flex;
         flex-direction: column;
         gap: 0;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(255,255,255,0.92);
+        background: rgba(10,10,16,0.96);
         backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-        border-bottom: 2px solid var(--red);
-        padding: 0.5rem 0 1rem;
+        border-bottom: 2px solid var(--gold);
+        padding: 0.5rem 0 1.25rem;
         z-index: 99;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+        /* Hidden state */
+        opacity: 0;
+        transform: translateY(-8px);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1), visibility 0.25s;
       }
       .main-nav.open {
-        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
       }
       .main-nav a {
-        padding: 0.85rem 1.5rem;
-        font-size: 0.82rem;
-        border-bottom: none;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        color: rgba(255,255,255,0.75) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+      }
+      .main-nav.open a {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .main-nav.open a:nth-child(1) { transition-delay: 30ms; }
+      .main-nav.open a:nth-child(2) { transition-delay: 90ms; }
+      .main-nav.open a:nth-child(3) { transition-delay: 150ms; }
+      .main-nav.open a:nth-child(4) { transition-delay: 210ms; }
+      .main-nav.open a:nth-child(5) { transition-delay: 270ms; }
+      .main-nav a::after { display: none; }
+      .main-nav a.active {
+        color: var(--gold) !important;
+        border-left: 3px solid var(--gold) !important;
+        padding-left: calc(1.5rem - 3px);
+      }
+      .main-nav a:hover { color: var(--gold) !important; }
+      .main-nav a:last-child {
+        margin: 0.75rem 1.5rem 0;
+        text-align: center;
+        border-radius: 5px;
       }
 
       .hero { 
@@ -558,7 +730,7 @@
       }
       .hero-content { max-width: 100%; padding: 0 0.5rem; }
       .hero-content h1 { 
-        font-size: 52px;
+        font-size: 58px;
       }
       .hero-content p { 
         font-size: 0.95rem;
@@ -587,7 +759,8 @@
 
       .featured-section { padding: 40px 1.25rem; }
       .featured-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-      .featured-card { padding: 1.5rem; border-radius: 14px; }
+      .card-body { padding: 20px; }
+      .featured-card h3 { font-size: 22px; }
 
       .footer-top { padding: 2.5rem 1.25rem 0; }
       .footer-nav-row { gap: 2rem; }
@@ -615,8 +788,8 @@
         padding: 3rem 1rem;
       }
       .hero-content h1 { 
-        font-size: 48px;
-        line-height: 1.1;
+        font-size: 52px;
+        line-height: 1.08;
       }
       .hero-content p { 
         font-size: 0.88rem;
@@ -628,7 +801,7 @@
         gap: 0.75rem;
         align-items: stretch;
       }
-      .btn { justify-content: center; padding: 0.9rem 1.5rem; border-radius: 12px; }
+      .btn { justify-content: center; padding: 0.9rem 1.5rem; border-radius: var(--radius-lg); }
       .author-byline {
         padding: 0.9rem 1rem;
       }
@@ -644,7 +817,7 @@
       .featured-section { padding: 40px 1rem; }
       .featured-header { gap: 0.6rem; margin-bottom: 1.5rem; }
       .featured-title { font-size: 28px; }
-      .featured-card { padding: 1.3rem 1.2rem; }
+      .card-body { padding: 18px 16px; }
       .featured-card h3 { font-size: 22px; }
 
       .footer-top { padding: 2rem 1rem 0; }
@@ -656,14 +829,14 @@
       .site-header { padding: 0.55rem 0.75rem; }
       .site-header .logo { font-size: 0.85rem; }
       .hero { min-height: 55vh; padding: 2.5rem 0.75rem; }
-      .hero-content h1 { font-size: 1.4rem; }
+      .hero-content h1 { font-size: 1.6rem; }
       .hero-content p { font-size: 0.82rem; }
       .btn { font-size: 0.75rem; padding: 0.8rem 1.2rem; }
       .manifesto-quote { font-size: 1rem; }
       .stat-number { font-size: 1.2rem; }
       .stat-label { font-size: 0.55rem; }
-      .featured-card { padding: 1.1rem 1rem; }
-      .featured-card h3 { font-size: 0.92rem; }
+      .featured-card { border-radius: 12px; }
+      .featured-card h3 { font-size: 20px; }
       .footer-top { padding: 1.5rem 0.75rem 0; }
       .footer-nav-col a { font-size: 0.78rem; }
     }
@@ -794,7 +967,7 @@
       padding: 100px 2rem 80px;
     }
     .featured-inner {
-      max-width: 1100px;
+      max-width: 1260px;
       margin: 0 auto;
     }
     .featured-header {
@@ -821,15 +994,18 @@
       margin: 0;
     }
     .featured-view-all {
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--red);
       text-decoration: none;
       letter-spacing: 0.5px;
       white-space: nowrap;
-      transition: color 0.2s;
+      transition: color 0.2s, letter-spacing 0.3s ease;
+      border-bottom: 1.5px solid rgba(190,17,45,0.2);
+      padding-bottom: 0.2rem;
     }
-    .featured-view-all:hover { color: #b00d1f; }
+    .featured-view-all:hover { color: #b00d1f; letter-spacing: 0.8px; border-bottom-color: #b00d1f; }
+    .featured-bottom-cta { text-align: center; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(26,26,26,0.07); }
     .featured-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -837,10 +1013,10 @@
     }
     .featured-card {
       background: #fff;
-      border: 1px solid rgba(0,0,0,0.07);
+      border: 1px solid rgba(201,168,106,0.18);
       border-radius: 16px;
       cursor: pointer;
-      transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s cubic-bezier(.23,1,.32,1);
+      transition: transform 0.4s cubic-bezier(.23,1,.32,1), box-shadow 0.4s cubic-bezier(.23,1,.32,1), border-color 0.4s ease;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
       position: relative;
       overflow: hidden;
@@ -849,59 +1025,88 @@
     }
     .featured-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      box-shadow: 0 18px 52px rgba(26,26,26,0.13), 0 0 0 1px rgba(201,168,106,0.28);
+      border-color: rgba(201,168,106,0.55);
     }
     /* Image thumbnail on top */
+    .card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      border-radius: 14px 14px 0 0;
+      border-bottom: 1px solid rgba(26,26,26,0.08);
+    }
+    .card-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.18) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
     .card-img {
       width: 100%;
-      height: 200px;
+      height: auto;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
+      object-position: center top;
       display: block;
       background: #e8e4df;
+      transition: transform 0.4s ease;
+      transform-origin: center;
     }
+    /* object-position variants — add class to <img> as needed */
+    .card-img.landscape { object-position: center center; }
+    .card-img.cultural  { object-position: 50% 35%; }
+    .featured-card:hover .card-img { transform: scale(1.03); }
     .card-img-placeholder {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 4 / 3;
       background: linear-gradient(135deg, #1a1a2e 0%, #2d1b1b 50%, #1a2a1f 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
       color: rgba(255,255,255,0.15);
-      flex-shrink: 0;
+      transition: transform 0.4s ease;
+      transform-origin: center;
     }
+    .featured-card:hover .card-img-placeholder { transform: scale(1.03); }
     .card-body {
-      padding: 1.4rem 1.5rem 1.6rem;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
     .feat-category {
       display: inline-block;
-      font-size: 0.62rem;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2.5px;
       background: rgba(212,63,58,0.1);
       color: var(--red);
-      padding: 0.2rem 0.6rem;
+      padding: 0.22rem 0.7rem;
       border-radius: 3px;
       margin-bottom: 0.75rem;
       align-self: flex-start;
     }
-    .featured-card.gold  .feat-category { background: rgba(232,185,35,0.15); color: var(--accent-warm); }
-    .featured-card.green .feat-category { background: rgba(45,95,63,0.1);    color: var(--green); }
+    .feat-category[data-cat="Culture"]     { background: rgba(184,134,11,0.11); color: #9A7108; }
+    .feat-category[data-cat="Politics"]    { background: rgba(122,30,30,0.10);  color: #7A1E1E; }
+    .feat-category[data-cat="General"]     { background: rgba(27,58,107,0.10);  color: #1B3A6B; }
+    .feat-category[data-cat="History"]     { background: rgba(31,77,58,0.10);   color: #1F4D3A; }
+    .feat-category[data-cat="Environment"] { background: rgba(26,107,90,0.10);  color: #1A6B5A; }
     .featured-card h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
+      font-size: 28px;
       color: #1a1a1a;
       margin-bottom: 0.65rem;
-      line-height: 1.35;
+      line-height: 1.25;
     }
     .featured-card p {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.65;
+      font-size: 17px;
+      color: rgba(26,26,26,0.58);
+      line-height: 1.7;
       margin-bottom: 1rem;
       flex: 1;
     }
@@ -910,7 +1115,7 @@
       color: #aaa;
       font-style: italic;
     }
-    .feat-card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(0,0,0,0.06); }
+    .feat-card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(0,0,0,0.06); min-height: 44px; }
     .feat-listen-btn {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.38rem;
@@ -932,9 +1137,31 @@
     .feat-listen-btn.playing { background: linear-gradient(175deg, #e35d57 0%, #c0332e 60%, #922020 100%); box-shadow: 0 4px 0 #6e1515, 0 5px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.22); }
     .feat-listen-btn.playing:hover { box-shadow: 0 6px 0 #6e1515, 0 8px 18px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.22); }
     .feat-listen-icon { font-size: 0.62rem; }
-    .feat-read-cta { font-size: 0.75rem; font-weight: 600; color: #aaa; font-family: 'Inter', sans-serif; }
+    .feat-read-cta {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: #7A1E1E;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      display: inline-block;
+    }
+    .feat-read-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, #7A1E1E, #C9A86A);
+      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .featured-card:hover .feat-read-cta::after { width: 100%; }
     @media (max-width: 900px) {
       .featured-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-card h3 { font-size: 22px; }
+      .featured-card p { font-size: 15px; }
+      .card-body { padding: 20px; }
     }
     @media (max-width: 600px) {
       .featured-section { padding: 2.5rem 1.25rem 2rem; }
@@ -968,90 +1195,8 @@
     .reveal-delay-4 { transition-delay: 0.45s; }
 
     /* ══════════════════════════════════
-       REFINED BUTTONS
+       MANIFESTO STRIP (buttons handled by CTA system above)
     ══════════════════════════════════ */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 2.2rem;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 2px solid transparent;
-      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    /* Glossy highlight */
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, transparent 100%);
-      border-radius: 8px 8px 0 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .btn.primary {
-      background: linear-gradient(180deg, #e85550 0%, #c0332e 100%);
-      color: #fff;
-      border-color: rgba(212,63,58,0.5);
-      box-shadow:
-        0 6px 0 #8a1a17,
-        0 8px 16px rgba(140,20,18,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.25);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.25);
-      transform: translateY(-3px);
-    }
-    .btn.primary:hover {
-      background: linear-gradient(180deg, #f06060 0%, #c83530 100%);
-      box-shadow:
-        0 8px 0 #8a1a17,
-        0 12px 28px rgba(140,20,18,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.3);
-      transform: translateY(-5px);
-    }
-    .btn.primary:active {
-      transform: translateY(2px);
-      box-shadow:
-        0 2px 0 #8a1a17,
-        0 3px 10px rgba(140,20,18,0.35),
-        inset 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .btn.secondary {
-      background: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.95);
-      border-color: rgba(255,255,255,0.45);
-      box-shadow:
-        0 6px 0 rgba(255,255,255,0.08),
-        0 8px 20px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      transform: translateY(-3px);
-    }
-    .btn.secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(232,185,35,0.10);
-      box-shadow:
-        0 8px 0 rgba(180,140,10,0.35),
-        0 12px 28px rgba(232,185,35,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-      transform: translateY(-5px);
-    }
-    .btn.secondary:active {
-      transform: translateY(2px);
-      box-shadow:
-        0 2px 0 rgba(255,255,255,0.06),
-        0 3px 10px rgba(0,0,0,0.2),
-        inset 0 2px 4px rgba(0,0,0,0.12);
-    }
 
     /* ══════════════════════════════════
        MANIFESTO STRIP
@@ -1146,10 +1291,10 @@
     }
     .why-letters-inner h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
       color: #fff;
-      margin: 0.75rem 0 1.5rem;
-      line-height: 1.2;
+      margin: 0.75rem 0 1.25rem;
+      line-height: 1.15;
     }
     .why-letters-inner h2 em {
       font-style: italic;
@@ -1161,44 +1306,73 @@
     .why-letters-lead {
       font-size: clamp(1.05rem, 2vw, 1.2rem);
       color: rgba(255,255,255,0.75);
-      line-height: 1.8;
-      max-width: 680px;
-      margin: 0 auto 4rem;
+      line-height: 1.6;
+      max-width: 60ch;
+      margin: 0 auto 0;
     }
     .why-pillars {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       text-align: left;
+      margin-top: 2rem;
     }
     .why-pillar {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-top: 3px solid var(--gold);
       border-radius: 16px;
-      padding: 2rem 1.75rem 2.25rem;
-      transition: background 0.3s;
+      padding: 2.5rem 2rem;
+      transition: background 0.3s, transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
     }
-    .why-pillar:hover { background: rgba(255,255,255,0.07); }
+    .why-pillar:hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.3);
+    }
+    .why-pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.85rem;
+    }
     .why-pillar-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      display: block;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      display: inline-block;
     }
+    @keyframes pillar-pulse {
+      0%, 100% { transform: scale(1); }
+      50%  { transform: scale(1.35); }
+    }
+    .why-pillar:hover .why-pillar-icon { animation: pillar-pulse 0.45s ease; }
     .why-pillar h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.55rem;
       color: #fff;
-      margin: 0 0 0.75rem;
+      margin: 0;
+      line-height: 1.2;
     }
     .why-pillar p {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: rgba(255,255,255,0.65);
       line-height: 1.75;
       margin: 0;
     }
+    .why-pillar.reveal-delay-1 { transition-delay: 0.06s; }
+    .why-pillar.reveal-delay-2 { transition-delay: 0.12s; }
+    .why-close {
+      margin: 3.5rem auto 0;
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.45);
+      max-width: 58ch;
+      line-height: 1.6;
+    }
     @media (max-width: 768px) {
-      .why-pillars { grid-template-columns: 1fr; gap: 1.25rem; }
+      .why-pillars { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.5rem; }
       .why-letters { padding: 60px 1.25rem 50px; }
     }
 
@@ -1322,33 +1496,7 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    .btn-cta-primary {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.05rem;
-      padding: 0.9rem 2.4rem;
-      border-radius: 100px;
-      text-decoration: none;
-      letter-spacing: 0.5px;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(212,63,58,0.45);
-    }
-    .btn-cta-primary:hover { background: #b83330; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,63,58,0.55); }
-    .btn-cta-secondary {
-      display: inline-block;
-      background: transparent;
-      color: rgba(255,255,255,0.8);
-      font-weight: 600;
-      font-size: 1.05rem;
-      padding: 0.9rem 2.4rem;
-      border-radius: 100px;
-      text-decoration: none;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .btn-cta-secondary:hover { border-color: rgba(255,255,255,0.6); color: #fff; transform: translateY(-2px); }
+    /* Write CTA section buttons use .btn.primary/.secondary.btn-lg (see CTA system) */
 
     /* ══════════════════════════════════
        ABOUT THE WRITER
@@ -1418,19 +1566,8 @@
       flex-wrap: wrap;
       margin-top: 0.5rem;
     }
-    .about-writer-actions .btn-writer-learn {
-      display: inline-block;
-      background: var(--ink, #1a1a1a);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.7rem 1.8rem;
-      border-radius: 100px;
-      text-decoration: none;
-      letter-spacing: 0.5px;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .about-writer-actions .btn-writer-learn:hover { background: var(--red); transform: translateY(-2px); }
+    /* .btn-writer-learn → now uses .btn.tertiary (see CTA system) */
+    .about-writer-actions .btn.tertiary { color: var(--gray-dark); }
     .writer-socials {
       display: flex;
       gap: 0.75rem;
@@ -1818,6 +1955,7 @@
       .participate-list { grid-template-columns: 1fr; }
     }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
 <body>
 
@@ -1872,21 +2010,28 @@
     </p>
     <div class="why-pillars">
       <div class="why-pillar reveal">
-        <span class="why-pillar-icon">✍️</span>
-        <h3>Why Letters?</h3>
+        <div class="why-pillar-header">
+          <span class="why-pillar-icon">✍️</span>
+          <h3>Why Letters?</h3>
+        </div>
         <p>Letters slow us down. They demand clarity, care, and courage. In an age of hot takes, a letter is an act of discipline — a commitment to say something true rather than something fast.</p>
       </div>
       <div class="why-pillar reveal reveal-delay-1">
-        <span class="why-pillar-icon">👑</span>
-        <h3>Why Osagyefo?</h3>
+        <div class="why-pillar-header">
+          <span class="why-pillar-icon">👑</span>
+          <h3>Why Osagyefo?</h3>
+        </div>
         <p>Kwame Nkrumah was the first to name our freedom out loud on the world stage. He is not a finished monument — he is an open question. His choices, his flaws, his vision still shape the Ghana we inherit today.</p>
       </div>
       <div class="why-pillar reveal reveal-delay-2">
-        <span class="why-pillar-icon">⏳</span>
-        <h3>Why Now?</h3>
+        <div class="why-pillar-header">
+          <span class="why-pillar-icon">⏳</span>
+          <h3>Why Now?</h3>
+        </div>
         <p>Because the distance between 1957 and today is both enormous and razor-thin. Because democracy is not guaranteed. Because every generation must decide, again, what it stands for — and write it down.</p>
       </div>
     </div>
+    <p class="why-close reveal">History is not a museum. It is a mirror — and these letters are our attempt to look clearly.</p>
   </div>
 </section>
 
@@ -1898,13 +2043,12 @@
         <span class="section-eyebrow gold">📜 Fresh from the Archive</span>
         <h2 class="featured-title">Recently Added</h2>
       </div>
-      <a href="letters.html" class="featured-view-all">View All Letters →</a>
     </div>
     <div class="featured-grid" id="recent-added-grid">
       <article class="featured-card reveal" onclick="window.location='letters.html?letter=Smoke%20at%20Akosombo'" style="cursor:pointer">
-        <div class="card-img-placeholder">★</div>
+        <div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>
         <div class="card-body">
-          <span class="feat-category">Environment</span>
+          <span class="feat-category" data-cat="Environment">Environment</span>
           <h3>Smoke at Akosombo</h3>
           <p>The dam you built was meant to light up a continent. What nobody warned us about was the smoke that would follow — literal and otherwise.</p>
           <span class="feat-author">Dr. Ato Kwamena Danso</span>
@@ -1918,9 +2062,9 @@
         </div>
       </article>
       <article class="featured-card gold reveal reveal-delay-2" onclick="window.location='letters.html?letter=Thank%20You%20for%20the%20Akosombo%20Dam'" style="cursor:pointer">
-        <div class="card-img-placeholder">✦</div>
+        <div class="card-img-wrap"><div class="card-img-placeholder">✦</div></div>
         <div class="card-body">
-          <span class="feat-category">Culture</span>
+          <span class="feat-category" data-cat="Culture">Culture</span>
           <h3>Thank You for the Akosombo Dam</h3>
           <p>You built a colossal monument to ambition. We built an entire ecosystem around the lights going off. Both are achievements, in their own way.</p>
           <span class="feat-author">Dr. Ato Kwamena Danso</span>
@@ -1934,9 +2078,9 @@
         </div>
       </article>
       <article class="featured-card green reveal reveal-delay-3" onclick="window.location='letters.html?letter=The%20Amnesia%20of%20a%20Liberated%20Country'" style="cursor:pointer">
-        <div class="card-img-placeholder">◈</div>
+        <div class="card-img-wrap"><div class="card-img-placeholder">◈</div></div>
         <div class="card-body">
-          <span class="feat-category">Politics</span>
+          <span class="feat-category" data-cat="Politics">Politics</span>
           <h3>The Amnesia of a Liberated Country</h3>
           <p>We remember independence. We forget what it was for. Each election cycle, the forgetting deepens — and the speeches sound more familiar.</p>
           <span class="feat-author">Dr. Ato Kwamena Danso</span>
@@ -1950,18 +2094,19 @@
         </div>
       </article>
     </div>
+    <div class="featured-bottom-cta">
+      <a href="letters.html" class="featured-view-all">View All Letters →</a>
+    </div>
   </div>
 </section>
-
-<!-- FINAL CTA -->
 <section class="write-cta-section">
   <div class="write-cta-inner">
     <span class="write-cta-eyebrow">✍️ Add Your Voice</span>
     <h2>Your voice belongs in <em>Ghana's story</em>.</h2>
     <p class="write-cta-sub">Write your letter today.</p>
     <div class="write-cta-actions">
-      <a href="write.html" class="btn-cta-primary">Write a Letter →</a>
-      <a href="letters.html" class="btn-cta-secondary">Read the Archive</a>
+      <a href="write.html" class="btn primary btn-lg">Write a Letter →</a>
+      <a href="letters.html" class="btn secondary btn-lg">Read the Archive</a>
     </div>
   </div>
 </section>
@@ -1979,7 +2124,7 @@
       <p>For over two decades, Dr. Danso has written civic essays and cultural commentary shaped by the influences of Achebe, Abugri, and Bishop Akwasi Sarpong. His work blends dry wit with incisive analysis of Ghanaian affairs, inviting readers to think critically about the nation's direction.</p>
       <p>Dear Osagyefo is his most personal project yet — a living conversation between the present and a past that refuses to stay silent.</p>
       <div class="about-writer-actions">
-        <a href="about.html" class="btn-writer-learn">→ Learn More</a>
+        <a href="about.html" class="btn tertiary">→ Learn More</a>
         <div class="writer-socials">
           <!-- X / Twitter -->
           <a href="https://twitter.com/atokwamenaDanso" target="_blank" rel="noopener" class="writer-social-link" aria-label="X / Twitter">
@@ -2017,7 +2162,7 @@
           <a href="https://facebook.com/sharer.php" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on Facebook">
             <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073z"/></svg>
           </a>
-          <a href="https://wa.me/?text=Dear%20Osagyefo%20—%20www.ato-kwamena.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp">
+          <a href="https://wa.me/?text=Dear%20Osagyefo%20—%20dearosagyefo.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
           </a>
         </div>
@@ -2087,10 +2232,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         const accentClass = ACCENT_CLASSES[i] || '';
         const delayClass = i === 1 ? 'reveal-delay-2' : i === 2 ? 'reveal-delay-3' : '';
         const imgHtml = l.imageData
-          ? `<img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy">`
-          : `<div class="card-img-placeholder">★</div>`;
+          ? `<div class="card-img-wrap"><img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy"></div>`
+          : `<div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>`;
         const encodedTitle = encodeURIComponent(l.title||'');
-        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${encodedTitle}'">\n          ${imgHtml}\n          <div class="card-body">\n            <span class="feat-category">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
+        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${encodedTitle}'">\n          ${imgHtml}\n          <div class="card-body">\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
       }).join('');
       // re-observe for reveal animation
       recentGrid.querySelectorAll('.reveal').forEach(el => {
@@ -2103,11 +2248,40 @@ document.addEventListener('DOMContentLoaded', async function() {
 <script>
 function toggleMobileNav() {
   const nav = document.getElementById('main-nav');
-  nav.classList.toggle('open');
+  const btn = document.querySelector('.hamburger');
+  const isOpen = nav.classList.toggle('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+  if (btn) {
+    btn.textContent = isOpen ? '✕' : '☰';
+    btn.classList.toggle('open', isOpen);
+  }
 }
 document.querySelectorAll('.main-nav a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open'));
+  a.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+    document.body.style.overflow = '';
+    const btn = document.querySelector('.hamburger');
+    if (btn) { btn.textContent = '☰'; btn.classList.remove('open'); }
+  });
 });
+// Scroll-spy: mark active link by current page
+(function() {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(a => {
+    const href = (a.getAttribute('href') || '').split('/').pop();
+    if (href === path || (!path && href === 'index.html') || (path === 'index.html' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+})();
+// Scrolled frosted-glass state
+(function() {
+  const hdr = document.querySelector('.site-header');
+  if (!hdr) return;
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
 
 (function() {
   const io = new IntersectionObserver((entries) => {
@@ -2145,6 +2319,22 @@ window.addEventListener('scroll', () => {
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+// Hero parallax
+(function() {
+  const heroBg = document.querySelector('.hero-bg-image');
+  const heroEl = document.querySelector('.hero');
+  if (!heroBg || !heroEl) return;
+  const isDesktop = () => window.innerWidth >= 1024;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < heroEl.offsetHeight * 1.5) {
+      const offset = scrollY * 0.40;  // 0.6x parallax speed (bg moves at 60% of scroll)
+      heroBg.style.transform = isDesktop()
+        ? `translateX(-50%) translateY(${offset}px)`
+        : `translateY(${offset}px)`;
+    }
+  }, { passive: true });
+})();
 const darkToggle = document.getElementById('darkToggle');
 function setDarkMode(on) {
   document.documentElement.classList.toggle('dark', on);
@@ -2254,18 +2444,21 @@ var FEATURED_LETTERS = [
     title: 'Smoke at Akosombo',
     category: 'Environment',
     author: 'Dr. Ato Kwamena Danso',
+    audioUrl: 'https://dearosagyefo.com/audio/letter-38-1778030514411.mp3',
     content: 'Dear Osagyefo,\n\nThe dam you built was meant to light up a continent. What nobody warned us about was the smoke that would follow — literal and otherwise.\n\nAkosombo sits at the edge of one of the largest man-made lakes in the world. You imagined electricity. You imagined industry. You imagined a Ghana that could power itself into the future.\n\nBut the smoke came anyway — from the burning vegetation as the valley flooded, from the displaced communities who watched their ancestral lands disappear beneath Lake Volta, from the slow erosion of the promise that great infrastructure alone could save a people.\n\nWe are still standing at the edge of the water, Osagyefo, watching the smoke on the horizon, wondering which fires are ours to put out.\n\nYours from the shoreline,\nDr. Ato Kwamena Danso'
   },
   {
     title: 'Thank You for the Akosombo Dam',
     category: 'Culture',
     author: 'A Ghanaian with a Melting Fridge',
+    audioUrl: 'https://dearosagyefo.com/audio/letter-37-1778030515240.mp3',
     content: 'Dear Osagyefo,\n\nI hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here.\n\nYou spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.\n\nWe created something called Dumsor — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours.\n\nWe have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.\n\nWe do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.\n\nYours faithfully, with a charged power bank,\nA Ghanaian with a Melting Fridge'
   },
   {
     title: 'The Amnesia of a Liberated Country',
     category: 'Politics',
     author: 'Dr. Ato Kwamena Danso',
+    audioUrl: 'https://dearosagyefo.com/audio/letter-36-1778030517774.mp3',
     content: 'Dear Osagyefo,\n\nWe remember independence. We celebrate it annually with speeches and flags and the particular pride of a nation that fought for its own name.\n\nWhat we forget — and forget with impressive consistency — is what independence was for.\n\nYou said it was for the ordinary man and woman. The farmer. The teacher. The market woman. You said it was for Africa to prove, once and for all, that she could govern herself with dignity.\n\nEach election cycle, the forgetting deepens. The speeches sound familiar — the same cadence, different suits. The promises arrive and dissolve like sugar in rain.\n\nWe preach freedom while silencing voices. We champion transparency while drawing darkened curtains. We speak of unity while fracturing along the thinnest lines.\n\nThe hypocrisy is not malicious, Osagyefo. It is human. But it is ours to own.\n\nIn recognition,\nDr. Ato Kwamena Danso'
   }
 ];
@@ -2273,13 +2466,12 @@ var FEATURED_LETTERS = [
 var currentFmIdx = -1;
 
 // Card-level listen (on the featured cards, before opening modal)
-var featCardAudio = { id: -1, utt: null, keepalive: null };
+var featCardAudio = { id: -1, player: null };
 
 function stopFeatCardAudio() {
-  if (featCardAudio.keepalive) clearInterval(featCardAudio.keepalive);
-  if (typeof speechSynthesis !== 'undefined') speechSynthesis.cancel();
+  if (featCardAudio.player) { featCardAudio.player.pause(); featCardAudio.player.currentTime = 0; }
   var prev = featCardAudio.id;
-  featCardAudio = { id: -1, utt: null, keepalive: null };
+  featCardAudio = { id: -1, player: null };
   if (prev !== -1) {
     var b = document.getElementById('feat-listen-btn-' + prev);
     var ic = document.getElementById('feat-listen-icon-' + prev);
@@ -2291,56 +2483,35 @@ function stopFeatCardAudio() {
 }
 
 function toggleFeatListen(idx) {
-  if (typeof speechSynthesis === 'undefined') return;
+  // If this card is already playing, stop it
   if (featCardAudio.id === idx) { stopFeatCardAudio(); return; }
   stopFeatCardAudio();
 
   var letter = FEATURED_LETTERS[idx]; if (!letter) return;
-  var raw = letter.content.replace(/<[^>]+>/g, '');
-  var utt = new SpeechSynthesisUtterance(letter.title + '. Dear Osagyefo. ' + raw);
-  var voices = speechSynthesis.getVoices();
-  var preferred = ['Google UK English Male', 'Daniel', 'Arthur', 'Oliver'];
-  var voice = null;
-  for (var i = 0; i < preferred.length; i++) {
-    voice = voices.find(function(v) { return v.name === preferred[i]; });
-    if (voice) break;
-  }
-  if (!voice) voice = voices.find(function(v) { return v.lang && v.lang.indexOf('en-GB') >= 0; });
-  if (voice) utt.voice = voice;
-  utt.rate = 0.90; utt.pitch = 0.80;
-
   var btn  = document.getElementById('feat-listen-btn-'  + idx);
   var icon = document.getElementById('feat-listen-icon-' + idx);
   var text = document.getElementById('feat-listen-text-' + idx);
-  if (btn)  btn.classList.add('playing');
-  if (icon) icon.textContent = '\u23f9';
-  if (text) text.textContent = 'Stop';
 
-  utt.onend = utt.onerror = function() {
-    if (featCardAudio.id === idx) {
-      if (featCardAudio.keepalive) clearInterval(featCardAudio.keepalive);
-      featCardAudio = { id: -1, utt: null, keepalive: null };
+  function setIdle() {
+    featCardAudio = { id: -1, player: null };
+    if (btn)  btn.classList.remove('playing');
+    if (icon) icon.textContent = '\u25b6';
+    if (text) text.textContent = 'Listen';
+  }
+
+  if (letter.audioUrl) {
+    var audio = new Audio(letter.audioUrl);
+    featCardAudio = { id: idx, player: audio };
+    if (btn)  btn.classList.add('playing');
+    if (icon) icon.textContent = '\u23f9';
+    if (text) text.textContent = 'Stop';
+    audio.addEventListener('ended', setIdle);
+    audio.addEventListener('error', setIdle);
+    var playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(setIdle);
     }
-    var b = document.getElementById('feat-listen-btn-'  + idx);
-    var ic = document.getElementById('feat-listen-icon-' + idx);
-    var tx = document.getElementById('feat-listen-text-' + idx);
-    if (b)  b.classList.remove('playing');
-    if (ic) ic.textContent = '\u25b6';
-    if (tx) tx.textContent = 'Listen';
-  };
-
-  featCardAudio = { id: idx, utt: utt, keepalive: null };
-
-  setTimeout(function() {
-    if (featCardAudio.id !== idx) return;
-    speechSynthesis.speak(utt);
-    featCardAudio.keepalive = setInterval(function() {
-      if (featCardAudio.id !== idx) { clearInterval(featCardAudio.keepalive); return; }
-      if (speechSynthesis.speaking && !speechSynthesis.paused) {
-        speechSynthesis.pause(); speechSynthesis.resume();
-      }
-    }, 14000);
-  }, 100);
+  }
 }
 
 function fmEsc(s) {
@@ -2387,7 +2558,7 @@ function openFeaturedModal(idx) {
   var bodyHtml = body.split('||P||').map(function(p, i) {
     return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
   }).join('');
-  document.getElementById('fm-modal-inner').innerHTML = fmBuildInner(letter.title, letter.category, letter.author, bodyHtml, idx);
+  document.getElementById('fm-modal-inner').innerHTML = DOMPurify.sanitize(fmBuildInner(letter.title, letter.category, letter.author, bodyHtml, idx));
   var overlay = document.getElementById('fm-overlay');
   var modal = overlay.querySelector('.letter-modal');
   modal.style.animation = 'none'; void modal.offsetWidth;
@@ -2404,7 +2575,7 @@ function openDynModal(title, category, author, content) {
   var bodyHtml = body.split('||P||').map(function(p) {
     return '<p>' + p.replace(/\\n/g, '<br>') + '</p>';
   }).join('');
-  document.getElementById('fm-modal-inner').innerHTML = fmBuildInner(title, category, author, bodyHtml, -1);
+  document.getElementById('fm-modal-inner').innerHTML = DOMPurify.sanitize(fmBuildInner(title, category, author, bodyHtml, -1));
   var overlay = document.getElementById('fm-overlay');
   var modal = overlay.querySelector('.letter-modal');
   modal.style.animation = 'none'; void modal.offsetWidth;
@@ -2431,8 +2602,9 @@ function fmSwitchTab(tab, btn) {
 function fmCopyLink(btn) {
   var url = 'https://dearosagyefo.com/letters.html';
   function done() { var o = btn.innerHTML; btn.innerHTML = '&#10003; Copied!'; setTimeout(function(){ btn.innerHTML = o; }, 2000); }
-  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(done); }
-  else { var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done(); }
+  function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(ta); ta.focus(); ta.select(); try { document.execCommand('copy'); done(); } catch(e) {} document.body.removeChild(ta); }
+  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done).catch(fallback); }
+  else { fallback(); }
 }
 
 document.addEventListener('keydown', function(e) {

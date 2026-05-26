@@ -4,6 +4,13 @@ const { generateToken } = require('../middleware/auth');
 
 // In-memory reset codes (code -> { email, expires })
 const resetCodes = new Map();
+// Purge expired codes every 30 minutes to prevent unbounded memory growth
+setInterval(() => {
+  const now = Date.now();
+  for (const [k, v] of resetCodes) {
+    if (now > v.expires) resetCodes.delete(k);
+  }
+}, 30 * 60 * 1000);
 
 // Register user
 exports.register = (req, res) => {
@@ -14,8 +21,8 @@ exports.register = (req, res) => {
     return res.status(400).json({ message: 'Email, password, and firstName are required' });
   }
 
-  if (password.length < 6) {
-    return res.status(400).json({ message: 'Password must be at least 6 characters' });
+  if (password.length < 8) {
+    return res.status(400).json({ message: 'Password must be at least 8 characters' });
   }
 
   // Hash password
@@ -196,13 +203,14 @@ exports.forgotPassword = (req, res) => {
         res.json({ message: 'If that email is registered, a reset code has been sent.', emailSent: true });
       }).catch(err => {
         console.error('Reset email failed:', err.message);
-        // Fallback: return code in response (dev/self-hosted mode)
-        res.json({ message: 'Email delivery unavailable. Use the code shown.', code, emailSent: false });
+        // Do NOT return the code — log it server-side only for self-hosted debugging
+        console.log(`[DEBUG] Reset code for ${user.email}: ${code}`);
+        res.json({ message: 'A reset code has been sent if email delivery is available. Check server logs if running self-hosted.', emailSent: false });
       });
     } else {
-      // No SMTP configured — return code directly (single-user self-hosted)
-      console.log(`🔑 Reset code for ${user.email}: ${code}`);
-      res.json({ message: 'Email not configured. Use the code shown.', code, emailSent: false });
+      // No SMTP configured — log code server-side only, never return it in the response
+      console.log(`[DEBUG] Reset code for ${user.email}: ${code}`);
+      res.json({ message: 'If that email is registered, a reset code has been sent.', emailSent: false });
     }
   });
 };
@@ -211,7 +219,7 @@ exports.forgotPassword = (req, res) => {
 exports.resetPassword = (req, res) => {
   const { code, newPassword } = req.body;
   if (!code || !newPassword) return res.status(400).json({ message: 'Code and new password are required' });
-  if (newPassword.length < 6) return res.status(400).json({ message: 'Password must be at least 6 characters' });
+  if (newPassword.length < 8) return res.status(400).json({ message: 'Password must be at least 8 characters' });
 
   const entry = resetCodes.get(code);
   if (!entry || Date.now() > entry.expires) {

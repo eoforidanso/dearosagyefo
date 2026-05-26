@@ -161,26 +161,69 @@ exports.getReviewHistory = (req, res) => {
   );
 };
 
-// PUT /api/visitors/admin/:id/approve — Approve a pending letter
+// PUT /api/visitors/admin/:id/approve — Approve a pending letter and publish to public_letters
 exports.approveLetter = (req, res) => {
   const id = parseInt(req.params.id, 10);
   if (!Number.isInteger(id)) {
     return res.status(400).json({ message: 'Invalid letter ID.' });
   }
 
-  db.run(
-    `UPDATE visitor_letters SET status = 'approved', reviewedAt = CURRENT_TIMESTAMP, updatedAt = CURRENT_TIMESTAMP
-     WHERE id = ? AND status = 'pending'`,
+  // First fetch the letter so we can copy it to public_letters
+  db.get(
+    `SELECT * FROM visitor_letters WHERE id = ? AND status = 'pending'`,
     [id],
-    function (err) {
+    (err, letter) => {
       if (err) {
-        console.error('Error approving letter:', err.message);
+        console.error('Error fetching visitor letter:', err.message);
         return res.status(500).json({ message: 'Server error' });
       }
-      if (this.changes === 0) {
+      if (!letter) {
         return res.status(404).json({ message: 'Letter not found or already reviewed.' });
       }
-      res.json({ message: 'Letter approved and published.' });
+
+      // Mark as approved in visitor_letters
+      db.run(
+        `UPDATE visitor_letters SET status = 'approved', reviewedAt = CURRENT_TIMESTAMP, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`,
+        [id],
+        function (err2) {
+          if (err2) {
+            console.error('Error approving letter:', err2.message);
+            return res.status(500).json({ message: 'Server error' });
+          }
+
+          // Get the next letter number
+          db.get(`SELECT COALESCE(MAX(letterNumber), 0) + 1 AS nextNum FROM public_letters`, [], (err3, row) => {
+            if (err3) return res.status(500).json({ message: 'Server error getting letter number' });
+
+            const nextNum = row.nextNum;
+            const today = new Date().toISOString().split('T')[0];
+
+            // Insert into public_letters so it appears on Open Letters page
+            db.run(
+              `INSERT INTO public_letters (letterNumber, authorName, title, preview, content, category, tags, accentColor, publishedAt, isApproved)
+               VALUES (?, ?, ?, ?, ?, ?, ?, '#D43F3A', ?, 1)`,
+              [
+                nextNum,
+                letter.penName || 'Anonymous',
+                letter.title,
+                letter.preview || letter.content.substring(0, 220),
+                letter.content,
+                letter.category || 'General',
+                letter.tags || '',
+                today
+              ],
+              function (err4) {
+                if (err4) {
+                  console.error('Error inserting into public_letters:', err4.message);
+                  // Still return success since visitor_letters was updated
+                  return res.json({ message: 'Letter approved (public publish failed)', publicId: null });
+                }
+                res.json({ message: 'Letter approved and published to Open Letters.', publicId: this.lastID });
+              }
+            );
+          });
+        }
+      );
     }
   );
 };

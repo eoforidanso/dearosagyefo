@@ -4,31 +4,49 @@ const db = require('../config/database');
 exports.getPublicLetters = (req, res) => {
   const { category, author, search } = req.query;
 
-  let query = `SELECT id, letterNumber, authorName, title, preview, category, tags, accentColor, publishedAt
-               FROM public_letters WHERE isApproved = 1`;
+  // Query from public_letters table (canonical published/curated letters)
+  let query = `
+    SELECT 
+      pl.id,
+      pl.letterNumber,
+      pl.authorName,
+      pl.title,
+      pl.preview,
+      pl.content,
+      pl.category,
+      pl.tags,
+      COALESCE(pl.accentColor, '#D43F3A') as accentColor,
+      pl.publishedAt,
+      pl.imageData,
+      pl.audioUrl
+    FROM public_letters pl
+    WHERE pl.isApproved = 1
+  `;
   const params = [];
 
   if (category) {
-    query += ` AND category = ?`;
+    query += ` AND pl.category = ?`;
     params.push(category);
   }
 
   if (author) {
-    query += ` AND authorName LIKE ?`;
+    query += ` AND pl.authorName LIKE ?`;
     params.push(`%${author}%`);
   }
 
   if (search) {
-    query += ` AND (title LIKE ? OR preview LIKE ? OR authorName LIKE ?)`;
+    query += ` AND (pl.title LIKE ? OR pl.preview LIKE ? OR pl.authorName LIKE ?)`;
     params.push(`%${search}%`, `%${search}%`, `%${search}%`);
   }
 
-  query += ` ORDER BY letterNumber ASC`;
+  query += ` ORDER BY pl.id DESC`;
 
   db.all(query, params, (err, letters) => {
     if (err) {
+      console.error('Error fetching public letters:', err);
       return res.status(500).json({ message: 'Server error' });
     }
+    res.set('Cache-Control', 'no-store');
     res.json(letters);
   });
 };
@@ -38,10 +56,25 @@ exports.getPublicLetter = (req, res) => {
   const { id } = req.params;
 
   db.get(
-    `SELECT * FROM public_letters WHERE id = ? AND isApproved = 1`,
+    `SELECT 
+      pl.id,
+      pl.letterNumber,
+      pl.authorName,
+      pl.title,
+      pl.content,
+      pl.preview,
+      pl.category,
+      pl.tags,
+      COALESCE(pl.accentColor, '#D43F3A') as accentColor,
+      pl.publishedAt,
+      pl.imageData,
+      pl.audioUrl
+    FROM public_letters pl
+    WHERE pl.id = ? AND pl.isApproved = 1`,
     [id],
     (err, letter) => {
       if (err) {
+        console.error('Error fetching letter:', err);
         return res.status(500).json({ message: 'Server error' });
       }
 
@@ -120,8 +153,9 @@ exports.submitPublicLetter = (req, res) => {
     return res.status(400).json({ message: 'Author name, title, and content are required' });
   }
 
-  // Build a short preview from the first 200 chars of content
-  const preview = content.length > 200 ? content.substring(0, 200) + '...' : content;
+  // Build a short preview: strip HTML tags, collapse whitespace, trim to 200 chars
+  const plainText = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const preview = plainText.length > 200 ? plainText.substring(0, 200) + '...' : plainText;
 
   db.run(
     `INSERT INTO public_letters (authorName, title, preview, content, category, isApproved)

@@ -10,8 +10,9 @@
   <meta property="og:title" content="Ghana History Quiz | Letter to Osagyefo">
   <meta property="og:description" content="Test your knowledge of Ghana's history — 15 questions spanning independence to the present day.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.dearosagyefo.com/quiz.html">
-  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <link rel="canonical" href="https://dearosagyefo.com/quiz.html">
+  <meta property="og:url" content="https://dearosagyefo.com/quiz.html">
+  <meta property="og:image" content="https://dearosagyefo.com/thumbnail.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ghana History Quiz | Letter to Osagyefo">
@@ -586,7 +587,7 @@
   <a href="index.html" class="nav-logo">Letter to <span>Osagyefo</span></a>
   <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">☰</button>
   <ul class="nav-links" id="main-nav">
-    <li><a href="letters.html">Letters</a></li>
+    <li><a href="letters.html">Open Letters</a></li>
     <li><a href="from-osagyefo.html">From Osagyefo</a></li>
     <li><a href="quiz.html" style="color: var(--red); font-weight: 700;">Quiz</a></li>
     <li><a href="about.html">About</a></li>
@@ -852,13 +853,20 @@
       reviewList.appendChild(item);
     });
     
-    // Play ET Mensah celebration music when quiz is complete
+    // Stop Alomo audio and play ET Mensah celebration music when quiz is complete
+    const alomoAudio = document.getElementById('alomo-audio');
+    if (alomoAudio) {
+      alomoAudio.pause();
+      alomoAudio.currentTime = 0;
+    }
     playETMensahMusic();
   }
 
   // ET Mensah music player for quiz completion
   let celebrationAudio = null;
   function playETMensahMusic() {
+    console.log('🎵 Playing celebration music...');
+    
     // Stop any previously playing music
     if (celebrationAudio) {
       celebrationAudio.pause();
@@ -867,11 +875,14 @@
     
     // Create and play ET Mensah music (Yaa Amponsah) - soft background
     celebrationAudio = new Audio('audio/yaa-amponsah.mp3');
-    celebrationAudio.volume = 0.25; // Soft background music (25% volume)
+    celebrationAudio.volume = 0.4; // Increased volume to 40% (was 25%)
     celebrationAudio.loop = false; // Play once
-    celebrationAudio.play().catch(err => {
-      console.log('Audio autoplay prevented. User interaction required.');
-    });
+    celebrationAudio.play()
+      .then(() => console.log('✅ Celebration music playing!'))
+      .catch(err => {
+        console.log('❌ Audio autoplay prevented:', err);
+        console.log('User interaction may be required to play audio.');
+      });
   }
 
   function stopCelebrationMusic() {
@@ -1006,7 +1017,7 @@
         <div class="footer-nav-col">
           <h4>Navigate</h4>
           <a href="index.html">Home</a>
-          <a href="letters.html">Letters</a>
+          <a href="letters.html">Open Letters</a>
           <a href="from-osagyefo.html">From Osagyefo</a>
           <a href="quiz.html">Quiz</a>
           <a href="about.html">About</a>

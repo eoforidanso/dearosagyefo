@@ -52,6 +52,11 @@ function initializeTables() {
 
     // Add imageData column if missing
     db.run(`ALTER TABLE public_letters ADD COLUMN imageData TEXT`, () => {});
+    // Custom salutation and closing/signature for public letters
+    db.run(`ALTER TABLE public_letters ADD COLUMN customSalutation TEXT`, () => {});
+    db.run(`ALTER TABLE public_letters ADD COLUMN customClosing TEXT`, () => {});
+    // Audio URL for pre-generated Polly TTS (stored on S3)
+    db.run(`ALTER TABLE public_letters ADD COLUMN audioUrl TEXT`, () => {});
 
     // Private user-drafted letters (portal feature)
     db.run(`
@@ -78,6 +83,11 @@ function initializeTables() {
     db.run(`ALTER TABLE letters ADD COLUMN tags TEXT DEFAULT ''`, () => {});
     db.run(`ALTER TABLE letters ADD COLUMN summary TEXT DEFAULT ''`, () => {});
     db.run(`ALTER TABLE letters ADD COLUMN imageData TEXT`, () => {});
+    // Audio URL for pre-generated Polly TTS (stored on S3)
+    db.run(`ALTER TABLE letters ADD COLUMN audioUrl TEXT`, () => {});
+    // Custom salutation and closing/signature fields
+    db.run(`ALTER TABLE letters ADD COLUMN customSalutation TEXT`, () => {});
+    db.run(`ALTER TABLE letters ADD COLUMN customClosing TEXT`, () => {});
 
     // Letter attachments table
     db.run(`
@@ -118,6 +128,28 @@ function initializeTables() {
         email TEXT UNIQUE NOT NULL,
         subscribedAt DATETIME DEFAULT CURRENT_TIMESTAMP
       )
+    `);
+
+    // ── DB-level safety triggers: keep public_letters in sync with letters ──
+    // Trigger 1: when a private letter is deleted, remove its public copy
+    db.run(`
+      CREATE TRIGGER IF NOT EXISTS sync_delete_public_on_letter_delete
+      AFTER DELETE ON letters
+      BEGIN
+        DELETE FROM public_letters
+        WHERE userId = OLD.userId AND title = OLD.subject;
+      END
+    `);
+
+    // Trigger 2: when a private letter title changes, rename its public copy
+    db.run(`
+      CREATE TRIGGER IF NOT EXISTS sync_title_on_letter_update
+      AFTER UPDATE OF subject ON letters
+      BEGIN
+        UPDATE public_letters
+        SET title = NEW.subject, updatedAt = datetime('now')
+        WHERE userId = OLD.userId AND title = OLD.subject;
+      END
     `);
 
     // Seed the 10 existing public letters (only if table is empty)

@@ -1,6 +1,25 @@
 const db = require('../config/database');
 const { generateAndStoreAudio } = require('./audioController');
 
+// Resolve admin secret from env only — no hardcoded fallback
+function getAdminSecret() {
+  return process.env.ADMIN_SECRET || null;
+}
+
+// Verify x-admin-secret header against env var
+function checkAdmin(req, res) {
+  const secret = getAdminSecret();
+  if (!secret) {
+    res.status(503).json({ message: 'Admin not configured. Set ADMIN_SECRET in .env.' });
+    return false;
+  }
+  if (req.headers['x-admin-secret'] !== secret) {
+    res.status(403).json({ message: 'Forbidden' });
+    return false;
+  }
+  return true;
+}
+
 // Create a new letter
 exports.createLetter = (req, res) => {
   const { recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData, customSalutation, customClosing } = req.body;
@@ -38,8 +57,11 @@ exports.createLetter = (req, res) => {
 // Get all letters for user
 exports.getUserLetters = (req, res) => {
   db.all(
-    `SELECT id, recipientName, recipientEmail, subject, content, category, tags, summary, status, imageData, createdAt, updatedAt, sentAt
-     FROM letters WHERE userId = ? ORDER BY createdAt DESC`,
+    `SELECT l.id, l.recipientName, l.recipientEmail, l.subject, l.content, l.category, l.tags, l.summary, l.status, l.imageData, l.createdAt, l.updatedAt, l.sentAt,
+            pl.id AS publicId
+     FROM letters l
+     LEFT JOIN public_letters pl ON pl.userId = l.userId AND pl.title = l.subject AND pl.isApproved = 1
+     WHERE l.userId = ? ORDER BY l.createdAt DESC`,
     [req.user.id],
     (err, letters) => {
       if (err) {
@@ -83,46 +105,77 @@ exports.updateLetter = (req, res) => {
     img = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
   }
 
-  db.run(
-    `UPDATE letters 
-     SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?,
-         customSalutation = ?, customClosing = ?, updatedAt = CURRENT_TIMESTAMP
-     WHERE id = ? AND userId = ?`,
-    [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img,
-     customSalutation || null, customClosing || null, id, req.user.id],
-    (err) => {
-      if (err) {
-        return res.status(500).json({ message: 'Server error' });
-      }
+  // First fetch the current subject so we can match the public_letters row
+  db.get(`SELECT subject FROM letters WHERE id = ? AND userId = ?`, [id, req.user.id], (err, existing) => {
+    if (err) return res.status(500).json({ message: 'Server error' });
+    if (!existing) return res.status(404).json({ message: 'Letter not found' });
 
-      res.json({ message: 'Letter updated successfully' });
-    }
-  );
+    const oldSubject = existing.subject;
+
+    db.run(
+      `UPDATE letters 
+       SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?,
+           customSalutation = ?, customClosing = ?, updatedAt = CURRENT_TIMESTAMP
+       WHERE id = ? AND userId = ?`,
+      [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img,
+       customSalutation || null, customClosing || null, id, req.user.id],
+      (err2) => {
+        if (err2) return res.status(500).json({ message: 'Server error' });
+
+        // Keep the published public copy in sync (if one exists)
+        db.run(
+          `UPDATE public_letters
+           SET title = ?, content = ?, preview = ?, category = ?, tags = ?, imageData = ?,
+               customSalutation = ?, customClosing = ?, updatedAt = datetime('now')
+           WHERE userId = ? AND title = ?`,
+          [subject || oldSubject, content, summary || '', category || 'General', tags || '', img,
+           customSalutation || null, customClosing || null, req.user.id, oldSubject],
+          () => {} // Ignore — public copy may not exist yet
+        );
+
+        res.json({ message: 'Letter updated successfully' });
+      }
+    );
+  });
 };
 
 // Delete letter
 exports.deleteLetter = (req, res) => {
   const { id } = req.params;
 
-  db.run(
-    `DELETE FROM letters WHERE id = ? AND userId = ?`,
+  // First fetch the letter's subject so we can match the public_letters row
+  db.get(
+    `SELECT subject FROM letters WHERE id = ? AND userId = ?`,
     [id, req.user.id],
-    (err) => {
-      if (err) {
-        return res.status(500).json({ message: 'Server error' });
-      }
+    (err, letter) => {
+      if (err) return res.status(500).json({ message: 'Server error' });
+      if (!letter) return res.status(404).json({ message: 'Letter not found' });
 
-      res.json({ message: 'Letter deleted successfully' });
+      // Delete the private letter
+      db.run(
+        `DELETE FROM letters WHERE id = ? AND userId = ?`,
+        [id, req.user.id],
+        (err2) => {
+          if (err2) return res.status(500).json({ message: 'Server error' });
+
+          // Also remove the published public copy (if any)
+          db.run(
+            `DELETE FROM public_letters WHERE userId = ? AND title = ?`,
+            [req.user.id, letter.subject],
+            () => {
+              // Ignore errors here — public letter may not exist
+              res.json({ message: 'Letter deleted successfully' });
+            }
+          );
+        }
+      );
     }
   );
 };
 
 // ADMIN: Get ALL letters across all users
 exports.adminGetAllLetters = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   db.all(
     `SELECT l.id, l.userId, l.recipientName, l.subject, l.content, l.category, l.tags, l.summary, l.status, l.imageData, l.createdAt, l.updatedAt,
             pl.id as publicId, pl.title as publicTitle, pl.authorName, pl.publishedAt, pl.isApproved
@@ -139,10 +192,7 @@ exports.adminGetAllLetters = (req, res) => {
 
 // ADMIN: Update any public letter by publicId
 exports.adminUpdatePublicLetter = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   const { id } = req.params;
   const { title, content, preview, authorName, category, tags, imageData } = req.body;
   // imageData === null means explicitly remove; undefined means leave unchanged
@@ -175,10 +225,7 @@ exports.adminUpdatePublicLetter = (req, res) => {
 
 // ADMIN: Get single public letter by publicId
 exports.adminGetPublicLetter = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   const { id } = req.params;
   db.get(`SELECT * FROM public_letters WHERE id = ?`, [id], (err, row) => {
     if (err) return res.status(500).json({ message: 'Server error' });
@@ -189,10 +236,7 @@ exports.adminGetPublicLetter = (req, res) => {
 
 // ADMIN: Get ALL public letters directly (includes seeded ones with userId=null)
 exports.adminGetAllPublicLetters = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   db.all(
     `SELECT id, letterNumber, title, authorName, category, publishedAt, isApproved, preview, content, audioUrl
      FROM public_letters
@@ -207,28 +251,22 @@ exports.adminGetAllPublicLetters = (req, res) => {
 
 // ADMIN: Soft-delete (hide) a public letter — sets isApproved=0 so it's hidden from public pages
 exports.adminDeletePublicLetter = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   const { id } = req.params;
   db.run(
-    `UPDATE public_letters SET isApproved = 0, updatedAt = datetime('now') WHERE id = ?`,
+    `DELETE FROM public_letters WHERE id = ?`,
     [id],
     function(err) {
       if (err) return res.status(500).json({ message: 'Server error' });
       if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
-      res.json({ message: 'Letter hidden from public site', id });
+      res.json({ message: 'Letter permanently deleted', id });
     }
   );
 };
 
 // ADMIN: Restore (unhide) a public letter — sets isApproved=1
 exports.adminRestorePublicLetter = (req, res) => {
-  const adminSecret = req.headers['x-admin-secret'];
-  if (adminSecret !== 'osagyefo-admin-review-2026') {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
+  if (!checkAdmin(req, res)) return;
   const { id } = req.params;
   db.run(
     `UPDATE public_letters SET isApproved = 1, updatedAt = datetime('now') WHERE id = ?`,
@@ -319,8 +357,8 @@ exports.publishToSite = (req, res) => {
                 // Mark the private letter as published
                 db.run(`UPDATE letters SET status = 'published', updatedAt = CURRENT_TIMESTAMP WHERE id = ?`, [id]);
 
-                // Fire-and-forget: generate Kokoro TTS audio in the background
-                generateAndStoreAudio(this.lastID || id, letter.content, 'af_bella')
+                // Fire-and-forget: generate Polly TTS audio in the background
+                generateAndStoreAudio(this.lastID || id, letter.content, letter.subject || 'Untitled')
                   .then(url => console.log(`[Audio] Pre-generated for letter ${id}: ${url}`))
                   .catch(err => console.error(`[Audio] Failed for letter ${id}:`, err.message));
 

@@ -8,21 +8,36 @@
     "dev": "nodemon server.js",
     "build": "echo 'Build complete - files ready for deployment'",
     "build:production": "node build.js",
-    "test": "jest"
+    "test": "jest",
+    "pm2:start": "npx pm2 start ecosystem.config.js",
+    "pm2:stop": "npx pm2 stop dearosagyefo-backend",
+    "pm2:restart": "npx pm2 restart dearosagyefo-backend",
+    "pm2:logs": "npx pm2 logs dearosagyefo-backend",
+    "pm2:status": "npx pm2 status",
+    "pm2:monit": "npx pm2 monit"
   },
   "dependencies": {
+    "@aws-sdk/client-polly": "^3.1038.0",
+    "@aws-sdk/client-s3": "^3.1035.0",
+    "@diffusionstudio/vits-web": "^1.0.3",
+    "axios": "^1.6.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.4.1",
+    "helmet": "^8.1.0",
     "html-pdf": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^2.1.1",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^5.6.205",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
+    "pm2": "^6.0.14",
     "sharp": "^0.34.5"
   }
 }
