@@ -23,44 +23,59 @@
   <link rel="icon" type="image/png" href="/thumbnail.png">
   <title>Dear Osagyefo, We Need to Talk – Letters to Kwame Nkrumah</title>
   <meta name="description" content="A living archive of open letters to Kwame Nkrumah, written from the present to the past by writers across the diaspora.">
+  <meta name="keywords" content="Kwame Nkrumah, Ghana, letters, activism, education, African history, Osagyefo">
+  <meta name="author" content="Ato Kwamena">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
-  <meta property="og:title" content="Dear Osagyefo, We Need to Talk">
-  <meta property="og:description" content="Open letters to Kwame Nkrumah about independence, unfinished revolutions, and the futures we're still building.">
+  <!-- Open Graph Protocol Tags -->
+  <meta property="og:title" content="Dear Osagyefo, We Need to Talk – Letters to Kwame Nkrumah">
+  <meta property="og:description" content="A living archive of open letters to Kwame Nkrumah about independence, unfinished revolutions, and the futures we're still building. Written from the present to the past by writers across the diaspora.">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://dearosagyefo.com/">
   <meta property="og:url" content="https://dearosagyefo.com/">
   <meta property="og:image" content="https://dearosagyefo.com/thumbnail.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="Dear Osagyefo">
+  <meta property="og:locale" content="en_US">
 
+  <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dear Osagyefo, We Need to Talk">
-  <meta name="twitter:description" content="A living archive of letters to Kwame Nkrumah from the present.">
+  <meta name="twitter:title" content="Dear Osagyefo, We Need to Talk – Letters to Kwame Nkrumah">
+  <meta name="twitter:description" content="A living archive of open letters to Kwame Nkrumah from writers across the diaspora, addressing independence, history, and Africa's future.">
   <meta name="twitter:image" content="https://dearosagyefo.com/thumbnail.png">
+  <meta name="twitter:image:alt" content="Dear Osagyefo - Letters to Kwame Nkrumah">
+  <meta name="twitter:creator" content="@dearosagyefo">
+
+  <!-- Additional Meta Tags for Search Engines -->
+  <link rel="canonical" href="https://dearosagyefo.com/">
+  <link rel="alternate" hreflang="en" href="https://dearosagyefo.com/">
+  <meta name="theme-color" content="#D43F3A">
 
   <!-- Structured Data for Homepage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Letter to Osagyefo",
-    "alternateName": "Dear Osagyefo, We Need to Talk",
+    "name": "Dear Osagyefo",
+    "alternateName": ["Letter to Osagyefo", "Dear Osagyefo, We Need to Talk"],
     "description": "A living archive of open letters to Kwame Nkrumah, written from the present to the past by writers across the diaspora",
     "url": "https://dearosagyefo.com",
+    "image": "https://dearosagyefo.com/thumbnail.png",
+    "inLanguage": "en-US",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://dearosagyefo.com/letters.html?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
     "mainEntity": {
-      "@type": "CreativeWork",
-      "name": "Letters to Osagyefo Collection",
-      "description": "Contemporary letters addressing Ghana's first President about modern challenges and progress",
-      "genre": "Educational Content",
-      "inLanguage": "en"
-    },
-    "creator": {
-      "@type": "Person",
-      "name": "Ato Kwamena"
-    },
-    "publisher": {
-      "@type": "Organization", 
-      "name": "Letter to Osagyefo"
+      "@type": "Collection",
+      "name": "Letters to Osagyefo",
+      "description": "Contemporary letters addressing Kwame Nkrumah, Ghana's first President",
+      "url": "https://dearosagyefo.com/letters.html"
     }
   }
   </script>
@@ -69,12 +84,45 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Letter to Osagyefo",
-    "description": "Educational platform promoting understanding of Ghanaian history through contemporary letters to Kwame Nkrumah",
+    "name": "Dear Osagyefo",
+    "description": "Educational platform promoting understanding of Ghanaian history and Pan-Africanism through contemporary letters to Kwame Nkrumah",
     "url": "https://dearosagyefo.com",
+    "image": "https://dearosagyefo.com/thumbnail.png",
     "logo": "https://dearosagyefo.com/thumbnail.png",
     "sameAs": [
       "https://dearosagyefo.com"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "url": "https://dearosagyefo.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://dearosagyefo.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Read Letters",
+        "item": "https://dearosagyefo.com/letters.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Write a Letter",
+        "item": "https://dearosagyefo.com/write.html"
+      }
     ]
   }
   </script>
@@ -107,6 +155,31 @@
       --cta-press:       translateY(1px);
       --cta-duration:    180ms;
       --cta-ease:        cubic-bezier(0.25, 0.1, 0.25, 1);
+
+      /* ── Motion System ── */
+      --motion-lift-sm:        translateY(-1px);
+      --motion-lift-md:        translateY(-2px);
+      --motion-lift-lg:        translateY(-3px);
+      --motion-lift-xl:        translateY(-4px);
+      --motion-scale-hover:    1.02;
+      --motion-scale-hover-md: 1.05;
+      --motion-scale-hover-lg: 1.1;
+      --motion-scale-active:   0.98;
+      --motion-scale-active-sm: 0.95;
+      --motion-ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+      --motion-ease-smooth:    cubic-bezier(0.4, 0, 0.2, 1);
+      --motion-duration-sm:    220ms;
+      --motion-duration-md:    260ms;
+      --motion-duration-lg:    280ms;
+
+      /* ── Shadow System ── */
+      --shadow-depth-sm:  0 2px 8px rgba(0, 0, 0, 0.12);
+      --shadow-depth-md:  0 4px 12px rgba(0, 0, 0, 0.15);
+      --shadow-depth-lg:  0 8px 28px rgba(0, 0, 0, 0.25);
+      --shadow-depth-xl:  0 12px 40px rgba(0, 0, 0, 0.3);
+      --shadow-glow-red:  0 8px 32px rgba(212, 63, 58, 0.6);
+      --shadow-glow-gold: 0 6px 28px rgba(232, 185, 35, 0.5);
+      --shadow-glow-green: 0 8px 28px rgba(31, 77, 58, 0.5);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -352,7 +425,13 @@
       pointer-events: none;
       z-index: 0;
       filter: contrast(1.05) saturate(0.95) brightness(0.82);
+      transform: none;
+      transition: transform var(--motion-duration-lg) var(--motion-ease-smooth), filter var(--motion-duration-lg) var(--motion-ease-smooth);
       will-change: transform;
+    }
+    .hero:hover .hero-bg-image {
+      transform: var(--motion-lift-sm) scale(1.015);
+      filter: contrast(1.08) saturate(1.03) brightness(0.86);
     }
     @media (min-width: 1024px) {
       .hero-bg-image {
@@ -362,6 +441,9 @@
         transform: translateX(-50%);
         min-width: 100%; min-height: 100%;
         max-width: none; max-height: none;
+      }
+      .hero:hover .hero-bg-image {
+        transform: translateX(-50%) var(--motion-lift-sm) scale(1.015);
       }
     }
     .hero-overlay {
@@ -407,6 +489,10 @@
     }
     @keyframes heroFadeUp {
       from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes sectionFadeUp {
+      from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .hero-content h1 {
@@ -477,6 +563,7 @@
         border-color 200ms var(--cta-ease),
         transform var(--cta-duration) var(--cta-ease),
         box-shadow var(--cta-duration) var(--cta-ease);
+      will-change: transform, box-shadow;
     }
 
     /* Size modifiers */
@@ -487,16 +574,20 @@
     .btn.primary, .btn-primary {
       background: var(--red);
       color: #fff;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      box-shadow: var(--shadow-depth-md);
     }
     .btn.primary:hover, .btn-primary:hover {
       background: #c0332e;
-      box-shadow: 0 6px 24px rgba(212,63,58,0.5), 0 0 16px rgba(232,185,35,0.18);
-      transform: var(--cta-hover-lift);
+      box-shadow: var(--shadow-glow-red), 0 0 20px rgba(232,185,35,0.25);
+      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
     }
     .btn.primary:active, .btn-primary:active {
-      transform: var(--cta-press);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transform: scale(var(--motion-scale-active));
+      box-shadow: var(--shadow-depth-sm);
+    }
+    .btn.primary:focus, .btn-primary:focus {
+      outline: 2px solid rgba(232,185,35,0.3);
+      outline-offset: 2px;
     }
 
     /* ── Secondary CTA — Reflective Action ── */
@@ -509,12 +600,17 @@
     .btn.secondary:hover, .btn-secondary:hover {
       background: var(--gold);
       color: #0f0f0f;
-      box-shadow: 0 0 18px rgba(232,185,35,0.45);
-      transform: var(--cta-hover-lift);
+      box-shadow: var(--shadow-glow-gold), inset 0 1px 0 rgba(255,255,255,0.2);
+      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
       border-color: var(--gold);
     }
     .btn.secondary:active, .btn-secondary:active {
-      transform: var(--cta-press);
+      transform: scale(var(--motion-scale-active));
+      box-shadow: 0 2px 8px rgba(232,185,35,0.3);
+    }
+    .btn.secondary:focus, .btn-secondary:focus {
+      outline: 2px solid rgba(232,185,35,0.3);
+      outline-offset: 2px;
     }
 
     /* ── Tertiary CTA — Quiet Utility ── */
@@ -532,7 +628,7 @@
       text-decoration: none;
       position: relative;
       display: inline-block;
-      transition: color 120ms var(--cta-ease), opacity 120ms var(--cta-ease);
+      transition: color var(--motion-duration-sm) var(--motion-ease-spring), opacity var(--motion-duration-sm) var(--motion-ease-spring), transform var(--motion-duration-sm) var(--motion-ease-spring);
     }
     .btn.tertiary::after, .btn-tertiary::after {
       content: '';
@@ -543,11 +639,12 @@
       background: var(--gold);
       transform: scaleX(0);
       transform-origin: center;
-      transition: transform 120ms var(--cta-ease);
+      transition: transform var(--motion-duration-sm) var(--motion-ease-smooth);
     }
     .btn.tertiary:hover, .btn-tertiary:hover {
       color: var(--gold);
-      opacity: 0.9;
+      opacity: 1;
+      transform: translateX(2px);
     }
     .btn.tertiary:hover::after, .btn-tertiary:hover::after {
       transform: scaleX(1);
@@ -608,17 +705,21 @@
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.15);
       color: #aaa;
-      transition: all 0.3s;
+      transition: all var(--motion-duration-lg) var(--motion-ease-spring);
       text-decoration: none;
       background: rgba(255,255,255,0.04);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+      box-shadow: var(--shadow-depth-sm), inset 0 1px 0 rgba(255,255,255,0.06);
+      will-change: transform, box-shadow, color;
     }
     .social-icon-link:hover {
       border-color: var(--gold);
       color: var(--gold);
-      background: rgba(232,185,35,0.1);
-      box-shadow: 0 4px 16px rgba(232,185,35,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
-      transform: translateY(-2px);
+      background: rgba(232,185,35,0.12);
+      box-shadow: 0 6px 24px rgba(232,185,35,0.28), inset 0 1px 0 rgba(255,255,255,0.1);
+      transform: var(--motion-lift-xl) scale(var(--motion-scale-hover-lg));
+    }
+    .social-icon-link:active {
+      transform: var(--motion-lift-sm) scale(var(--motion-scale-active-sm));
     }
     .social-icon-link svg {
       width: 17px;
@@ -638,13 +739,25 @@
       height: 38px;
       cursor: pointer;
       line-height: 1;
-      transition: background 0.2s, color 0.2s;
+      transition: all var(--motion-duration-lg) var(--motion-ease-spring);
       flex-shrink: 0;
       align-items: center;
       justify-content: center;
+      will-change: transform, box-shadow;
     }
-    .hamburger:hover { background: var(--gold); color: #0a0a0a; }
-    .hamburger.open { background: var(--gold); color: #0a0a0a; }
+    .hamburger:hover {
+      background: var(--gold);
+      color: #0a0a0a;
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(232,185,35,0.3);
+    }
+    .hamburger:active {
+      transform: scale(var(--motion-scale-active-sm));
+    }
+    .hamburger.open {
+      background: var(--gold);
+      color: #0a0a0a;
+    }
 
     @keyframes mobileNavLinkIn {
       from { opacity: 0; transform: translateY(-10px); }
@@ -1505,6 +1618,9 @@
       background: var(--cream, #fdf8f2);
       padding: 6rem 2rem;
       border-top: 4px solid var(--gold);
+      opacity: 0;
+      animation: sectionFadeUp 0.9s var(--motion-ease-smooth) both;
+      animation-delay: 0.24s;
     }
     .about-writer-inner {
       max-width: 1000px;
@@ -1534,6 +1650,12 @@
       border-radius: 26px;
       z-index: 0;
       opacity: 0.5;
+      transform: translateY(0);
+      transition: opacity var(--motion-duration-md) var(--motion-ease-smooth), transform var(--motion-duration-md) var(--motion-ease-smooth);
+    }
+    .about-writer-section:hover .about-writer-portrait::before {
+      opacity: 1;
+      transform: var(--motion-lift-sm);
     }
     .about-writer-portrait img { position: relative; z-index: 1; }
     .about-writer-content .section-eyebrow { margin-bottom: 1rem; }
@@ -1583,9 +1705,11 @@
       border: 1.5px solid #ddd;
       color: #555;
       text-decoration: none;
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+      transition: border-color var(--motion-duration-sm) var(--motion-ease-smooth), color var(--motion-duration-sm) var(--motion-ease-smooth), transform var(--motion-duration-sm) var(--motion-ease-smooth);
+      will-change: transform, border-color, color;
     }
-    .writer-social-link:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+    .writer-social-link:hover { border-color: var(--red); color: var(--red); transform: var(--motion-lift-md); }
+    .writer-social-link:active { transform: var(--motion-lift-sm); }
     .writer-social-link svg { width: 16px; height: 16px; fill: currentColor; }
     @media (max-width: 768px) {
       .about-writer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
