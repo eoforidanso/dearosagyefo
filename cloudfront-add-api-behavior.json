@@ -1,0 +1,27 @@
+{
+  "PathPattern": "/api/*",
+  "TargetOriginId": "EC2-Backend",
+  "ViewerProtocolPolicy": "redirect-to-https",
+  "AllowedMethods": {
+    "Quantity": 7,
+    "Items": ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"],
+    "CachedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"]
+    }
+  },
+  "Compress": false,
+  "ForwardedValues": {
+    "QueryString": true,
+    "Cookies": {
+      "Forward": "all"
+    },
+    "Headers": {
+      "Quantity": 4,
+      "Items": ["Authorization", "Content-Type", "x-admin-secret", "Origin"]
+    }
+  },
+  "MinTTL": 0,
+  "DefaultTTL": 0,
+  "MaxTTL": 0
+}

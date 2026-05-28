@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Letters to Osagyefo | Modern Blog</title>
+  <meta name="description" content="A modern collection of open letters to Kwame Nkrumah addressing contemporary Ghana through thoughtful essays and cultural commentary.">
+  
+  <meta property="og:title" content="Letters to Osagyefo | Modern Blog">
+  <meta property="og:description" content="Thoughtful essays and open letters addressing contemporary Ghana.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/letters.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --red: #D43F3A;
+      --gold: #E8B923;
+      --green: #2D5F3F;
+      --black: #1a1a1a;
+      --gray-900: #2a2a2a;
+      --gray-700: #4a4a4a;
+      --gray-500: #6a6a6a;
+      --gray-300: #aaa;
+      --gray-100: #f5f5f5;
+      --cream: #faf9f6;
+      --white: #ffffff;
+      --accent: #C65911;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--cream);
+      color: var(--gray-900);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FLAG STRIPE
+    ═══════════════════════════════════════════════════════════ */
+    .flag-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      display: flex;
+      z-index: 10001;
+    }
+    .flag-stripe span { flex: 1; height: 100%; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    /* ═══════════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════════ */
+    nav {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 6px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--red);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+    .nav-logo:hover { color: var(--green); }
+    .nav-logo span { color: var(--green); }
+    .nav-logo:hover span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      background: linear-gradient(135deg, #2D5F3F 0%, #1a3a28 100%);
+      color: white;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(232,185,35,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212,63,58,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid rgba(232,185,35,0.3);
+      border-radius: 50px;
+      background: rgba(232,185,35,0.1);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FILTER BAR
+    ═══════════════════════════════════════════════════════════ */
+    .filter-section {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 2rem 2rem 1.5rem;
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+    }
+
+    .filter-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      margin-right: 0.5rem;
+    }
+
+    .filter-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--gray-300);
+      background: transparent;
+      color: var(--gray-700);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: rgba(212,63,58,0.05);
+    }
+
+    .filter-btn.active {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+
+    .filter-count {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BLOG GRID - MAGAZINE LAYOUT
+    ═══════════════════════════════════════════════════════════ */
+    .blog-section {
+      padding: 4rem 2rem 6rem;
+    }
+
+    .blog-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Featured Article - Large Hero */
+    .article-featured {
+      grid-column: 1 / -1;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 500px;
+    }
+
+    .article-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .article-image {
+      background: linear-gradient(135deg, var(--green) 0%, var(--red) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(232,185,35,0.2) 0%, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .article-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .article-category {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      padding: 0.35rem 0.85rem;
+      background: rgba(212,63,58,0.1);
+      border-radius: 4px;
+    }
+
+    .article-category.politics { color: var(--red); background: rgba(212,63,58,0.1); }
+    .article-category.culture { color: var(--green); background: rgba(45,95,63,0.1); }
+    .article-category.diaspora { color: var(--gold); background: rgba(232,185,35,0.15); }
+    .article-category.satire { color: var(--accent); background: rgba(198,89,17,0.1); }
+
+    .article-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .article-read-time {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .article-excerpt {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .author-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .author-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* Standard Articles - Grid */
+    .article-standard {
+      grid-column: span 4;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-standard:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .article-standard .article-image {
+      height: 240px;
+    }
+
+    .article-standard .article-content {
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-standard .article-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .article-standard .article-excerpt {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    /* Badge for new/featured */
+    .article-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--green);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE DESIGN
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .article-featured {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .article-featured .article-image {
+        height: 350px;
+      }
+
+      .article-standard {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 4rem 1.5rem 3rem;
+      }
+
+      .filter-section {
+        top: 70px;
+      }
+
+      .article-standard {
+        grid-column: 1 / -1;
+      }
+
+      .article-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .article-standard .article-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LOADING STATE
+    ═══════════════════════════════════════════════════════════ */
+    .loading-skeleton {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--gray-900);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MODAL SYSTEM
+    ═══════════════════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--cream);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+      margin: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--red);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 10;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: var(--black);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--green) 0%, var(--red) 100%);
+      color: white;
+      padding: 3rem 3rem 2rem;
+      position: relative;
+    }
+
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(232,185,35,0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .modal-header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .modal-letter-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .modal-body {
+      padding: 3rem;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.125rem;
+      line-height: 1.9;
+      color: var(--gray-900);
+    }
+
+    .modal-body .salutation {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-body .sign-off {
+      font-style: italic;
+      margin-top: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-body .signature {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* Modal Actions */
+    .modal-actions {
+      padding: 0 3rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .modal-audio {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--green), var(--red));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(45,95,63,0.25);
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45,95,63,0.35);
+    }
+
+    .audio-btn.playing {
+      background: linear-gradient(135deg, var(--red), var(--gold));
+    }
+
+    .audio-status {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .modal-share {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .share-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .share-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .share-btn.facebook {
+      background: linear-gradient(135deg, #1877f2, #0d5dbf);
+    }
+
+    .share-btn.twitter {
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+    }
+
+    .share-btn.whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+
+    .share-btn.copy {
+      background: linear-gradient(135deg, var(--gold), #d4a820);
+    }
+
+    .share-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .modal-overlay {
+        padding: 1rem;
+      }
+
+      .modal-header {
+        padding: 2rem 2rem 1.5rem;
+      }
+
+      .modal-body {
+        padding: 2rem 1.5rem;
+      }
+
+      .modal-actions {
+        padding: 0 1.5rem 2rem;
+      }
+
+      .modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
+
+      .share-buttons {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Letter to <span>Osagyefo</span></a>
+    <ul class="nav-links">
+      <li><a href="letters.html" class="active">Open Letters</a></li>
+      <li><a href="from-osagyefo.html">From Osagyefo</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="write.html">Write</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-container">
+    <span class="hero-tag">◆ Open Letters</span>
+    <h1>Dispatches from the Motherland</h1>
+    <p class="hero-desc">If the postal service actually worked, these would have been delivered by now.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<section class="filter-section">
+  <div class="filter-container">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">10</span></button>
+    <button class="filter-btn" data-filter="Politics">Politics <span class="filter-count">3</span></button>
+    <button class="filter-btn" data-filter="Culture">Culture <span class="filter-count">2</span></button>
+    <button class="filter-btn" data-filter="Diaspora">Diaspora <span class="filter-count">2</span></button>
+    <button class="filter-btn" data-filter="Satire">Satire <span class="filter-count">3</span></button>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="blog-container">
+    <div class="blog-grid">
+      
+      <!-- FEATURED ARTICLE -->
+      <article class="article-featured" data-category="Politics" onclick="openModal('modal1')">
+        <div class="article-image">
+          <span class="article-badge">Featured</span>
+          <div class="article-image-placeholder">💡</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 January 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h2 class="article-title">On the Matter of Dumsor & the Audacity of Darkness</h2>
+          <p class="article-excerpt">
+            You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">A Concerned Citizen</div>
+              <div class="author-title">Ghanaian with a Melting Fridge</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STANDARD ARTICLES -->
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal2')">
+        <div class="article-image">
+          <div class="article-image-placeholder">📱</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 February 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On Mobile Money & Accidental Socialism</h3>
+          <p class="article-excerpt">
+            You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">MK</div>
+            <div class="author-info">
+              <div class="author-name">Market Woman</div>
+              <div class="author-title">Tamale Trader</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal3')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🏛️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 March 2024</span>
+            <span class="article-read-time">⏱ 6 min read</span>
+          </div>
+          <h3 class="article-title">On Governance & the Theatre of Democracy</h3>
+          <p class="article-excerpt">
+            You governed for life, Osagyefo. We now hold elections every four years, which sounds democratic until you realize it's the same people in different suits...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">JP</div>
+            <div class="author-info">
+              <div class="author-name">Political Observer</div>
+              <div class="author-title">Accra Resident</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Culture" onclick="openModal('modal4')">
+        <div class="article-image">
+          <span class="article-badge">New</span>
+          <div class="article-image-placeholder">🌍</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category culture">Culture</span>
+            <span class="article-date">📅 April 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Pan-Africanism & Instagram Filters</h3>
+          <p class="article-excerpt">
+            You envisioned a united Africa. We now celebrate Africa Day with Instagram stories featuring kente cloth filters and hashtags that vanish in 24 hours...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">YA</div>
+            <div class="author-info">
+              <div class="author-name">Youth Advocate</div>
+              <div class="author-title">Digital Native</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Diaspora" onclick="openModal('modal5')">
+        <div class="article-image">
+          <div class="article-image-placeholder">✈️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category diaspora">Diaspora</span>
+            <span class="article-date">📅 May 2024</span>
+            <span class="article-read-time">⏱ 7 min read</span>
+          </div>
+          <h3 class="article-title">On the Matter of "Going Abroad"</h3>
+          <p class="article-excerpt">
+            You studied in America and Britain, then returned to build Ghana. We study in America and Britain, then stay to become Uber drivers with PhDs...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">KO</div>
+            <div class="author-info">
+              <div class="author-name">Diaspora Voice</div>
+              <div class="author-title">London-based Ghanaian</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal6')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎭</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 June 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On National Pride & Football Victories</h3>
+          <p class="article-excerpt">
+            We united as a nation exactly twice since independence: When we won AFCON in 1963, and when we beat Nigeria 2-0 in World Cup qualifiers...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">ST</div>
+            <div class="author-info">
+              <div class="author-name">Sports Enthusiast</div>
+              <div class="author-title">Black Stars Supporter</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Culture" onclick="openModal('modal7')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎵</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category culture">Culture</span>
+            <span class="article-date">📅 July 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Highlife Music & Cultural Memory</h3>
+          <p class="article-excerpt">
+            You danced to E.T. Mensah in the State House. We now twerk to Afrobeats produced in Lagos and mixed in Atlanta. Progress is subjective...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">EM</div>
+            <div class="author-info">
+              <div class="author-name">Music Historian</div>
+              <div class="author-title">Cultural Critic</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal8')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🏫</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 August 2024</span>
+            <span class="article-read-time">⏱ 6 min read</span>
+          </div>
+          <h3 class="article-title">On Education & the University Legacy</h3>
+          <p class="article-excerpt">
+            You built universities. We turned them into degree mills where lecturers are gods and students protest with Twitter hashtags instead of placards...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">LM</div>
+            <div class="author-info">
+              <div class="author-name">University Student</div>
+              <div class="author-title">Legon Campus</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Diaspora" onclick="openModal('modal9')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🌾</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category diaspora">Diaspora</span>
+            <span class="article-date">📅 September 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Agriculture & the Rice We Import</h3>
+          <p class="article-excerpt">
+            You championed self-sufficiency. We now import rice from Thailand, tomatoes from Burkina Faso, and somehow still call ourselves the breadbasket...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">FA</div>
+            <div class="author-info">
+              <div class="author-name">Farmer's Child</div>
+              <div class="author-title">Rural Ghana</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal10')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚖️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 October 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On Justice & the Speed of Courts</h3>
+          <p class="article-excerpt">
+            You believed in swift justice. Our courts move so slowly that criminals age out of their sentences before trial begins. At least they're patient...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">JA</div>
+            <div class="author-info">
+              <div class="author-name">Legal Observer</div>
+              <div class="author-title">Courtroom Regular</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NEW PDF LETTERS -->
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal11')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⛏️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 March 2025</span>
+            <span class="article-read-time">⏱ 3 min read</span>
+          </div>
+          <h3 class="article-title">The Persistent Challenge of Small-Scale Mining</h3>
+          <p class="article-excerpt">
+            Despite deploying a "heart surgeon" to the forest, the galamsey menace worsens. Now Dr. Bissiw ventures Rambo-style with her own gear and a cameraman...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Concerned Citizen</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal12')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚽</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 January 2026</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">A Nation's DRS Dramas and Delusions</h3>
+          <p class="article-excerpt">
+            Ghana qualified for the World Cup, but FIFA priced tickets like seats on a shuttle to Jupiter. Meanwhile, Venezuela's Maduro drama and Dr. Amoah's mysterious economic model...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Political Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal13')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🧪</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 February 2025</span>
+            <span class="article-read-time">⏱ 3 min read</span>
+          </div>
+          <h3 class="article-title">The Toxicology Report: What's Really in Our Drinks?</h3>
+          <p class="article-excerpt">
+            Testing local beverages revealed a shocking cocktail of controlled substances. Herb Afrik contained benzodiazepine, PCP, and MDMA. What is the FDA doing?
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Health Professional</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal14')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎤</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 December 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Speeches Are Paper, Change Is Concrete</h3>
+          <p class="article-excerpt">
+            President Mahama's UN address demanded Security Council reform. But beautiful speeches earn standing ovations while our water bodies are destroyed like never before...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">UN Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal15')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚖️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 March 2025</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Ankwanoma OSP: The Singing Prosecutor</h3>
+          <p class="article-excerpt">
+            Martin Kpebu, once a champion of the downtrodden, now faces the same bail conditions he ridiculed. Meanwhile, the Special Prosecutor quotes Daddy Lumba on TV...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Legal Satirist</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2024 Letter to Osagyefo. Built with purpose, delivered with sass.</p>
+  <p><a href="about.html">About</a> · <a href="write.html">Write a Letter</a> · <a href="index.html">Home</a></p>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal1" onclick="closeModalOnOverlay(event, 'modal1')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter I</div>
+        <h2 class="modal-title">On the Matter of Dumsor & the Audacity of Darkness</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here.</p>
+      <p>You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.</p>
+      <p>We created something called Dumsor — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours.</p>
+      <p>We have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.</p>
+      <p>We do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.</p>
+      <p class="sign-off">Yours faithfully, with a charged power bank,</p>
+      <p class="signature">A Ghanaian with a Melting Fridge</p>
+    </div>
+    <div class="modal-actions">
+      <div class="modal-audio">
+        <button class="audio-btn" onclick="playTTS(1)" id="audio-btn-1">
+          <span id="audio-icon-1">🔊</span>
+          <span id="audio-text-1">Listen</span>
+        </button>
+        <span class="audio-status" id="audio-status-1">0:00</span>
+      </div>
+      <div class="modal-share">
+        <div class="share-label">Share this letter:</div>
+        <div class="share-buttons">
+          <a href="#" class="share-btn facebook" onclick="shareOnFacebook(1); return false;" title="Share on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn twitter" onclick="shareOnTwitter(1); return false;" title="Share on X/Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(1); return false;" title="Share on WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+            </svg>
+          </a>
+          <button class="share-btn copy" onclick="copyLetterLink(1)" title="Copy Link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal2" onclick="closeModalOnOverlay(event, 'modal2')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter II</div>
+        <h2 class="modal-title">On Mobile Money & Accidental Socialism</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones.</p>
+      <p>Mobile Money — MoMo — launched in 2009. It allows anyone with a phone to send, receive, and store money through agents at roadside kiosks, barbershops, and churches.</p>
+      <p>The redistribution is staggering. A market woman in Tamale can receive payment from her daughter in Accra within seconds. The unbanked were, within a decade, sending money like texts.</p>
+      <p>You tried to build state infrastructure. The market built its own through the air.</p>
+      <p>We found your socialism, Kwame. It was yellow, fit in a pocket, and was MTN-branded.</p>
+      <p class="sign-off">With mobile-transferred regards,</p>
+      <p class="signature">A MoMo Agent in Kumasi</p>
+    </div>
+    <div class="modal-actions">
+      <div class="modal-audio">
+        <button class="audio-btn" onclick="playTTS(2)" id="audio-btn-2">
+          <span id="audio-icon-2">🔊</span>
+          <span id="audio-text-2">Listen</span>
+        </button>
+        <span class="audio-status" id="audio-status-2">0:00</span>
+      </div>
+      <div class="modal-share">
+        <div class="share-label">Share this letter:</div>
+        <div class="share-buttons">
+          <a href="#" class="share-btn facebook" onclick="shareOnFacebook(2); return false;" title="Share on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn twitter" onclick="shareOnTwitter(2); return false;" title="Share on X/Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(2); return false;" title="Share on WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+            </svg>
+          </a>
+          <button class="share-btn copy" onclick="copyLetterLink(2)" title="Copy Link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal3" onclick="closeModalOnOverlay(event, 'modal3')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter III</div>
+        <h2 class="modal-title">On Governance & the Theatre of Democracy</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You governed for life, Osagyefo. We now hold elections every four years, which sounds democratic until you realize it's the same people in different suits.</p>
+      <p>We have a Parliament. It's picturesque. The debates are spirited. The outcomes are predetermined. Ministers speak eloquently about accountability while their relatives secure contracts.</p>
+      <p>You built a one-party state in the name of unity. We built a two-party system in the name of choice. Both achieved the same result: Ghanaians who know exactly what's happening but have perfected the art of the resigned sigh.</p>
+      <p>Democracy, as practiced here, is performance art. And we are a captive, weary audience.</p>
+      <p class="sign-off">Yours in democratic disillusionment,</p>
+      <p class="signature">A Political Observer from Accra</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal4" onclick="closeModalOnOverlay(event, 'modal4')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter IV</div>
+        <h2 class="modal-title">On Pan-Africanism & Instagram Filters</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You envisioned a united Africa. We now celebrate Africa Day with Instagram stories featuring kente cloth filters and hashtags that vanish in 24 hours.</p>
+      <p>Your Organization of African Unity was built on policy papers and summit meetings. Our version is built on "Detty December" and viral dance challenges.</p>
+      <p>We wear dashikis to Afrobeats concerts. We quote Fanon in Twitter threads. We celebrate African excellence — but only if it trends.</p>
+      <p>You wanted political unity. We achieved aesthetic unity. Progress, perhaps, just not the kind you imagined.</p>
+      <p class="sign-off">Yours in curated solidarity,</p>
+      <p class="signature">A Digital Native with Pan-African Captions</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal5" onclick="closeModalOnOverlay(event, 'modal5')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter V</div>
+        <h2 class="modal-title">On the Matter of "Going Abroad"</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You studied in America and Britain, then returned to build Ghana. We study in America and Britain, then stay to become Uber drivers with PhDs.</p>
+      <p>"Going abroad" has become Ghana's most successful export industry. We send our best. They send back remittances and nostalgic Instagram posts about jollof rice.</p>
+      <p>The diaspora speaks passionately about Ghana's potential from three time zones away. They know the solution to all our problems. They just can't implement them from their studio apartments in Atlanta.</p>
+      <p>You called for Africans to return home. We return for Christmas, complain about the heat, and leave before New Year.</p>
+      <p class="sign-off">Yours from Terminal 3 Heathrow,</p>
+      <p class="signature">An Economist Working as a Care Assistant</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal6" onclick="closeModalOnOverlay(event, 'modal6')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VI</div>
+        <h2 class="modal-title">On National Pride & Football Victories</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>We united as a nation exactly twice since independence: When we won AFCON in 1963, and when we beat Nigeria 2-0 in World Cup qualifiers.</p>
+      <p>For 90 minutes, Ghana is One. Northerners and Southerners, Akans and Ewes, PhDs and Okada riders — all screaming at a screen in unified rage when the referee makes a questionable call.</p>
+      <p>Then the match ends. We return to our regularly scheduled tribalism.</p>
+      <p>Perhaps you should have built the nation on a football pitch. It's the only place where we consistently remember we're all Ghanaian.</p>
+      <p class="sign-off">Yours in temporary solidarity,</p>
+      <p class="signature">A Black Stars Supporter (Until We Lose)</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal7" onclick="closeModalOnOverlay(event, 'modal7')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal7')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VII</div>
+        <h2 class="modal-title">On Highlife Music & Cultural Memory</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You danced to E.T. Mensah in the State House. We now twerk to Afrobeats produced in Lagos and mixed in Atlanta. Progress is subjective.</p>
+      <p>Highlife — the music of independence, of optimism, of saxophones and hope — now plays mostly at funerals and on "throwback Thursday" playlists.</p>
+      <p>The youth want bass drops and American slang. Cultural preservation is for museum directors and ethnomusicology students writing theses no one will read.</p>
+      <p>We've traded our musical heritage for streaming numbers. E.T. Mensah has 50,000 monthly Spotify listeners. Wizkid has 50 million.</p>
+      <p class="sign-off">Yours to the rhythm of forgotten melodies,</p>
+      <p class="signature">A Music Historian Mourning in B-flat</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal8" onclick="closeModalOnOverlay(event, 'modal8')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal8')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VIII</div>
+        <h2 class="modal-title">On Education & the University Legacy</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You built universities. We turned them into degree mills where lecturers are gods and students protest with Twitter hashtags instead of placards.</p>
+      <p>The University of Ghana — your crown jewel — now graduates thousands annually into an economy that needs hundreds. The rest become "hustlers," a polite term for the educated unemployed.</p>
+      <p>We have the degrees. We have the potential. What we don't have are the jobs, the infrastructure, or the political will to use what we've learned.</p>
+      <p>Your universities were meant to build the nation. Ours build résumés for foreign job markets.</p>
+      <p class="sign-off">Yours in educated unemployment,</p>
+      <p class="signature">A Graduate with a 2:1 and No Prospects</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal9" onclick="closeModalOnOverlay(event, 'modal9')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal9')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter IX</div>
+        <h2 class="modal-title">On Agriculture & the Rice We Import</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You championed self-sufficiency. We now import rice from Thailand, tomatoes from Burkina Faso, and somehow still call ourselves the breadbasket.</p>
+      <p>Ghana — with fertile soil, two rainy seasons, and motivated farmers — cannot feed itself. We have the land. We lack the will, the policy, and apparently, the memory of why food security matters.</p>
+      <p>The youth flee the farms for Accra, where they sell imported goods they can't afford to buy themselves. Meanwhile, the rice from Asia piles up in our markets, cheap and subsidized by governments that take farming seriously.</p>
+      <p>We have become importers of the very things we once grew. That is a special kind of failure.</p>
+      <p class="sign-off">Yours from a field left fallow,</p>
+      <p class="signature">A Farmer's Son Who Moved to the City</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal10" onclick="closeModalOnOverlay(event, 'modal10')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal10')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter X</div>
+        <h2 class="modal-title">On Justice & the Speed of Courts</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You believed in swift justice. Our courts move so slowly that criminals age out of their sentences before trial begins. At least they're patient.</p>
+      <p>A case from 2010 is still "pending." Files disappear. Witnesses forget. Lawyers postpone. Justice delayed is justice denied, but in Ghana, justice delayed is just... Tuesday.</p>
+      <p>The wealthy hire lawyers who know how to navigate the system — which means knowing how to freeze it indefinitely. The poor plead guilty to move things along.</p>
+      <p>You wanted a legal system. We have a legal theater where the performance matters more than the verdict.</p>
+      <p class="sign-off">Yours in judicial purgatory,</p>
+      <p class="signature">A Lawyer Who's Seen It All and Seen Nothing</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 11: Small-Scale Mining -->
+<div class="modal-overlay" id="modal11" onclick="closeModalOnOverlay(event, 'modal11')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal11')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XI</div>
+        <h2 class="modal-title">The Persistent Challenge of Small-Scale Mining</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>I'm writing to you again about the devastating impact of small-scale surface mining or galamsey, on our water bodies. Despite numerous attempts to curb this menace, including deploying a "heart surgeon" to the forest, the situation has only worsened. Even the water guards those men and women in Adidas tracks commissioned to tackle galamsey have mysteriously gone missing.</p>
+      <p>Now, Dr. Hannah Bissiw, a seemingly gentle lady, has ventured into the heart of the forest, "Rambo-style," to confront the issue. This move baffles me, especially considering we've previously deployed the military to the same areas with limited success. Yet, Dr. Bissiw, equipped with her own gear, a cameraman and a few policemen somehow successfully arrested several Chinese nationals actively destroying our water bodies.</p>
+      <p>It's ironic, given that this government, when in opposition, vowed to end galamsey within a week, even promising to repeal the Legislative Instrument to ban galamsey in forest preserves. The last time the Deputy Communication Minister was questioned about declaring a state of emergency on galamsey, she skirted the issue, offering a convoluted and evasive response.</p>
+      <p>Compounding this, I've heard the Chinese Ambassador question how his citizens gained access to Ghana's forests, seemingly implying complicity from within our own ranks. Given their skilled labor force, it's not surprising the Chinese are involved in these activities. However, the barbaric treatment Dr. Bissiw allegedly meted out to some individuals, seeing denying even a basic request for water, is deeply concerning and strikes at the core of human dignity.</p>
+      <p>This incident brings to mind the Hawthorne effect: when cameras are rolling, people tend to act differently in her case acting like she's tougher than a brick. Dr. Bissiw's intentions were noble, no doubt, but her "jeans and a dream" approach to galamsey feels a bit like bringing a butter knife to a chainsaw fight. Without a state of emergency or the LI being repealed, her forest trek is sadly destined to be nothing more than a strenuous nature walk with an educational detour to the local kindergarten.</p>
+      <p class="sign-off">Talk is cheap,</p>
+      <p class="signature">Ato_KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 12: DRS Dramas and Delusions -->
+<div class="modal-overlay" id="modal12" onclick="closeModalOnOverlay(event, 'modal12')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal12')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XII</div>
+        <h2 class="modal-title">A Nation's DRS Dramas and Delusions</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>As we tiptoe into 2026, the Republic is humming with a bizarre blend of football ecstasy and economic heartbreak. Yes, Ghana qualified for the World Cup in the USA, Canada, and Mexico but the joy evaporated faster than the Cedi on a Monday morning. FIFA, in its boundless "kindness," expanded the tournament by 16 teams, then immediately balanced that generosity by pricing tickets as though they were selling seats on a private shuttle to Jupiter. Ghanaians are now engaged in a nationwide brainstorming session on how to cross the Atlantic, with some wondering whether selling a kidney qualifies as a "strategic financial instrument." At this point, even the black market is asking us to calm down.</p>
+      <p>While we were busy calculating airfare with the precision of a WAEC examiner marking scripts at midnight, the world was jolted by the dramatic "importation" of Venezuela's President Maduro, his wife, and their Attorney General to the United States. Before anyone could even whisper "geopolitics," our very own Honorable Ablakwa sprinted to the global stage with an "open statement" on Ghana's position. Osagyefo, the letter was so limp it could have doubled as a bookmark in a children's storybook. There is real danger in poking our noses into high-voltage American legal matters; one misplaced syllable and the US might simply announce, "No visas for Ghanaians," and that will be the end of our Miami pilgrimage.</p>
+      <p>Someone needs to gently remind the young man of the immortal words of the late Prof. Mills during the Gbagbo saga: Di wo fie asem. We are trying to go and watch football, not audition for a role in a Latin American coup documentary.</p>
+      <p>But if you thought that was the comedic peak, allow me to introduce Dr. Stephen Amoah. A man with a PhD in Actuarial Science a credential he wears like a bulletproof vest in a neighbourhood where no one is shooting. In his attempt to support his preferred candidate in the NPP primary, he delivered a monologue so chaotic it could qualify as experimental theatre. He proudly declared that he is one of only five people on Earth who have cracked a mysterious financial-economic model from 1964. A model so complex that even the global experts who never asked about it are still baffled. Truly, the world is ungrateful.</p>
+      <p>This is the same Dr. Amoah who, in 2019, faced questions about procurement breaches involving 1.1 million cedis paid to an audit firm to investigate whether his predecessor had misused 2 million cedis. In essence, he spent 1 million to find 2 million a financial strategy so innovative it deserves its own TED Talk. When the court asked if he should be held responsible, he delivered a "Yes and No" answer that plunged the room into philosophical crisis.</p>
+      <p>When confronted with the tape, Dr. Amoah claimed "doctoring," while performing some surgical-grade wordplay of his own. For a man who usually has an answer for everything, he suddenly seemed very busy tiptoeing around the facts. It was less an explanation and more a linguistic interpretive dance the kind that makes judges stare into the distance and reconsider their career choices.</p>
+      <p>A man of such rare brilliance should not be lobbying to be a minister in a country of barely 30 million people. He should be in Washington, marching straight into the IMF headquarters to demand his rightful position as Managing Director. After all, why settle for Ghana's budget when you can supervise the entire planet's?</p>
+      <p>And in a twist that surprised absolutely no one, word has reached us that the former Finance Minister has been "scouted" by ICE agents in America. It appears my suspicion was correct: the gentleman's travel plans were strictly one-way. And honestly, can we blame him for preferring an American holding cell over a Ghanaian greeting party? After witnessing Chairman Wontumi lose 50 pounds in a record-breaking 24-hour security-service fitness retreat, the Minister clearly decided he wasn't ready for that kind of "body transformation."</p>
+      <p class="sign-off">So long,</p>
+      <p class="signature">Ato KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 13: Toxicology Report -->
+<div class="modal-overlay" id="modal13" onclick="closeModalOnOverlay(event, 'modal13')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal13')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XIII</div>
+        <h2 class="modal-title">The Toxicology Report: What's Really in Our Drinks?</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>I write to you not just as a concerned professional, but as a deeply disturbed consumer of baffling toxicology reports. I was briefly in Ghana, and my curiosity about the "active ingredients" in our local drinks grew, shall we say, dangerously high.</p>
+      <p>You see, I spend my days working with young men who are, for want of a better word, "hooked." When I secured a gig with a non-profit, my first mission was simple: test our famed local beverages. Some of these drinks, marketed as mere food supplements, are lauded for "doing wonders." I now know exactly what wonders they're doing.</p>
+      <p>This whole enterprise began when a frantic gentleman called me last year. Despite his personal assurance that he was completely clean, he had failed a pre-employment urine toxicological screening. The only thing he could recall? Trying some local "herbs" in Ghana for his back pain. He remembered great sleep and morning energy, a clear indication that it was working!</p>
+      <p>We ran our own kit, and the results were a cocktail of controlled chaos: amphetamine, PCP, THC, and benzodiazepine. It appears his back pain remedy was less "herbal tea" and more "pharmacy in a bottle."</p>
+      <p>Just yesterday, I tested samples of two popular sachets: Mandingo and Herb Afrik. The results were not just positive; they were positively terrifying. Herb Afrik contained benzodiazepine, PCP, and MDMA, a relaxing, party-drug mix, all in one convenient pouch! Mandingo contained PCP.</p>
+      <p>One wonders no longer why the youth "get a buzz." They aren't getting a buzz; they are being chemically manipulated with a terrifying medley of street drugs. At this point, I have to question the entire operation: What, precisely, is GIHOC Distilleries distilling, and what, for the love of public health, is the FDA doing?</p>
+      <p>If the FDA is in cohoot with manufacturers who are effectively deceiving Ghanaians with these high-proof, high-drug concoctions, then you might be right. It's a stark piece of irony: the same GIHOC whose drinks are allegedly laced with illicit drugs is dedicating space on their website to a breast cancer campaign.</p>
+      <p>It's about time we put all these local drinks to a test, Alomo next ??</p>
+      <p class="sign-off">Alarmed,</p>
+      <p class="signature">Ato KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 14: Speeches Are Paper -->
+<div class="modal-overlay" id="modal14" onclick="closeModalOnOverlay(event, 'modal14')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal14')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XIV</div>
+        <h2 class="modal-title">Speeches Are Paper, Change Is Concrete</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>Your last presence at the United Nations General Assembly in 1961 remains a touchstone of African leadership. This year, the current President of the Republic stood on the same global stage in New York, albeit dressed in a colorful smock, to deliver his address to the world.</p>
+      <p>During your time, following the assassination of Patrice Lumumba after his appeal to the UN, you articulated the profound hope that the United Nations represented for world peace. Similarly, President Mahama delivered a powerful address, demanding greater representation for Africa within the UN Security Council structure and highlighting the fundamental injustices that contravene the organization's founding principles.</p>
+      <p>However, the history of this great hall is filled with beautiful speeches that earned standing ovations, from Madiba to the Otumfuo's keynote address six years ago, and, of course, Barack Obama. Again, history tells us anything, it's that the UN stage is a hall of beautiful, perishable rhetoric. These examples underscore a crucial truth: Words are fleeting and easily forgotten. People are ultimately remembered not by the eloquence of their speeches, but by the tangible changes they effect for humanity. Speeches are paper, change is concrete!</p>
+      <p>Here at home, President Mahama proved he knows the Constitution of Ghana inside and out, using its delicate clauses to expertly arrange the departure of a Chief Justice. Yet, shortly thereafter, he took to the UN General Assembly to champion a cause that seemed to forget the very nature of established power. He was there, passionately demanding reform and railing against the veto power enshrined in Article 27 of the UN Charter that beautiful little rule that lets any P5 member block a substantive resolution and ensures nothing truly binding happens against their core interests.</p>
+      <p>President Mahama once vowed to decisively tackle the destructive illegal mining known as "galamsey." Regrettably, his administration's approach has been arguably the worst in Ghana's history. It appears the fight against this menace has been abandoned, choosing instead to focus on benefiting from the gold proceeds rather than ending the practice that is destroying our water bodies like never before.</p>
+      <p>The landmark repeal of the criminal libel law under Kufuor is being aggressively undermined currently. Politicians, it seems, haven't learned the lessons of history and are rushing to embrace mechanisms that will ultimately silence them. The chilling warning holds true: "Freedom after the speech won't be guaranteed." All those beautiful speeches are wonderful, but you can't clean up a river with a standing ovation. Back home, your water is being destroyed like never before.</p>
+      <p class="sign-off">So much to do, so little done,</p>
+      <p class="signature">Ato_KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 15: Ankwanoma OSP -->
+<div class="modal-overlay" id="modal15" onclick="closeModalOnOverlay(event, 'modal15')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal15')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XV</div>
+        <h2 class="modal-title">Ankwanoma OSP: The Singing Prosecutor and the Bailed-Out Lawyer</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You'll be amused to know that the theater of the absurd in our Republic has a new leading man: Martin Kpebu. It appears the man who once championed the cause of the downtrodden is now on a singular mission to perform a final magic trick, trying to make the Office of the Special Prosecutor (OSP) disappear entirely.</p>
+      <p>I remember when Martin first came onto the scene through Joy Newsfile. Back then, he was a very unassuming, learned lawyer, a shy gentleman who seemed to know the Constitution like the palm of his hand. He spoke with the quiet precision of a surgeon. But oh, how times change! The moment he started wearing "The Hat," the transformation was complete. The shy gentleman vanished, replaced by a legal warrior who started throwing missiles at anyone within range. It seems the more prominent the hat, the more explosive the rhetoric.</p>
+      <p>For years, this new, missile-launching Martin stood on a legal high horse, making a mockery of those unfortunate souls caught in the OSP's net who couldn't afford their bail. He famously declared with the confidence of a man who sleeps with a law ledger under his pillow—that as a "senior lawyer," it was practically impossible for him to be detained.</p>
+      <p>The irony reached its peak when he, a prominent member of ORAL, the team championing the prosecution and arrest of those who allegedly embezzled state funds, found himself being detained. He who called for the shackles of others suddenly felt the cold steel of the law. This happened after a spirited verbal altercation with security at the OSP office, where insults were reportedly traded like currency. After they "bundled" him away, the OSP office requested a landed property in his name as part of his bail, the ultimate "paperwork" punishment for a man who loves his law books.</p>
+      <p>How else is a lawyer supposed to defend himself if not with his words? Yet, his vocabulary led him straight to a cell. He was then slapped with the very same ridiculous bail conditions that he once ridiculed others for failing to meet. Watching a man who specializes in words being silenced by a demand for a deed was like watching a chef realize he's allergic to his own dish.</p>
+      <p>While Martin is busy trying to dismantle the office, the Special Prosecutor himself, Kissi Agyebeng, has taken to the airwaves with a surreal defense strategy. He had appeared on TV not just to argue law, but to quote Daddy Lumba's hit tune "Ankwanoma." He stood there like a lonely bird on a podium, singing about his soul and his "time being up" as if we paid the man to mime on a public stage. If we wanted highlife, we could have hired a band for a fraction of the OSP's budget, which, by the way, has apparently spent more money than it has actually collected.</p>
+      <p>The comedy is compounded by the political pivot of the NDC MPs. Suddenly, the very people who might have cheered for a strong OSP are calling for its head. It seems that when the "Senior Lawyer" of their liking gets caught in the gears, the whole machine must be scrapped.</p>
+      <p>Martin and his company now claim they possess damning information about the OSP, but he will only share it with the Governing Board. The catch? The Board apparently doesn't exist. It's the perfect legal stalemate: I have the smoking gun, but I'll only show it to the ghost in the room.</p>
+      <p class="sign-off">So long,</p>
+      <p class="signature">Ato KD</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  function closeModalOnOverlay(event, id) {
+    if (event.target.id === id) {
+      closeModal(id);
+    }
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(modal => {
+        modal.classList.remove('open');
+      });
+      document.body.classList.remove('modal-open');
+    }
+  });
+
+  // Filter functionality
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const articles = document.querySelectorAll('.article-featured, .article-standard');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active state
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      // Filter articles
+      articles.forEach(article => {
+        if (filter === 'all' || article.dataset.category === filter) {
+          article.style.display = 'grid';
+          article.style.animation = 'fadeIn 0.5s ease';
+        } else {
+          article.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Add fadeIn animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // TTS (Text-to-Speech) functionality
+  let currentTTS = { num: -1, utterance: null, startTime: 0 };
+  let voicesLoaded = false;
+  let availableVoices = [];
+
+  // Load voices (they load asynchronously in browsers)
+  function loadVoices() {
+    availableVoices = speechSynthesis.getVoices();
+    voicesLoaded = true;
+    
+    // Debug: Log available British voices
+    const britishVoices = availableVoices.filter(v => v.lang.includes('en-GB'));
+    if (britishVoices.length > 0) {
+      console.log('Available British voices:', britishVoices.map(v => `${v.name} (${v.lang})`));
+    }
+  }
+
+  // Load voices on page load
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  loadVoices(); // Try loading immediately
+
+  const letterTitles = [
+    "On the Matter of Dumsor and the Audacity of Darkness",
+    "On Mobile Money and Accidental Socialism",
+    "On Governance and the Theatre of Democracy",
+    "On Pan-Africanism and Instagram Filters",
+    "On the Matter of Going Abroad",
+    "On National Pride and Football Victories",
+    "On Highlife Music and Cultural Memory",
+    "On Education and the University Legacy",
+    "On Agriculture and the Rice We Import",
+    "On Justice and the Speed of Courts"
+  ];
+
+  function playTTS(num) {
+    const modalBody = document.querySelector(`#modal${num} .modal-body`);
+    if (!modalBody) return;
+
+    const btn = document.getElementById(`audio-btn-${num}`);
+    const icon = document.getElementById(`audio-icon-${num}`);
+    const text = document.getElementById(`audio-text-${num}`);
+    const status = document.getElementById(`audio-status-${num}`);
+
+    // Ensure voices are loaded
+    if (availableVoices.length === 0) {
+      availableVoices = speechSynthesis.getVoices();
+    }
+
+    // Stop if already playing this one
+    if (currentTTS.num === num && speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = '0:00';
+      currentTTS = { num: -1, utterance: null, startTime: 0 };
+      return;
+    }
+
+    // Stop any other playing audio
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      if (currentTTS.num > 0) {
+        const oldBtn = document.getElementById(`audio-btn-${currentTTS.num}`);
+        const oldIcon = document.getElementById(`audio-icon-${currentTTS.num}`);
+        const oldText = document.getElementById(`audio-text-${currentTTS.num}`);
+        if (oldBtn) {
+          oldBtn.classList.remove('playing');
+          oldIcon.textContent = '🔊';
+          oldText.textContent = 'Listen';
+        }
+      }
+    }
+
+    // Get text content
+    const textContent = modalBody.innerText || modalBody.textContent;
+    
+    // Create utterance
+    const utterance = new SpeechSynthesisUtterance(textContent);
+    
+    // Set premium British male voice
+    const voices = availableVoices.length > 0 ? availableVoices : speechSynthesis.getVoices();
+    
+    // Priority list for British male voices (best quality first)
+    const preferredVoices = [
+      'Google UK English Male',
+      'Daniel',           // macOS British male (premium)
+      'Arthur',           // macOS British
+      'Oliver',           // Windows British
+      'Microsoft George', // Windows British
+      'Rishi',            // macOS British male
+      'en-GB-Standard-B', // Google Cloud British male
+      'en-GB-Standard-D', // Google Cloud British male
+    ];
+    
+    // Find the best available British male voice
+    let selectedVoice = null;
+    
+    // First, try exact name matches
+    for (const preferred of preferredVoices) {
+      selectedVoice = voices.find(voice => voice.name === preferred);
+      if (selectedVoice) {
+        console.log('Selected voice:', selectedVoice.name);
+        break;
+      }
+    }
+    
+    // If no exact match, try partial matches for British voices
+    if (!selectedVoice) {
+      selectedVoice = voices.find(voice => 
+        voice.lang.includes('en-GB') && 
+        (voice.name.toLowerCase().includes('male') || 
+         voice.name.toLowerCase().includes('daniel') ||
+         voice.name.toLowerCase().includes('george') ||
+         voice.name.toLowerCase().includes('arthur'))
+      );
+    }
+    
+    // If still no match, try any en-GB voice
+    if (!selectedVoice) {
+      selectedVoice = voices.find(voice => voice.lang.includes('en-GB'));
+    }
+    
+    // Apply voice if found
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+      console.log('Using voice:', selectedVoice.name, selectedVoice.lang);
+    } else {
+      console.log('No British voice found, using default');
+    }
+    
+    // Premium voice settings for British male authority
+    utterance.rate = 0.90;    // Slower for gravitas and clarity
+    utterance.pitch = 0.80;   // Lower pitch for deep masculine British tone
+    utterance.volume = 1;     // Full volume
+
+    // Update UI
+    btn.classList.add('playing');
+    icon.textContent = '⏸';
+    text.textContent = 'Pause';
+    
+    // Show voice name in status (temporarily)
+    if (selectedVoice) {
+      status.textContent = selectedVoice.name.length > 20 ? 'British Voice' : selectedVoice.name;
+      setTimeout(() => {
+        if (currentTTS.num === num) {
+          status.textContent = '0:00';
+        }
+      }, 2000);
+    }
+    
+    // Track time
+    currentTTS = { num, utterance, startTime: Date.now() };
+    
+    const updateTime = () => {
+      if (currentTTS.num === num && speechSynthesis.speaking) {
+        const elapsed = Math.floor((Date.now() - currentTTS.startTime) / 1000);
+        const mins = Math.floor(elapsed / 60);
+        const secs = elapsed % 60;
+        status.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+        requestAnimationFrame(() => setTimeout(updateTime, 500));
+      }
+    };
+    updateTime();
+
+    utterance.onend = () => {
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = '0:00';
+      currentTTS = { num: -1, utterance: null, startTime: 0 };
+    };
+
+    utterance.onerror = () => {
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = 'Error';
+    };
+
+    speechSynthesis.speak(utterance);
+  }
+
+  // Share functionality
+  function shareOnFacebook(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(letterTitles[num - 1]);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareOnTwitter(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(`Letter ${num}: ${letterTitles[num - 1]} - Letter to Osagyefo`);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareOnWhatsApp(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(`Letter ${num}: ${letterTitles[num - 1]}`);
+    window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
+  }
+
+  function copyLetterLink(num) {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = event.target.closest('.share-btn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span style="font-size:0.75rem">✓</span>';
+      btn.style.background = 'linear-gradient(135deg, var(--green), #1a3a28)';
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+      }, 2000);
+    }).catch(err => {
+      alert('Failed to copy link');
+    });
+  }
+
+  // Add audio/share buttons to modals 3-10 dynamically
+  document.addEventListener('DOMContentLoaded', () => {
+    for (let i = 3; i <= 15; i++) {
+      const modal = document.querySelector(`#modal${i} .modal-body`);
+      if (!modal) continue;
+
+      const actionsHTML = `
+        <div class="modal-actions">
+          <div class="modal-audio">
+            <button class="audio-btn" onclick="playTTS(${i})" id="audio-btn-${i}">
+              <span id="audio-icon-${i}">🔊</span>
+              <span id="audio-text-${i}">Listen</span>
+            </button>
+            <span class="audio-status" id="audio-status-${i}">0:00</span>
+          </div>
+          <div class="modal-share">
+            <div class="share-label">Share this letter:</div>
+            <div class="share-buttons">
+              <a href="#" class="share-btn facebook" onclick="shareOnFacebook(${i}); return false;" title="Share on Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a href="#" class="share-btn twitter" onclick="shareOnTwitter(${i}); return false;" title="Share on X/Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(${i}); return false;" title="Share on WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+                </svg>
+              </a>
+              <button class="share-btn copy" onclick="copyLetterLink(${i})" title="Copy Link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Insert after modal-body
+      modal.insertAdjacentHTML('afterend', actionsHTML);
+    }
+  });
+</script>
+
+</body>
+</html>

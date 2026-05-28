@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Uploaded Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #D43F3A;
+      text-align: center;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .image-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .image-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .image-info {
+      padding: 1.5rem;
+    }
+    .image-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2a2a2a;
+      margin-bottom: 0.5rem;
+    }
+    .image-details {
+      font-size: 0.875rem;
+      color: #666;
+      margin: 0.5rem 0;
+    }
+    .base64-preview {
+      background: #f0f0f0;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      word-break: break-all;
+      max-height: 100px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .copy-btn {
+      background: #2D5F3F;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .copy-btn:hover {
+      background: #1e4d33;
+    }
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+  </style>
+  <script src="api-config.js"></script>
+</head>
+<body>
+  <h1>📸 Uploaded Images from Dashboard</h1>
+  <div id="loading" class="loading">Loading images from database...</div>
+  <div id="image-grid" class="image-grid"></div>
+
+  <script>
+    // API_BASE is set by api-config.js
+
+    async function loadImages() {
+      try {
+        const res = await fetch(API_BASE + '/api/public/letters');
+        const letters = await res.json();
+        
+        // Filter letters that have images
+        const lettersWithImages = letters.filter(l => l.imageData);
+        
+        document.getElementById('loading').style.display = 'none';
+        const grid = document.getElementById('image-grid');
+        
+        if (lettersWithImages.length === 0) {
+          grid.innerHTML = '<p style="text-align:center; color:#666;">No images found. Upload images in the dashboard!</p>';
+          return;
+        }
+        
+        grid.innerHTML = lettersWithImages.map(letter => {
+          const imageSize = (letter.imageData.length / 1024).toFixed(2);
+          const isBase64 = letter.imageData.startsWith('data:image');
+          
+          return `
+            <div class="image-card">
+              <img src="${letter.imageData}" alt="${letter.title}" />
+              <div class="image-info">
+                <div class="image-title">Letter #${letter.letterNumber}: ${letter.title}</div>
+                <div class="image-details">
+                  <strong>Author:</strong> ${letter.authorName}<br>
+                  <strong>Category:</strong> ${letter.category}<br>
+                  <strong>Image Size:</strong> ${imageSize} KB<br>
+                  <strong>Format:</strong> ${isBase64 ? 'Base64 Data URL' : 'Unknown'}
+                </div>
+                <div class="base64-preview" id="preview-${letter.id}">
+                  ${letter.imageData.substring(0, 200)}...
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('${letter.id}', \`${letter.imageData.replace(/`/g, '\\`')}\`)">
+                  Copy Full Base64 Data
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        
+      } catch (error) {
+        document.getElementById('loading').innerHTML = 
+          `<p style="color: red;">Error loading images: ${error.message}<br>Make sure the backend server is running on port 3000.</p>`;
+      }
+    }
+
+    function copyToClipboard(letterId, data) {
+      navigator.clipboard.writeText(data).then(() => {
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Copied!';
+        btn.style.background = '#2D5F3F';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        alert('Failed to copy: ' + err);
+      });
+    }
+
+    // Load images on page load
+    loadImages();
+  </script>
+</body>
+</html>

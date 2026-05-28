@@ -2453,9 +2453,7 @@ scrollTopBtn.addEventListener('click', () => {
     const scrollY = window.scrollY;
     if (scrollY < heroEl.offsetHeight * 1.5) {
       const offset = scrollY * 0.40;  // 0.6x parallax speed (bg moves at 60% of scroll)
-      heroBg.style.transform = isDesktop()
-        ? `translateX(-50%) translateY(${offset}px)`
-        : `translateY(${offset}px)`;
+      heroBg.style.transform = `translateY(${offset}px)`;
     }
   }, { passive: true });
 })();

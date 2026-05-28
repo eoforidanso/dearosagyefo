@@ -1,0 +1,3290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Letters to Osagyefo | Modern Blog</title>
+  <meta name="description" content="A modern collection of open letters to Kwame Nkrumah addressing contemporary Ghana through thoughtful essays and cultural commentary.">
+  
+  <meta property="og:title" content="Letters to Osagyefo | Modern Blog">
+  <meta property="og:description" content="Thoughtful essays and open letters addressing contemporary Ghana.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/letters.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      --red: #D43F3A;
+      --gold: #E8B923;
+      --green: #2D5F3F;
+      --black: #1a1a1a;
+      --gray-900: #2a2a2a;
+      --gray-700: #4a4a4a;
+      --gray-500: #6a6a6a;
+      --gray-300: #aaa;
+      --gray-100: #f5f5f5;
+      --cream: #faf9f6;
+      --white: #ffffff;
+      --accent: #C65911;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fafaf8 0%, #f4f1ed 50%, #fbf9f5 100%);
+      color: var(--gray-900);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FLAG STRIPE
+    ═══════════════════════════════════════════════════════════ */
+    .flag-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      display: flex;
+      z-index: 10001;
+    }
+    .flag-stripe span { flex: 1; height: 100%; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    /* ═══════════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════════ */
+    .site-header {
+      background: rgba(255,255,255,0.72);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 8px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .site-header .logo {
+      font-family: 'DM Serif Display', serif;
+      color: var(--red);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    .site-header .logo:hover {
+      transform: scale(1.05);
+    }
+    .main-nav {
+      display: flex;
+      gap: 3.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .main-nav a {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      transition: all 0.25s;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 0.4rem;
+      position: relative;
+    }
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .main-nav a:hover {
+      color: var(--red);
+    }
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+    .main-nav a.active {
+      color: var(--red);
+    }
+    .main-nav a.active::after {
+      width: 100%;
+    }
+
+    /*  HAMBURGER  */
+    .hamburger {
+      display: none;
+      background: none;
+      border: 2px solid var(--red);
+      border-radius: 5px;
+      color: var(--red);
+      font-size: 1.2rem;
+      padding: 0.3rem 0.55rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { background: var(--red); color: #fff; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════════════════════ */
+    .hero {
+      background: linear-gradient(135deg, #2D5F3F 0%, #1a3a28 100%);
+      color: white;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(232,185,35,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212,63,58,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid rgba(232,185,35,0.3);
+      border-radius: 50px;
+      background: rgba(232,185,35,0.1);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FILTER BAR
+    ═══════════════════════════════════════════════════════════ */
+    .filter-section {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding: 2rem 2rem 1.5rem;
+      position: sticky;
+      top: 82px;
+      z-index: 100;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .filter-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      margin-right: 0.5rem;
+    }
+
+    .filter-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--gray-700);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+      transform: perspective(600px) translateZ(0);
+    }
+
+    .filter-btn:hover {
+      border-color: rgba(212,63,58,0.3);
+      color: var(--red);
+      background: rgba(255,255,255,0.85);
+      transform: perspective(600px) translateZ(8px) translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,63,58,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .filter-btn:active {
+      transform: perspective(600px) translateZ(-2px) translateY(1px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--red), #c0332e);
+      color: white;
+      border-color: var(--red);
+      box-shadow: 0 6px 20px rgba(212,63,58,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+      transform: perspective(600px) translateZ(6px);
+    }
+
+    .filter-count {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BLOG GRID - MAGAZINE LAYOUT
+    ═══════════════════════════════════════════════════════════ */
+    .blog-section {
+      padding: 4rem 2rem 6rem;
+    }
+
+    .blog-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+      perspective: 1200px;
+    }
+
+    /* Featured Article - Large Hero */
+    .article-featured {
+      grid-column: 1 / -1;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 500px;
+      opacity: 0;
+      transform: scale(0.98) translateY(20px);
+      animation: featuredFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+      transform-style: preserve-3d;
+    }
+    
+    @keyframes featuredFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotateX(0);
+      }
+    }
+
+    .article-featured:hover {
+      transform: translateY(-8px) scale(1.01) rotateX(2deg) rotateY(-1deg);
+      box-shadow: 
+        0 30px 60px rgba(0,0,0,0.18),
+        0 0 0 1px rgba(232,185,35,0.25),
+        0 0 80px rgba(232,185,35,0.06);
+      border-color: rgba(232,185,35,0.35);
+    }
+
+    .article-image {
+      background: linear-gradient(135deg, var(--green) 0%, var(--red) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(232,185,35,0.2) 0%, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .article-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .article-category {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      padding: 0.4rem 0.8rem;
+      background: rgba(212,63,58,0.1);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(212,63,58,0.2);
+    }
+    
+    .article-featured:hover .article-category,
+    .article-standard:hover .article-category {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212,63,58,0.2);
+    }
+
+    .article-category.politics { color: var(--red); background: rgba(212,63,58,0.1); border-color: rgba(212,63,58,0.2); }
+    .article-category.culture { color: var(--green); background: rgba(45,95,63,0.1); border-color: rgba(45,95,63,0.2); }
+    .article-category.diaspora { color: var(--gold); background: rgba(232,185,35,0.15); border-color: rgba(232,185,35,0.3); }
+    .article-category.satire { color: var(--accent); background: rgba(198,89,17,0.1); border-color: rgba(198,89,17,0.2); }
+
+    .article-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .article-read-time {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .article-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+    }
+    
+    .article-featured:hover .article-title,
+    .article-standard:hover .article-title {
+      color: var(--red);
+    }
+
+    .article-excerpt {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .author-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .author-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* Standard Articles - Grid */
+    .article-standard {
+      grid-column: span 4;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-standard:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      border-color: rgba(212,63,58,0.25);
+      background: rgba(255,255,255,0.95);
+    }
+    
+    .article-image-placeholder {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .article-standard .article-image {
+      height: 240px;
+    }
+
+    .article-standard .article-content {
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-standard .article-title {
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .article-standard .article-excerpt {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    /* Badge for new/featured */
+    .article-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--green);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE DESIGN
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .article-featured {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .article-featured .article-image {
+        height: 350px;
+      }
+
+      .article-standard {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      .hamburger { display: block; }
+      .site-header { 
+        padding: 0.75rem 1.25rem;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+      }
+      .site-header .logo { 
+        font-size: 1rem;
+      }
+      .main-nav { 
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 2px solid var(--red);
+        padding: 0.5rem 0 1rem;
+        z-index: 99;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      }
+      .main-nav.open {
+        display: flex;
+      }
+      .main-nav a {
+        padding: 0.85rem 1.5rem;
+        font-size: 0.82rem;
+        border-bottom: none;
+      }
+
+      .hero {
+        padding: 3.5rem 1.25rem 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero-desc {
+        font-size: 0.92rem;
+      }
+
+      .filter-section {
+        top: 60px;
+        padding: 1.25rem 1rem 1rem;
+      }
+
+      .filter-container {
+        gap: 0.5rem;
+      }
+
+      .filter-label {
+        font-size: 0.78rem;
+        margin-right: 0.25rem;
+      }
+
+      .filter-btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.9rem;
+      }
+
+      .blog-section {
+        padding: 2rem 1rem 3rem;
+      }
+
+      .blog-grid {
+        gap: 1.25rem;
+      }
+
+      .article-standard {
+        grid-column: 1 / -1;
+      }
+
+      .article-content {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .article-standard .article-content {
+        padding: 1.25rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 3rem 1rem 2rem;
+      }
+
+      .filter-section {
+        padding: 1rem 0.75rem 0.75rem;
+      }
+
+      .filter-btn {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.75rem;
+      }
+
+      .blog-section {
+        padding: 1.5rem 0.75rem 2.5rem;
+      }
+
+      .blog-grid {
+        gap: 1rem;
+      }
+
+      .article-content {
+        padding: 1.25rem 1rem;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LOADING STATE
+    ═══════════════════════════════════════════════════════════ */
+    .loading-skeleton {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--gray-900);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       MODAL SYSTEM
+    ═══════════════════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--cream);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative;
+      margin: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--red);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 10;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: var(--black);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--green) 0%, var(--red) 100%);
+      color: white;
+      padding: 3rem 3rem 2rem;
+      position: relative;
+    }
+
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(232,185,35,0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .modal-header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .modal-letter-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .modal-body {
+      padding: 3rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.9;
+      color: var(--gray-900);
+    }
+
+    .modal-body .salutation {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-body .sign-off {
+      font-style: italic;
+      margin-top: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-body .signature {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* Modal Actions */
+    .modal-actions {
+      padding: 0 3rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .modal-audio {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Listen / Share tab strip ───────────────────────── */
+    .modal-tab-bar {
+      display: flex;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 2rem;
+      gap: 0;
+    }
+    .modal-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .modal-tab:hover { color: var(--green); }
+    .modal-tab.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+    .modal-tab-panel {
+      display: none;
+      padding: 1.25rem 2rem 1.5rem;
+    }
+    .modal-tab-panel.active { display: block; }
+
+    /* ── Listen panel ────────────────────────────────────── */
+    .listen-panel-inner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .listen-progress-wrap {
+      flex: 1;
+      min-width: 120px;
+    }
+    .listen-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .listen-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      border-radius: 4px;
+      transition: width 0.3s linear;
+    }
+    .listen-time {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: 0.3rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.4rem;
+      background: linear-gradient(135deg, var(--green), #1a6b3a);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(45,95,63,0.25);
+      flex-shrink: 0;
+    }
+
+    .audio-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45,95,63,0.35);
+    }
+
+    .audio-btn.playing {
+      background: linear-gradient(135deg, var(--red), #b52020);
+    }
+
+    /* ── Share panel ─────────────────────────────────────── */
+    .share-panel-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .share-panel-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: 'Inter', sans-serif;
+    }
+    .share-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .share-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 50px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .share-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.22); }
+    .share-pill.sp-twitter  { background: #000; }
+    .share-pill.sp-facebook { background: linear-gradient(135deg,#1877f2,#0d5dbf); }
+    .share-pill.sp-whatsapp { background: linear-gradient(135deg,#25d366,#128c7e); }
+    .share-pill.sp-copy     { background: linear-gradient(135deg, var(--gold), #c9920a); }
+    .share-pill svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+    .audio-status {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .modal-share {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .share-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .share-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .share-btn.facebook {
+      background: linear-gradient(135deg, #1877f2, #0d5dbf);
+    }
+
+    .share-btn.twitter {
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+    }
+
+    .share-btn.whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+
+    .share-btn.copy {
+      background: linear-gradient(135deg, var(--gold), #d4a820);
+    }
+
+    .share-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .modal-overlay {
+        padding: 1rem;
+      }
+
+      .modal-header {
+        padding: 2rem 2rem 1.5rem;
+      }
+
+      .modal-body {
+        padding: 2rem 1.5rem;
+      }
+
+      .modal-actions {
+        padding: 0 1.5rem 2rem;
+      }
+
+      .modal-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+      }
+
+      .share-buttons {
+        justify-content: flex-start;
+      }
+    }
+  
+    /* Letter format styles */
+    .letter-layout {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 50px;
+      background: #fff;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.8;
+      color: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .letter-date {
+      text-align: right;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+    .letter-salutation {
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .letter-body p {
+      margin-bottom: 1.5rem;
+      text-indent: 40px;
+    }
+    .letter-closing {
+      margin-top: 50px;
+      text-align: left;
+      padding-left: 60%;
+    }
+    .signature {
+      font-family: 'Cursive', sans-serif;
+      font-size: 1.4em;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+  <script src="api-config.js"></script>
+</head>
+<body>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- NAVIGATION -->
+<header class="site-header">
+  <a href="index.html" class="logo">Dear Osagyefo</a>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">☰</button>
+  <nav class="main-nav" id="main-nav">
+    <a href="letters.html" class="active">Open Letters</a>
+    <a href="from-osagyefo.html">From Osagyefo</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="about.html">About</a>
+    <a href="write.html">Write a Letter</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-container">
+    <span class="hero-tag">◆ Open Letters</span>
+    <h1>Dispatches from the Motherland</h1>
+    <p class="hero-desc">If the postal service actually worked, these would have been delivered by now.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<section class="filter-section">
+  <div class="filter-container">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">27</span></button>
+    <button class="filter-btn" data-filter="Politics">Politics <span class="filter-count">14</span></button>
+    <button class="filter-btn" data-filter="Culture">Culture <span class="filter-count">4</span></button>
+    <button class="filter-btn" data-filter="Diaspora">Diaspora <span class="filter-count">2</span></button>
+    <button class="filter-btn" data-filter="Satire">Satire <span class="filter-count">7</span></button>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="blog-container">
+    <div class="blog-grid">
+      
+      <!-- FEATURED ARTICLE -->
+      <article class="article-featured" data-category="Politics" onclick="openModal('modal1')">
+        <div class="article-image">
+          <span class="article-badge">Featured</span>
+          <div class="article-image-placeholder">💡</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 January 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h2 class="article-title">On the Matter of Dumsor & the Audacity of Darkness</h2>
+          <p class="article-excerpt">
+            You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">A Concerned Citizen</div>
+              <div class="author-title">Ghanaian with a Melting Fridge</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- STANDARD ARTICLES -->
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal2')">
+        <div class="article-image">
+          <div class="article-image-placeholder">📱</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 February 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On Mobile Money & Accidental Socialism</h3>
+          <p class="article-excerpt">
+            You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">MK</div>
+            <div class="author-info">
+              <div class="author-name">Market Woman</div>
+              <div class="author-title">Tamale Trader</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal3')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🏛️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 March 2024</span>
+            <span class="article-read-time">⏱ 6 min read</span>
+          </div>
+          <h3 class="article-title">On Governance & the Theatre of Democracy</h3>
+          <p class="article-excerpt">
+            You governed for life, Osagyefo. We now hold elections every four years, which sounds democratic until you realize it's the same people in different suits...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">JP</div>
+            <div class="author-info">
+              <div class="author-name">Political Observer</div>
+              <div class="author-title">Accra Resident</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Culture" onclick="openModal('modal4')">
+        <div class="article-image">
+          <span class="article-badge">New</span>
+          <div class="article-image-placeholder">🌍</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category culture">Culture</span>
+            <span class="article-date">📅 April 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Pan-Africanism & Instagram Filters</h3>
+          <p class="article-excerpt">
+            You envisioned a united Africa. We now celebrate Africa Day with Instagram stories featuring kente cloth filters and hashtags that vanish in 24 hours...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">YA</div>
+            <div class="author-info">
+              <div class="author-name">Youth Advocate</div>
+              <div class="author-title">Digital Native</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Diaspora" onclick="openModal('modal5')">
+        <div class="article-image">
+          <div class="article-image-placeholder">✈️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category diaspora">Diaspora</span>
+            <span class="article-date">📅 May 2024</span>
+            <span class="article-read-time">⏱ 7 min read</span>
+          </div>
+          <h3 class="article-title">On the Matter of "Going Abroad"</h3>
+          <p class="article-excerpt">
+            You studied in America and Britain, then returned to build Ghana. We study in America and Britain, then stay to become Uber drivers with PhDs...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">KO</div>
+            <div class="author-info">
+              <div class="author-name">Diaspora Voice</div>
+              <div class="author-title">London-based Ghanaian</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal6')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎭</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 June 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On National Pride & Football Victories</h3>
+          <p class="article-excerpt">
+            We united as a nation exactly twice since independence: When we won AFCON in 1963, and when we beat Nigeria 2-0 in World Cup qualifiers...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">ST</div>
+            <div class="author-info">
+              <div class="author-name">Sports Enthusiast</div>
+              <div class="author-title">Black Stars Supporter</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Culture" onclick="openModal('modal7')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎵</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category culture">Culture</span>
+            <span class="article-date">📅 July 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Highlife Music & Cultural Memory</h3>
+          <p class="article-excerpt">
+            You danced to E.T. Mensah in the State House. We now twerk to Afrobeats produced in Lagos and mixed in Atlanta. Progress is subjective...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">EM</div>
+            <div class="author-info">
+              <div class="author-name">Music Historian</div>
+              <div class="author-title">Cultural Critic</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal8')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🏫</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 August 2024</span>
+            <span class="article-read-time">⏱ 6 min read</span>
+          </div>
+          <h3 class="article-title">On Education & the University Legacy</h3>
+          <p class="article-excerpt">
+            You built universities. We turned them into degree mills where lecturers are gods and students protest with Twitter hashtags instead of placards...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">LM</div>
+            <div class="author-info">
+              <div class="author-name">University Student</div>
+              <div class="author-title">Legon Campus</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Diaspora" onclick="openModal('modal9')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🌾</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category diaspora">Diaspora</span>
+            <span class="article-date">📅 September 2024</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">On Agriculture & the Rice We Import</h3>
+          <p class="article-excerpt">
+            You championed self-sufficiency. We now import rice from Thailand, tomatoes from Burkina Faso, and somehow still call ourselves the breadbasket...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">FA</div>
+            <div class="author-info">
+              <div class="author-name">Farmer's Child</div>
+              <div class="author-title">Rural Ghana</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal10')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚖️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 October 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">On Justice & the Speed of Courts</h3>
+          <p class="article-excerpt">
+            You believed in swift justice. Our courts move so slowly that criminals age out of their sentences before trial begins. At least they're patient...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">JA</div>
+            <div class="author-info">
+              <div class="author-name">Legal Observer</div>
+              <div class="author-title">Courtroom Regular</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NEW PDF LETTERS -->
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal11')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⛏️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 March 2025</span>
+            <span class="article-read-time">⏱ 3 min read</span>
+          </div>
+          <h3 class="article-title">The Persistent Challenge of Small-Scale Mining</h3>
+          <p class="article-excerpt">
+            Despite deploying a "heart surgeon" to the forest, the galamsey menace worsens. Now Dr. Bissiw ventures Rambo-style with her own gear and a cameraman...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Concerned Citizen</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal12')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚽</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 January 2026</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">A Nation's DRS Dramas and Delusions</h3>
+          <p class="article-excerpt">
+            Ghana qualified for the World Cup, but FIFA priced tickets like seats on a shuttle to Jupiter. Meanwhile, Venezuela's Maduro drama and Dr. Amoah's mysterious economic model...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Political Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal13')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🧪</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 February 2025</span>
+            <span class="article-read-time">⏱ 3 min read</span>
+          </div>
+          <h3 class="article-title">The Toxicology Report: What's Really in Our Drinks?</h3>
+          <p class="article-excerpt">
+            Testing local beverages revealed a shocking cocktail of controlled substances. Herb Afrik contained benzodiazepine, PCP, and MDMA. What is the FDA doing?
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Health Professional</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal14')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎤</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 December 2024</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Speeches Are Paper, Change Is Concrete</h3>
+          <p class="article-excerpt">
+            President Mahama's UN address demanded Security Council reform. But beautiful speeches earn standing ovations while our water bodies are destroyed like never before...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">UN Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal15')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚖️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 March 2025</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Ankwanoma OSP: The Singing Prosecutor</h3>
+          <p class="article-excerpt">
+            Martin Kpebu, once a champion of the downtrodden, now faces the same bail conditions he ridiculed. Meanwhile, the Special Prosecutor quotes Daddy Lumba on TV...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Legal Satirist</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal16')">
+        <div class="article-image">
+          <div class="article-image-placeholder">📅</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 December 2025</span>
+            <span class="article-read-time">⏱ 8 min read</span>
+          </div>
+          <h3 class="article-title">The Year 2025</h3>
+          <p class="article-excerpt">
+            The year began with Mahama's return promising a "reset." The Cedi stabilized, but like a hostage situation. GH₵292 million on sanitary pads while graduates roam jobless...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Year in Review</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal17')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🗳️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 April 2025</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Power of the People</h3>
+          <p class="article-excerpt">
+            The Electoral Commission announces a rerun in Ablekuma North after violent disruptions. Is the power of the people really greater than the people in power?
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Democracy Watch</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Culture" onclick="openModal('modal18')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎆</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category culture">Culture</span>
+            <span class="article-date">📅 January 2025</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">Ghost of New Year's Resolutions</h3>
+          <p class="article-excerpt">
+            New Year resolutions buried by the second week of January. We want a new Ghana but hold tightly to old habits. The Harmattan felt different then...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Cultural Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal19')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎤</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 May 2025</span>
+            <span class="article-read-time">⏱ 6 min read</span>
+          </div>
+          <h3 class="article-title">Shatta and the Street Receipts</h3>
+          <p class="article-excerpt">
+            The Dancehall King's "Paah Paah" landed him at EOCO over a Lamborghini with no paper trail. His fans showed up to dance while he was interrogated...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Entertainment Satirist</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal20')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🪦</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 June 2025</span>
+            <span class="article-read-time">⏱ 4 min read</span>
+          </div>
+          <h3 class="article-title">Stampeded Dreams</h3>
+          <p class="article-excerpt">
+            90,000 youth bought military recruitment forms at 350 cedis each. Only 3,000 spots. Six young women died in the stampede at El Wak Stadium...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Social Commentator</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal21')">
+        <div class="article-image">
+          <div class="article-image-placeholder">💰</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 July 2025</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Cedi's Comedy and the Taylor Saga!</h3>
+          <p class="article-excerpt">
+            The Cedi is "stable" but dollars are harder to find than a unicorn. Meanwhile, a man with an arrest warrant waltzed into the Supreme Court as a free man...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Economic Satirist</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal22')">
+        <div class="article-image">
+          <div class="article-image-placeholder">⚖️</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 August 2025</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Chief Justice Nominee's Controversial Confession</h3>
+          <p class="article-excerpt">
+            Justice Bonney confessed he gave Ataa Ayi 70 years because "by the time he returns, I'll be long gone." This man wants to be Chief Justice...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Legal Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal23')">
+        <div class="article-image">
+          <div class="article-image-placeholder">📜</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 September 2025</span>
+            <span class="article-read-time">⏱ 7 min read</span>
+          </div>
+          <h3 class="article-title">The Herculean Task of Prof. H. Kwasi Prempeh and Co</h3>
+          <p class="article-excerpt">
+            We're back at fixing the 1992 Constitution. The "H" in Prof's name might stand for "Herculean" or "Help." They want to extend presidential terms to 5 years...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Constitutional Watch</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Satire" onclick="openModal('modal24')">
+        <div class="article-image">
+          <div class="article-image-placeholder">👔</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category satire">Satire</span>
+            <span class="article-date">📅 October 2025</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Millionaire in a Jumpsuit, Apostle of Apology, and the CEO's Legal Backfire</h3>
+          <p class="article-excerpt">
+            A billionaire former Finance Minister in a black inmate jumpsuit at an ICE detention center. Ken Agyapong apologizes via open letter. COCOBOD CEO uses state lawyers for personal beef...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Political Satirist</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal25')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🏆</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 November 2025</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Republic's Latest Drama: A Tale of Gold, Grief, and the New CJ</h3>
+          <p class="article-excerpt">
+            Former CJ Torkornoo is back in court with a constitutional loophole. The President's galamsey U-turn. The Cedi gasping for air against the dollar...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Republic Watch</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal26')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🫀</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 February 2026</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Heart Surgeon's Lament and the Digital Future</h3>
+          <p class="article-excerpt">
+            Prof. Frimpong Boateng, the legendary heart surgeon, is now lambasting his own party on TV. The analog era has served its purpose. Enter Ken Agyapong swinging wildly...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Political Observer</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-standard" data-category="Politics" onclick="openModal('modal27')">
+        <div class="article-image">
+          <div class="article-image-placeholder">🎭</div>
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-category politics">Politics</span>
+            <span class="article-date">📅 March 2026</span>
+            <span class="article-read-time">⏱ 5 min read</span>
+          </div>
+          <h3 class="article-title">The Galamsey Games and Political Theatre</h3>
+          <p class="article-excerpt">
+            The FDA finds its stride catching adulterated mixtures. A mob blocks arrests of illegal miners. An MP gets GHS150,000 bail while citizens rot in cells. Naa Koryoo's contradictions...
+          </p>
+          <div class="article-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <div class="author-name">Ato_KD</div>
+              <div class="author-title">Republic Correspondent</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2024 Letter to Osagyefo. Built with purpose, delivered with sass.</p>
+  <p><a href="about.html">About</a> · <a href="write.html">Write a Letter</a> · <a href="index.html">Home</a></p>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal1" onclick="closeModalOnOverlay(event, 'modal1')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter I</div>
+        <h2 class="modal-title">On the Matter of Dumsor & the Audacity of Darkness</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here.</p>
+      <p>You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.</p>
+      <p>We created something called Dumsor — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours.</p>
+      <p>We have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.</p>
+      <p>We do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.</p>
+      <p class="sign-off">Yours faithfully, with a charged power bank,</p>
+      <p class="signature">A Ghanaian with a Melting Fridge</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal2" onclick="closeModalOnOverlay(event, 'modal2')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter II</div>
+        <h2 class="modal-title">On Mobile Money & Accidental Socialism</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones.</p>
+      <p>Mobile Money — MoMo — launched in 2009. It allows anyone with a phone to send, receive, and store money through agents at roadside kiosks, barbershops, and churches.</p>
+      <p>The redistribution is staggering. A market woman in Tamale can receive payment from her daughter in Accra within seconds. The unbanked were, within a decade, sending money like texts.</p>
+      <p>You tried to build state infrastructure. The market built its own through the air.</p>
+      <p>We found your socialism, Kwame. It was yellow, fit in a pocket, and was MTN-branded.</p>
+      <p class="sign-off">With mobile-transferred regards,</p>
+      <p class="signature">A MoMo Agent in Kumasi</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal3" onclick="closeModalOnOverlay(event, 'modal3')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter III</div>
+        <h2 class="modal-title">On Governance & the Theatre of Democracy</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You governed for life, Osagyefo. We now hold elections every four years, which sounds democratic until you realize it's the same people in different suits.</p>
+      <p>We have a Parliament. It's picturesque. The debates are spirited. The outcomes are predetermined. Ministers speak eloquently about accountability while their relatives secure contracts.</p>
+      <p>You built a one-party state in the name of unity. We built a two-party system in the name of choice. Both achieved the same result: Ghanaians who know exactly what's happening but have perfected the art of the resigned sigh.</p>
+      <p>Democracy, as practiced here, is performance art. And we are a captive, weary audience.</p>
+      <p class="sign-off">Yours in democratic disillusionment,</p>
+      <p class="signature">A Political Observer from Accra</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal4" onclick="closeModalOnOverlay(event, 'modal4')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter IV</div>
+        <h2 class="modal-title">On Pan-Africanism & Instagram Filters</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You envisioned a united Africa. We now celebrate Africa Day with Instagram stories featuring kente cloth filters and hashtags that vanish in 24 hours.</p>
+      <p>Your Organization of African Unity was built on policy papers and summit meetings. Our version is built on "Detty December" and viral dance challenges.</p>
+      <p>We wear dashikis to Afrobeats concerts. We quote Fanon in Twitter threads. We celebrate African excellence — but only if it trends.</p>
+      <p>You wanted political unity. We achieved aesthetic unity. Progress, perhaps, just not the kind you imagined.</p>
+      <p class="sign-off">Yours in curated solidarity,</p>
+      <p class="signature">A Digital Native with Pan-African Captions</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal5" onclick="closeModalOnOverlay(event, 'modal5')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter V</div>
+        <h2 class="modal-title">On the Matter of "Going Abroad"</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You studied in America and Britain, then returned to build Ghana. We study in America and Britain, then stay to become Uber drivers with PhDs.</p>
+      <p>"Going abroad" has become Ghana's most successful export industry. We send our best. They send back remittances and nostalgic Instagram posts about jollof rice.</p>
+      <p>The diaspora speaks passionately about Ghana's potential from three time zones away. They know the solution to all our problems. They just can't implement them from their studio apartments in Atlanta.</p>
+      <p>You called for Africans to return home. We return for Christmas, complain about the heat, and leave before New Year.</p>
+      <p class="sign-off">Yours from Terminal 3 Heathrow,</p>
+      <p class="signature">An Economist Working as a Care Assistant</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal6" onclick="closeModalOnOverlay(event, 'modal6')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VI</div>
+        <h2 class="modal-title">On National Pride & Football Victories</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>We united as a nation exactly twice since independence: When we won AFCON in 1963, and when we beat Nigeria 2-0 in World Cup qualifiers.</p>
+      <p>For 90 minutes, Ghana is One. Northerners and Southerners, Akans and Ewes, PhDs and Okada riders — all screaming at a screen in unified rage when the referee makes a questionable call.</p>
+      <p>Then the match ends. We return to our regularly scheduled tribalism.</p>
+      <p>Perhaps you should have built the nation on a football pitch. It's the only place where we consistently remember we're all Ghanaian.</p>
+      <p class="sign-off">Yours in temporary solidarity,</p>
+      <p class="signature">A Black Stars Supporter (Until We Lose)</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal7" onclick="closeModalOnOverlay(event, 'modal7')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal7')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VII</div>
+        <h2 class="modal-title">On Highlife Music & Cultural Memory</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You danced to E.T. Mensah in the State House. We now twerk to Afrobeats produced in Lagos and mixed in Atlanta. Progress is subjective.</p>
+      <p>Highlife — the music of independence, of optimism, of saxophones and hope — now plays mostly at funerals and on "throwback Thursday" playlists.</p>
+      <p>The youth want bass drops and American slang. Cultural preservation is for museum directors and ethnomusicology students writing theses no one will read.</p>
+      <p>We've traded our musical heritage for streaming numbers. E.T. Mensah has 50,000 monthly Spotify listeners. Wizkid has 50 million.</p>
+      <p class="sign-off">Yours to the rhythm of forgotten melodies,</p>
+      <p class="signature">A Music Historian Mourning in B-flat</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal8" onclick="closeModalOnOverlay(event, 'modal8')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal8')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter VIII</div>
+        <h2 class="modal-title">On Education & the University Legacy</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You built universities. We turned them into degree mills where lecturers are gods and students protest with Twitter hashtags instead of placards.</p>
+      <p>The University of Ghana — your crown jewel — now graduates thousands annually into an economy that needs hundreds. The rest become "hustlers," a polite term for the educated unemployed.</p>
+      <p>We have the degrees. We have the potential. What we don't have are the jobs, the infrastructure, or the political will to use what we've learned.</p>
+      <p>Your universities were meant to build the nation. Ours build résumés for foreign job markets.</p>
+      <p class="sign-off">Yours in educated unemployment,</p>
+      <p class="signature">A Graduate with a 2:1 and No Prospects</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal9" onclick="closeModalOnOverlay(event, 'modal9')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal9')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter IX</div>
+        <h2 class="modal-title">On Agriculture & the Rice We Import</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You championed self-sufficiency. We now import rice from Thailand, tomatoes from Burkina Faso, and somehow still call ourselves the breadbasket.</p>
+      <p>Ghana — with fertile soil, two rainy seasons, and motivated farmers — cannot feed itself. We have the land. We lack the will, the policy, and apparently, the memory of why food security matters.</p>
+      <p>The youth flee the farms for Accra, where they sell imported goods they can't afford to buy themselves. Meanwhile, the rice from Asia piles up in our markets, cheap and subsidized by governments that take farming seriously.</p>
+      <p>We have become importers of the very things we once grew. That is a special kind of failure.</p>
+      <p class="sign-off">Yours from a field left fallow,</p>
+      <p class="signature">A Farmer's Son Who Moved to the City</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal10" onclick="closeModalOnOverlay(event, 'modal10')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal10')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter X</div>
+        <h2 class="modal-title">On Justice & the Speed of Courts</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You believed in swift justice. Our courts move so slowly that criminals age out of their sentences before trial begins. At least they're patient.</p>
+      <p>A case from 2010 is still "pending." Files disappear. Witnesses forget. Lawyers postpone. Justice delayed is justice denied, but in Ghana, justice delayed is just... Tuesday.</p>
+      <p>The wealthy hire lawyers who know how to navigate the system — which means knowing how to freeze it indefinitely. The poor plead guilty to move things along.</p>
+      <p>You wanted a legal system. We have a legal theater where the performance matters more than the verdict.</p>
+      <p class="sign-off">Yours in judicial purgatory,</p>
+      <p class="signature">A Lawyer Who's Seen It All and Seen Nothing</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 11: Small-Scale Mining -->
+<div class="modal-overlay" id="modal11" onclick="closeModalOnOverlay(event, 'modal11')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal11')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XI</div>
+        <h2 class="modal-title">The Persistent Challenge of Small-Scale Mining</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>I'm writing to you again about the devastating impact of small-scale surface mining or galamsey, on our water bodies. Despite numerous attempts to curb this menace, including deploying a "heart surgeon" to the forest, the situation has only worsened. Even the water guards those men and women in Adidas tracks commissioned to tackle galamsey have mysteriously gone missing.</p>
+      <p>Now, Dr. Hannah Bissiw, a seemingly gentle lady, has ventured into the heart of the forest, "Rambo-style," to confront the issue. This move baffles me, especially considering we've previously deployed the military to the same areas with limited success. Yet, Dr. Bissiw, equipped with her own gear, a cameraman and a few policemen somehow successfully arrested several Chinese nationals actively destroying our water bodies.</p>
+      <p>It's ironic, given that this government, when in opposition, vowed to end galamsey within a week, even promising to repeal the Legislative Instrument to ban galamsey in forest preserves. The last time the Deputy Communication Minister was questioned about declaring a state of emergency on galamsey, she skirted the issue, offering a convoluted and evasive response.</p>
+      <p>Compounding this, I've heard the Chinese Ambassador question how his citizens gained access to Ghana's forests, seemingly implying complicity from within our own ranks. Given their skilled labor force, it's not surprising the Chinese are involved in these activities. However, the barbaric treatment Dr. Bissiw allegedly meted out to some individuals, seeing denying even a basic request for water, is deeply concerning and strikes at the core of human dignity.</p>
+      <p>This incident brings to mind the Hawthorne effect: when cameras are rolling, people tend to act differently in her case acting like she's tougher than a brick. Dr. Bissiw's intentions were noble, no doubt, but her "jeans and a dream" approach to galamsey feels a bit like bringing a butter knife to a chainsaw fight. Without a state of emergency or the LI being repealed, her forest trek is sadly destined to be nothing more than a strenuous nature walk with an educational detour to the local kindergarten.</p>
+      <p class="sign-off">Talk is cheap,</p>
+      <p class="signature">Ato_KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 12: DRS Dramas and Delusions -->
+<div class="modal-overlay" id="modal12" onclick="closeModalOnOverlay(event, 'modal12')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal12')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XII</div>
+        <h2 class="modal-title">A Nation's DRS Dramas and Delusions</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>As we tiptoe into 2026, the Republic is humming with a bizarre blend of football ecstasy and economic heartbreak. Yes, Ghana qualified for the World Cup in the USA, Canada, and Mexico but the joy evaporated faster than the Cedi on a Monday morning. FIFA, in its boundless "kindness," expanded the tournament by 16 teams, then immediately balanced that generosity by pricing tickets as though they were selling seats on a private shuttle to Jupiter. Ghanaians are now engaged in a nationwide brainstorming session on how to cross the Atlantic, with some wondering whether selling a kidney qualifies as a "strategic financial instrument." At this point, even the black market is asking us to calm down.</p>
+      <p>While we were busy calculating airfare with the precision of a WAEC examiner marking scripts at midnight, the world was jolted by the dramatic "importation" of Venezuela's President Maduro, his wife, and their Attorney General to the United States. Before anyone could even whisper "geopolitics," our very own Honorable Ablakwa sprinted to the global stage with an "open statement" on Ghana's position. Osagyefo, the letter was so limp it could have doubled as a bookmark in a children's storybook. There is real danger in poking our noses into high-voltage American legal matters; one misplaced syllable and the US might simply announce, "No visas for Ghanaians," and that will be the end of our Miami pilgrimage.</p>
+      <p>Someone needs to gently remind the young man of the immortal words of the late Prof. Mills during the Gbagbo saga: Di wo fie asem. We are trying to go and watch football, not audition for a role in a Latin American coup documentary.</p>
+      <p>But if you thought that was the comedic peak, allow me to introduce Dr. Stephen Amoah. A man with a PhD in Actuarial Science a credential he wears like a bulletproof vest in a neighbourhood where no one is shooting. In his attempt to support his preferred candidate in the NPP primary, he delivered a monologue so chaotic it could qualify as experimental theatre. He proudly declared that he is one of only five people on Earth who have cracked a mysterious financial-economic model from 1964. A model so complex that even the global experts who never asked about it are still baffled. Truly, the world is ungrateful.</p>
+      <p>This is the same Dr. Amoah who, in 2019, faced questions about procurement breaches involving 1.1 million cedis paid to an audit firm to investigate whether his predecessor had misused 2 million cedis. In essence, he spent 1 million to find 2 million a financial strategy so innovative it deserves its own TED Talk. When the court asked if he should be held responsible, he delivered a "Yes and No" answer that plunged the room into philosophical crisis.</p>
+      <p>When confronted with the tape, Dr. Amoah claimed "doctoring," while performing some surgical-grade wordplay of his own. For a man who usually has an answer for everything, he suddenly seemed very busy tiptoeing around the facts. It was less an explanation and more a linguistic interpretive dance the kind that makes judges stare into the distance and reconsider their career choices.</p>
+      <p>A man of such rare brilliance should not be lobbying to be a minister in a country of barely 30 million people. He should be in Washington, marching straight into the IMF headquarters to demand his rightful position as Managing Director. After all, why settle for Ghana's budget when you can supervise the entire planet's?</p>
+      <p>And in a twist that surprised absolutely no one, word has reached us that the former Finance Minister has been "scouted" by ICE agents in America. It appears my suspicion was correct: the gentleman's travel plans were strictly one-way. And honestly, can we blame him for preferring an American holding cell over a Ghanaian greeting party? After witnessing Chairman Wontumi lose 50 pounds in a record-breaking 24-hour security-service fitness retreat, the Minister clearly decided he wasn't ready for that kind of "body transformation."</p>
+      <p class="sign-off">So long,</p>
+      <p class="signature">Ato KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 13: Toxicology Report -->
+<div class="modal-overlay" id="modal13" onclick="closeModalOnOverlay(event, 'modal13')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal13')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XIII</div>
+        <h2 class="modal-title">The Toxicology Report: What's Really in Our Drinks?</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>Word on the street is that the same government that scrapped the betting tax now wants to build a rehab center in the Ashanti Region for the very people who got addicted to betting because there was no tax. Sports betting and online gambling have become deeply woven into the fabric of youth culture in Ghana. Billboards line our streets, mobile apps make betting effortless, and celebrities endorse it with catchy slogans and promise laden jingles.</p>
+        <p>It&#x27;s a case of giving you the knife, watching you cut yourself, and then offering you a Band-Aid, with ribbon-cutting and media coverage, of course. Meanwhile, the government has decided to cancel licensure exams for professional teachers. A licensure exam acts as a quality control mechanism, ensuring that those entering the classroom have met a nationally recognized benchmark of competence.</p>
+        <p>Just as we wouldn’t want an unlicensed doctor treating patients or an uncertified engineer building bridges, we shouldn’t entrust our children’s education to individuals whose knowledge and teaching skills have not been formally assessed. Teaching is not simply about passing on information; it’s about managing classrooms, applying pedagogy, and adapting to diverse learning needs. In other news, GTEC has suddenly woken up and started sending love letters to people parading around as “Doctors” without the papers to back it up.</p>
+        <p>Enter Hasan Ayariga who, depending on the day, has either three doctorate degrees, two honorary titles, one academic credential. Turns out the university that awarded him his “diploma” in the U. S. Regis University might just be fake. Ask him a simple question, and by the time he’s done answering, you’ll be questioning your own existence. You won’t remember what you asked, why you asked it, or how you ended up in a philosophical fog, somewhere between confusion and a trance-like daze.</p>
+        <p>The days when our grandfathers brewed herbs in clay pots, filling the air with the healing aroma of neem leaves, are long gone. Back then, one whiff of that bitter steam and malaria would pack its bags. Even catarrh didn’t dare overstay its welcome. We’ve traded mortar and pestle for plastic bottles and powdered promises. Our new healers don’t live in the village shrine they ride trotro and set up shop in traffic.</p>
+        <p>Before your headache even arrives, they’ve sold you a cure. One magical powder to cure diabetes, piles, waist pain, broken hearts, and even erectile dysfunction talk about a miracle in a sachet. Some of these so-called &quot;medications&quot; are secretly loaded with psychotropics, which explains why people report “deep, restful sleep” not realizing they’ve basically been chemically sedated into dreamland.</p>
+        <p>What knocks you out at night also wakes up your appetite !! They wait patiently in lorries until the last seat is taken. The bus jolts forward and the sermon begins. For 10 to 15 minutes, you’re treated to a TED Talk on the wonders of a suspiciously unlabelled bottle and powders in sachets. To seal the deal, two “random” passengers rise to testify to its miraculous powers.</p>
+        <p>Occasionally, the driver chimes in with a confident nod, because if your trotro driver believes it, it must be true.</p>
+      </div>
+      <div class="letter-closing">
+        Doctors everywhere,<br>
+        <span class="signature">Ato_KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 14: Speeches Are Paper -->
+<div class="modal-overlay" id="modal14" onclick="closeModalOnOverlay(event, 'modal14')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal14')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XIV</div>
+        <h2 class="modal-title">Speeches Are Paper, Change Is Concrete</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>Your last presence at the United Nations General Assembly in 1961 remains a touchstone of African leadership. This year, the current President of the Republic stood on the same global stage in New York, albeit dressed in a colorful smock, to deliver his address to the world.</p>
+      <p>During your time, following the assassination of Patrice Lumumba after his appeal to the UN, you articulated the profound hope that the United Nations represented for world peace. Similarly, President Mahama delivered a powerful address, demanding greater representation for Africa within the UN Security Council structure and highlighting the fundamental injustices that contravene the organization's founding principles.</p>
+      <p>However, the history of this great hall is filled with beautiful speeches that earned standing ovations, from Madiba to the Otumfuo's keynote address six years ago, and, of course, Barack Obama. Again, history tells us anything, it's that the UN stage is a hall of beautiful, perishable rhetoric. These examples underscore a crucial truth: Words are fleeting and easily forgotten. People are ultimately remembered not by the eloquence of their speeches, but by the tangible changes they effect for humanity. Speeches are paper, change is concrete!</p>
+      <p>Here at home, President Mahama proved he knows the Constitution of Ghana inside and out, using its delicate clauses to expertly arrange the departure of a Chief Justice. Yet, shortly thereafter, he took to the UN General Assembly to champion a cause that seemed to forget the very nature of established power. He was there, passionately demanding reform and railing against the veto power enshrined in Article 27 of the UN Charter that beautiful little rule that lets any P5 member block a substantive resolution and ensures nothing truly binding happens against their core interests.</p>
+      <p>President Mahama once vowed to decisively tackle the destructive illegal mining known as "galamsey." Regrettably, his administration's approach has been arguably the worst in Ghana's history. It appears the fight against this menace has been abandoned, choosing instead to focus on benefiting from the gold proceeds rather than ending the practice that is destroying our water bodies like never before.</p>
+      <p>The landmark repeal of the criminal libel law under Kufuor is being aggressively undermined currently. Politicians, it seems, haven't learned the lessons of history and are rushing to embrace mechanisms that will ultimately silence them. The chilling warning holds true: "Freedom after the speech won't be guaranteed." All those beautiful speeches are wonderful, but you can't clean up a river with a standing ovation. Back home, your water is being destroyed like never before.</p>
+      <p class="sign-off">So much to do, so little done,</p>
+      <p class="signature">Ato_KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 15: Ankwanoma OSP -->
+<div class="modal-overlay" id="modal15" onclick="closeModalOnOverlay(event, 'modal15')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal15')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XV</div>
+        <h2 class="modal-title">Ankwanoma OSP: The Singing Prosecutor and the Bailed-Out Lawyer</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>You'll be amused to know that the theater of the absurd in our Republic has a new leading man: Martin Kpebu. It appears the man who once championed the cause of the downtrodden is now on a singular mission to perform a final magic trick, trying to make the Office of the Special Prosecutor (OSP) disappear entirely.</p>
+      <p>I remember when Martin first came onto the scene through Joy Newsfile. Back then, he was a very unassuming, learned lawyer, a shy gentleman who seemed to know the Constitution like the palm of his hand. He spoke with the quiet precision of a surgeon. But oh, how times change! The moment he started wearing "The Hat," the transformation was complete. The shy gentleman vanished, replaced by a legal warrior who started throwing missiles at anyone within range. It seems the more prominent the hat, the more explosive the rhetoric.</p>
+      <p>For years, this new, missile-launching Martin stood on a legal high horse, making a mockery of those unfortunate souls caught in the OSP's net who couldn't afford their bail. He famously declared with the confidence of a man who sleeps with a law ledger under his pillow—that as a "senior lawyer," it was practically impossible for him to be detained.</p>
+      <p>The irony reached its peak when he, a prominent member of ORAL, the team championing the prosecution and arrest of those who allegedly embezzled state funds, found himself being detained. He who called for the shackles of others suddenly felt the cold steel of the law. This happened after a spirited verbal altercation with security at the OSP office, where insults were reportedly traded like currency. After they "bundled" him away, the OSP office requested a landed property in his name as part of his bail, the ultimate "paperwork" punishment for a man who loves his law books.</p>
+      <p>How else is a lawyer supposed to defend himself if not with his words? Yet, his vocabulary led him straight to a cell. He was then slapped with the very same ridiculous bail conditions that he once ridiculed others for failing to meet. Watching a man who specializes in words being silenced by a demand for a deed was like watching a chef realize he's allergic to his own dish.</p>
+      <p>While Martin is busy trying to dismantle the office, the Special Prosecutor himself, Kissi Agyebeng, has taken to the airwaves with a surreal defense strategy. He had appeared on TV not just to argue law, but to quote Daddy Lumba's hit tune "Ankwanoma." He stood there like a lonely bird on a podium, singing about his soul and his "time being up" as if we paid the man to mime on a public stage. If we wanted highlife, we could have hired a band for a fraction of the OSP's budget, which, by the way, has apparently spent more money than it has actually collected.</p>
+      <p>The comedy is compounded by the political pivot of the NDC MPs. Suddenly, the very people who might have cheered for a strong OSP are calling for its head. It seems that when the "Senior Lawyer" of their liking gets caught in the gears, the whole machine must be scrapped.</p>
+      <p>Martin and his company now claim they possess damning information about the OSP, but he will only share it with the Governing Board. The catch? The Board apparently doesn't exist. It's the perfect legal stalemate: I have the smoking gun, but I'll only show it to the ghost in the room.</p>
+      <p class="sign-off">So long,</p>
+      <p class="signature">Ato KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 16: The Year 2025 -->
+<div class="modal-overlay" id="modal16" onclick="closeModalOnOverlay(event, 'modal16')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal16')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XVI</div>
+        <h2 class="modal-title">The Year 2025</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>The year began with the return of John Mahama to the presidency on January 7, promising a national &quot;reset.&quot; One of the first things he hit was the &quot;pause&quot; button on the judiciary, suspending Chief Justice Gertrude Torkornoo which eventually led to her dismissal. You’ll be pleased to hear that the Cedi has finally found its rhythm.</p>
+        <p>After years of falling faster than a ripe mango in a storm, the exchange rate against the Dollar has shown a stabilization that the government describes as a miracle and the rest of us describe as a hostage situation. We have progress, Osagyefo, but it’s the kind of progress where you’re standing still while the rest of the world moves forward in a V8. The most shocking revelation of the season, however, wasn&#x27;t about the economy, but about the &quot;priorities&quot; of the state.</p>
+        <p>It turns out that while thousands of our graduates are roaming the streets with degrees, the government allocated over GH₵292 million to procure sanitary pads for high school girls. Now, Osagyefo, dignity is important, but there is a certain Ghanaian irony in spending the nation’s last pesewas on a project where the math suggests we are buying pads at GH₵45 a pack when the market price is barely GH₵15. We are essentially grooming a generation to be the most hygienic unemployed people in sub-Saharan Africa.</p>
+        <p>We have successfully funded the &quot;cycle of nature&quot; while completely ignoring the cycle of the economy that would actually put food on the table for those same girls once they graduate. It has been a year of heavy hearts as well, as we said a final goodbye to the formidable Nana Konadu Agyemang-Rawlings. She left us as she lived, with fire and an unbroken record as our longest-serving First Lady.</p>
+        <p>But perhaps the loudest silence in the Republic comes from the passing of the legendary Daddy Lumba. The man whose voice was the soundtrack to our heartbreaks and our victory dances finally took his bow, leaving a void no karaoke-singing prosecutor could ever hope to fill.</p>
+        <p>Of course, in true Ghanaian fashion, even death became a lecture series. The &quot;Abusuapanyin&quot; took center stage, not just at the funeral, but in our national consciousness. We were treated to endless lectures about the supremacy of the family head and the confusing tug-of-war between ordinance marriage and customary marriage. This legal drama was personified by the &quot;Odo Broni&quot; and &quot;Serwaa Broni&quot; saga.</p>
+        <p>Following Lumba&#x27;s passing, we watched as the courtroom became the new concert hall. Akosua Serwaa, fought for sole recognition, while Priscilla Ofori, our local &quot;Odo Broni&quot; who stood by him for fifteen years, relied on custom. In the end, the court played a remix, ruling that both women were legitimate spouses. It seems even in death, Lumba remains a philosopher; he managed to prove that in Ghana, you can have a &quot;German&quot; contract and a &quot;Customary&quot; reality, and the law will simply tell you both can sit on the widow’s bench.</p>
+        <p>We spent the year watching the Special Prosecutor turn the office into a karaoke bar, singing Daddy Lumba hits while Martin Kpebu tried to burn the building down. Martin, a prominent member of ORAL who once called for the arrest of everyone under the sun, found himself &quot;bundled&quot; away by the OSP after a verbal altercation with a soldier. The NDC MPs, who once championed the office, are suddenly singing a different tune now that their favorite &quot;Senior Lawyer&quot; has been caught in the gears.</p>
+        <p>But as we look toward the future, the President has shared a story that has gripped the nation’s heart, or at least its sense of irony. Just last week, he recounted the trials he and Lordina faced immediately after they left office in 2016. He painted a picture of himself and Lordina traversing Accra like a modern-day Joseph and Mary, going from house to house trying to find shelter.</p>
+        <p>They had a &quot;modest&quot; house, he says, but it was occupied by Chinese tenants who couldn&#x27;t be evicted. So, they went looking for a place to rent, only for landlords to return their money once they realized it was the former President moving in. Imagine the scene, Osagyefo: the man who once held the keys to the country, knocking on doors only to be told &quot;there is no room in the inn.</p>
+        <p>&quot; It is a humble pilgrimage that reminds us all that in Ghana, today&#x27;s King can be tomorrow&#x27;s tenant. One can only hope that for the sake of our graduates, the next &quot;house&quot; we build has more room for jobs and fewer rooms for &quot;frakadam&quot; pad contracts.</p>
+      </div>
+      <div class="letter-closing">
+        So long, 2025,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 17: Power of the People -->
+<div class="modal-overlay" id="modal17" onclick="closeModalOnOverlay(event, 'modal17')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal17')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XVII</div>
+        <h2 class="modal-title">Power of the People</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="salutation">Dear Osagyefo,</p>
+      <p>The Electoral Commission has announced a rerun of the parliamentary election in Ablekuma North, following violent disruptions that led to the destruction of results from 19 polling stations. This comes after the Commission initially claimed it only needed security to collate results from three polling stations, a complete U-turn on their earlier position which clearly shows the incompetence of those in charge of our elections.</p>
+      <p>We queue for hours under the sun and rain, casting our votes to elect leaders, many of whom end up enjoying the perks of office and hefty ex gratia payments. And each time there's a by-election, we whisper prayers for peace, because our history reminds us: it's the poor who bleed when the political class battles.</p>
+      <p>Politics, like religion, has become the new opium, sedating the masses while empowering the few. Sometimes, it's hard to tell democracy from autocracy. After all, in this "democracy," police beat those they swore to protect. Journalists are assaulted in broad daylight, while officers look on. Why should elections be a do-or-die affair?</p>
+      <p>Sometimes, after watching yet another video of violence during a by-election, I ask myself: Who really holds the power? I was raised to believe that the power of the people is greater than the people in power, but these days, I'm not so sure. Not in our republic!</p>
+      <p>It's not hard to understand the growing apathy of the Ghanaian voter. When ballots are met with batons, and hope with hostility, even the most patriotic heart begins to falter. We have all the laws written in our books, yet we refuse to enforce them. Instead of building strong institutions, we are grooming chaos, raising hooligans on the streets while weakening the very systems meant to protect us.</p>
+      <p>Yes, we can revisit history and speak of how the Oyibo mistreated us, how our ancestors were sent away in chains. But how do we justify the harm we now inflict on our own people? How do we explain the killing of our fellow citizens — not by colonizers, but by ourselves?</p>
+      <p>These politicians will trade blame, point fingers at one another, and then retreat into silence, until the next by-election stirs them awake. We have placed immense power in the hands of the IGP, who serves at the pleasure of the President. Since assuming office, he has inherited a nation at a crossroads, and this, right now, is his first true test.</p>
+      <p class="sign-off">It's deeply disheartening,</p>
+      <p class="signature">Ato_KD</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 18: Ghost of New Year's Resolutions -->
+<div class="modal-overlay" id="modal18" onclick="closeModalOnOverlay(event, 'modal18')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal18')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XVIII</div>
+        <h2 class="modal-title">Ghost of New Year's Resolutions</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>As the calendar flips once more and we stand at the threshold of another year, I find myself reaching back through the fog of time to speak with you. We are currently in that strange, transitional season where the Republic is filled with &quot;New Year, New Me&quot; declarations. We write down resolutions with the fervor of a prophet, promising to turn a new leaf, to conquer the gym, and to save every pesewa.</p>
+        <p>Yet, as surely as the sun rises, we know the truth: by the second week of January, those resolutions will be buried under the weight of reality, and that &quot;new leaf&quot; will look suspiciously like the old one we tried to discard. But we must face the hard truth, Osagyefo: change will not happen unless we change our ways. We look to the Jubilee House for a &quot;Reset,&quot; but we refuse to reset our own hearts.</p>
+        <p>We complain about the state of the nation while throwing litter into the gutters; we cry about corruption while seeking &quot;whom we know&quot; to bypass the queue. We want a new Ghana, but we are holding tightly to the old, selfish habits that brought us here. A new year is just a change of date; a new life requires a change of direction. I miss the quiet dignity of the good old days.</p>
+        <p>The New Year’s Eve services of our youth. We went to church to seek the face of the Creator, not to hear a theatrical performance. We closed early, walking home under the stars with a simple sense of peace. There were no &quot;Watch Night&quot; spectacles filled with doom-laden prophecies or competitive predictions about which celebrity might fall.</p>
+        <p>The altars were for prayer, not for political commentary or sensationalism. In those days, the church was the star of the show, not the man behind the pulpit. If you walked through the neighborhood, you would see a simple wooden signpost with an arrow pointing the way to the sanctuary. Today, those signposts have been replaced by towering, glossy billboards featuring the &quot;Man of God&quot; in a three-piece suit, looking more like a corporate CEO than a humble servant.</p>
+        <p>We have traded the direction to the Cross for a map to a personality.</p>
+        <p>And what of the Harmattan? The January winds still blow, but they felt different then. I remember the sharp, biting chill of the early morning air that made us shiver even under heavy cloth. We walked to school with our feet and shins turned a ghostly white, the &quot;ashy&quot; badge of honor that no amount of pomade or Shea butter could truly defeat.</p>
+        <p>We would spend half the morning trying to hide our cracked heels, a testament to the dry, dusty breath of the Sahara. The air back then carried more than just dust; it carried the aroma of the season. The scent of the Christmas stew? It was a distinct, rich perfume that hung over the entire neighborhood. You didn&#x27;t need to be invited to a house to know what was cooking.</p>
+        <p>The combination of slow-simmered tomatoes, ginger, and fried meat created a fragrance so potent it seemed to weave through the narrow alleys and over compound walls. Now, as we struggle to keep goals that melt away before the Harmattan even clears, I find myself wishing we could return to that simplicity. We are so busy chasing the &quot;new&quot; that we have forgotten the beauty of the &quot;old&quot; the peace of a silent night, the humility of a simple signpost, and the honest, ashy reality of a January morning.</p>
+        <p>We pray for a better year, but perhaps we should pray for better versions of ourselves.</p>
+      </div>
+      <div class="letter-closing">
+        So long,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 19: Shatta and the Street Receipts -->
+<div class="modal-overlay" id="modal19" onclick="closeModalOnOverlay(event, 'modal19')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal19')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XIX</div>
+        <h2 class="modal-title">Shatta and the Street Receipts</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>It has been too long since I’ve written to you about the pulse of our motherland. My pen has been heavy, and my usual witty tone felt utterly inappropriate. Ghana has been draped in a dark cloak of mourning, and the grief is still raw. It began with the loss of Charles Kofo Fosu, a musician so profound, so iconic, that his passing felt like the silencing of a national song.</p>
+        <p>We are still reeling from his absence, yet tragedy kept striking. His death was just the beginning. Next, a horrifying road accident claimed the lives of 16 vibrant young souls, futures extinguished in an instant. Then, as if the heavens themselves were weeping, a helicopter crash in the Ashanti region stole five government officials and three crew members.</p>
+        <p>And here, Osagyefo, is where my heart turns to fire. In the wake of these devastating events, a bizarre narrative has emerged. Where were our great prophets? They were silent on the musician and the innocent youth, yet they somehow “prophesied” the final tragedy, the one that involved those in power.</p>
+        <p>In a move that feels like a slap to the face of every ordinary citizen, a new government office has been created, dedicated solely to these prophecies about officials. It seems the lives of our everyday people, the ones who truly make up this nation, don&#x27;t matter enough to warrant a divine warning. It appears those not in government do not matter.</p>
+        <p>The message is as clear as day, and it burns with an injustice that cannot be ignored. This week, Ghana was gripped by a new saga involving a gentleman named Ralph and Ridge Hospital. The narrative goes that Ralph, hearing of some commotion at the hospital&#x27;s emergency unit, rushed there to capture the scene on camera. In a twist of fate, he was involved in an accident on the way and became a patient himself.</p>
+        <p>After a frustrating wait and a request to get a medical card, he lost his temper, assaulted a nurse, and recorded the entire incident to share online. His actions have sparked a heated debate. Some believe he went too far, while others, who have endured terrible experiences with healthcare professionals, are supporting him.</p>
+        <p>This incident highlights a crucial point that needs to be explained to the Ghanaian public: the system of triage in emergency units. The emergency room is not like a &quot;waakye&quot; queue where people are served on a first-come, first-served basis. It&#x27;s also not an outpatient department. Nurses and staff must prioritize patients based on the severity of their conditions.</p>
+        <p>You might be the first person to arrive with a minor cut, but someone with a bleeding wound or difficulty breathing will be treated first, this is standard procedure in every emergency room worldwide. We must also consider the nurse-to-patient ratio, which is often critically low, leading to inevitable delays in care. Nevertheless, the attitudes of some healthcare professionals are genuinely appalling.</p>
+        <p>It&#x27;s not uncommon to see nurses on duty doing TikTok live streams. Regardless of whether this is done during breaks, the optics are terrible, making it seem as though some healthcare workers are insensitive to the plight of the sick. We&#x27;ve also heard stories of nurses on night duty who nap, and doctors who sleep at home, having to be called in for emergencies.</p>
+        <p>This kind of negligence is unacceptable when human lives are at stake. Finally, we come to the grand finale of this week&#x27;s drama: the &quot;Dancehall King&quot; himself, Shatta Wale. For a man who&#x27;s built his brand on the mantra of &quot;Paah Paah” , a sound that, as it turns out, is anything but golden. All that extensive bragging about his wealth and his &quot;street&quot; connections has landed him in a very different kind of street: a legal one.</p>
+        <p>He was recently a special guest of the Economic and Organized Crime Office (EOCO) for a little chat about a Lamborghini he supposedly bought &quot;off the streets.&quot; Apparently, he&#x27;s so good at keeping his past in the rearview mirror that he can&#x27;t seem to locate the paper trail or even remember the person he &quot;got the car from.&quot;The plot thickens with a delicious dose of irony.</p>
+        <p>The car&#x27;s real owner, a Mr. Amugi, is currently enjoying a stay in a U. S. prison and needs the luxury vehicle back for restitution. It&#x27;s safe to say Shatta Wale is in deep waters, the kind you can&#x27;t just sail a yacht through. And in a final act of devotion that could only happen in Ghana, while their artist and his lawyer were being interrogated, his fans showed up at the EOCO premises.</p>
+        <p>They didn&#x27;t come to protest; they came to dance to his music. Because when your king is in trouble, what else is there to do but throw a party?</p>
+      </div>
+      <div class="letter-closing">
+        I promise to continue updating you,<br>
+        <span class="signature">Ato_KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 20: Stampeded Dreams -->
+<div class="modal-overlay" id="modal20" onclick="closeModalOnOverlay(event, 'modal20')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal20')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XX</div>
+        <h2 class="modal-title">Stampeded Dreams</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>I know it’s always misery after misery whenever I have to write to you. Frankly, some of my friends who read my last letter begged me not to bother you with another one, but this one, I’m afraid, is newsworthy. Just a few days ago, we received the report on the gentle souls who perished in that helicopter crash. Before we could even catch our breath, tragedy decided to pay another visit.</p>
+        <p>Apparently, last year, the military decided to sell recruitment forms for 350 Ghana cedis each. About 90,000 desperate young people, jobless, hopeful, and clutching dreams, bought those forms. That’s roughly 31.5 million cedis made off the unemployed, all to recruit just 3,000 people. In other words, only 0.3 percent made it in. And then today, as if on cue, thousands once again converged at the El Wak Stadium, men and women alike, chasing the same dream.</p>
+        <p>When the gates opened, the human wave surged, and six young women lost their lives in the stampede, many injured and a few in critical condition. Six souls gone, just trying to get a job. They left their homes at dawn, full of hope and promise. Their families prayed they’d return safely. A stampede was the last thing anyone imagined. Mind you, this year’s process was supposedly discounted.</p>
+        <p>Applications were online. You could buy an e-voucher at the post office or dial a short code and pay 200 cedis. You’d get a pin, fill out your form, and then, because this is Ghana, you’d still have to show up in person under the blazing sun, praying not to be trampled. Physical appearance, not intellect, remains the main criteria. You’d think the army would at least test for brainpower before letting people carry guns.</p>
+        <p>But then again, it wasn’t long ago that a uniformed military man was filmed beating a woman and pharmacy attendant at a pharmacy in the most barbaric way imaginable.</p>
+        <p>We must channel this strength, this collective grief and outrage , into building safeguards that ensure such a tragedy never happens again. The military, after all, is held to a higher standard; we look to them for discipline, precision, and dignity. Yet today, we saw none of that. Instead, hopeful young people were made to sit on bare floors, stand in endless queues under the sun, and endure indignities , all in the name of measuring bodies and checking papers.</p>
+        <p>To add insult to injury, a senior military officer appeared to “set the record straight” with all the emotional intelligence of a stone. People’s children have died through the military’s negligence, yet her only concern was statistics. No apology. No condolences. Not even a flicker of empathy. Madam, even one death from this exercise is one too many , a needless, avoidable tragedy Soon, as tradition demands, a “committee” will be formed.</p>
+        <p>They’ll sit, eat, collect allowances, and after a few months, produce a fine report for the archives, to be shelved next to the others gathering dust. And the cycle continues.</p>
+      </div>
+      <div class="letter-closing">
+        Yours in frustration,<br>
+        <span class="signature">Ato_KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 21: The Cedi's Comedy and the Taylor Saga -->
+<div class="modal-overlay" id="modal21" onclick="closeModalOnOverlay(event, 'modal21')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal21')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXI</div>
+        <h2 class="modal-title">The Cedi's Comedy and the Taylor Saga!</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>It seems our economy is having a bit of a laugh lately. The cedi, bless its stable heart, has been holding strong against the dollar for a solid three months. Our Finance Minister even grandly declared in Parliament, &quot;Cedi no apicky!&quot; a bold statement, considering it appears to be picking a fight with anyone trying to actually get their hands on dollars.</p>
+        <p>Importers and exporters are throwing their hands up in despair; it’s easier to find a unicorn than a dollar in a bank. But fear not, the &quot;abokyi boys&quot; are quite in business, leaving the dollars to magically appear, for a couple of cedis more per dollar, whenever you need them. Meanwhile, the Supreme Court has delivered a decision that&#x27;s left many scratching their heads.</p>
+        <p>A gentleman with an outstanding arrest warrant, defying all logic and legal precedent, waltzed back into the country and straight into the apex court to challenge his warrant as a free man. One has to wonder if the immigration officers were on a coffee break when he landed. This same individual, from the cozy confines of his basement, has been quite the orator, using his microphone to verbally insult and threaten almost every prominent person on the land, not even sparing His Majesty the Otumfour.</p>
+        <p>Historically, insulting our revered traditional leaders was akin to touching a live wire, serious taboo. One would typically don their Sunday best, gather elders, and make a pilgrimage to the palace to beg for forgiveness. But these days, thanks to the wild west of social media, any &quot;nincompoop&quot; can hide under their mother&#x27;s bed and unleash a torrent of insults to a captivated global audience.</p>
+        <p>It&#x27;s truly a marvel how people flock to watch live as presidents and even our traditional leaders are publicly lambasted. Oh, and speaking of his oratorical escapades, there&#x27;s also that tidy GH¢2.9 million defamation judgment against him, courtesy of Ace Ankoma.</p>
+        <p>We&#x27;re all eagerly awaiting the Supreme Court&#x27;s full explanation for why four of its esteemed judges thought it was perfectly legal to quash an arrest warrant for someone who seemingly defied it, all in the name of audi alteram partem,the principle of being heard before judgment. The glaring question, of course, is how exactly one is &quot;heard&quot; if not summoned through an arrest warrant to court when it was clear he was not going to show up voluntarily. As Mr.</p>
+        <p>Taylor exited the courtroom, even victorious, he seemed to be gasping for air like a pregnant woman in labor, perhaps the sudden weight of his freedom was just too much to bear. When asked about this bewildering situation, our Defense Minister offered a truly insightful, and utterly sarcastic, gem: he&#x27;s no immigration officer, so ordering an arrest wasn&#x27;t exactly in his job description. Oddly enough, we hear national security has been moonlighting as his personal chauffeurs, escorting him to and from the streets of Accra.</p>
+        <p>If this bloke slips away without Nananom&#x27;s invitation, the gods are going to be seriously ticked off. He&#x27;ll then probably think he&#x27;s hot stuff, even bold enough to start insulting the gods themselves!</p>
+      </div>
+      <div class="letter-closing">
+        Sincerely,<br>
+        <span class="signature">Ato_KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 22: The Chief Justice Nominee's Controversial Confession -->
+<div class="modal-overlay" id="modal22" onclick="closeModalOnOverlay(event, 'modal22')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal22')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXII</div>
+        <h2 class="modal-title">The Chief Justice Nominee's Controversial Confession</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>Today has been pregnant with drama. Remember how I whispered that President Mahama promised to “reform” a whole arm of government? Well, he delivered. Chief Justice Torkonor was ceremoniously removed not unlike how you eased out Arko Korsah in your heyday. Now, the nominee for her replacement , the gentleman who’d been warming the bench in her absence, appeared before Parliament for vetting, and what a spectacle that was.</p>
+        <p>Afenyo Markin, our Super Minority Leader, began with Shakespearean flourish quoting from The Merchant of Venice, Act 1 Scene 7 . He waxed poetic about moral duty and loyalty, though I’m still unsure whether he meant to protect the Supreme Court or Torkono&#x27;s seat. Mr Markin fought tooth and nail to halt the proceedings, but Hon. Ayariga , head of government business and resident parliamentary bulldozer gave them no breathing space, not even for opening remarks.</p>
+        <p>Frustrated, they stormed out, visibly fuming, leaving the some of us to wonder if “partial attendance” is rewarded with a &quot;sitting allowance&quot;. The Majority, on the other hand, treated the nominee, Justice Bonney, to a verbal spa day. They massaged his ego so tenderly that the man relaxed into the hearing like it was Sunday brunch. So comfortable was he that he blurted out, almost proudly, hat he’d once sentenced the infamous armed robber Ataa Ayi to 70 years in prison because, quote, “By the time he returns, I’ll be long gone.</p>
+        <p>”Now, Osagyefo, that’s the sort of remark that makes you wonder if our robes of justice are lined with irony. For a man seeking to be Chief Justice, one might expect a touch of restraint. But no. It was as if he’d forgotten the mic was on and the entire world watched and or listened. Ataa Ayi was far from an innocent man, and a compelling case can be made that, based on his deeds, no clemency was warranted.</p>
+        <p>Mind you, Torkonor’s sins were hardly mortal, yet here comes Bonney, casually confessing judicial overreach like it’s an anecdote over drinks. One would think he’d take that one to the grave. Our prisons are meant to rehabilitate, not merely punish. The law prescribes life imprisonment for the irredeemable not 70-year acts of judicial prophecy. The fact that no one pushed him to clarify the remark says it all: the vetting was more rubber-stamp than review.</p>
+        <p>And where was our literary crusader, Afenyo Markin, in that moment? Ah, Osagyefo, probably at the nearest chop bar, jacket removed, tie released, long sleeves folded neatly to the elbow, whistling cheerfully as he conquered a steaming bowl of fufu, utterly unbothered by the unfolding constitutional comedy. So, the curtain falls. The Chief Justice–in-waiting glides on, the opposition storms off, and justice suffers !</p>
+      </div>
+      <div class="letter-closing">
+        So long,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 23: The Herculean Task of Prof. H. Kwasi Prempeh -->
+<div class="modal-overlay" id="modal23" onclick="closeModalOnOverlay(event, 'modal23')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal23')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXIII</div>
+        <h2 class="modal-title">The Herculean Task of Prof. H. Kwasi Prempeh and Co</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>If you thought our local bitters were the only things with too many toxic ingredients, wait until you hear about our latest attempt to &quot;fix&quot; the 1992 Constitution. We are back at it again, Osagyefo, polishing the family heirloom that everyone complains is too heavy to carry, yet no one wants to actually put down. President Mahama, in his &quot;Reset&quot; spirit, has inaugurated a new Constitutional Review Committee chaired by Prof.</p>
+        <p>H. Kwasi Prempeh. (I still haven&#x27;t figured out what the &quot;H&quot; stands for, but judging by the gravity of his task, I suspect it might be &quot;Herculean&quot; or perhaps just &quot;Help.&quot;) Interestingly, the Professor remarked that they realized the President himself &quot;didn&#x27;t like&quot; certain powers he currently holds. He may have said it in jest, but it certainly gave the impression that the committee’s primary job description is to curate a list of powers the President is tired of wearing, like a tailor helping a King pick which robes to donate to charity.</p>
+        <p>It’s a touching sentiment, though it does make one wonder if the committee is there to serve the sovereign people or simply to &quot;please the President&quot; by lightening his heavy, gold-plated burden. One of the more ambitious whispers coming out of the committee is the proposal to stretch the presidential term from four years to five. The argument is that four years is barely enough time for a leader to find the keys to the Flagstaff House, let alone fix the nation.</p>
+        <p>However, it seems our leaders have forgotten a simple Ghanaian truth: if you do well in your first term, the people will gladly gift you another four years. We’ve managed eight-year stretches just fine since 1993 without needing to move the goalposts mid-game. Seeking a longer &quot;initial&quot; term feels less like a request for more time to work and more like a lack of confidence in one’s ability to impress the voters before the first four years are up.</p>
+        <p>Across our borders, we’ve seen exactly where this &quot;extra year&quot; logic leads. In many Francophone countries, tinkering with terms is the gateway drug to a &quot;constitutional coup.&quot; We’ve watched as leaders in the Sahel and beyond extend their stay, only for the military to decide that if the ballot box won&#x27;t provide a change, the barracks will.</p>
+        <p>From Guinea to Gabon, the story is the same: when you try to overstay your welcome by rewriting the rules, someone eventually tries to topple the government. An extra year in a comfortable seat might seem like progress to a politician, but in our neighborhood, it often looks like an invitation for a mutiny. Then there is the matter of the Supreme Court, which currently has no cap on how many judges can sit there.</p>
+        <p>It’s like a commercial bus that never actually fills up; if the President doesn&#x27;t like the current passengers, he just adds more rows of seats and brings in his own friends. The committee is suggesting a &quot;ceiling,&quot; which seems sensible to everyone except those holding the hammer. In Ghana, we prefer our ceilings to be made of glass easy to see through and even easier to break when a &quot;legal necessity&quot; arises.</p>
+        <p>We’ve reached a point where the bench is getting so crowded that the justices might soon have to start sitting on each other&#x27;s laps just to fit in the room. This lack of a cap is exactly the kind of &quot;constitutional detergent&quot; that allows an administration to wash away any judgment they don&#x27;t like. And I cannot ignore the holy grail of political benefits: Article 71.</p>
+        <p>This is the section that ensures the &quot;big men&quot; are well-fed while the rest of the country debates if they can afford a tin of milk. The committee is looking at the salaries and ex-gratia payments that make our politicians the most comfortable paupers in the world. Every time someone mentions cutting these, the room goes as quiet as a cemetery at midnight.</p>
+        <p>Even the opposition, usually so loud with their Shakespearean quotes and Macbethian drama, becomes remarkably silent when the conversation turns to their own retirement packages. It appears that while we can’t agree on how to fix the roads, everyone is in total harmony about keeping the ex-gratia flowing.</p>
+        <p>So here we are, Osagyefo, back in the cycle of reviewing the review. We spent millions on the 2010 review only to ignore it, and now we are treating the 2025 committee like it’s a brand-new discovery. We have become professional &quot;reviewers&quot; who will continue to study the problem until the original problem is forgotten or we simply run out of paper. Whether these findings will lead to a real change or just end up as a very expensive doorstop at the Flagstaff House remains to be seen. I suppose if we can’t fix the industrial detergent in our herbal drinks, fixing the &quot;chemicals&quot; in our Constitution is a tall order indeed.</p>
+      </div>
+      <div class="letter-closing">
+        So long,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 24: The Millionaire in a Jumpsuit -->
+<div class="modal-overlay" id="modal24" onclick="closeModalOnOverlay(event, 'modal24')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal24')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXIV</div>
+        <h2 class="modal-title">The Millionaire in a Jumpsuit, Apostle of Apology, and the CEO's Legal Backfire</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>The Republic remains the gift that keeps on giving, Osagyefo. This week, the surprises were served hot, with a side of international irony that even the most creative screenwriter couldn&#x27;t invent. First, let’s talk about our former Finance Minister. Remember I mentioned he was in the firm, cold grip of the American immigration system? Well, the footage from his bond trial dropped this week, and it was a sight for sore eyes, specifically, eyes that remember him as the untouchable architect of our &quot;miraculous&quot; economy.</p>
+        <p>Seeing a billionaire in a black inmate jumpsuit, peering through his glasses at a judge who doesn&#x27;t care about &quot;bonds&quot; in the Eurobond sense, was a sobering spectacle. Back home, this is a man who could practically import snow to Ghana if he felt like skiing. It makes one wonder: does he now regret not trusting the Ghanaian justice system?</p>
+        <p>If he were here, he could afford any bail condition, hire a fleet of lawyers to argue &quot;competent jurisprudence&quot; until the next century, and enjoy several bowls of fufu while the &quot;wheels of justice&quot; ground to a complete halt. Instead, he’s in an ICE detention center, where the hospitality is reportedly less &quot;fufu and light soup&quot; and more &quot;homicide and inhumane treatment.&quot; The ice, it seems, has finally met the man who once thought he could freeze the national debt.</p>
+        <p>Then there is the Honorable Ken Agyapong. In a classic &quot;Ken moment,&quot; he boldly accused a colleague of being a liar on national TV, only to discover , oops, that he was the one holding the wrong end of the truth. Well, he issued an apology. But get this, Osagyefo: it wasn&#x27;t one of his usual three-hour monologues. It was an open letter.</p>
+        <p>But the &quot;Apostle of Peace&quot; wasn&#x27;t done. He was later seen throwing a tantrum over a peace agreement document that all aspirants were supposed to sign. He claimed he didn&#x27;t agree with the terms, despite the fact that the document had been sent to him prior to this event. Finally, we have the curious case of Dr. Randy Abbey, the former talk show host who used to sit on TV as the self-appointed repository of all common sense, throwing shade at the previous administration until he was handed the keys to COCOBOD.</p>
+        <p>And what has our &quot;learned gentleman&quot; been up to? Well, it seems someone hurt his feelings on the airwaves, and rather than using his own money to fight his battles, he called in the COCOBOD legal team to file a defamation suit on his behalf. The irony is thicker than cocoa butter, Osagyefo. He used government lawyers as his personal pawns.</p>
+        <p>Fortunately, the court had a &quot;common sense&quot; moment of its own, dismissing the case and delivering a ruling that should be tattooed on the forehead of every appointee: Government resources are not your personal ATM. Using state-salaried lawyers to settle a personal score was a &quot;gross abuse of office.&quot; The judge took a swipe at the COCOBOD lawyers themselves, questioning why they didn&#x27;t advise their boss that they aren&#x27;t his private &quot;legal hitmen.</p>
+        <p>Ebi the yawa of the year !!</p>
+      </div>
+      <div class="letter-closing">
+        Obia boa,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 25: The Republic's Latest Drama -->
+<div class="modal-overlay" id="modal25" onclick="closeModalOnOverlay(event, 'modal25')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal25')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXV</div>
+        <h2 class="modal-title">The Republic's Latest Drama: A Tale of Gold, Grief, and the New CJ</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>I know it&#x27;s been a while since I updated you on the happenings in the Republic. I just spent a glorious, albeit brief, time back home, catching up with family, friends, and folks from yesteryear. The experience was a delightful return to basics. I was awoken each morning by the rousing call of a cock, and I thoroughly enjoyed the fresh evening breeze.</p>
+        <p>Of course, the nights were occasionally interrupted by the buzz of a mosquito, whether a female or not, I can&#x27;t be sure and I, like any Ghanaian, blamed any feeling of uneasiness on its bite, promptly diagnosing myself with malaria. A lot has happened since my last letter. Asanteman successfully laid the queen mother to rest amidst a splendid display of culture.</p>
+        <p>It was an event so grand and so perfectly captured that it was a reminder that social media can, occasionally, be a force for good. The saga of the former Chief Justice, Gertrude Torkornoo, continues. It seems she&#x27;s not content with just losing her job; she&#x27;s back in court, armed with a constitutional loophole. She argues that her role as Chief Justice was merely administrative, and the president lacks the authority to remove her as a Supreme Court judge under the current constitution.</p>
+        <p>The irony, of course, is delicious: the very Supreme Court she once headed will now hear her case. Justice Baffoe-Bonnie has been named the new Chief Justice. He&#x27;s the senior-most justice on the bench and seems to have all the qualities to lead. Let&#x27;s hope his tenure is less dramatic and more focused on, you know, justice. The debate over our perpetually polluted water bodies has taken a truly surreal turn.</p>
+        <p>While we&#x27;ve all been busy fighting the good fight against galamsey, President Mahama has apparently had a political epiphany. In a stunning reversal, he&#x27;s now suggesting that instead of battling the gold dredgers, we should embrace the new national mantra: &quot;If you can&#x27;t beat them, join them... or at least profit from them.&quot;This is quite the shift for the man who, as the opposition leader, practically begged Ghanaians for a chance to save our rivers.</p>
+        <p>It seems the lure of the gold is stronger than the memory of his own impassioned speeches. Perhaps he&#x27;s found a way to filter the gold out of the mud and sell it, turning our environmental disaster into an economic opportunity. The irony, of course, is as thick as the polluted water he once swore to protect.</p>
+        <p>The tragic loss of eight gallant men in the helicopter crash near Obuasi must serve as a stark and urgent reminder to the president to redouble his efforts in the fight against galamsey. If their deaths do not prompt decisive action, then their sweet lives will have been lost in vain.The cedi, on the other hand, is in a state of utter suffocation against the dollar, gasping for air with each passing day. The Finance Minister, it seems, has chosen this precise moment to stage a disappearance act.</p>
+      </div>
+      <div class="letter-closing">
+        Sincerely,<br>
+        <span class="signature">Ato_KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 26: The Heart Surgeon's Lament -->
+<div class="modal-overlay" id="modal26" onclick="closeModalOnOverlay(event, 'modal26')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal26')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXVI</div>
+        <h2 class="modal-title">The Heart Surgeon's Lament and the Digital Future</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>As the Harmattan dust begins to settle on 2026, the Republic is witnessing a most peculiar sight: a man who knows the inner workings of the human heart better than anyone else seems to be struggling with the state of his own. I am speaking, of course, of Professor Frimpong Boateng. The legendary heart surgeon, who famously chose the Ministry of Science, Technology, and Innovation over the Ministry of Health, has now taken to the airwaves to lambast the very party that gave him a seat at the table.</p>
+        <p>In a twist of irony that would make a playwright blush, the Professor has spent his recent interviews praising your good self, Osagyefo, and the late Jerry John Rawlings. While we all admire your vision, it is fascinating to watch a stalwart of the tradition that opposed you both now using your names as a whip to lash his own colleagues. The analog era, great as it was, has served its purpose.</p>
+        <p>He cannot select for Ghanaians which path to walk when the world has moved from stethoscopes to algorithms. Is it time to allow the youth to enjoy their “Digitalization Era” with Dr. Mahamudu Bawumia? There is a certain grace in knowing when to hand over the baton. We are in a season where we must remember that one day, God will search our hearts, not for the bitterness we harbored or the political scores we tried to settle, but to see whether we used them to serve humanity with love, purpose, and compassion.</p>
+        <p>It was painful to watch the Professor on UTV, where the interviewer was so caught up in the drama that they forgot the most important question: “Prof, with all this fire in your belly, are you willing to put your name forward as the flagbearer for the NPP?” Instead, we were left with a one-sided critique that felt more like a grievance than a blueprint. Osagyefo, even in his frustration, the Professor occasionally stumbles onto a point worth considering.</p>
+        <p>When he argues that selling or leveraging our natural resources more strategically could benefit the nation in the long run, he may not be entirely wrong. But resources alone will not save us. What this country desperately needs is the strengthening of its greatest asset: its people. Without serious investment in human resource development, skills, innovation, discipline, and leadership, no amount of gold, timber, or lithium will carry us into the future.</p>
+        <p>Minerals may build wealth, but minds build nations. The truth is, looking across the political divide toward the 2028 elections, there is no candidate more visionary than Dr. Mahamudu Bawumia, it is not even close in the NPP. While others are looking into the rearview mirror of the 1970s and 80s, the “Digital Man” is looking at the 2030s. Prof should be at home mentoring the next generation of surgeons, not on television trying to restart an engine that has already been replaced by a more efficient model.</p>
+        <p>We respect the legend, but we choose the future.</p>
+        <p>Enter Ken Agyapong, the aspirant who wants to lead the party but somehow forgot the first rule of leadership: check your facts before you check your opponents. Instead, he stormed onto the scene swinging wildly, mocking, accusing, and declaring lies with the confidence of a man who had not read his own briefing notes. He was visibly upset , about what exactly, only he and his blood pressure monitor could tell.</p>
+        <p>In a long, winding monologue that promised fireworks but delivered fog, he failed to articulate a single coherent plan for the nation. Instead, he devoted his energy to casting aspersions and tossing innuendos at his main opponent , the very opponent who, by all indications, will be elected at the end of this month, come what may. It was less a campaign message and more a dramatic soliloquy from a man who knows the curtain is about to fall.</p>
+      </div>
+      <div class="letter-closing">
+        So long, 2026,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 27: The Galamsey Games -->
+<div class="modal-overlay" id="modal27" onclick="closeModalOnOverlay(event, 'modal27')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal27')">&times;</button>
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <div class="modal-letter-number">Letter XXVII</div>
+        <h2 class="modal-title">The Galamsey Games and Political Theatre</h2>
+      </div>
+    </div>
+    <div class="modal-body">
+
+      <div class="letter-salutation">Dear Osagyefo,</div>
+      <div class="letter-body">
+        <p>The news from home now comes with such velocity that I can barely catch my breath. It’s not so much a stream of updates as it is a political firehose aimed squarely at the face.Let me first applaud the Food and Drugs Board. They’ve truly found their stride , now catching adulterated herbal mixtures as if competing for Olympic glory. My earlier observations, it seems, were just the teaser to the full-blown absurdity they’re now courageously documenting.As for the galamsey fight, or perhaps we should now call it the Galamsey Games, it continues to supply the nation with endless comedic relief. This week’s episode featured a mob in Bronikrom physically blocking the arrest of illegal miners. Civic engagement, Ghana-style: democracy with a touch of rugby.</p>
+        <p>Naturally, our dear MPs have joined the fray. One was reportedly basking in foreign sunshine while remotely directing proceedings, and the other, Ebenezer Kwaku Addo of Asutifi North, graced the courts soon after. While the average citizen might still be stewing in a cell, Mr. Addo glided out on a GHS150,000 bail living proof that in Ghana, your political title is worth far more than your house deed.</p>
+        <p>Adding insult to irony, the honorable gentleman was later seen in Parliament, scrolling idly through his phone while serious business unfolded around him. One assumes he was checking whether the “rule of law” was trending on social media. Now, here’s where the irony positively sparkles: the very people who once showered Dr. Ayine with praise for his fearless press briefings and his refusal to give others the benefit of the doubt are now preaching patience and “fair hearing” for Mr.</p>
+        <p>Kwaku Addo. The sudden discovery of due process, how refreshing!</p>
+        <p>One might have expected Dr. Ayine himself to emerge from his corner, lectern in place, ready to prosecute with the same fervor he’s shown in the past. But alas, when the accused wears an NDC MP’s lapel pin, both lectern and outrage go missing in action. Then, as if the plot weren’t tangled enough, in came Muntaka Mubarak, the Interior Minister, declaring that Phyllis Naa Koryoo had denied any knowledge of violence during the Awutu Senya election , the very incident that left one person dead.</p>
+        <p>This, mind you, is the same Ms. Koryoo who once gave a vivid, Oscar-worthy account of Hawa Koomson and her men firing three gunshots. But now, those shots seem to have been discharged only in her dreams. The guns have vanished, the witnesses have evaporated, and truth itself appears to be on an extended sabbatical.</p>
+        <p>And yet , no arrest, no caution, no consequence. In our dear republic, political fiction isn’t just tolerated; it’s practically a national pastime. Facts are optional, spin is mandatory, and amnesia is a career asset.And then, in a plot twist worthy of a telenovela, Naa Koryoo held a press conference to refute the Interior Minister’s account of her own denial. You really can’t make this stuff up, Osagyefo. In Ghanaian politics, contradiction isn’t a problem, it’s a performance art.</p>
+      </div>
+      <div class="letter-closing">
+        So long,<br>
+        <span class="signature">Ato KD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    stopAllAudio();
+  }
+
+  function closeModalOnOverlay(event, id) {
+    if (event.target.id === id) {
+      closeModal(id);
+    }
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(modal => {
+        modal.classList.remove('open');
+      });
+      document.body.classList.remove('modal-open');
+      stopAllAudio();
+    }
+  });
+
+  // Mobile nav toggle
+  function toggleMobileNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+
+  // Filter functionality — re-queries articles each time so it works with dynamic content
+  function initFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        const articles = document.querySelectorAll('.article-featured, .article-standard');
+        articles.forEach(article => {
+          if (filter === 'all' || article.dataset.category === filter) {
+            article.style.display = '';
+            article.style.animation = 'fadeIn 0.5s ease';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // Build filter buttons dynamically from loaded letters
+  function updateFilterButtons(letters) {
+    const container = document.querySelector('.filter-container');
+    if (!container) return;
+    // Count categories
+    const counts = {};
+    letters.forEach(l => {
+      const cat = l.category || 'General';
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+    // Rebuild buttons
+    container.innerHTML = '<span class="filter-label">Filter:</span>';
+    // "All" button
+    const allBtn = document.createElement('button');
+    allBtn.className = 'filter-btn active';
+    allBtn.dataset.filter = 'all';
+    allBtn.innerHTML = `All <span class="filter-count">${letters.length}</span>`;
+    container.appendChild(allBtn);
+    // Category buttons
+    Object.keys(counts).sort().forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.dataset.filter = cat;
+      btn.innerHTML = `${cat} <span class="filter-count">${counts[cat]}</span>`;
+      container.appendChild(btn);
+    });
+    // Re-bind click handlers
+    initFilters();
+  }
+
+  // Init filters for any static content already on the page
+  initFilters();
+
+  // Add fadeIn animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Audio Player - uses pre-recorded .m4a files with stop/play controls
+  let currentAudio = { num: -1, player: null };
+
+  const letterTitles = [
+    "On the Matter of Dumsor and the Audacity of Darkness",
+    "On Mobile Money and Accidental Socialism",
+    "On Governance and the Theatre of Democracy",
+    "On Pan-Africanism and Instagram Filters",
+    "On the Matter of Going Abroad",
+    "On National Pride and Football Victories",
+    "On Highlife Music and Cultural Memory",
+    "On Education and the University Legacy",
+    "On Agriculture and the Rice We Import",
+    "On Justice and the Speed of Courts"
+  ];
+
+  function playTTS(num) {
+    const btn = document.getElementById(`audio-btn-${num}`);
+    const icon = document.getElementById(`audio-icon-${num}`);
+    const text = document.getElementById(`audio-text-${num}`);
+    const status = document.getElementById(`audio-status-${num}`);
+
+    // If already playing this letter → STOP
+    if (currentAudio.num === num && currentAudio.player && !currentAudio.player.paused) {
+      currentAudio.player.pause();
+      currentAudio.player.currentTime = 0;
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = '0:00';
+      currentAudio = { num: -1, player: null };
+      return;
+    }
+
+    // Stop any currently playing audio
+    if (currentAudio.player && !currentAudio.player.paused) {
+      currentAudio.player.pause();
+      currentAudio.player.currentTime = 0;
+      const oldBtn = document.getElementById(`audio-btn-${currentAudio.num}`);
+      const oldIcon = document.getElementById(`audio-icon-${currentAudio.num}`);
+      const oldText = document.getElementById(`audio-text-${currentAudio.num}`);
+      const oldStatus = document.getElementById(`audio-status-${currentAudio.num}`);
+      if (oldBtn) { oldBtn.classList.remove('playing'); }
+      if (oldIcon) { oldIcon.textContent = '🔊'; }
+      if (oldText) { oldText.textContent = 'Listen'; }
+      if (oldStatus) { oldStatus.textContent = '0:00'; }
+    }
+
+    // Only letters 1-10 have audio files
+    if (num > 10) {
+      // Fall back to browser TTS for letters without audio files
+      playBrowserTTS(num, btn, icon, text, status);
+      return;
+    }
+
+    // Create audio element with the .m4a file
+    const audio = new Audio(`audio/letters/letter-${num}.m4a`);
+    currentAudio = { num, player: audio };
+
+    // Update UI to playing state
+    btn.classList.add('playing');
+    icon.textContent = '⏹';
+    text.textContent = 'Stop';
+
+    // Update time display
+    audio.addEventListener('timeupdate', () => {
+      const mins = Math.floor(audio.currentTime / 60);
+      const secs = Math.floor(audio.currentTime % 60);
+      status.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+    });
+
+    // When audio ends
+    audio.addEventListener('ended', () => {
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = '0:00';
+      currentAudio = { num: -1, player: null };
+    });
+
+    // Handle errors — fall back to browser TTS
+    audio.addEventListener('error', () => {
+      console.log(`Audio file not found for letter ${num}, falling back to browser TTS`);
+      currentAudio = { num: -1, player: null };
+      playBrowserTTS(num, btn, icon, text, status);
+    });
+
+    audio.play();
+  }
+
+  // Browser TTS fallback for letters without audio files
+  function playBrowserTTS(num, btn, icon, text, status) {
+    const modalBody = document.querySelector(`#modal${num} .modal-body`);
+    if (!modalBody) return;
+
+    // Stop if already speaking
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
+
+    const textContent = modalBody.innerText || modalBody.textContent;
+    const utterance = new SpeechSynthesisUtterance(textContent);
+    
+    const voices = speechSynthesis.getVoices();
+    const preferredVoices = ['Google UK English Male', 'Daniel', 'Arthur', 'Oliver'];
+    let selectedVoice = null;
+    for (const name of preferredVoices) {
+      selectedVoice = voices.find(v => v.name === name);
+      if (selectedVoice) break;
+    }
+    if (!selectedVoice) selectedVoice = voices.find(v => v.lang.includes('en-GB'));
+    if (selectedVoice) utterance.voice = selectedVoice;
+    
+    utterance.rate = 0.90;
+    utterance.pitch = 0.80;
+
+    btn.classList.add('playing');
+    icon.textContent = '⏹';
+    text.textContent = 'Stop';
+    
+    currentAudio = { num, player: null };
+    const startTime = Date.now();
+    
+    const updateTime = () => {
+      if (currentAudio.num === num && speechSynthesis.speaking) {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        status.textContent = `${Math.floor(elapsed / 60)}:${(elapsed % 60).toString().padStart(2, '0')}`;
+        requestAnimationFrame(() => setTimeout(updateTime, 500));
+      }
+    };
+    updateTime();
+
+    utterance.onend = () => {
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = '0:00';
+      currentAudio = { num: -1, player: null };
+    };
+
+    utterance.onerror = () => {
+      btn.classList.remove('playing');
+      icon.textContent = '🔊';
+      text.textContent = 'Listen';
+      status.textContent = 'Error';
+    };
+
+    speechSynthesis.speak(utterance);
+  }
+
+  // Stop all audio when closing modals
+  function stopAllAudio() {
+    if (currentAudio.player && !currentAudio.player.paused) {
+      currentAudio.player.pause();
+      currentAudio.player.currentTime = 0;
+    }
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
+    if (currentAudio.num > 0) {
+      const btn = document.getElementById(`audio-btn-${currentAudio.num}`);
+      const icon = document.getElementById(`audio-icon-${currentAudio.num}`);
+      const text = document.getElementById(`audio-text-${currentAudio.num}`);
+      const status = document.getElementById(`audio-status-${currentAudio.num}`);
+      if (btn) btn.classList.remove('playing');
+      if (icon) icon.textContent = '🔊';
+      if (text) text.textContent = 'Listen';
+      if (status) status.textContent = '0:00';
+    }
+    currentAudio = { num: -1, player: null };
+  }
+
+  // Share functionality
+  function shareOnFacebook(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(letterTitles[num - 1]);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareOnTwitter(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(`Letter ${num}: ${letterTitles[num - 1]} - Letter to Osagyefo`);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareOnWhatsApp(num) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(`Letter ${num}: ${letterTitles[num - 1]}`);
+    window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
+  }
+
+  function copyLetterLink(num) {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = event.target.closest('.share-btn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span style="font-size:0.75rem">✓</span>';
+      btn.style.background = 'linear-gradient(135deg, var(--green), #1a3a28)';
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+      }, 2000);
+    }).catch(err => {
+      alert('Failed to copy link');
+    });
+  }
+
+  // Load and display letters from the backend API (newest first)
+  // Fetches letters from database and displays them alongside static content
+  document.addEventListener('DOMContentLoaded', async () => {
+    // API_BASE is set by api-config.js
+    
+    try {
+      // Fetch letters from the backend API
+      console.log('Fetching letters from API...');
+      const res = await fetch(API_BASE + '/api/public/letters');
+      if (!res.ok) throw new Error('Failed to fetch letters');
+      
+      let letters = await res.json();
+      
+      // Sort by publishedAt date (newest first)
+      letters.sort((a, b) => {
+        const dateA = new Date(a.publishedAt || 0);
+        const dateB = new Date(b.publishedAt || 0);
+        return dateB - dateA; // Descending order (newest first)
+      });
+      
+      // Get the blog grid container
+      const blogGrid = document.querySelector('.blog-grid');
+      if (!blogGrid || letters.length === 0) return;
+      
+      // Clear existing articles
+      blogGrid.innerHTML = '';
+      
+      // Helper function to get category class
+      const getCategoryClass = (category) => {
+        const cat = (category || 'General').toLowerCase();
+        if (cat.includes('polit')) return 'politics';
+        if (cat.includes('cultur')) return 'culture';
+        if (cat.includes('satire')) return 'satire';
+        if (cat.includes('econom')) return 'economy';
+        if (cat.includes('health')) return 'health';
+        if (cat.includes('envir')) return 'environment';
+        return 'general';
+      };
+      
+      // Helper function to get emoji for category
+      const getCategoryEmoji = (category) => {
+        const cat = (category || 'General').toLowerCase();
+        if (cat.includes('polit')) return '🏛️';
+        if (cat.includes('cultur')) return '🌍';
+        if (cat.includes('satire')) return '😄';
+        if (cat.includes('econom')) return '💰';
+        if (cat.includes('health')) return '🏥';
+        if (cat.includes('envir')) return '🌱';
+        return '✉️';
+      };
+      
+      // Helper function to format date
+      const formatDate = (dateStr) => {
+        if (!dateStr) return 'Recent';
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+      };
+      
+      // Render letters
+      letters.forEach((letter, index) => {
+        const isFeatured = index === 0;
+        const articleClass = isFeatured ? 'article-featured' : 'article-standard';
+        const categoryClass = getCategoryClass(letter.category);
+        const emoji = getCategoryEmoji(letter.category);
+        const badge = index === 0 ? '<span class="article-badge">Featured</span>' : (index < 3 ? '<span class="article-badge">New</span>' : '');
+        
+        const article = document.createElement('article');
+        article.className = articleClass;
+        article.setAttribute('data-category', letter.category || 'General');
+        article.setAttribute('onclick', `openModal('modal${letter.id}')`);
+        
+        // Use uploaded image if available, otherwise use emoji placeholder
+        const imageContent = letter.imageData 
+          ? `<img src="${letter.imageData}" alt="${letter.title}" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">` 
+          : `<div class="article-image-placeholder">${emoji}</div>`;
+        
+        article.innerHTML = `
+          <div class="article-image">
+            ${badge}
+            ${imageContent}
+          </div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-category ${categoryClass}">${letter.category || 'General'}</span>
+              <span class="article-date">📅 ${formatDate(letter.publishedAt)}</span>
+              <span class="article-read-time">⏱ 5 min read</span>
+            </div>
+            <h${isFeatured ? '2' : '3'} class="article-title">${letter.title || 'Untitled'}</h${isFeatured ? '2' : '3'}>
+            <p class="article-excerpt">
+              ${letter.preview || letter.content?.substring(0, 150) + '...' || 'No preview available.'}
+            </p>
+            <div class="article-author">
+              <div class="author-avatar">${(letter.authorName || 'A')[0].toUpperCase()}${(letter.authorName?.split(' ')[1] || letter.authorName || 'K')[0].toUpperCase()}</div>
+              <div class="author-info">
+                <div class="author-name">${letter.authorName || 'Anonymous'}</div>
+                <div class="author-title">Letter #${letter.letterNumber || letter.id}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        blogGrid.appendChild(article);
+        
+        // Create modal for this letter
+        createLetterModal(letter);
+      });
+      
+      console.log(`Loaded ${letters.length} letters from the database (sorted newest first)`);
+      
+      // Update filter buttons with actual categories from loaded letters
+      updateFilterButtons(letters);
+      
+      // Auto-open modal if URL has a hash like #modal5
+      if (window.location.hash) {
+        const modalId = window.location.hash.substring(1);
+        if (document.getElementById(modalId)) {
+          openModal(modalId);
+        }
+      }
+      
+    } catch (e) {
+      console.warn('Could not load letters from API:', e);
+      // Keep static fallback HTML
+    }
+  });
+  
+  // Function to create modal for a letter
+  function createLetterModal(letter) {
+    const modalsContainer = document.body;
+    const modalId = `modal${letter.id}`;
+    
+    // Remove existing static modal so API content takes priority
+    const existing = document.getElementById(modalId);
+    if (existing) existing.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = modalId;
+    modal.className = 'modal-overlay';
+    modal.onclick = (e) => { if (e.target === modal) closeModal(modalId); };
+    
+    const categoryClass = (letter.category || 'General').toLowerCase().replace(/[^a-z]/g, '');
+    
+    // Format letter content with proper letter structure
+    const formatLetterContent = (content, author) => {
+      // Remove any HTML tags for clean text
+      const textContent = content ? content.replace(/<[^>]*>/g, '') : 'No content available.';
+      
+      return `
+        <div class="letter-format">
+          <p class="salutation">Dear Osagyefo,</p>
+          <div style="line-height: 1.9; text-align: justify; margin-bottom: 2rem;">
+            ${content || 'No content available.'}
+          </div>
+          <p class="sign-off">With respect and hope for a better Ghana,</p>
+          <p class="signature">${author || 'Anonymous Citizen'}</p>
+        </div>
+      `;
+    };
+    
+    modal.innerHTML = `
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal('${modalId}')">&times;</button>
+        <div class="modal-header">
+          <div class="modal-header-content">
+            <div class="modal-letter-number">Letter ${letter.letterNumber || letter.id}</div>
+            <h2 class="modal-title">${letter.title || 'Untitled'}</h2>
+          </div>
+        </div>
+        <div class="modal-body">
+          ${formatLetterContent(letter.content || letter.preview, letter.authorName)}
+        </div>
+
+        <!-- ── Tab bar ─────────────────────────────── -->
+        <div class="modal-tab-bar">
+          <button class="modal-tab active" onclick="switchModalTab('${letter.id}','listen',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            Listen
+          </button>
+          <button class="modal-tab" onclick="switchModalTab('${letter.id}','share',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+        </div>
+
+        <!-- ── Listen panel ────────────────────────── -->
+        <div id="tab-listen-${letter.id}" class="modal-tab-panel active">
+          <div class="listen-panel-inner">
+            <button id="audio-btn-dyn-${letter.id}" class="audio-btn"
+              onclick="playDynamicAudio(${letter.id}, ${JSON.stringify(letter.audioUrl || '')})">
+              <span id="audio-icon-dyn-${letter.id}">▶</span>
+              <span id="audio-text-dyn-${letter.id}">Play Letter</span>
+            </button>
+            <div class="listen-progress-wrap">
+              <div class="listen-progress-bar">
+                <div id="audio-prog-${letter.id}" class="listen-progress-fill"></div>
+              </div>
+              <div id="audio-status-dyn-${letter.id}" class="listen-time">0:00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Share panel ─────────────────────────── -->
+        <div id="tab-share-${letter.id}" class="modal-tab-panel">
+          <div class="share-panel-inner">
+            <div class="share-panel-label">Share this letter</div>
+            <div class="share-row">
+              <a class="share-pill sp-twitter" href="#" onclick="shareToTwitter(${letter.id});return false;">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.258 5.63 5.906-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Post on X
+              </a>
+              <a class="share-pill sp-facebook" href="#" onclick="shareToFacebook(${letter.id});return false;">
+                <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                Facebook
+              </a>
+              <a class="share-pill sp-whatsapp" href="#" onclick="shareToWhatsApp(${letter.id});return false;">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                WhatsApp
+              </a>
+              <button class="share-pill sp-copy" onclick="copyLetterLink(${letter.id})">
+                <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Copy Link
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    modalsContainer.appendChild(modal);
+  }
+
+  // ── Tab switcher ─────────────────────────────────────────────────────────
+  function switchModalTab(letterId, tab, btn) {
+    const panels = ['listen','share'];
+    panels.forEach(p => {
+      const panel = document.getElementById(`tab-${p}-${letterId}`);
+      if (panel) panel.classList.toggle('active', p === tab);
+    });
+    const bar = btn.closest('.modal-tab-bar');
+    if (bar) bar.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // ── Share functions ───────────────────────────────────────────────────────
+  function getLetterShareData(letterId) {
+    const modal = document.getElementById(`modal${letterId}`);
+    const title = modal ? (modal.querySelector('.modal-title')?.textContent || 'A Letter to Osagyefo') : 'A Letter to Osagyefo';
+    const url   = `${window.location.origin}${window.location.pathname}?letter=${letterId}`;
+    const text  = `"${title}" — a letter to Kwame Nkrumah on dearosagyefo.com`;
+    return { title, url, text };
+  }
+
+  function shareToTwitter(letterId) {
+    const { text, url } = getLetterShareData(letterId);
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareToFacebook(letterId) {
+    const { url } = getLetterShareData(letterId);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+  }
+
+  function shareToWhatsApp(letterId) {
+    const { text, url } = getLetterShareData(letterId);
+    window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+  }
+
+  function copyLetterLink(letterId) {
+    const { url } = getLetterShareData(letterId);
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.querySelector(`#tab-share-${letterId} .sp-copy`);
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      }
+    });
+  }
+
+  // ── Dynamic letter audio (Kokoro via Replicate, pre-generated) ───────────
+  let dynAudio = { id: -1, player: null };
+
+  function playDynamicAudio(letterId, audioUrl) {
+    const btn    = document.getElementById(`audio-btn-dyn-${letterId}`);
+    const icon   = document.getElementById(`audio-icon-dyn-${letterId}`);
+    const text   = document.getElementById(`audio-text-dyn-${letterId}`);
+    const status = document.getElementById(`audio-status-dyn-${letterId}`);
+    const prog   = document.getElementById(`audio-prog-${letterId}`);
+
+    // Stop if already playing this letter
+    if (dynAudio.id === letterId && dynAudio.player && !dynAudio.player.paused) {
+      dynAudio.player.pause();
+      dynAudio.player.currentTime = 0;
+      btn.classList.remove('playing');
+      icon.textContent = '▶'; text.textContent = 'Play Letter';
+      status.textContent = '0:00'; if (prog) prog.style.width = '0%';
+      dynAudio = { id: -1, player: null };
+      return;
+    }
+
+    // Stop any other dynamic audio
+    if (dynAudio.player && !dynAudio.player.paused) {
+      dynAudio.player.pause();
+      dynAudio.player.currentTime = 0;
+      const ob = document.getElementById(`audio-btn-dyn-${dynAudio.id}`);
+      const oi = document.getElementById(`audio-icon-dyn-${dynAudio.id}`);
+      const ot = document.getElementById(`audio-text-dyn-${dynAudio.id}`);
+      const os = document.getElementById(`audio-status-dyn-${dynAudio.id}`);
+      const op = document.getElementById(`audio-prog-${dynAudio.id}`);
+      if (ob) ob.classList.remove('playing');
+      if (oi) oi.textContent = '▶';
+      if (ot) ot.textContent = 'Play Letter';
+      if (os) os.textContent = '0:00';
+      if (op) op.style.width = '0%';
+    }
+
+    // If a pre-generated Kokoro URL exists, play it directly — instant!
+    if (audioUrl && audioUrl.startsWith('http')) {
+      const audio = new Audio(audioUrl);
+      dynAudio = { id: letterId, player: audio };
+      btn.classList.add('playing');
+      icon.textContent = '⏹'; text.textContent = 'Stop';
+
+      audio.addEventListener('timeupdate', () => {
+        const m = Math.floor(audio.currentTime / 60);
+        const s = Math.floor(audio.currentTime % 60);
+        status.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+        if (prog && audio.duration) prog.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+      });
+      audio.addEventListener('ended', () => {
+        btn.classList.remove('playing');
+        icon.textContent = '▶'; text.textContent = 'Play Letter';
+        status.textContent = '0:00'; if (prog) prog.style.width = '0%';
+        dynAudio = { id: -1, player: null };
+      });
+      audio.addEventListener('error', () => {
+        dynAudio = { id: -1, player: null };
+        playDynamicBrowserTTS(letterId, btn, icon, text, status, prog);
+      });
+      audio.play();
+      return;
+    }
+
+    // No pre-generated audio → fall back to browser speech synthesis
+    playDynamicBrowserTTS(letterId, btn, icon, text, status, prog);
+  }
+
+  function playDynamicBrowserTTS(letterId, btn, icon, text, status, prog) {
+    if (speechSynthesis.speaking) speechSynthesis.cancel();
+
+    const modal = document.getElementById(`modal${letterId}`);
+    const body  = modal ? modal.querySelector('.modal-body') : null;
+    if (!body) return;
+
+    const utterance = new SpeechSynthesisUtterance(body.innerText || body.textContent);
+    const voices = speechSynthesis.getVoices();
+    const preferred = ['Google UK English Male', 'Daniel', 'Arthur', 'Oliver'];
+    let voice = null;
+    for (const name of preferred) { voice = voices.find(v => v.name === name); if (voice) break; }
+    if (!voice) voice = voices.find(v => v.lang.includes('en-GB'));
+    if (voice) utterance.voice = voice;
+    utterance.rate = 0.90; utterance.pitch = 0.80;
+
+    btn.classList.add('playing'); icon.textContent = '⏹'; text.textContent = 'Stop';
+    dynAudio = { id: letterId, player: null };
+
+    const startTime = Date.now();
+    const tick = () => {
+      if (dynAudio.id === letterId && speechSynthesis.speaking) {
+        const e = Math.floor((Date.now() - startTime) / 1000);
+        status.textContent = `${Math.floor(e/60)}:${(e%60).toString().padStart(2,'0')}`;
+        setTimeout(tick, 500);
+      }
+    };
+    tick();
+
+    utterance.onend = utterance.onerror = () => {
+      btn.classList.remove('playing');
+      icon.textContent = '▶'; text.textContent = 'Play Letter';
+      status.textContent = '0:00'; if (prog) prog.style.width = '0%';
+      dynAudio = { id: -1, player: null };
+    };
+    speechSynthesis.speak(utterance);
+  }
+
+</script>
+
+</body>
+</html>

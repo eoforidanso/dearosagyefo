@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Letters from Osagyefo | Letter to Osagyefo</title>
+  <meta name="description" content="A chronological journey through the writings of Kwame Nkrumah — from prison to presidency, from independence to exile.">
+  <meta property="og:title" content="Letters from Osagyefo | Letter to Osagyefo">
+  <meta property="og:description" content="The real words of Kwame Nkrumah — letters, broadcasts, and writings arranged as a history lesson.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/from-osagyefo.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Letters from Osagyefo | Letter to Osagyefo">
+  <meta name="twitter:description" content="The real words of Kwame Nkrumah — a chronological journey through history.">
+  <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #D43F3A;
+      --gold: #E8B923;
+      --green: #2D5F3F;
+      --accent-warm: #C65911;
+      --black: #0f1419;
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --gray-dark: #2a2a2a;
+      --gray-med: #5a5a5a;
+      --gray-light: #888;
+      --gray-border: #e0ddd9;
+      --cream: #f4f1ed;
+      --earth: #8b7355;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fafaf8 0%, #f4f1ed 50%, #fbf9f5 100%);
+      color: var(--gray-dark);
+      line-height: 1.75;
+      animation: pageFadeIn 0.55s ease both;
+    }
+    @keyframes pageFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* FLAG STRIPE */
+    .flag-stripe { position: fixed; top: 0; left: 0; right: 0; height: 8px; display: flex; z-index: 10001; }
+    .flag-stripe span { flex: 1; height: 100%; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    /* NAV */
+    nav {
+      background: rgba(255,255,255,0.72); padding: 1.2rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; position: sticky; top: 8px; z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; color: var(--red); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; cursor: pointer; transition: transform 0.2s; text-decoration: none; }
+    .nav-logo:hover { transform: scale(1.05); }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 3.5rem; list-style: none; }
+    .nav-links a { color: var(--gray-med); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; font-variant: small-caps; transition: all 0.25s; border-bottom: 3px solid transparent; padding-bottom: 0.4rem; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 3px; background: linear-gradient(90deg, var(--red), var(--gold)); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; background: none; border: 2px solid var(--red); border-radius: 5px; color: var(--red); font-size: 1.2rem; padding: 0.3rem 0.55rem; cursor: pointer; line-height: 1; transition: background 0.2s, color 0.2s; }
+    .hamburger:hover { background: var(--red); color: #fff; }
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 2px solid var(--red); padding: 0.5rem 0 1rem; z-index: 200; box-shadow: 0 12px 40px rgba(0,0,0,0.12); list-style: none; }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 0.85rem 1.5rem; font-size: 0.82rem; border-bottom: none; }
+    }
+
+    /* HERO */
+    .page-hero {
+      background: linear-gradient(160deg, #0a0d11 0%, #1a1f2e 40%, #2a1a0e 80%, #0d1117 100%);
+      padding: 6rem 2rem 5rem; text-align: center; position: relative; overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,185,35,0.06) 0%, transparent 65%); pointer-events: none;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(transparent, rgba(244,241,237,1)); pointer-events: none;
+    }
+    .page-hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
+    .page-hero-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; background: var(--gold); color: #000; padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.4rem; }
+    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; font-style: italic; max-width: 580px; margin: 0 auto 1.5rem; }
+    .page-hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; }
+    .page-hero-stat { text-align: center; }
+    .page-hero-stat .stat-num { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--gold); display: block; }
+    .page-hero-stat .stat-label { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+    /* ERA SECTIONS */
+    .era-section { padding: 3rem 2rem 1rem; }
+    .era-header {
+      max-width: 900px; margin: 0 auto 2.5rem; text-align: center;
+      padding: 2rem 2rem 1.8rem; position: relative;
+    }
+    .era-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 3px; margin-bottom: 0.8rem;
+    }
+    .era-tag.pre { background: rgba(45,95,63,0.1); color: var(--green); }
+    .era-tag.golden { background: rgba(232,185,35,0.15); color: #b8920e; }
+    .era-tag.exile { background: rgba(212,63,58,0.1); color: var(--red); }
+    .era-header h2 {
+      font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--gray-dark); line-height: 1.3; margin-bottom: 0.6rem;
+    }
+    .era-header p { font-size: 0.92rem; color: var(--gray-med); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    .era-divider {
+      max-width: 900px; margin: 0 auto; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-border), transparent);
+    }
+
+    /* TIMELINE */
+    .timeline { max-width: 900px; margin: 0 auto; position: relative; padding: 0 0 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--gold) 0%, var(--red) 50%, var(--green) 100%);
+      border-radius: 3px;
+    }
+    @media (max-width: 768px) {
+      .timeline::before { left: 18px; }
+    }
+
+    /* TIMELINE CARD */
+    .tl-card {
+      position: relative; margin-left: 64px; margin-bottom: 2.5rem;
+      background: #fffdf7; border: 1px solid rgba(139,115,85,0.15); border-radius: 10px;
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+    .tl-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+    .tl-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--green)); border-radius: 10px 10px 0 0;
+    }
+
+    /* Timeline dot */
+    .tl-dot {
+      position: absolute; left: -48px; top: 24px; width: 22px; height: 22px;
+      background: var(--gold); border: 4px solid #fff; border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 2;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .tl-card:hover .tl-dot { transform: scale(1.2); background: var(--red); }
+    .tl-card.era-pre .tl-dot { background: var(--green); }
+    .tl-card.era-golden .tl-dot { background: var(--gold); }
+    .tl-card.era-exile .tl-dot { background: var(--red); }
+
+    /* Year badge */
+    .tl-year {
+      position: absolute; left: -120px; top: 22px; width: 58px; text-align: right;
+      font-family: 'DM Serif Display', serif; font-size: 0.95rem; color: var(--earth); font-weight: 700;
+    }
+
+    .tl-card-inner { padding: 1.8rem 2rem 1.5rem; }
+    .tl-meta {
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; flex-wrap: wrap;
+    }
+    .tl-date {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--earth); background: rgba(139,115,85,0.08); padding: 0.25rem 0.7rem; border-radius: 3px;
+    }
+    .tl-source-tag {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--gray-light); border: 1px solid var(--gray-border); padding: 0.2rem 0.6rem; border-radius: 3px;
+    }
+    .tl-title {
+      font-family: 'DM Serif Display', serif; font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      color: var(--gray-dark); line-height: 1.35; margin-bottom: 0.5rem;
+    }
+    .tl-from {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px; color: var(--red);
+      margin-bottom: 0.8rem;
+    }
+    .tl-excerpt {
+      font-family: 'Crimson Pro', serif; font-size: 1.02rem; color: var(--gray-med);
+      line-height: 1.85; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .tl-excerpt em { color: var(--earth); }
+    .tl-read-cta {
+      display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem;
+      font-size: 0.78rem; font-weight: 700; color: var(--red); letter-spacing: 0.3px;
+      transition: gap 0.2s;
+    }
+    .tl-card:hover .tl-read-cta { gap: 0.7rem; }
+
+    @media (max-width: 768px) {
+      .tl-card { margin-left: 48px; margin-bottom: 2rem; }
+      .tl-card-inner { padding: 1.4rem 1.3rem 1.2rem; }
+      .tl-dot { left: -40px; top: 20px; width: 18px; height: 18px; }
+      .tl-year { display: none; }
+      .tl-title { font-size: 1.1rem; }
+      .tl-excerpt { font-size: 0.95rem; -webkit-line-clamp: 2; }
+      .era-section { padding: 2rem 1rem 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .tl-card { margin-left: 40px; }
+      .tl-card-inner { padding: 1.2rem 1rem; }
+      .tl-dot { left: -32px; width: 16px; height: 16px; }
+    }
+
+    /* MODAL */
+    .letter-modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10000; display: none;
+      align-items: flex-start; justify-content: center; padding: 2rem; overflow-y: auto;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .letter-modal-overlay.open { display: flex; }
+    .letter-modal {
+      background: #fffdf7; border-radius: 12px; max-width: 740px; width: 100%;
+      margin: 2rem auto; padding: 3rem 3.5rem 2.5rem; position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+    .letter-modal::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--green)); border-radius: 12px 12px 0 0;
+    }
+    .modal-close {
+      position: sticky; top: 0; float: right; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--gray-border); background: #fff; color: var(--gray-med); font-size: 1.1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+      z-index: 5; margin: -0.5rem -0.5rem 0 0;
+    }
+    .modal-close:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+    .modal-era-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 3px; margin-bottom: 1rem;
+    }
+    .modal-era-badge.pre { background: rgba(45,95,63,0.1); color: var(--green); }
+    .modal-era-badge.golden { background: rgba(232,185,35,0.15); color: #b8920e; }
+    .modal-era-badge.exile { background: rgba(212,63,58,0.1); color: var(--red); }
+
+    .modal-date { font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--earth); margin-bottom: 0.4rem; }
+    .modal-from { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .modal-from::after { content: ''; flex: 1; height: 1px; background: rgba(212,63,58,0.15); }
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--gray-dark); line-height: 1.3; margin-bottom: 1rem; }
+    .modal-salutation { font-family: 'Crimson Pro', serif; font-size: 1.05rem; color: var(--earth); font-style: italic; margin-bottom: 1.2rem; }
+    .modal-body { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: var(--gray-med); line-height: 2; }
+    .modal-body p { margin-bottom: 1.1rem; text-indent: 1.5rem; }
+    .modal-body p:first-child { text-indent: 0; }
+    .modal-body p:first-child::first-letter { font-size: 2.4rem; font-family: 'DM Serif Display', serif; color: var(--red); float: left; line-height: 1; margin-right: 0.2rem; margin-top: 0.1rem; }
+    .modal-signature {
+      font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.15rem;
+      color: var(--gray-dark); margin-top: 1.8rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(139,115,85,0.15);
+    }
+    .modal-source { font-size: 0.72rem; color: var(--gray-light); font-style: italic; margin-top: 0.6rem; }
+    .modal-audio {
+      display: flex; align-items: center; gap: 0.8rem; margin-top: 1.2rem;
+      padding-top: 1rem; border-top: 1px dashed rgba(139,115,85,0.15);
+    }
+    .modal-listen-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.3rem; background: linear-gradient(135deg, var(--green), #3a7a52);
+      color: #fff; border: none; border-radius: 22px; font-family: 'Inter', sans-serif;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s;
+      box-shadow: 0 2px 10px rgba(45,95,63,0.25);
+    }
+    .modal-listen-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(45,95,63,0.35); }
+    .modal-listen-btn.playing { background: linear-gradient(135deg, var(--red), #c0332e); }
+    .modal-audio-time { font-size: 0.72rem; color: var(--gray-light); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .modal-share {
+      display: flex; align-items: center; gap: 0.7rem; margin-top: 1rem;
+      padding-top: 0.8rem; border-top: 1px dashed rgba(139,115,85,0.12);
+    }
+    .modal-share-label { font-size: 0.72rem; font-weight: 600; color: var(--earth); }
+    .share-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border: none; border-radius: 10px; color: #fff;
+      text-decoration: none; font-size: 1rem; transition: all 0.25s; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .share-btn:hover { transform: translateY(-2px); }
+    .share-btn.fb { background: linear-gradient(135deg, #1877f2, #0d5dbf); }
+    .share-btn.tw { background: #000; }
+    .share-btn.wa { background: linear-gradient(135deg, #25d366, #128c7e); }
+    .share-btn.cp { background: linear-gradient(135deg, var(--gold), #d4a820); }
+    .modal-nav {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;
+      padding-top: 1rem; border-top: 2px solid var(--gray-border);
+    }
+    .modal-nav-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.2rem;
+      border: 2px solid var(--gray-border); background: #fff; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 700; color: var(--gray-dark); cursor: pointer;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .modal-nav-btn:hover { border-color: var(--red); color: var(--red); }
+    .modal-nav-btn:disabled { opacity: 0.3; pointer-events: none; }
+    .modal-nav-count { font-family: 'DM Serif Display', serif; font-size: 0.9rem; color: var(--earth); }
+
+    @media (max-width: 768px) {
+      .letter-modal-overlay { padding: 0.5rem; }
+      .letter-modal { padding: 2rem 1.5rem; margin: 0.5rem auto; border-radius: 10px; }
+      .modal-title { font-size: 1.3rem; }
+      .modal-body { font-size: 1rem; line-height: 1.9; }
+      .page-hero-stats { gap: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .letter-modal { padding: 1.5rem 1.2rem; }
+      .modal-body { font-size: 0.95rem; }
+      .modal-body p:first-child::first-letter { font-size: 2rem; }
+      .modal-nav-btn { padding: 0.5rem 0.8rem; font-size: 0.72rem; }
+      .page-hero-stats { flex-direction: column; gap: 0.8rem; }
+    }
+
+    /* FOOTER */
+    footer.site-footer { background: linear-gradient(180deg, #0a0d11, #060809); padding: 0; text-align: left; color: inherit; }
+    footer .footer-top { padding: 3.5rem 3rem 0; }
+    footer .footer-top-inner { max-width: 1200px; margin: 0 auto; }
+    footer .footer-brand { text-align: center; margin-bottom: 2.5rem; }
+    footer .footer-brand-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.8rem; display: block; }
+    footer .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 420px; margin: 0 auto 0.4rem; }
+    footer .footer-socials { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; }
+    footer .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,185,35,0.35), transparent); margin-bottom: 2.5rem; }
+    footer .footer-nav-row { display: flex; justify-content: center; gap: 6rem; padding-bottom: 2.5rem; }
+    footer .footer-nav-col h4 { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; position: relative; }
+    footer .footer-nav-col h4::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 18px; height: 2px; border-radius: 2px; }
+    footer .footer-nav-row .footer-nav-col:first-child h4::after { background: var(--red); }
+    footer .footer-nav-row .footer-nav-col:last-child h4::after { background: var(--green); }
+    footer .footer-nav-col a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    footer .footer-nav-col a:hover { color: rgba(255,255,255,0.95); }
+    footer .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 1.4rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    footer .footer-bottom p { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin: 0; }
+    footer .footer-flag { display: flex; gap: 0; border-radius: 2px; overflow: hidden; }
+    footer .footer-flag span { width: 22px; height: 4px; }
+    .social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.45); transition: all 0.3s; text-decoration: none; background: rgba(255,255,255,0.03); }
+    .social-icon-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(232,185,35,0.1); transform: translateY(-3px); }
+    .social-icon-link svg { width: 16px; height: 16px; fill: currentColor; }
+    @media (max-width: 768px) {
+      footer .footer-nav-row { flex-direction: column; align-items: center; gap: 2rem; text-align: center; }
+      footer .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* DARK MODE */
+    html.dark body { background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%) !important; color: #e0ddd9 !important; }
+    html.dark nav { background: rgba(15,20,25,0.95) !important; border-bottom-color: rgba(212,63,58,0.3) !important; }
+    html.dark .nav-logo { color: #fff !important; }
+    html.dark .nav-links { background: rgba(15,20,25,0.98) !important; }
+    html.dark .nav-links li a { color: #e0ddd9 !important; }
+    html.dark .era-header h2 { color: #fff !important; }
+    html.dark .era-header p { color: rgba(255,255,255,0.55) !important; }
+    html.dark .era-divider { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent) !important; }
+    html.dark .tl-card { background: #1a1f2e !important; border-color: rgba(255,255,255,0.08) !important; }
+    html.dark .tl-title { color: #fff !important; }
+    html.dark .tl-excerpt { color: rgba(255,255,255,0.6) !important; }
+    html.dark .tl-dot { border-color: #0f1419 !important; }
+    html.dark .letter-modal { background: #1a1f2e !important; }
+    html.dark .modal-title { color: #fff !important; }
+    html.dark .modal-body { color: rgba(255,255,255,0.7) !important; }
+    html.dark .modal-signature { color: #fff !important; border-top-color: rgba(255,255,255,0.1) !important; }
+    html.dark .modal-close { background: #0f1419 !important; border-color: rgba(255,255,255,0.15) !important; color: #e0ddd9 !important; }
+    html.dark .modal-nav-btn { background: #0f1419 !important; border-color: rgba(255,255,255,0.15) !important; color: #e0ddd9 !important; }
+
+    /* UTILS */
+    .dark-toggle { position: fixed; bottom: 2rem; left: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--gray-dark); color: var(--gold); border: 2px solid var(--gold); cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999; }
+    .dark-toggle:hover { transform: scale(1.1); }
+    html.dark .dark-toggle { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(135deg, var(--red), var(--gold), var(--green)); color: #fff; font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(20px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; box-shadow: 0 4px 16px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .page-loader { position: fixed; inset: 0; background: #0a0d11; display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.5s, visibility 0.5s; }
+    .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-spinner { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #e0ddd9; border-top-color: var(--red); animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Scroll reveal */
+    .tl-card { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease; }
+    .tl-card.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<div class="flag-stripe"><span></span><span></span><span></span></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Letter to <span>Osagyefo</span></a>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">☰</button>
+  <ul class="nav-links" id="main-nav">
+    <li><a href="letters.html">Letters</a></li>
+    <li><a href="from-osagyefo.html" style="color: var(--red); font-weight: 700;">From Osagyefo</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="write.html">Write a Letter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-tag">◆ A History in Letters</span>
+    <h1>The Words of Osagyefo</h1>
+    <p>From a prison cell in Accra to exile in Conakry — the writings of Kwame Nkrumah trace the arc of Africa's struggle for freedom. Read them in order. Understand the journey.</p>
+    <div class="page-hero-stats">
+      <div class="page-hero-stat"><span class="stat-num">15</span><span class="stat-label">Letters &amp; Writings</span></div>
+      <div class="page-hero-stat"><span class="stat-num">1957–1972</span><span class="stat-label">Spanning 15 Years</span></div>
+      <div class="page-hero-stat"><span class="stat-num">3</span><span class="stat-label">Eras of History</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ERA I: THE MAKING OF A LEADER -->
+<section class="era-section" id="era-pre">
+  <div class="era-header">
+    <span class="era-tag pre">📖 Era I</span>
+    <h2>The Making of a Leader</h2>
+    <p>Before independence — the prison years, the philosophy, the fire that would light a continent.</p>
+  </div>
+  <div class="era-divider"></div>
+  <div class="timeline">
+    <article class="tl-card era-pre" data-idx="0" onclick="openLetter(0)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1957</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1957 · Accra, Ghana</span>
+          <span class="tl-source-tag">Autobiography</span>
+        </div>
+        <h3 class="tl-title">On the Prison Years: What Confinement Taught Me</h3>
+        <p class="tl-from">From "Ghana: The Autobiography of Kwame Nkrumah"</p>
+        <p class="tl-excerpt">I was imprisoned by the colonial government. They thought the walls of James Fort would break me. They were wrong. Prison, I discovered, is a university — the finest I ever attended.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ERA II: INDEPENDENCE & THE GOLDEN AGE -->
+<section class="era-section" id="era-golden">
+  <div class="era-header">
+    <span class="era-tag golden">🌟 Era II</span>
+    <h2>Independence &amp; the Golden Age</h2>
+    <p>From the roar of the independence declaration to the halls of the OAU — Nkrumah on the world stage, building the dream of a United Africa.</p>
+  </div>
+  <div class="era-divider"></div>
+  <div class="timeline">
+    <article class="tl-card era-golden" data-idx="1" onclick="openLetter(1)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1957</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">March 6, 1957 · Accra</span>
+          <span class="tl-source-tag">Independence Declaration</span>
+        </div>
+        <h3 class="tl-title">At Long Last, the Battle Has Ended</h3>
+        <p class="tl-from">Independence Day Declaration, Old Polo Grounds</p>
+        <p class="tl-excerpt">At long last, the battle has ended! And thus, Ghana, your beloved country, is free forever! And yet again, I say that the independence of Ghana is meaningless unless it is linked up with the total liberation of the African continent.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-golden" data-idx="2" onclick="openLetter(2)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1961</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1961 · Accra, Ghana</span>
+          <span class="tl-source-tag">I Speak of Freedom</span>
+        </div>
+        <h3 class="tl-title">I Speak of Freedom: A Statement of African Ideology</h3>
+        <p class="tl-from">From "I Speak of Freedom"</p>
+        <p class="tl-excerpt">For centuries, Europeans dominated the African continent. The white man arrogated to himself the right to rule and to be obeyed by the non-white; his mission, he claimed, was to "civilise" Africa.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-golden" data-idx="3" onclick="openLetter(3)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1963</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">May 1963 · Addis Ababa, Ethiopia</span>
+          <span class="tl-source-tag">OAU Founding Summit</span>
+        </div>
+        <h3 class="tl-title">Africa Must Unite or Perish</h3>
+        <p class="tl-from">Address to the OAU Founding Summit</p>
+        <p class="tl-excerpt">We need the strength of our combined numbers and resources to protect ourselves from the very positive dangers of returning colonialism in disguised forms. We must unite now or perish.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-golden" data-idx="4" onclick="openLetter(4)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1964</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1964 · Accra, Ghana</span>
+          <span class="tl-source-tag">Consciencism</span>
+        </div>
+        <h3 class="tl-title">The African Personality: On Building a Philosophy of Our Own</h3>
+        <p class="tl-from">From "Consciencism"</p>
+        <p class="tl-excerpt">We do not need to go to Europe to find our identity. We do not need to reject modernity to be African. What we need is a synthesis — a way of being that honours the communal traditions of our ancestors.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-golden" data-idx="5" onclick="openLetter(5)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1965</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1965 · Accra, Ghana</span>
+          <span class="tl-source-tag">Neo-Colonialism</span>
+        </div>
+        <h3 class="tl-title">The Invisible Chains: On Neo-Colonialism</h3>
+        <p class="tl-from">From "Neo-Colonialism: The Last Stage of Imperialism"</p>
+        <p class="tl-excerpt">The essence of neo-colonialism is that the State which is subject to it is, in theory, independent and has all the outward trappings of international sovereignty. In reality its economic system and thus its political policy is directed from outside.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ERA III: THE COUP & EXILE -->
+<section class="era-section" id="era-exile">
+  <div class="era-header">
+    <span class="era-tag exile">🕯️ Era III</span>
+    <h2>The Coup &amp; Exile in Conakry</h2>
+    <p>After the coup of February 24, 1966, Nkrumah wrote from Guinea — to Africa, to Ghana, to history. He never returned. He died on April 27, 1972.</p>
+  </div>
+  <div class="era-divider"></div>
+  <div class="timeline">
+    <article class="tl-card era-exile" data-idx="6" onclick="openLetter(6)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1966</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">March 1966 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Radio Broadcast</span>
+        </div>
+        <h3 class="tl-title">To the People of Ghana: I Have Not Abandoned You</h3>
+        <p class="tl-from">Broadcast to the People of Ghana</p>
+        <p class="tl-excerpt">The military and police have seized power in Ghana while I was on a mission of peace to Hanoi. I want you to know that I am well, that I am safe, and that I have not abandoned you.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="7" onclick="openLetter(7)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1966</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1966 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Letter to OAU</span>
+        </div>
+        <h3 class="tl-title">An Appeal to the Organisation of African Unity</h3>
+        <p class="tl-from">Letter to African Heads of State</p>
+        <p class="tl-excerpt">I write to you not as the deposed President of Ghana, but as a fellow African who has devoted his life to the cause we all profess to share: the total liberation and unification of our continent.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="8" onclick="openLetter(8)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1967</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1967 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Radio Guinea</span>
+        </div>
+        <h3 class="tl-title">On the Soldiers Who Betrayed: A Word to the Ghana Armed Forces</h3>
+        <p class="tl-from">Radio Guinea Broadcast</p>
+        <p class="tl-excerpt">You were trained to defend Ghana. Instead, you were used to destroy it. Not by an enemy from across the sea, but by the very powers whose interests you were told to protect.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="9" onclick="openLetter(9)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1968</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1968 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Dark Days in Ghana</span>
+        </div>
+        <h3 class="tl-title">On the Coup: An Anatomy of Neocolonialism</h3>
+        <p class="tl-from">From "Dark Days in Ghana"</p>
+        <p class="tl-excerpt">The events of February 1966 did not occur in a vacuum. They were the culmination of a carefully orchestrated campaign by imperialist powers who could not tolerate an independent Africa.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="10" onclick="openLetter(10)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1968</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1968 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Dark Days in Ghana</span>
+        </div>
+        <h3 class="tl-title">A Message to the Youth of Africa</h3>
+        <p class="tl-from">From "Dark Days in Ghana"</p>
+        <p class="tl-excerpt">The future of Africa belongs to you. Not to the generals who seize power in the night. Not to the foreign interests who finance coups and install puppet governments. The future belongs to you.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="11" onclick="openLetter(11)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1969</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1969 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Handbook of Revolutionary Warfare</span>
+        </div>
+        <h3 class="tl-title">To the Freedom Fighters of Southern Africa</h3>
+        <p class="tl-from">From "Handbook of Revolutionary Warfare"</p>
+        <p class="tl-excerpt">While I write from exile, you fight in the bush. While I theorise about liberation, you live it — in Mozambique, in Angola, in Zimbabwe, in Namibia, in South Africa.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="12" onclick="openLetter(12)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1970</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1970 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Class Struggle in Africa</span>
+        </div>
+        <h3 class="tl-title">On African Unity: The Only Way Forward</h3>
+        <p class="tl-from">From "Class Struggle in Africa"</p>
+        <p class="tl-excerpt">I have said it before and I shall say it again: Africa must unite. This is not a slogan. It is a matter of life and death. A divided Africa will forever be at the mercy of those who wish to exploit it.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="13" onclick="openLetter(13)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1971</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">1971 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Revolutionary Path</span>
+        </div>
+        <h3 class="tl-title">The Last Testament: What I Would Have Ghana Know</h3>
+        <p class="tl-from">From "Revolutionary Path"</p>
+        <p class="tl-excerpt">I am growing old in this borrowed country, and my health is not what it was. But the fire that was lit on the 6th of March, 1957, burns still. It burns in me, and I know it burns in you.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+
+    <article class="tl-card era-exile" data-idx="14" onclick="openLetter(14)">
+      <div class="tl-dot"></div>
+      <span class="tl-year">1972</span>
+      <div class="tl-card-inner">
+        <div class="tl-meta">
+          <span class="tl-date">January 1972 · Conakry, Guinea</span>
+          <span class="tl-source-tag">Open Letter</span>
+        </div>
+        <h3 class="tl-title">To Dr. Busia: Now You Understand</h3>
+        <p class="tl-from">Open Letter to Dr. K.A. Busia</p>
+        <p class="tl-excerpt">So the army has removed you too. On the 13th of January, 1972, while you sat in a London clinic, the soldiers came — just as they came for me six years ago.</p>
+        <span class="tl-read-cta">Read full letter →</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- LETTER MODAL -->
+<div class="letter-modal-overlay" id="letterModal">
+  <div class="letter-modal" id="letterModalContent">
+    <button class="modal-close" onclick="closeLetter()" aria-label="Close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-top-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-title">Dear Osagyefo</span>
+        <p>A living archive of open letters to Kwame Nkrumah — witty dispatches from the present to the past.</p>
+        <p>By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        <div class="footer-socials">
+          <a href="https://twitter.com/share" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://facebook.com/sharer.php" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://wa.me/?text=Dear%20Osagyefo%20%E2%80%94%20www.dearosagyefo.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-nav-row">
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="letters.html">Letters</a>
+          <a href="from-osagyefo.html">From Osagyefo</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="about.html">About</a>
+          <a href="write.html">Write a Letter</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>The Project</h4>
+          <a href="about.html">About Dr. Danso</a>
+          <a href="quiz.html">History Quiz</a>
+          <a href="write.html">Submit Your Letter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Dr. Ato Kwamena Danso. All rights reserved.</p>
+    <div class="footer-flag">
+      <span style="background:var(--red);"></span>
+      <span style="background:var(--gold);"></span>
+      <span style="background:var(--green);"></span>
+    </div>
+    <p>Independence Day &middot; March 6, 1957</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+<div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
+<button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">&#9790;</button>
+
+<script>
+/* ═══ LETTER DATA — CHRONOLOGICAL ORDER ═══ */
+const lettersData = [
+  {
+    era: 'pre', date: '1957 · Accra, Ghana', from: 'Kwame Nkrumah — From "Ghana: The Autobiography of Kwame Nkrumah"',
+    title: 'On the Prison Years: What Confinement Taught Me',
+    salutation: 'To those who know suffering,',
+    body: '<p>I was imprisoned by the colonial government. They thought the walls of James Fort would break me. They were wrong. Prison, I discovered, is a university — the finest I ever attended. It strips away every illusion and teaches you what you truly believe in.</p><p>In my cell I read everything I could find. I studied. I planned. I wrote. And I made a promise to myself: that when I emerged, I would give every fibre of my being to the cause of freedom. Not freedom for Kwame Nkrumah — that is a small thing — but freedom for all of Africa.</p><p>They released me because the people demanded it. Not because the colonial masters had a change of heart, but because the voice of the people could no longer be ignored. That is the power of a united people. No prison, no army, no empire can stand against a people who have decided to be free.</p><p>If you are young and reading these words, know this: the obstacles before you are real, but they are not permanent. The British Empire seemed permanent. It was not. Apartheid seemed permanent. It was not. The conditions that oppress you today — poverty, corruption, injustice — they too shall pass. But only if you resolve to make them pass.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Ghana: The Autobiography of Kwame Nkrumah" (1957)',
+    source: 'Ghana: The Autobiography of Kwame Nkrumah, Thomas Nelson & Sons, 1957'
+  },
+  {
+    era: 'golden', date: 'March 6, 1957 · Accra', from: 'Kwame Nkrumah — Independence Day Declaration',
+    title: 'At Long Last, the Battle Has Ended',
+    salutation: 'People of Ghana,',
+    body: '<p>At long last, the battle has ended! And thus, Ghana, your beloved country, is free forever! And yet again, I say that the independence of Ghana is meaningless unless it is linked up with the total liberation of the African continent.</p><p>We must change our attitudes, our minds. We must realise that from now on we are no longer a colonial but a free and independent people. But also, as I pointed out, that entails hard work. It is not going to be easy. From now on, today, we must change our attitudes, our minds. We must realise that from now on we are no longer a colonial but free and independent people.</p><p>Let us now, fellow Ghanaians, let us now ask for God\'s blessing and in the words of our ancestors I say, and I throw down on you the challenge: that we are going to see that we create our own African personality and identity. We again, rededicate ourselves to the struggle to emancipate other countries in Africa; for our independence is meaningless unless it is linked up with the total liberation of Africa.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'Old Polo Grounds, Accra — March 6, 1957',
+    source: 'Independence Day speech, March 6, 1957'
+  },
+  {
+    era: 'golden', date: '1961 · Accra, Ghana', from: 'Kwame Nkrumah — From "I Speak of Freedom"',
+    title: 'I Speak of Freedom: A Statement of African Ideology',
+    salutation: 'To all who believe in the African cause,',
+    body: '<p>For centuries, Europeans dominated the African continent. The white man arrogated to himself the right to rule and to be obeyed by the non-white; his mission, he claimed, was to "civilise" Africa. Under this cloak, the Europeans robbed the continent of vast riches and inflicted unimaginable suffering on the African people.</p><p>All this makes a sad story, but now we must be prepared to bury the past and build the future. For it is only when the past has been faced and dealt with that we can look ahead without bitterness, and plan the tomorrow of our dreams.</p><p>Countrymen, the task ahead is great indeed, and heavy is the responsibility; and yet it is a noble and glorious challenge — a challenge which calls for the marshalling of all our resources of brain and brawn. In Ghana, we have declared our determination to build a socialist society. We shall do this by our own efforts, with the aid of science and technology, and in the company of all who share our vision.</p><p>I believe strongly and sincerely that with the deep-rooted wisdom and dignity, the innate respect for human lives, the intense humanity that is our heritage, the African race, united under one federal government, will emerge not as just another world bloc to flaunt its wealth and strength, but as a Great Power whose greatness is indestructible because it is built not on fear, envy, and suspicion, but on hope, trust, friendship and directed to the good of all mankind.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "I Speak of Freedom" (1961)',
+    source: 'I Speak of Freedom: A Statement of African Ideology, Heinemann, 1961'
+  },
+  {
+    era: 'golden', date: 'May 1963 · Addis Ababa, Ethiopia', from: 'Kwame Nkrumah — Address to the OAU Founding Summit',
+    title: 'Africa Must Unite or Perish',
+    salutation: 'Your Excellencies, Heads of African States,',
+    body: '<p>We need the strength of our combined numbers and resources to protect ourselves from the very positive dangers of returning colonialism in disguised forms. We need it to combat the entrenched forces dividing our continent and still holding back millions of our brothers.</p><p>We have already reached the stage where we must unite or sink into that condition which has made Latin America the unwilling and exploited appendage of the United States of America.</p><p>The forces that unite us are intrinsic and greater than the superimposed influences that keep us apart. Here is a challenge which destiny has thrown out to the leaders of Africa. It is for us to grasp what is a golden opportunity to prove that the genius of African people can surmount the separatist tendencies in sovereign nationhood by coming together speedily on the much broader entity of a Union of African States.</p><p>We must unite now or perish. The signs are already here for those with eyes to see. We must act now. Tomorrow may be too late and the opportunity will have passed, and with it the hope of free Africa\'s millions.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'OAU Founding Summit, Addis Ababa — May 24, 1963',
+    source: 'Address to the OAU Summit, Addis Ababa, 1963'
+  },
+  {
+    era: 'golden', date: '1964 · Accra, Ghana', from: 'Kwame Nkrumah — From "Consciencism"',
+    title: 'The African Personality: On Building a Philosophy of Our Own',
+    salutation: 'Fellow Africans,',
+    body: '<p>We face neither combatively, but not shamefully. Practice without thought is blind; thought without practice is empty. Our philosophy must find its weapons in the environment and living conditions of the African people. It must be born from the soil itself.</p><p>The philosophy that must stand behind the social revolution is that which I have called Consciencism. It is the map in intellectual terms of the disposition of forces which will enable African society to digest the Western and the Islamic and the Euro-Christian elements in Africa, and develop them in such a way that they fit into the African personality.</p><p>We do not need to go to Europe to find our identity. We do not need to reject modernity to be African. What we need is a synthesis — a way of being that honours the communal traditions of our ancestors while embracing the tools and discoveries of the modern age. This is not contradiction. This is intelligence.</p><p>The African personality is not a museum piece. It is a living, evolving force. It dances. It thinks. It builds. It dreams. And it refuses — absolutely refuses — to be defined by those who once claimed we had no history, no civilisation, no future. We have all three. And the world is about to find out.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Consciencism" (1964)',
+    source: 'Consciencism: Philosophy and Ideology for De-Colonization, Heinemann, 1964'
+  },
+  {
+    era: 'golden', date: '1965 · Accra, Ghana (Pre-Coup)', from: 'Kwame Nkrumah — From "Neo-Colonialism: The Last Stage of Imperialism"',
+    title: 'The Invisible Chains: On Neo-Colonialism',
+    salutation: 'To the peoples of the developing world,',
+    body: '<p>The essence of neo-colonialism is that the State which is subject to it is, in theory, independent and has all the outward trappings of international sovereignty. In reality its economic system and thus its political policy is directed from outside.</p><p>The methods of neo-colonialists are subtle and varied. They operate not only in the economic field, but also in the political, religious, ideological and cultural spheres. Faced with the militant peoples of the ex-colonial territories, imperialism simply switches tactics. Without a qualm it dispenses with its flags, and even with certain of its more hated set of puppets.</p><p>In place of colonialism, as the main instrument of imperialism, we have today neo-colonialism. The result of neo-colonialism is that foreign capital is used for the exploitation rather than for the development of the less developed parts of the world. Investment, under neo-colonialism, increases rather than decreases the gap between the rich and the poor countries of the world.</p><p>The struggle against neo-colonialism is not aimed at excluding the capital of the developed world from operating in less developed countries. It is aimed at preventing the financial power of the developed countries being used in such a way as to impoverish the less developed.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Neo-Colonialism: The Last Stage of Imperialism" (1965)',
+    source: 'Neo-Colonialism: The Last Stage of Imperialism, Thomas Nelson & Sons, 1965'
+  },
+  {
+    era: 'exile', date: 'March 1966 · Conakry, Guinea', from: 'Kwame Nkrumah — Broadcast to the People of Ghana',
+    title: 'To the People of Ghana: I Have Not Abandoned You',
+    salutation: 'People of Ghana,',
+    body: '<p>The military and police have seized power in Ghana while I was on a mission of peace to Hanoi. I want you to know that I am well, that I am safe, and that I have not abandoned you. The struggle continues.</p><p>This coup was not carried out in the interest of the people. It was carried out in the interest of neocolonialism. The forces that engineered this betrayal are the same forces that have always opposed African unity and independence. They feared what we were building — a united Africa, free from foreign domination.</p><p>I call upon all true patriots, all those who believe in the cause of African freedom, to remain steadfast. The setback is temporary. The cause of African unity is imperishable. No coup can destroy an idea whose time has come.</p><p>I shall return. Of this I am certain. And when I do, it will not be to seek vengeance, but to continue the work we began together on the 6th of March, 1957.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'Co-President of the Republic of Guinea',
+    source: 'Radio broadcasts from Conakry, March 1966'
+  },
+  {
+    era: 'exile', date: '1966 · Conakry, Guinea', from: 'Kwame Nkrumah — Letter to African Heads of State',
+    title: 'An Appeal to the Organisation of African Unity',
+    salutation: 'Your Excellencies,',
+    body: '<p>I write to you not as the deposed President of Ghana, but as a fellow African who has devoted his life to the cause we all profess to share: the total liberation and unification of our continent.</p><p>The coup in Ghana was not merely an attack on my government. It was an attack on the very principle of African sovereignty. If a foreign power can engineer the removal of one African head of state, no African head of state is safe. Today it is Ghana. Tomorrow it may be your country.</p><p>I urge the OAU to take a firm stand against this illegal seizure of power. Not for my sake — my personal fate is of little consequence — but for the sake of the principle we established in Addis Ababa in 1963: that the sovereignty and territorial integrity of every African state is sacred.</p><p>If we allow coups to go unchallenged, if we recognise governments installed by foreign intelligence services, then we have surrendered the very independence we fought so hard to win. I implore you: do not let this precedent stand.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'Former President of the Republic of Ghana',
+    source: 'Correspondence to OAU members, 1966'
+  },
+  {
+    era: 'exile', date: '1967 · Conakry, Guinea', from: 'Kwame Nkrumah — Radio Guinea Broadcast',
+    title: 'On the Soldiers Who Betrayed: A Word to the Ghana Armed Forces',
+    salutation: 'Officers and men of the Ghana Armed Forces,',
+    body: '<p>You were trained to defend Ghana. Instead, you were used to destroy it. Not by an enemy from across the sea, but by the very powers whose interests you were told to protect. You became instruments of a foreign policy that was never your own.</p><p>I do not blame every soldier. I know that many of you were deceived. You were told that I had stolen from the nation, that I had become a dictator, that your action was patriotic. But ask yourselves: who benefited? Was it the market woman in Makola? The farmer in Tamale? The fisherman in Elmina? Or was it the mining companies, the foreign banks, the intelligence services who had long plotted this day?</p><p>A soldier who overthrows his own government does not become a statesman. He becomes a precedent. And that precedent will haunt Ghana for decades. Every ambitious colonel will look at what you did and think: why not me? Why not now?</p><p>I forgive you. But history will require more than forgiveness. It will require understanding — of how easily a nation can be turned against itself, and how long it takes to recover.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'Radio broadcast from Conakry, 1967',
+    source: 'Radio Guinea broadcasts, 1967'
+  },
+  {
+    era: 'exile', date: '1968 · Conakry, Guinea', from: 'Kwame Nkrumah — From "Dark Days in Ghana"',
+    title: 'On the Coup: An Anatomy of Neocolonialism',
+    salutation: 'To the reader,',
+    body: '<p>The events of February 1966 did not occur in a vacuum. They were the culmination of a carefully orchestrated campaign by imperialist powers who could not tolerate an independent Africa charting its own course. I documented these events not out of bitterness, but so that future generations may understand the machinery of neocolonialism.</p><p>The CIA and its allies had long regarded Ghana as a threat — not because we possessed weapons of mass destruction, but because we possessed an idea: that Africa could and should govern itself. That the resources of Africa should serve the people of Africa. That unity was not merely a slogan but a necessity.</p><p>They infiltrated our institutions, turned officers against their own people, and when the moment came, they struck. But let me be clear: coups do not defeat ideas. They merely delay their realisation.</p><p>I write these words from exile, but exile has not exiled my convictions. Every day I wake in Conakry, I am reminded that the struggle for African liberation is larger than any one man, any one government, any one setback.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Dark Days in Ghana" (1968)',
+    source: 'Dark Days in Ghana, International Publishers, 1968'
+  },
+  {
+    era: 'exile', date: '1968 · Conakry, Guinea', from: 'Kwame Nkrumah — From "Dark Days in Ghana"',
+    title: 'A Message to the Youth of Africa',
+    salutation: 'Young men and women of Africa,',
+    body: '<p>The future of Africa belongs to you. Not to the generals who seize power in the night. Not to the foreign interests who finance coups and install puppet governments. Not to those who have traded the dream of independence for the comfort of servitude. The future belongs to you.</p><p>I have seen the face of imperialism. It wears many masks — aid with conditions, loans with chains, trade agreements that benefit one side. But you, the youth, you have something that cannot be bought: the fire of conviction. The knowledge that Africa deserves better.</p><p>Educate yourselves. Not merely in the universities of the West, but in the history of your own continent. Know who you are, where you come from, and what was taken from you. Then you will understand what must be rebuilt.</p><p>I may not live to see the Africa I dreamed of. But you will build it. Of this, I have no doubt.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Dark Days in Ghana" (1968)',
+    source: 'Dark Days in Ghana, International Publishers, 1968'
+  },
+  {
+    era: 'exile', date: '1969 · Conakry, Guinea', from: 'Kwame Nkrumah — From "Handbook of Revolutionary Warfare"',
+    title: 'To the Freedom Fighters of Southern Africa',
+    salutation: 'Comrades in the struggle,',
+    body: '<p>While I write from exile, you fight in the bush. While I theorise about liberation, you live it — in Mozambique, in Angola, in Zimbabwe, in Namibia, in South Africa. You are the proof that the African revolution did not die with my government. It merely changed address.</p><p>The armed struggle for liberation is not terrorism. It is the inevitable response of a people who have exhausted every peaceful means of redress. When the settler takes your land, when the colonial power denies you the vote, when the apartheid regime classifies you as less than human — what option remains but to fight?</p><p>I urge you: fight not only with weapons but with ideas. The revolution must be political, economic, social, and cultural. It is not enough to remove the colonial flag. You must remove the colonial mind. You must build new institutions, new economies, new ways of thinking that serve the people — all the people.</p><p>Africa watches you. Africa is with you. And when victory comes — as it surely will — remember that independence is only the beginning. The harder work comes after.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Handbook of Revolutionary Warfare" (1968)',
+    source: 'Handbook of Revolutionary Warfare, Panaf Books, 1968'
+  },
+  {
+    era: 'exile', date: '1970 · Conakry, Guinea', from: 'Kwame Nkrumah — From "Class Struggle in Africa"',
+    title: 'On African Unity: The Only Way Forward',
+    salutation: 'To all who seek African liberation,',
+    body: '<p>I have said it before and I shall say it again: Africa must unite. This is not a slogan. It is a matter of life and death. A divided Africa will forever be at the mercy of those who wish to exploit it. Only a united Africa — politically, economically, militarily — can stand as an equal among the powers of the world.</p><p>Some said I was moving too fast. That Africa was not ready. But ready for what? Ready to be free? A people are always ready to be free. It is only their oppressors who insist they need more time.</p><p>From this room in Conakry, I can see clearly what perhaps I could not see from the corridors of power in Accra: that the struggle is not between capitalism and socialism, or between East and West. The struggle is between Africa and those who would keep Africa on its knees.</p><p>Unite. There is no other way.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Class Struggle in Africa" (1970)',
+    source: 'Class Struggle in Africa, Panaf Books, 1970'
+  },
+  {
+    era: 'exile', date: '1971 · Conakry, Guinea', from: 'Kwame Nkrumah — From "Revolutionary Path"',
+    title: 'The Last Testament: What I Would Have Ghana Know',
+    salutation: 'Ghana,',
+    body: '<p>I am growing old in this borrowed country, and my health is not what it was. But the fire that was lit on the 6th of March, 1957, burns still. It burns in me, and I know it burns in you.</p><p>I made mistakes. Any man who leads a nation through its birth and its first faltering steps will make mistakes. But my greatest error, if it was an error, was believing too fiercely in what Africa could become. I believed we could industrialise in a generation. I believed we could unite a continent that colonialism had carved into pieces. I believed in you.</p><p>They took the government. They could not take the idea. And the idea is simple: that Africa, with all its resources, all its people, all its ancient wisdom, deserves to stand tall. Not as a beggar at the table of nations, but as a host.</p><p>If I do not return — and the years grow uncertain — remember what we began. Do not let them tell you it was nothing. Do not let them rewrite the story. We dared to dream the biggest dream a continent has ever dreamed. And we were right to dream it.</p><p>Forward ever. Backward never.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'From "Revolutionary Path" (1973, posthumous)',
+    source: 'Revolutionary Path, Panaf Books, 1973 (posthumous compilation)'
+  },
+  {
+    era: 'exile', date: 'January 1972 · Conakry, Guinea', from: 'Kwame Nkrumah — Open Letter to Dr. K.A. Busia',
+    title: 'To Dr. Busia: Now You Understand',
+    salutation: 'Dr. Busia,',
+    body: '<p>So the army has removed you too. On the 13th of January, 1972, while you sat in a London clinic, the soldiers came — just as they came for me six years ago. Colonel Acheampong now sits where you sat, which is where I sat before you. The chair, it seems, belongs to whoever has the guns.</p><p>You were among those who welcomed my overthrow. You called it liberation. You returned from exile in the Netherlands to accept what the coup-makers offered. You became Prime Minister under the very constitution that was written to bury everything I built. And now? Now the same military tradition has consumed you.</p><p>I do not write to gloat. I write because perhaps now, from your own exile, you can see what I have seen from mine: that coups are not corrections — they are a disease. Once a nation learns that power can be seized by force, the lesson is never forgotten. Every general watches and waits for his turn.</p><p>You dismantled the state enterprises. You expelled foreign workers. You devalued the currency on the advice of the same Western institutions that smile while Africa bleeds. And still, it was not enough. It is never enough for those who believe they deserve the chair more than the man sitting in it.</p><p>I warned that neocolonialism would devour us from within. You dismissed it as rhetoric. But here we are — two deposed leaders of the same small country, both learning the same bitter lesson at different ends of the same decade. The forces that removed me did not stop with me. They will not stop with you.</p><p>Africa must find another way. Not the ballot manipulated by foreign money, nor the barrel of the soldier\'s gun, but a system rooted in the will of the people themselves. Until then, we shall keep producing exiles.</p>',
+    signature: 'Kwame Nkrumah', sigSub: 'Conakry, Guinea — January 1972',
+    source: "Based on Nkrumah's public statements following the January 1972 coup against Busia"
+  }
+];
+
+const TOTAL = lettersData.length;
+let currentModalIdx = -1;
+
+/* ═══ MODAL ═══ */
+function openLetter(idx) {
+  currentModalIdx = idx;
+  const d = lettersData[idx];
+  const modal = document.getElementById('letterModal');
+  const body = document.getElementById('modal-body');
+  body.innerHTML = `
+    <span class="modal-era-badge ${d.era}">${d.era === 'pre' ? '📖 Pre-Independence' : d.era === 'golden' ? '🌟 Independence Era' : '🕯️ Exile Period'}</span>
+    <p class="modal-date">${d.date}</p>
+    <p class="modal-from">${d.from}</p>
+    <h3 class="modal-title">${d.title}</h3>
+    <p class="modal-salutation">${d.salutation}</p>
+    <div class="modal-body">${d.body}</div>
+    <div class="modal-signature">${d.signature}<br><span style="font-size:0.85rem; font-style:normal; color:var(--earth);">${d.sigSub}</span></div>
+    <p class="modal-source">Source: ${d.source}</p>
+    <div class="modal-audio">
+      <button class="modal-listen-btn" onclick="playTTS(${idx})" id="modal-listen-btn">🔊 Listen</button>
+      <span class="modal-audio-time" id="modal-audio-time">0:00</span>
+    </div>
+    <div class="modal-share">
+      <span class="modal-share-label">Share</span>
+      <a href="#" class="share-btn fb" onclick="event.preventDefault(); shareFB(${idx})" title="Facebook"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#" class="share-btn tw" onclick="event.preventDefault(); shareTW(${idx})" title="X / Twitter"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" class="share-btn wa" onclick="event.preventDefault(); shareWA(${idx})" title="WhatsApp"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></a>
+      <button class="share-btn cp" onclick="copyLink(${idx})" title="Copy link"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71z"/></svg></button>
+    </div>
+    <div class="modal-nav">
+      <button class="modal-nav-btn" onclick="openLetter(${idx - 1})" ${idx === 0 ? 'disabled' : ''}>← Previous</button>
+      <span class="modal-nav-count">${idx + 1} of ${TOTAL}</span>
+      <button class="modal-nav-btn" onclick="openLetter(${idx + 1})" ${idx === TOTAL - 1 ? 'disabled' : ''}>Next →</button>
+    </div>
+  `;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('letterModalContent').scrollTop = 0;
+}
+
+function closeLetter() {
+  stopTTS();
+  document.getElementById('letterModal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModalIdx = -1;
+}
+document.getElementById('letterModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeLetter(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLetter();
+  if (currentModalIdx >= 0) {
+    if (e.key === 'ArrowRight' && currentModalIdx < TOTAL - 1) openLetter(currentModalIdx + 1);
+    if (e.key === 'ArrowLeft' && currentModalIdx > 0) openLetter(currentModalIdx - 1);
+  }
+});
+
+/* ═══ TTS ═══ */
+let ttsState = { playing: false, num: -1, startTime: 0 };
+function stopTTS() {
+  speechSynthesis.cancel();
+  ttsState.playing = false;
+  ttsState.num = -1;
+}
+function playTTS(idx) {
+  const btn = document.getElementById('modal-listen-btn');
+  const timeEl = document.getElementById('modal-audio-time');
+  if (ttsState.playing && ttsState.num === idx) {
+    if (speechSynthesis.paused) { speechSynthesis.resume(); btn.innerHTML = '⏸ Pause'; btn.classList.add('playing'); }
+    else { speechSynthesis.pause(); btn.innerHTML = '▶ Resume'; btn.classList.remove('playing'); }
+    return;
+  }
+  stopTTS();
+  const d = lettersData[idx];
+  const text = d.title + '. ' + d.salutation + ' ' + d.body.replace(/<[^>]+>/g, ' ');
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 1.0; utter.pitch = 0.9;
+  const voices = speechSynthesis.getVoices();
+  const pref = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Daniel') || v.name.includes('Male') || v.name.includes('David') || v.name.includes('Alex')))
+    || voices.find(v => v.lang.startsWith('en'));
+  if (pref) utter.voice = pref;
+  ttsState = { playing: true, num: idx, startTime: Date.now() };
+  utter.onstart = () => { btn.innerHTML = '⏸ Pause'; btn.classList.add('playing'); tickTTS(); };
+  utter.onend = () => { btn.innerHTML = '🔊 Listen'; btn.classList.remove('playing'); ttsState.playing = false; };
+  utter.onerror = () => { btn.innerHTML = '🔊 Listen'; btn.classList.remove('playing'); ttsState.playing = false; };
+  speechSynthesis.speak(utter);
+}
+function tickTTS() {
+  if (!ttsState.playing) return;
+  const elapsed = Math.floor((Date.now() - ttsState.startTime) / 1000);
+  const el = document.getElementById('modal-audio-time');
+  if (el) el.textContent = `${Math.floor(elapsed/60)}:${String(elapsed%60).padStart(2,'0')}`;
+  if (speechSynthesis.speaking || speechSynthesis.paused) requestAnimationFrame(() => setTimeout(tickTTS, 250));
+}
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+/* ═══ SHARING ═══ */
+function shareFB(i) { const u = encodeURIComponent(location.href+'#letter-'+(i+1)); window.open('https://www.facebook.com/sharer/sharer.php?u='+u,'_blank','width=600,height=400'); }
+function shareTW(i) { const d = lettersData[i]; const t = encodeURIComponent('📜 "'+d.title+'" — Kwame Nkrumah #Ghana #Nkrumah'); const u = encodeURIComponent(location.href+'#letter-'+(i+1)); window.open('https://twitter.com/intent/tweet?text='+t+'&url='+u,'_blank','width=600,height=400'); }
+function shareWA(i) { const d = lettersData[i]; const t = encodeURIComponent('📜 *'+d.title+'*\n\nRead: '+location.href+'#letter-'+(i+1)); window.open((innerWidth<=768?'whatsapp://send?text=':'https://web.whatsapp.com/send?text=')+t,'_blank'); }
+function copyLink(i) {
+  navigator.clipboard.writeText(location.href+'#letter-'+(i+1)).then(() => showToast('Link copied!')).catch(() => showToast('Link copied!'));
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:0.7rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;z-index:10001;box-shadow:0 8px 25px rgba(0,0,0,0.2);';
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2500);
+}
+
+/* ═══ SCROLL REVEAL ═══ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.tl-card').forEach(card => observer.observe(card));
+
+/* ═══ DARK MODE ═══ */
+const darkToggle = document.getElementById('darkToggle');
+function setDarkMode(on) { document.documentElement.classList.toggle('dark', on); darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; document.cookie = `darkMode=${on?'1':'0'}; path=/; max-age=31536000`; }
+darkToggle.addEventListener('click', () => setDarkMode(!document.documentElement.classList.contains('dark')));
+const darkCookie = document.cookie.split('; ').find(r => r.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
+
+/* ═══ MOBILE NAV ═══ */
+function toggleMobileNav() { document.getElementById('main-nav').classList.toggle('open'); }
+document.querySelectorAll('#main-nav a').forEach(a => a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open')));
+
+/* ═══ BACK TO TOP ═══ */
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => btt.classList.toggle('visible', scrollY > 400), { passive: true });
+
+/* ═══ LOADER ═══ */
+window.addEventListener('load', () => setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 300));
+
+/* ═══ DEEP LINK ═══ */
+if (location.hash.startsWith('#letter-')) {
+  const num = parseInt(location.hash.replace('#letter-', ''));
+  if (num >= 1 && num <= TOTAL) setTimeout(() => openLetter(num - 1), 500);
+}
+</script>
+<script src="magic.js"></script>
+</body>
+</html>

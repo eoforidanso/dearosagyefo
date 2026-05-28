@@ -1,0 +1,3743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#D43F3A">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="/thumbnail.png">
+  <title>Open Letters | Letter to Osagyefo</title>
+  <meta name="description" content="Read 10 open letters to Osagyefo Kwame Nkrumah addressing contemporary Ghana. Topics include power outages, mobile money, governance, and cultural identity." />
+
+  <meta property="og:title" content="Open Letters | Letter to Osagyefo">
+  <meta property="og:description" content="Read open letters to Kwame Nkrumah addressing contemporary Ghana — power, money, governance, and identity.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.dearosagyefo.com/letters.html">
+  <meta property="og:image" content="https://www.dearosagyefo.com/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Letters | Letter to Osagyefo">
+  <meta name="twitter:description" content="Read open letters to Kwame Nkrumah addressing contemporary Ghana.">
+  <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Letter to Osagyefo",
+    "description": "Educational platform featuring open letters to Ghana's first President Kwame Nkrumah",
+    "url": "https://www.dearosagyefo.com",
+    "author": {
+      "@type": "Person",
+      "name": "Ato Kwamena"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.dearosagyefo.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Collection",
+    "name": "Letters to Osagyefo Kwame Nkrumah",
+    "description": "A collection of open letters addressing Ghana's first President about contemporary issues",
+    "about": {
+      "@type": "Person",
+      "@id": "https://en.wikipedia.org/wiki/Kwame_Nkrumah",
+      "name": "Kwame Nkrumah",
+      "jobTitle": "First President of Ghana",
+      "birthDate": "1909-09-21",
+      "deathDate": "1972-04-27",
+      "nationality": "Ghanaian"
+    },
+    "mainEntity": [
+      {
+        "@type": "Article",
+        "headline": "On Power Outages and Infrastructure",
+        "description": "Letter addressing Ghana's ongoing electricity challenges",
+        "keywords": "Ghana, power, electricity, infrastructure, development"
+      },
+      {
+        "@type": "Article", 
+        "headline": "On Mobile Money and Digital Finance",
+        "description": "Letter discussing Ghana's digital payment revolution",
+        "keywords": "Ghana, mobile money, fintech, digital payments, technology"
+      },
+      {
+        "@type": "Article",
+        "headline": "On Governance and Democratic Progress", 
+        "description": "Letter reflecting on Ghana's democratic journey since independence",
+        "keywords": "Ghana, democracy, governance, politics, independence"
+      }
+    ],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Letter to Osagyefo",
+      "url": "https://www.dearosagyefo.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Letter to Osagyefo",
+    "description": "Educational platform promoting understanding of Ghanaian history and contemporary issues",
+    "url": "https://www.dearosagyefo.com",
+    "educationalUse": "Historical Education",
+    "teaches": "Ghanaian History, Political Science, Cultural Studies",
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    }
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:          #D43F3A;
+      --gold:         #E8B923;
+      --green:        #2D5F3F;
+      --accent-warm:  #C65911;
+      --black:        #0f1419;
+      --bg:           #fafaf8;
+      --white:        #ffffff;
+      --gray-dark:    #2a2a2a;
+      --gray-med:     #5a5a5a;
+      --gray-light:   #888;
+      --gray-border:  #e0ddd9;
+      --cream:        #f4f1ed;
+      --earth:        #8b7355;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fafaf8 0%, #f4f1ed 50%, #fbf9f5 100%);
+      color: var(--gray-dark);
+      line-height: 1.75;
+    }
+    @media (min-width: 1024px) {
+      body { background-attachment: fixed; }
+    }
+
+    .flag-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      display: flex;
+      z-index: 10001;
+    }
+    .flag-stripe span { flex: 1; height: 100%; }
+    .flag-stripe span:nth-child(1) { background: var(--red); }
+    .flag-stripe span:nth-child(2) { background: var(--gold); }
+    .flag-stripe span:nth-child(3) { background: var(--green); }
+
+    /* NAV — GLASSMORPHISM */
+    nav {
+      background: rgba(255,255,255,0.72);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 8px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      color: var(--red);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-links { 
+      display: flex; 
+      gap: 3.5rem; 
+      list-style: none; 
+    }
+    .nav-links a {
+      color: var(--gray-med);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-variant: small-caps;
+      transition: all 0.25s;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 0.4rem;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:hover { 
+      color: var(--red);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section { padding: 6rem 2rem; }
+    .section-header {
+      margin-bottom: 4rem;
+      border-bottom: 2px solid var(--gray-border);
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 1px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--red);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .section-tag::before {
+      content: '◆ ';
+      margin-right: 0.5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+      color: var(--gray-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      color: var(--gray-med);
+      font-size: 0.95rem;
+      max-width: 650px;
+      font-weight: 300;
+    }
+
+    #letters { background: var(--white); }
+    .letters-stack-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      min-height: unset;
+      perspective: none;
+    }
+    .letters-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: static;
+      width: 100%;
+      height: auto;
+    }
+    /* ── ENVELOPE GRID LAYOUT ───────────────────────────────────── */
+    .letters-stack-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .letters-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: static !important;
+      height: auto !important;
+    }
+
+    /* ── ENVELOPE CARD ───────────────────────────────────────────── */
+    .letter-card {
+      position: relative;
+      width: 100%;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      opacity: 1;
+      pointer-events: auto;
+      /* Airmail border: red+blue diagonal stripes */
+      border: 3px solid transparent;
+      background-clip: padding-box;
+    }
+    .letter-card::before {
+      /* Airmail diagonal stripe border */
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--red)   0px,  var(--red)   8px,
+        #fff         8px,  #fff        14px,
+        #1a3a8a      14px, #1a3a8a     22px,
+        #fff         22px, #fff        28px
+      );
+      z-index: 0;
+      opacity: 1;
+    }
+    /* White inner face over the stripe border */
+    .envelope-face {
+      position: relative;
+      z-index: 1;
+      margin: 6px;
+      background: #fff;
+      border-radius: 3px;
+      padding: 1.25rem 1.4rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .letter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.14), 0 3px 8px rgba(0,0,0,0.08);
+    }
+    .letter-card:hover .envelope-face {
+      background: #fafafa;
+    }
+
+    /* Envelope flap (top V-shape via clip-path on a pseudo) */
+    .envelope-flap {
+      position: absolute;
+      top: 6px; left: 6px; right: 6px;
+      height: 48px;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .envelope-flap::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 100%;
+      background: linear-gradient(160deg, #f5f0e8 45%, transparent 45%),
+                  linear-gradient(200deg, #f5f0e8 45%, transparent 45%);
+      background-size: 50% 100%, 50% 100%;
+      background-position: left top, right top;
+      background-repeat: no-repeat;
+    }
+
+    /* TO address area */
+    .envelope-to {
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      font-family: 'DM Serif Display', serif;
+    }
+    .envelope-to-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #aaa;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 0.15rem;
+    }
+    .envelope-to-name {
+      font-size: 1.05rem;
+      color: #1a1a1a;
+      font-weight: 400;
+    }
+    .envelope-to-name em {
+      font-size: 0.75rem;
+      color: #888;
+      font-style: normal;
+      display: block;
+      font-family: 'Inter', sans-serif;
+      margin-top: 1px;
+    }
+
+    /* Subject line */
+    .envelope-subject {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      margin: 0.5rem 0 0.4rem;
+      line-height: 1.3;
+    }
+    /* Preview / summary */
+    .envelope-preview {
+      font-size: 0.82rem;
+      color: #666;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    /* Divider */
+    .envelope-divider {
+      border: none;
+      border-top: 1px dashed rgba(0,0,0,0.10);
+      margin: 0.6rem 0;
+    }
+
+    /* Footer row */
+    .envelope-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .envelope-from {
+      font-size: 0.7rem;
+      color: #999;
+      font-variant: small-caps;
+      letter-spacing: 0.3px;
+    }
+    .envelope-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .envelope-date-badge {
+      font-size: 0.65rem;
+      color: #888;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Postmark stamp */
+    .envelope-stamp {
+      width: 52px; height: 62px;
+      border: 2px solid var(--red);
+      border-radius: 3px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      background: #fff9f0;
+      flex-shrink: 0;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    }
+    .envelope-stamp::before {
+      content: 'GHANA';
+      position: absolute;
+      bottom: 4px;
+      font-size: 0.45rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: var(--red);
+      font-family: 'Inter', sans-serif;
+    }
+    /* PAR AVION tag */
+    .par-avion {
+      font-size: 0.6rem;
+      font-style: italic;
+      color: #1a3a8a;
+      border: 1px solid #1a3a8a;
+      padding: 1px 5px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* Category pill on envelope */
+    .envelope-category {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), #b00d1f);
+      color: white;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* NEW badge */
+    .envelope-new {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    /* Year badges — keep for JS-created dynamic cards */
+    .letter-year-badge { display: none; }
+
+    /* Hide old stack positions / animations — grid handles layout */
+    .letter-card.stack-0,
+    .letter-card.stack-1,
+    .letter-card.stack-2,
+    .letter-card.stack-3,
+    .letter-card.stack-hidden {
+      position: relative !important;
+      top: auto !important; left: auto !important; right: auto !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      z-index: auto !important;
+    }
+    .letter-card.stack-hidden { display: none !important; }
+    .letter-card.flip-away  { animation: none !important; }
+    .letter-card.flip-back-in { animation: none !important; }
+
+    /* Postage stamp (old class — hide) */
+    .letter-stamp { display: none; }
+    /* Stack navigation — hidden in grid mode */
+    .stack-nav {
+      display: none;
+    }
+    .stack-nav-btn {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--gray-border);
+      background: #fff;
+      color: var(--gray-dark);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 101;
+    }
+    .stack-nav-btn:hover:not(:disabled) {
+      border-color: var(--red);
+      color: var(--red);
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px rgba(212,63,58,0.15);
+    }
+    .stack-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .stack-counter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gray-med);
+      min-width: 90px;
+      text-align: center;
+    }
+    .stack-counter span { color: var(--red); font-size: 1.3rem; font-weight: 700; }
+
+    /* SOCIAL SHARE BUTTONS - MODERN DESIGN */
+    .share-wrapper {
+      background: linear-gradient(135deg, var(--deep-burgundy) 0%, var(--darker-gold) 100%);
+      padding: 60px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .share-section {
+      margin: 0 auto;
+      max-width: 480px;
+      text-align: center;
+    }
+    .share-title {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .share-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .share-btn:hover::before {
+      opacity: 1;
+    }
+    .share-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .share-btn.facebook {
+      background: linear-gradient(135deg, #1877f2, #0d5dbf);
+    }
+    .share-btn.facebook:hover {
+      background: linear-gradient(135deg, #2988ff, #1877f2);
+      box-shadow: 0 12px 35px rgba(24,119,242,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .share-btn.twitter {
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+    }
+    .share-btn.twitter:hover {
+      background: linear-gradient(135deg, #1a1a1a, #000000);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .share-btn.whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+    }
+    .share-btn.whatsapp:hover {
+      background: linear-gradient(135deg, #34e377, #25d366);
+      box-shadow: 0 12px 35px rgba(37,211,102,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .share-btn.copy {
+      background: linear-gradient(135deg, var(--gold), #d4a820);
+    }
+    .share-btn.copy:hover {
+      background: linear-gradient(135deg, #f0c833, var(--gold));
+      box-shadow: 0 12px 35px rgba(232,185,35,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+      color: var(--black);
+    }
+    .share-btn .share-icon {
+      font-size: 1.1rem;
+    }
+
+    .letter-card.red { border-left-color: var(--red); }
+    .letter-card.gold { border-left-color: var(--gold); }
+    .letter-card.green { border-left-color: var(--green); }
+    .letter-card.green { border-left-color: var(--green); }
+
+    .letter-date {
+      font-size: 0.7rem;
+      color: #8a7a65;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .letter-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: #2a1f10;
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+    .letter-preview {
+      font-size: 0.88rem;
+      color: #5a4a35;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .letter-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(160,130,80,0.15);
+    }
+    
+    .card-category {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), #b00d1f);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .card-tag {
+      background: rgba(232,185,35,0.2);
+      color: var(--accent-warm);
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(232,185,35,0.3);
+    }
+
+    .letter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(160,130,80,0.18);
+      padding-top: 1rem;
+    }
+    .letter-author {
+      font-size: 0.75rem;
+      color: #7a6a55;
+      font-weight: 300;
+      font-variant: small-caps;
+      letter-spacing: 0.4px;
+    }
+    .read-link {
+      font-size: 0.8rem;
+      color: var(--red);
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .read-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.3s;
+    }
+    .read-link:hover {
+      color: #b00d1f;
+    }
+    .read-link:hover::after { 
+      width: 100%;
+    }
+
+    /* AUDIO PLAYER */
+    .letter-audio {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-border);
+    }
+    
+    .audio-player-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(180deg, #e04a45 0%, #c0332e 100%);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(212,63,58,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .audio-player-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+      border-radius: 10px 10px 0 0;
+      pointer-events: none;
+    }
+    
+    .audio-player-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212, 63, 58, 0.3);
+    }
+    
+    .audio-player-btn:active {
+      transform: translateY(0);
+    }
+    
+    .audio-player-btn.playing {
+      background: linear-gradient(135deg, var(--accent-warm) 0%, var(--red) 100%);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212, 63, 58, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(212, 63, 58, 0); }
+    }
+    
+    .audio-player-controls {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(212, 63, 58, 0.05);
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      min-width: 0;
+    }
+    
+    .audio-time {
+      font-size: 0.7rem;
+      color: var(--gray-med);
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 45px;
+    }
+    
+    audio {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      cursor: pointer;
+      min-width: 60px;
+    }
+    
+    audio::-webkit-media-controls-panel {
+      background-color: transparent;
+      border-radius: 12px;
+    }
+    
+    audio::-webkit-media-controls-play-button {
+      display: none;
+    }
+    
+    audio::-webkit-media-controls-volume-slider-container {
+      display: none;
+    }
+    
+    audio::-webkit-media-controls-mute-button {
+      display: none;
+    }
+    
+    .audio-volume-btn {
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: 1px solid var(--gray-med);
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--gray-med);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .audio-volume-btn:hover {
+      background: rgba(212, 63, 58, 0.1);
+      color: var(--red);
+    }
+    
+    .audio-status {
+      font-size: 0.7rem;
+      color: var(--gray-med);
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 35px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .letter-audio {
+        gap: 0.8rem;
+        padding: 0.8rem 0;
+      }
+      .audio-player-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+      .audio-status {
+        font-size: 0.65rem;
+        min-width: 30px;
+      }
+    }
+
+    /* FILTER BAR — GLOSSY PILLS */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.7);
+      color: var(--gray-med);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%);
+      border-radius: 24px 24px 0 0;
+      pointer-events: none;
+    }
+    .filter-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+      box-shadow: 0 4px 14px rgba(212,63,58,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+      transform: translateY(-1px);
+    }
+    .filter-btn.active {
+      background: linear-gradient(180deg, #e04a45 0%, #c0332e 100%);
+      border-color: rgba(212,63,58,0.5);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(212,63,58,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+    .filter-count {
+      display: inline-block;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      padding: 0 0.4rem;
+      font-size: 0.65rem;
+      margin-left: 0.3rem;
+    }
+    .filter-btn:not(.active) .filter-count {
+      background: rgba(0,0,0,0.07);
+    }
+
+    .letter-share-btn {
+      background: none;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-med);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .letter-share-btn:hover {
+      border-color: var(--gold);
+      color: var(--accent-warm);
+      background: rgba(232, 185, 35, 0.06);
+    }
+    .share-dropdown {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      padding: 0.5rem 0;
+      min-width: 160px;
+      z-index: 100;
+      margin-bottom: 6px;
+    }
+    .share-dropdown.open { display: block; }
+    .share-dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .share-dropdown a:hover {
+      background: #f5f5f5;
+      color: var(--red);
+    }
+
+    /* MODAL — LETTER READING VIEW */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15,20,25,0.85);
+      z-index: 500;
+      display: none;
+      align-items: stretch;
+      justify-content: center;
+      padding: 0;
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      animation: fadeIn 0.3s ease;
+      overflow-y: auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: linear-gradient(160deg, #fefefe 0%, #faf8f4 100%);
+      width: 100%;
+      max-width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      border-radius: 0;
+      overflow-y: visible;
+      padding: 0;
+      position: relative;
+      box-shadow: none;
+      animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      margin: 0;
+    }
+
+    /* Modal hero banner - mirrors page hero */
+    .modal-hero {
+      background: linear-gradient(160deg, #0a0d11 0%, #141b27 60%, #0d1117 100%);
+      padding: 3rem 3rem 2.5rem;
+      border-bottom: 3px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .modal-hero::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,63,58,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .modal-hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .modal-hero .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: #fff;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .modal-hero .modal-subtitle {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    /* Modal content area fills remaining space */
+    .modal-content-area {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 4rem;
+      min-height: calc(100vh - 200px);
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      z-index: 600;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+      line-height: 1;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .modal-close:hover { 
+      background: linear-gradient(180deg, #e04a45, #c0332e);
+      color: white;
+      border-color: transparent;
+      transform: rotate(90deg);
+      box-shadow: 0 4px 16px rgba(212,63,58,0.4);
+    }
+
+    /* Legacy modal-title/subtitle outside hero (hidden) */
+    .modal > .modal-title,
+    .modal > .modal-subtitle {
+      display: none;
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    /* Ensure body doesn't scroll when modal is open */
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    
+    .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      padding: 0.8rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--gray-border);
+    }
+    
+    .modal-category {
+      background: linear-gradient(135deg, var(--red), #b00d1f);
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .modal-tag {
+      background: rgba(232,185,35,0.2);
+      color: var(--accent-warm);
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(232,185,35,0.3);
+    }
+    .modal-body { font-size: 1.05rem; line-height: 1.9; color: var(--gray-dark); }
+    .modal-body .salutation {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: var(--green);
+    }
+    .modal-body p { margin-bottom: 1.3rem; }
+    .modal-body p:empty { display: none; }
+    .modal-body .sign-off {
+      margin-top: 2.5rem;
+      font-style: italic;
+      font-family: 'DM Serif Display', serif;
+      margin-bottom: 0.3rem;
+    }
+    .modal-body .signature {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* Letter actions in modals */
+    .letter-actions {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-top: 1px solid #dee2e6;
+      padding: 25px;
+      margin-top: 20px;
+      border-radius: 0 0 12px 12px;
+    }
+    
+    .letter-actions .letter-audio {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .letter-actions .letter-share .share-title {
+      font-size: 0.9rem;
+      color: var(--gray-medium);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    
+    .letter-actions .letter-share .share-buttons {
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    
+    .letter-actions .share-btn {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .letter-actions .share-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Letter image in modal */
+    .modal-letter-image {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: linear-gradient(135deg, #0a0d11 0%, #121620 50%, #0d1117 100%);
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #999;
+      border-top: 2px solid rgba(198, 89, 17, 0.2);
+    }
+    .footer-title {
+      font-family: 'DM Serif Display', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: #777;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.25rem;
+    }
+    .footer-colors {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .footer-colors span {
+      width: 20px;
+      height: 4px;
+      border-radius: 2px;
+    }
+    .share-btn {
+      display: inline-block;
+      padding: 0.45rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #ccc;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .share-btn:hover {
+      color: #fff;
+      border-color: var(--gold);
+      background: rgba(232, 185, 35, 0.08);
+    }
+    .footer-share .share-btn {
+      display: none;
+    }
+    .mobile-share-btn {
+      display: none;
+      padding: 0.45rem 1.2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #ccc;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+      background: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .mobile-share-btn:hover {
+      color: #fff;
+      border-color: var(--gold);
+      background: rgba(232, 185, 35, 0.08);
+    }
+    .mobile-share-dropdown {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1d22;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      padding: 0.5rem 0;
+      min-width: 140px;
+      z-index: 100;
+      margin-bottom: 8px;
+    }
+    .mobile-share-dropdown.open {
+      display: block;
+    }
+    .mobile-share-dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-share-dropdown a:hover {
+      color: var(--gold);
+      background: rgba(232, 185, 35, 0.08);
+    }
+    .social-link {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .social-link:hover { color: #fff; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      background: none;
+      border: 2px solid var(--red);
+      border-radius: 5px;
+      color: var(--red);
+      font-size: 1.2rem;
+      padding: 0.3rem 0.55rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hamburger:hover { background: var(--red); color: #fff; }
+
+    @media (max-width: 768px) {
+      /* Enhanced touch interactions */
+      * {
+        -webkit-tap-highlight-color: rgba(212, 63, 58, 0.2);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Allow text selection for content */
+      p, h1, h2, h3, blockquote, .letter-excerpt, .modal-body {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        -webkit-touch-callout: default;
+      }
+
+      /* Enhanced button touch targets */
+      button, .btn, .hamburger, .letter-card, .modal-close {
+        min-height: 44px;
+        touch-action: manipulation;
+      }
+      
+      /* Better modal experience on mobile */
+      .modal {
+        padding: 1rem;
+      }
+      
+      .hamburger { display: block; }
+      nav { 
+        padding: 0.75rem 1.25rem;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+      }
+      .nav-logo { 
+        font-size: 1rem;
+        flex-basis: auto;
+        text-align: left;
+        margin-bottom: 0;
+      }
+      .nav-links { 
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 2px solid var(--red);
+        padding: 0.5rem 0 1rem;
+        z-index: 200;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        list-style: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.82rem;
+        border-bottom: none;
+      }
+      section { padding: 3.5rem 0; }
+      .container { padding: 0 1.25rem; }
+      .section-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+      .section-title { font-size: clamp(1.4rem, 2vw, 2rem); }
+      .section-tag { font-size: 0.68rem; }
+      .section-desc { font-size: 0.88rem; }
+      .letters-stack-wrapper { max-width: 100%; }
+      .letters-grid { height: 460px; }
+      .letter-card { padding: 1.4rem 1.5rem; border-radius: 3px; min-height: 480px; }
+      .letter-card h3 { font-size: 1.05rem; }
+      .letter-preview { font-size: 0.88rem; }
+      .letter-stamp { width: 44px; height: 52px; font-size: 1.2rem; right: 32px; }
+      .filter-bar { gap: 0.5rem; margin-bottom: 2rem; }
+      .filter-btn { padding: 0.45rem 1rem; font-size: 0.68rem; }
+      .modal-overlay { padding: 0; }
+      .modal { border-radius: 0; max-width: none; max-height: none; height: 100%; }
+      .modal-hero { padding: 2.5rem 1.5rem 2rem; }
+      .modal-content-area { padding: 1.5rem 1.5rem 3rem; }
+      .modal-title { font-size: 1.35rem; }
+      .modal-body { font-size: 0.95rem; }
+      .page-hero { padding: 4rem 1.25rem 3.5rem; }
+      .page-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+      .page-hero p { font-size: 0.92rem; padding: 0 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.65rem 1rem; }
+      .nav-logo { font-size: 0.92rem; }
+      .nav-links li a { font-size: 0.8rem; padding: 0.8rem 1.5rem; }
+      section { padding: 2.5rem 0; }
+      .container { padding: 0 1rem; }
+      .section-header { margin-bottom: 1.5rem; padding-bottom: 1rem; }
+      .section-title { font-size: 1.25rem; }
+      .section-tag { font-size: 0.68rem; }
+      .section-desc { font-size: 0.85rem; }
+      .letters-stack-wrapper { max-width: 100%; }
+      .letters-grid { height: 440px; }
+      .letter-card { padding: 1.3rem 1.2rem; border-radius: 3px; min-height: 460px; }
+      .letter-date { font-size: 0.65rem; }
+      .letter-card h3 { font-size: 0.98rem; margin-bottom: 0.75rem; }
+      .letter-preview { font-size: 0.83rem; margin-bottom: 1rem; }
+      .read-link { font-size: 0.75rem; }
+      .letter-stamp { width: 38px; height: 46px; font-size: 1rem; right: 26px; top: 12px; }
+      .stack-nav-btn { width: 40px; height: 40px; font-size: 0.95rem; }
+      .stack-counter { font-size: 0.85rem; }
+      .filter-bar { gap: 0.4rem; padding: 0 0.25rem; }
+      .filter-btn { padding: 0.4rem 0.85rem; font-size: 0.65rem; border-radius: 20px; }
+      .modal-overlay { padding: 0; }
+      .modal { border-radius: 0; max-width: none; max-height: none; height: 100%; }
+      .modal-hero { padding: 2rem 1.25rem 1.5rem; }
+      .modal-content-area { padding: 1.25rem 1.25rem 2rem; }
+      .modal-title { font-size: 1.15rem; }
+      .modal-body { font-size: 0.88rem; }
+      .modal-body p { margin-bottom: 1rem; }
+      .page-hero { padding: 3rem 1rem 2.5rem; }
+      .page-hero h1 { font-size: clamp(1.4rem, 5vw, 2rem); }
+      footer.site-footer .footer-top { padding: 2rem 1rem 0; }
+      footer.site-footer .footer-bottom { padding: 1.25rem 1rem; }
+    }
+
+    @media (max-width: 360px) {
+      .page-hero h1 { font-size: 1.25rem; }
+      .page-hero { padding: 2.5rem 0.75rem 2rem; }
+      .letter-card { padding: 1.1rem 1rem; min-height: 300px; }
+      .letter-card h3 { font-size: 0.9rem; }
+      .letter-preview { font-size: 0.8rem; }
+      .filter-btn { padding: 0.35rem 0.7rem; font-size: 0.6rem; }
+      .modal-hero { padding: 1.5rem 1rem; }
+      .modal-content-area { padding: 1rem; }
+      .modal-title { font-size: 1.05rem; }
+      .modal-body { font-size: 0.84rem; }
+      .container { padding: 0 0.75rem; }
+    }
+
+    /* ═ PAGE FADE-IN ═ */
+    @keyframes pageFadeIn { from{opacity:0;}to{opacity:1;} }
+    body { animation: pageFadeIn 0.5s ease both; }
+
+    /* ═ SCROLL REVEAL ═ */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),transform 0.75s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* PAGE HERO — 3D DEPTH */
+    .page-hero {
+      background: linear-gradient(160deg,#0a0d11 0%,#141b27 60%,#0d1117 100%);
+      padding: 5rem 2rem 4.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--gold);
+      box-shadow: inset 0 -4px 20px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .page-hero::before {
+      content:'';
+      position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+      width:500px; height:500px; border-radius:50%;
+      background:radial-gradient(circle,rgba(212,63,58,0.08) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .page-hero-inner { max-width:680px; margin:0 auto; position:relative; z-index:2; }
+    .page-hero-tag {
+      display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:2px;
+      text-transform:uppercase; background:var(--gold); color:#000;
+      padding:0.35rem 0.9rem; border-radius:2px; margin-bottom:1.4rem;
+    }
+    .page-hero h1 {
+      font-family:'DM Serif Display',serif;
+      font-size:clamp(2rem,5vw,3.2rem); color:#fff; line-height:1.2; margin-bottom:1rem;
+    }
+    .page-hero p { font-size:1rem; color:rgba(255,255,255,0.6); line-height:1.75; font-style:italic; }
+
+    /* ELEVATED FOOTER — 3D DEPTH */
+    footer.site-footer { background:linear-gradient(180deg,#0a0d11 0%,#060809 100%); padding:0; border-top:none; text-align:left; color:inherit; box-shadow: inset 0 2px 30px rgba(0,0,0,0.2); }
+    footer.site-footer .footer-top { padding:3.5rem 3rem 0; }
+    footer.site-footer .footer-top-inner { max-width:1200px; margin:0 auto; }
+    footer.site-footer .footer-brand { text-align:center; margin-bottom:2.5rem; }
+    footer.site-footer .footer-brand .footer-title,
+    footer.site-footer .footer-brand .footer-brand-title { font-family:'DM Serif Display',serif; font-size:1.5rem; color:#fff; margin-bottom:0.8rem; display:block; }
+    footer.site-footer .footer-brand p { font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.8; max-width:420px; margin:0 auto 0.4rem; }
+    footer.site-footer .footer-brand .footer-socials { display:flex; gap:0.6rem; justify-content:center; margin-top:1.5rem; }
+    footer.site-footer .footer-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(232,185,35,0.35),transparent); margin-bottom:2.5rem; }
+    footer.site-footer .footer-nav-row { display:flex; justify-content:center; gap:6rem; padding-bottom:2.5rem; }
+    footer.site-footer .footer-nav-col h4 { font-size:0.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; position:relative; }
+    footer.site-footer .footer-nav-col h4::after { content:''; position:absolute; bottom:-4px; left:0; width:18px; height:2px; border-radius:2px; }
+    footer.site-footer .footer-nav-row .footer-nav-col:first-child h4::after { background:var(--red); }
+    footer.site-footer .footer-nav-row .footer-nav-col:last-child h4::after { background:var(--green); }
+    footer.site-footer .footer-nav-col a { display:block; font-size:0.82rem; color:rgba(255,255,255,0.5); text-decoration:none; margin-bottom:0.65rem; transition:color 0.2s,transform 0.2s; }
+    footer.site-footer .footer-nav-col a:hover { color:rgba(255,255,255,0.95); transform:translateX(3px); }
+    footer.site-footer .footer-nav-col a::after { display:none !important; }
+    footer.site-footer .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding:1.4rem 2rem; max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+    footer.site-footer .footer-bottom p { font-size:0.7rem; color:rgba(255,255,255,0.25); margin:0; }
+    footer.site-footer .footer-bottom a { color:rgba(255,255,255,0.35); transition:color 0.2s; }
+    footer.site-footer .footer-bottom a:hover { color:rgba(255,255,255,0.7); }
+    footer.site-footer .footer-flag { display:flex; gap:0; align-items:center; overflow:hidden; border-radius:2px; transition:transform 0.3s; }
+    footer.site-footer .footer-flag:hover { transform:scaleX(1.3); }
+    footer.site-footer .footer-flag span { width:22px; height:4px; }
+    /* Modern Footer Social Icons */
+    footer.site-footer .social-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    /* X/Twitter styling */
+    footer.site-footer .social-icon-link[aria-label*="X"] {
+      background: linear-gradient(45deg, #1DA1F2, #0D8BD9);
+    }
+    footer.site-footer .social-icon-link[aria-label*="X"]:hover {
+      background: linear-gradient(45deg, #0D8BD9, #0A6BB3);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(29, 161, 242, 0.4);
+    }
+
+    /* Facebook styling */
+    footer.site-footer .social-icon-link[aria-label*="Facebook"] {
+      background: linear-gradient(45deg, #4267B2, #365899);
+    }
+    footer.site-footer .social-icon-link[aria-label*="Facebook"]:hover {
+      background: linear-gradient(45deg, #365899, #2d4373);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(66, 103, 178, 0.4);
+    }
+
+    /* WhatsApp styling */
+    footer.site-footer .social-icon-link[aria-label*="WhatsApp"] {
+      background: linear-gradient(45deg, #25D366, #20BA5A);
+    }
+    footer.site-footer .social-icon-link[aria-label*="WhatsApp"]:hover {
+      background: linear-gradient(45deg, #20BA5A, #1a9e4e);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    footer.site-footer .social-icon-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      z-index: 1;
+    }
+    @media (max-width:768px) {
+        footer.site-footer .footer-top { padding:2.5rem 1.5rem 0; }
+        footer.site-footer .footer-nav-row { flex-direction:column; align-items:center; gap:2rem; text-align:center; }
+        footer.site-footer .footer-nav-col h4::after { left:50%; transform:translateX(-50%); }
+        footer.site-footer .footer-nav-col a:hover { transform:none; }
+        footer.site-footer .footer-bottom { flex-direction:column; text-align:center; padding:1.4rem 1.5rem; }
+    }
+    .back-to-top { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:50%; border:none; background:linear-gradient(135deg,var(--red),var(--gold),var(--green)); color:#fff; font-size:1.2rem; cursor:pointer; opacity:0; transform:translateY(20px); transition:opacity 0.3s,transform 0.3s,box-shadow 0.3s; pointer-events:none; z-index:999; box-shadow:0 4px 16px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; }
+    .back-to-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+    .back-to-top:hover { box-shadow:0 8px 28px rgba(232,185,35,0.35); transform:translateY(-3px); }
+  </style>
+
+    <style>
+      @media (min-width: 1024px) {
+        .container {
+          padding-left: 3rem;
+          padding-right: 3rem;
+        }
+        .page-hero {
+          padding: 6rem 3rem 5rem;
+        }
+      }
+    </style>
+
+    <style>
+      @media (max-width: 768px) {
+        footer .footer-top-inner,
+        footer .footer-bottom {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          text-align: center !important;
+        }
+        footer .footer-top-inner > *,
+        footer .footer-bottom > * {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+    </style>
+
+  <!-- Structured Data: Article Schema for Letter I -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter I: On the Matter of Dumsor & the Audacity of Darkness",
+    "description": "The lights go off. Then they come on. Then they go off again. A letter about Ghana's persistent power crisis.",
+    "datePublished": "2024-03-06",
+    "dateModified": "2024-03-06",
+    "author": {
+      "@type": "Person",
+      "name": "A Ghanaian with a Melting Fridge"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter II -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter II: On Mobile Money, and How We Accidentally Built Socialism in Our Phones",
+    "description": "Mobile money redistributed credit where land was redistributed. A commentary on Ghana's financial innovation.",
+    "datePublished": "2023-08-04",
+    "dateModified": "2023-08-04",
+    "author": {
+      "@type": "Person",
+      "name": "A MoMo agent in Kumasi"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter III -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter III: The Year of Return - A Homecoming in Four Acts",
+    "description": "Millions of diaspora Africans returned home in 2019. A reflection on what that journey meant.",
+    "datePublished": "2020-01-01",
+    "dateModified": "2020-01-01",
+    "author": {
+      "@type": "Person",
+      "name": "A diaspora returnee"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter IV -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter IV: On the Cedi, the IMF, and the Arithmetic of Survival",
+    "description": "When the Cedi weakens and the IMF arrives with worksheets and disappointment.",
+    "datePublished": "2022-12-31",
+    "dateModified": "2022-12-31",
+    "author": {
+      "@type": "Person",
+      "name": "An economist with anxiety"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter V -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter V: On Elections - Democracy's Quarterly Fever",
+    "description": "Elections every four years bring promises flying like confetti. But what happens then?",
+    "datePublished": "2024-12-07",
+    "dateModified": "2024-12-07",
+    "author": {
+      "@type": "Person",
+      "name": "A jaded voter"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter VI -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter VI: On Jollof Rice - A Culinary Declaration of Independence",
+    "description": "Ghana's greatest culinary triumph and the most celebrated liberation since 1957.",
+    "datePublished": "2025-02-14",
+    "dateModified": "2025-02-14",
+    "author": {
+      "@type": "Person",
+      "name": "A Ghanaian food nationalist"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter VII -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter VII: High Definition Hypocrisy",
+    "description": "We preach democracy while silencing dissent. We champion freedom while chaining ambition.",
+    "datePublished": "2026-03-10",
+    "dateModified": "2026-03-10",
+    "author": {
+      "@type": "Person",
+      "name": "A political observer"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter VIII -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter VIII: DVLA World Tour",
+    "description": "Where innovation goes to retire and bureaucracy thrives - a satirical look at Ghana's licensing authority.",
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-01-01",
+    "author": {
+      "@type": "Person",
+      "name": "A frustrated driver"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter IX -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter IX: Obimanso, the Struggle is Real",
+    "description": "Where the sun beats down with fury and progress contemplates defeat.",
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-01-01",
+    "author": {
+      "@type": "Person",
+      "name": "A villager's diary"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Article Schema for Letter X -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Letter X: The Lagoon's Revenge",
+    "description": "We built on faith and shortsighted ambition. The lagoon remembers, and it collects its debts.",
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-01-01",
+    "author": {
+      "@type": "Person",
+      "name": "An environmental witness"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Letter to Osagyefo"
+    }
+  }
+  </script>
+    <!-- Premium Feature Styles -->
+    <style>
+      .reading-progress {
+        position: fixed; top: 0; left: 0; width: 0%;
+        height: 3px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+        z-index: 10000; transition: width 0.1s linear;
+      }
+      .scroll-top {
+        position: fixed; bottom: 2rem; right: 2rem;
+        width: 48px; height: 48px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), var(--accent-warm));
+        color: #fff; border: none; cursor: pointer;
+        font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+        opacity: 0; visibility: hidden; transform: translateY(20px);
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 4px 15px rgba(212,63,58,0.4); z-index: 9999;
+      }
+      .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+      .scroll-top:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(212,63,58,0.5); }
+      .dark-toggle {
+        position: fixed; bottom: 2rem; left: 2rem;
+        width: 48px; height: 48px; border-radius: 50%;
+        background: var(--gray-dark); color: var(--gold);
+        border: 2px solid var(--gold); cursor: pointer;
+        font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999;
+      }
+      .dark-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+      html.dark body { background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%) !important; color: #e0ddd9 !important; }
+      html.dark nav { background: rgba(15,20,25,0.95) !important; border-bottom-color: rgba(212,63,58,0.3) !important; }
+      html.dark .nav-logo { color: #fff !important; }
+      html.dark .nav-links { background: rgba(15,20,25,0.98) !important; }
+      html.dark .nav-links li a { color: #e0ddd9 !important; }
+      html.dark .nav-links li a:hover { color: var(--gold) !important; }
+      html.dark .page-hero { background: #1a1f2e !important; }
+      html.dark .letter-card { background: rgba(30,35,45,0.95) !important; background-image: none !important; border-color: rgba(232,185,35,0.15) !important; color: #e0ddd9 !important; }
+      html.dark .letter-card::before { border-color: transparent #2a2f3a transparent transparent !important; }
+      html.dark .letter-card h3 { color: #fff !important; }
+      html.dark .letter-date { color: #888 !important; }
+      html.dark .letter-preview { color: #aaa !important; }
+      html.dark .letter-stamp { border-color: rgba(255,255,255,0.12) !important; background: rgba(255,255,255,0.04) !important; }
+      html.dark .stack-nav-btn { background: rgba(30,35,45,0.9) !important; border-color: rgba(255,255,255,0.12) !important; color: #ccc !important; }
+      html.dark .stack-nav-btn:hover:not(:disabled) { border-color: var(--gold) !important; color: var(--gold) !important; }
+      html.dark .stack-counter { color: rgba(255,255,255,0.5) !important; }
+      html.dark .filter-btn { background: rgba(30,35,45,0.8) !important; color: #e0ddd9 !important; border-color: rgba(232,185,35,0.2) !important; }
+      html.dark .filter-btn.active { background: var(--red) !important; color: #fff !important; }
+      html.dark footer { background: #0a0d12 !important; color: #e0ddd9 !important; }
+      html.dark footer a { color: rgba(255,255,255,0.7) !important; }
+      html.dark .modal { background: #12151c !important; color: #e0ddd9 !important; border-radius: 0 !important; }
+      html.dark .modal-hero { background: linear-gradient(160deg, #0a0d11, #1a1f2e) !important; }
+      html.dark .modal-content-area { background: #12151c !important; }
+      html.dark .modal-title { color: #fff !important; }
+      html.dark .dark-toggle { background: var(--gold); color: var(--black); border-color: var(--gold); }
+      html.dark section { color: #e0ddd9 !important; }
+      html.dark h1, html.dark h2, html.dark h3, html.dark h4 { color: #fff !important; }
+      html.dark p { color: #c0bdb9 !important; }
+      .page-loader { position: fixed; inset: 0; background: #fafaf8; display: flex; align-items: center; justify-content: center; z-index: 99999; transition: opacity 0.5s, visibility 0.5s; }
+      html.dark .page-loader { background: #0f1419; }
+      .page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+      .loader-spinner { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #e0ddd9; border-top-color: var(--red); animation: spin 0.7s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .reveal-enhanced { opacity: 0; transform: translateY(30px); transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+      .reveal-enhanced.revealed { opacity: 1; transform: translateY(0); }
+      @media (max-width: 768px) {
+        .scroll-top { bottom: 1.5rem; right: 1.25rem; width: 42px; height: 42px; font-size: 1rem; }
+        .dark-toggle { bottom: 1.5rem; left: 1.25rem; width: 42px; height: 42px; font-size: 1rem; }
+      }
+    </style>
+</head>
+<body>
+
+<div class="flag-stripe">
+  <span></span><span></span><span></span>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Letter to <span>Osagyefo</span></a>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileNav()">☰</button>
+  <ul class="nav-links" id="main-nav">
+    <li><a href="letters.html" style="color: var(--red); font-weight: 700;">Letters</a></li>
+    <li><a href="from-osagyefo.html">From Osagyefo</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="write.html">Write a Letter</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-tag">◆ Open Letters</span>
+    <h1>Dispatches from the Motherland</h1>
+    <p>If the postal service actually worked, these would have been delivered by now.</p>
+  </div>
+</div>
+
+<section id="letters">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Open Letters</span>
+      <h2 class="section-title">Dispatches from the Motherland</h2>
+      <p class="section-desc">If the postal service actually worked, these would have been delivered by now.</p>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="group" aria-label="Filter letters by category">
+      <button class="filter-btn active" data-filter="all" onclick="filterLetters('all', this)">All <span class="filter-count">0</span></button>
+      <button class="filter-btn" data-filter="Politics" onclick="filterLetters('Politics', this)">Politics <span class="filter-count">0</span></button>
+      <button class="filter-btn" data-filter="Culture" onclick="filterLetters('Culture', this)">Culture <span class="filter-count">0</span></button>
+      <button class="filter-btn" data-filter="Diaspora" onclick="filterLetters('Diaspora', this)">Diaspora <span class="filter-count">0</span></button>
+      <button class="filter-btn" data-filter="Satire" onclick="filterLetters('Satire', this)">Satire <span class="filter-count">0</span></button>
+    </div>
+
+    <div class="letters-stack-wrapper">
+      <div class="letters-grid" id="static-letters-grid">
+      <!-- Letters loaded dynamically from dashboard -->
+      </div>
+      <div class="stack-nav">
+        <button class="stack-nav-btn" id="stackPrev" aria-label="Previous letter">◀</button>
+        <div class="stack-counter"><span id="stackCurrent">1</span> / <span id="stackTotal">0</span></div>
+        <button class="stack-nav-btn" id="stackNext" aria-label="Next letter">▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- FACEBOOK COMMENTS SECTION -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0" nonce="fb-comments"></script>
+  <div class="fb-comments" data-href="https://www.dearosagyefo.com/letters.html" data-width="100%" data-numposts="5"></div>
+
+<!-- MODALS - Content from original index.html -->
+
+<div class="modal-overlay" id="modal1" onclick="closeModalOnOverlay(event, 'modal1')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter I</h2>
+      <h3 class="modal-subtitle">On the Matter of Dumsor &amp; the Audacity of Darkness</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity. We do not, as you may have surmised, have that here.</p>
+        <p>You spoke of industrialisation. You built the Akosombo Dam — a colossal monument to ambition and the optimism of a newly independent nation. Then Ghana got creative.</p>
+        <p>We created something called Dumsor — a portmanteau from Twi meaning "off-on." The lights go off. Then they come on. Then they go off again. Sometimes for hours.</p>
+        <p>We have adapted remarkably. Generators are standard fixtures. Power banks, candle sellers, generator fuel vendors — an entire ecosystem built around light-off has emerged.</p>
+        <p>We do not blame you, Osagyefo. You gave us the dam. What we did with the transmission lines afterwards is entirely our own achievement.</p>
+        <p class="sign-off">Yours faithfully, with a charged power bank,</p>
+        <p class="signature">A Ghanaian with a Melting Fridge</p>
+      </div>
+      
+      <!-- Letter Actions -->
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(1)">▶ Listen</button>
+          <audio id="audio-modal-1" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-1">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 Letter II -->
+<div class="modal-overlay" id="modal2" onclick="closeModalOnOverlay(event, 'modal2')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter II</h2>
+      <h3 class="modal-subtitle">On Mobile Money &amp; Accidental Socialism</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>You championed socialism. We laughed at it in the 1980s, then thirty years later accidentally rebuilt parts of it inside our mobile phones.</p>
+        <p>Mobile Money — MoMo — launched in 2009. It allows anyone with a phone to send, receive, and store money through agents at roadside kiosks, barbershops, and churches.</p>
+        <p>The redistribution is staggering. A market woman in Tamale can receive payment from her daughter in Accra within seconds. The unbanked were, within a decade, sending money like texts.</p>
+        <p>You tried to build state infrastructure. The market built its own through the air.</p>
+        <p>We found your socialism, Kwame. It was yellow, fit in a pocket, and was MTN-branded.</p>
+        <p class="sign-off">With mobile-transferred regards,</p>
+        <p class="signature">A MoMo Agent in Kumasi</p>
+      </div>
+      
+      <!-- Letter Actions -->
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(2)">▶ Listen</button>
+          <audio id="audio-modal-2" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-2">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 Letter III -->
+<div class="modal-overlay" id="modal3" onclick="closeModalOnOverlay(event, 'modal3')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter III</h2>
+      <h3 class="modal-subtitle">The Year of Return: A Homecoming in Four Acts</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>You declared: "Africa must unite." We listened. For decades, the diaspora lived the dream elsewhere — Boston, London, Toronto, Accra-in-spirit.</p>
+        <p>Then 2019 came. The year you would have turned 110. Ghana declared it the "Year of Return" — a homecoming for all those who'd left.</p>
+        <p>And we came. Millions. We came to Elmina and Gorée, to face the ghosts of our origins. We came to Accra, to taste our mother's cooking. We came to reclaim something we didn't know we'd lost.</p>
+        <p>For a moment, the diaspora became the home. The prodigals returned not as visitors, but as inheritors. Tourism became pilgrimage.</p>
+        <p>The Year of Return asked: what does it mean to belong? Not to a place, but to a people, a history, a reckoning?</p>
+        <p class="sign-off">From the soil of remembrance,</p>
+        <p class="signature">A Diaspora Returnee</p>
+      </div>
+      
+      <!-- Letter Actions -->
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(3)">▶ Listen</button>
+          <audio id="audio-modal-3" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-3">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4 Letter IV -->
+<div class="modal-overlay" id="modal4" onclick="closeModalOnOverlay(event, 'modal4')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter IV</h2>
+      <h3 class="modal-subtitle">On the Cedi &amp; IMF</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>The Cedi has weakened. Against the dollar, the pound, even the East African shilling — it shrinks like a sweater in hot water.</p>
+        <p>We have invited the IMF back. They arrive with briefcases and recommendations, speaking in the language of structural adjustments and fiscal discipline.</p>
+        <p>This is the arithmetic of modern Africa: borrow to grow, cut to survive, privatize to stabilize. It's mathematics written in the language of distant creditors.</p>
+        <p>You fought for dignity. We're fighting for solvency. It's not the same war, Kwame.</p>
+        <p>Yet here's the thing: we keep going. The market women still sell, the hawkers still hawk, the traders adapt. We are not our currency.</p>
+        <p class="sign-off">From the marketplace of resilience,</p>
+        <p class="signature">An Economist with Anxiety</p>
+      </div>
+      
+      <!-- Letter Actions -->
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(4)">▶ Listen</button>
+          <audio id="audio-modal-4" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-4">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+              </svg>
+            </a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5 Letter V -->
+<div class="modal-overlay" id="modal5" onclick="closeModalOnOverlay(event, 'modal5')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter V</h2>
+      <h3 class="modal-subtitle">On Elections</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>Every four years, we do this: we queue in the sun, we vote, we hope. Then promises dissolve like sugar in rain.</p>
+        <p>Politicians speak of growth and development. Of jobs that never arrive on schedule, of hospitals half-built, of roads that become rivers in season.</p>
+        <p>Yet we return. We queue again, four years later. Hope is a chronic disease here, and we never seem to find the cure.</p>
+        <p>You said democracy must come to Africa. She came. She wore a beautiful dress and made beautiful promises. We married her anyway, knowing she had a wandering eye.</p>
+        <p>Still, Kwame — she's ours. Imperfect, unreliable, occasionally bewildering. But ours.</p>
+        <p class="sign-off">From the poll lines,</p>
+        <p class="signature">A Jaded Voter</p>
+      </div>
+      
+      <!-- Letter Actions -->
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(5)">▶ Listen</button>
+          <audio id="audio-modal-5" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-5">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg>
+            </a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6 Letter VI -->
+<div class="modal-overlay" id="modal6" onclick="closeModalOnOverlay(event, 'modal6')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter VI</h2>
+      <h3 class="modal-subtitle">On Jollof Rice</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>You liberated a nation. We liberated rice from mediocrity.</p>
+        <p>Jollof is our national dish — or rather, it's the dish we wage national wars over. We claim ownership like territorial champions. "Ghanaian jollof is the best." "No, Nigerian jollof..." And so it goes.</p>
+        <p>It's rice, tomato, pepper. Simple. Yet somehow it represents everything: pride, identity, the small victories we take for ourselves.</p>
+        <p>While you were changing the course of history, we perfected the art of the one-pot meal. Both are achievements, aren't they?</p>
+        <p>You gave us the nation. We gave it flavour.</p>
+        <p class="sign-off">From the kitchen, with love,</p>
+        <p class="signature">A Food Nationalist</p>
+      </div>
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(6)">▶ Listen</button>
+          <audio id="audio-modal-6" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-6">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg></a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7 Letter VII -->
+<div class="modal-overlay" id="modal7" onclick="closeModalOnOverlay(event, 'modal7')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal7')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter VII</h2>
+      <h3 class="modal-subtitle">High Definition Hypocrisy</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>We preach freedom while silencing voices. We champion transparency while drawing darkened curtains. We speak of unity while fracturing along the thinnest lines.</p>
+        <p>The hypocrisy isn't malicious — it's human. We want to be the nation you envisioned, but we're creatures of contradiction and compromise.</p>
+        <p>In HD clarity, our flaws are impossible to ignore. Yet we persist anyway, believing that the next generation might get it right.</p>
+        <p class="sign-off">In recognition,</p>
+        <p class="signature">A Political Observer</p>
+      </div>
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(7)">▶ Listen</button>
+          <audio id="audio-modal-7" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-7">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg></a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 8 Letter VIII -->
+<div class="modal-overlay" id="modal8" onclick="closeModalOnOverlay(event, 'modal8')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal8')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter VIII</h2>
+      <h3 class="modal-subtitle">DVLA World Tour</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>The Driver and Vehicle Licensing Authority is where innovation goes to retire and bureaucracy goes to thrive.</p>
+        <p>To renew a license takes an odyssey. Forms must be gathered. Offices must be visited. Officers must be appeased. It's an expedition, not a transaction.</p>
+        <p>Yet somehow, miraculously, people still drive. The system doesn't work, yet it persists. Rather like the nation itself.</p>
+        <p class="sign-off">From the DVLA queue,</p>
+        <p class="signature">A Frustrated Driver</p>
+      </div>
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(8)">▶ Listen</button>
+          <audio id="audio-modal-8" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-8">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg></a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 9 Letter IX -->
+<div class="modal-overlay" id="modal9" onclick="closeModalOnOverlay(event, 'modal9')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal9')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter IX</h2>
+      <h3 class="modal-subtitle">Obimanso, the Struggle is Real</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>Obimanso: where the sun beats down with the fury of a scorned lover and progress seems a luxury imported from elsewhere.</p>
+        <p>The roads are rough. The water is scarce. The schools lack basic things and the clinics are pharmacies without the pharmacy.</p>
+        <p>Yet the people endure with a grace that borders on the miraculous. They plant. They build. They dream despite everything.</p>
+        <p>The struggle here isn't romantic, Kwame. It's daily. It's real.</p>
+        <p class="sign-off">From a village perspective,</p>
+        <p class="signature">A Villager's Diary</p>
+      </div>
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(9)">▶ Listen</button>
+          <audio id="audio-modal-9" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-9">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg></a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 10 Letter X -->
+<div class="modal-overlay" id="modal10" onclick="closeModalOnOverlay(event, 'modal10')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal10')">&times;</button>
+    <div class="modal-hero"><div class="modal-hero-inner">
+      <h2 class="modal-title">Letter X</h2>
+      <h3 class="modal-subtitle">The Lagoon's Revenge</h3>
+    </div></div>
+    <div class="modal-content-area">
+      <div class="modal-body">
+        <p class="salutation">Dear Osagyefo,</p>
+        <p>We built on faith and shortsighted ambition. We built where the lagoon had always been, as if water and gravity were merely suggestions.</p>
+        <p>The lagoon remembers. It collects its debts with the patience of geological time. When the rains come, when the tides rise, it reclaims.</p>
+        <p>We are learning, slowly, that the land has its own logic. We can't negotiate with geography.</p>
+        <p class="sign-off">From the waterfront, watching,</p>
+        <p class="signature">An Environmental Witness</p>
+      </div>
+      <div class="letter-actions">
+        <div class="letter-audio">
+          <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(10)">▶ Listen</button>
+          <audio id="audio-modal-10" class="letter-audio-element"></audio>
+          <span class="audio-status" id="status-modal-10">0:00</span>
+        </div>
+        <div class="letter-share">
+          <p class="share-title">Share this letter</p>
+          <div class="share-buttons">
+            <a href="#" class="share-btn facebook" onclick="shareOnFacebook(); return false;" title="Share on Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="share-btn twitter" onclick="shareOnTwitter(); return false;" title="Share on X (Twitter)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="share-btn whatsapp" onclick="shareOnWhatsApp(); return false;" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/></svg></a>
+            <a href="#" class="share-btn copy" onclick="copyLetterLink(); return false;" title="Copy Link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-top-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-title">Dear Osagyefo</span>
+        <p>A living archive of open letters to Kwame Nkrumah — witty dispatches from the present to the past.</p>
+        <p>By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        <div class="footer-socials">
+          <a href="https://twitter.com/share" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://facebook.com/sharer.php" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/?text=Dear%20Osagyefo%20%E2%80%94%20www.dearosagyefo.com" target="_blank" rel="noopener" class="social-icon-link" aria-label="Share on WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-nav-row">
+        <div class="footer-nav-col">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="letters.html">Letters</a>
+          <a href="from-osagyefo.html">From Osagyefo</a>
+          <a href="about.html">About</a>
+          <a href="write.html">Write a Letter</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4>The Project</h4>
+          <a href="about.html">About Dr. Danso</a>
+          <a href="quiz.html">History Quiz</a>
+          <a href="write.html">Submit Your Letter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Dr. Ato Kwamena Danso. All rights reserved.</p>
+    <div class="footer-flag">
+      <span style="background:var(--red);"></span>
+      <span style="background:var(--gold);"></span>
+      <span style="background:var(--green);"></span>
+    </div>
+    <p>Independence Day &middot; March 6, 1957</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+// Back to top
+(function(){var b=document.getElementById('backToTop');if(b)window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400)},{passive:true})})();
+</script>
+
+<script>
+// Load letter metadata — localStorage only (backend unavailable over HTTPS)
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Static letters data — the 10 original letters
+  let letters = [
+    { id:1, letterNumber:1, title:'On the Matter of Dumsor & the Audacity of Darkness', category:'Satire', tags:'power,electricity,infrastructure', authorName:'A Ghanaian with a Melting Fridge', accentColor:'#D43F3A', preview:'I hope this letter finds you in a dimension that has, at the very minimum, twenty-four hours of uninterrupted electricity.', publishedAt:'2026-03-06' },
+    { id:2, letterNumber:2, title:'On Mobile Money & Accidental Socialism', category:'Satire', tags:'mobile money,fintech,economy', authorName:'A Sender of MoMo', accentColor:'#E8B923', preview:'You once nationalised industries. We have done something arguably more radical — we have privatised money itself.', publishedAt:'2026-03-06' },
+    { id:3, letterNumber:3, title:'On the Year of Return & the Diaspora\'s Homecoming', category:'Diaspora', tags:'diaspora,culture,identity', authorName:'A Returnee at Kotoka', accentColor:'#006B3F', preview:'In 2019, we invited the diaspora home. They came in thousands — from Brooklyn and Baltimore, from London and Lagos.', publishedAt:'2026-03-06' },
+    { id:4, letterNumber:4, title:'On the Cedi, the IMF & the Art of Economic Gravity', category:'Politics', tags:'IMF,politics,economy', authorName:'A Holder of Depreciating Currency', accentColor:'#D43F3A', preview:'The Cedi falls. It has been falling for so long that we have begun to wonder if it is not falling at all but simply discovering new depths.', publishedAt:'2026-03-06' },
+    { id:5, letterNumber:5, title:'On Galamsey & the Rivers That Weep', category:'Politics', tags:'galamsey,environment,mining', authorName:'A Witness to Golden Ruin', accentColor:'#E8B923', preview:'They are mining gold, Osagyefo. Not with the discipline of industry, but with the frenzy of desperation.', publishedAt:'2026-03-06' },
+    { id:6, letterNumber:6, title:'On Free SHS & the Promise of Tomorrow', category:'Politics', tags:'education,youth,policy', authorName:'A Hopeful Teacher', accentColor:'#006B3F', preview:'You believed in education as liberation. We have made Senior High School free. The classrooms overflow.', publishedAt:'2026-03-06' },
+    { id:7, letterNumber:7, title:'On Jollof Wars & Soft Power', category:'Culture', tags:'jollof,culture,identity', authorName:'A Defender of Ghanaian Jollof', accentColor:'#D43F3A', preview:'There is a war raging across West Africa. No bullets, no borders — just rice, tomatoes, and national pride.', publishedAt:'2026-03-06' },
+    { id:8, letterNumber:8, title:'On Social Media & the New Town Square', category:'Culture', tags:'social media,technology,discourse', authorName:'A Tweeter of Opinions', accentColor:'#E8B923', preview:'The town square has moved online, Osagyefo. Every Ghanaian with a phone is now a publisher, a commentator, a critic.', publishedAt:'2026-03-06' },
+    { id:9, letterNumber:9, title:'On Afrobeats & the Sound of a Continent', category:'Culture', tags:'afrobeats,music,culture', authorName:'A Listener in Accra', accentColor:'#006B3F', preview:'The music has changed, Osagyefo. The highlife you knew has evolved, merged, exploded into something the world cannot ignore.', publishedAt:'2026-03-06' },
+    { id:10, letterNumber:10, title:'The Lagoon\'s Revenge', category:'Politics', tags:'environment,flooding,urbanisation', authorName:'An Environmental Witness', accentColor:'#D43F3A', preview:'We built on faith and shortsighted ambition. We built where the lagoon had always been, as if water and gravity were merely suggestions.', publishedAt:'2026-03-06' }
+  ];
+
+
+  // Update category counts
+  const catCounts = { all: letters.length };
+  letters.forEach(l => { const c = l.category || 'General'; catCounts[c] = (catCounts[c]||0) + 1; });
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const f = btn.dataset.filter;
+    const countEl = btn.querySelector('.filter-count');
+    if (countEl) countEl.textContent = f === 'all' ? catCounts.all : (catCounts[f] || 0);
+  });
+
+  // Build a lookup map: letterNumber -> letter data
+  const letterMetadata = {};
+  letters.forEach(l => {
+    if (l.letterNumber) {
+      letterMetadata[l.letterNumber] = {
+        id: l.id,
+        category: l.category || 'General',
+        tags: (l.tags || '').split(',').map(t => t.trim()).filter(Boolean),
+        authorName: l.authorName,
+        accentColor: l.accentColor || '#D43F3A'
+      };
+    }
+  });
+
+  // Dynamically generate cards and modals for backend letters without static HTML
+  (function() {
+    function toRoman(n) {
+      const v=[1000,900,500,400,100,90,50,40,10,9,5,4,1];
+      const s=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];
+      let r=''; v.forEach((val,i)=>{ while(n>=val){ r+=s[i]; n-=val; } }); return r;
+    }
+    function esc(str) {
+      return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    const grid = document.querySelector('.letters-grid');
+    if (!grid) return;
+    letters.forEach(letter => {
+      const num = letter.letterNumber;
+      if (!num || document.querySelector(`.letter-card[data-letter="${num}"]`)) return;
+      const color = letter.accentColor || '#D43F3A';
+      const modalId = `modal${num}`;
+      const dateStr = letter.publishedAt
+        ? new Date(letter.publishedAt).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+        : '2026';
+      // Card — envelope style
+      const article = document.createElement('article');
+      article.className = 'letter-card';
+      article.setAttribute('data-letter', num);
+      article.setAttribute('data-category', letter.category || 'General');
+      article.setAttribute('data-tags', letter.tags || '');
+      article.setAttribute('data-description', letter.preview || '');
+      article.addEventListener('click', () => openModal(modalId));
+      article.innerHTML = `
+        <div class="envelope-face">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+            <div style="flex:1;">
+              <div class="envelope-to-label">To</div>
+              <div class="envelope-to-name">Osagyefo Kwame Nkrumah
+                <em>Somewhere beyond the horizon, 1966–∞</em>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
+              <div class="envelope-stamp">⭐</div>
+              <span class="par-avion">Par Avion</span>
+            </div>
+          </div>
+          <hr class="envelope-divider"/>
+          <div class="envelope-subject">${esc(letter.title)}</div>
+          <p class="envelope-preview">&ldquo;${esc(letter.preview || '')}&rdquo;</p>
+          <hr class="envelope-divider"/>
+          <div class="envelope-footer">
+            <div style="display:flex;flex-direction:column;gap:0.3rem;">
+              <div class="envelope-from">From: ${esc(letter.authorName)}</div>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <span class="envelope-category">${esc(letter.category||'General')}</span>
+              </div>
+            </div>
+            <div class="envelope-meta">
+              <span class="envelope-date-badge">${esc(dateStr)}</span>
+              <a href="#" class="read-link" onclick="event.stopPropagation(); openModal('${modalId}')">Open &#9993;</a>
+            </div>
+          </div>
+          <div class="letter-audio" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed rgba(0,0,0,0.08);">
+            <button class="audio-player-btn" onclick="event.stopPropagation(); generateAndPlayAudio(${num})">&#9654; Listen</button>
+            <audio id="audio-${num}" class="letter-audio-element"></audio>
+            <span class="audio-status" id="status-${num}">0:00</span>
+          </div>
+        </div>
+      `;
+      grid.prepend(article);
+      // Modal
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.id = modalId;
+      overlay.addEventListener('click', e => closeModalOnOverlay(e, modalId));
+      overlay.innerHTML = `
+        <div class="modal">
+          <button class="modal-close" onclick="closeModal('${modalId}')">&times;</button>
+          <div class="modal-hero"><div class="modal-hero-inner">
+            <h2 class="modal-title">Letter ${toRoman(num)}</h2>
+            <h3 class="modal-subtitle">${esc(letter.title)}</h3>
+          </div></div>
+          <div class="modal-content-area">
+            <div class="modal-body" id="modal-body-${num}">
+              <p style="color:#aaa;font-style:italic;text-align:center;padding:2rem 0;">Loading&hellip;</p>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      // Content already in letter.preview — no backend fetch needed
+    });
+  })();
+
+  // Add share buttons to letter cards
+  document.querySelectorAll('.letter-card[data-letter]').forEach(card => {
+    const title = card.querySelector('h3')?.textContent || 'Letter to Osagyefo';
+    const audioDiv = card.querySelector('.letter-audio');
+    if (!audioDiv) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:relative; display:inline-block;';
+    wrapper.innerHTML = `
+      <button class="letter-share-btn" onclick="event.stopPropagation(); toggleShareMenu(this)">↗ Share</button>
+      <div class="share-dropdown">
+        <a href="https://twitter.com/intent/tweet?url=https://www.dearosagyefo.com/letters.html&text=${encodeURIComponent(title)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">X / Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.dearosagyefo.com/letters.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">Facebook</a>
+        <a href="https://wa.me/?text=${encodeURIComponent(title + ' — www.dearosagyefo.com/letters.html')}" target="_blank" rel="noopener" onclick="event.stopPropagation()">WhatsApp</a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.dearosagyefo.com/letters.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">LinkedIn</a>
+      </div>
+    `;
+    audioDiv.appendChild(wrapper);
+  });
+
+  // ── LOAD LETTERS FROM API ──
+  (async function() {
+    function esc(str) {
+      return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function stripHTML(html) { const d = document.createElement('div'); d.innerHTML = html; return d.textContent || d.innerText || ''; }
+
+    let allNew = [];
+
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? '' : 'https://api.dearosagyefo.com';
+    function fetchWithTimeout(url, ms = 5000) {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), ms);
+      return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(timer));
+    }
+    try {
+      // Fetch published admin letters from backend
+      const [pubRes, visRes] = await Promise.all([
+        fetchWithTimeout(API_BASE + '/api/public/letters'),
+        fetchWithTimeout(API_BASE + '/api/visitors/letters')
+      ]);
+      const publicLetters = await pubRes.json();
+      const visitorLetters = await visRes.json();
+
+      // Map public letters (admin-published)
+      const adminLetters = publicLetters.map(l => ({
+        id: 'pub-' + l.id,
+        title: l.title || 'Untitled',
+        penName: l.authorName || 'Ato Kwamena',
+        content: l.content || l.preview || '',
+        preview: l.preview || '',
+        category: l.category || 'General',
+        coverImage: l.imageData || null,
+        status: 'approved',
+        submittedAt: l.publishedAt || l.createdAt || new Date().toISOString(),
+        isAdmin: true,
+        isRichHTML: true,
+        hasFullContent: !!l.content,
+        apiId: l.id
+      }));
+
+      // Map visitor letters (approved)
+      const approved = visitorLetters.map(l => ({
+        id: 'vis-' + l.id,
+        title: l.title || 'Untitled',
+        penName: l.penName || 'Anonymous',
+        content: l.content || l.preview || '',
+        preview: l.preview || '',
+        category: l.category || 'General',
+        coverImage: null,
+        status: 'approved',
+        submittedAt: l.submittedAt || new Date().toISOString(),
+        isAdmin: false,
+        isRichHTML: false,
+        apiId: l.id,
+        apiType: 'visitor'
+      }));
+
+      allNew = [...adminLetters, ...approved];
+    } catch(e) {
+      console.error('Error loading letters from API:', e);
+      return;
+    }
+
+    if (!allNew.length) return;
+
+    const grid = document.querySelector('.letters-grid');
+    if (!grid) return;
+
+    allNew.forEach(s => {
+      const modalId = 'visitor-modal-' + s.id;
+      const dateStr = s.submittedAt ? new Date(s.submittedAt).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '';
+      const badgeLabel = s.isAdmin ? 'New Letter' : 'Visitor Letter';
+      const badgeColor = s.isAdmin ? '#D43F3A' : '#E8B923';
+      const borderColor = s.isAdmin ? '#D43F3A' : '#E8B923';
+
+      // Strip HTML for plain text preview
+      const plainText = stripHTML(s.content || s.preview || '');
+
+      // ── ENVELOPE CARD ──
+      const article = document.createElement('article');
+      article.className = 'letter-card';
+      article.setAttribute('data-category', s.category || 'General');
+      article.setAttribute('data-description', plainText.substring(0,120));
+      article.addEventListener('click', () => openModalWithFetch(modalId, s));
+      article.innerHTML = `
+        <div class="envelope-face">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+            <div style="flex:1;">
+              <div class="envelope-to-label">To</div>
+              <div class="envelope-to-name">Osagyefo Kwame Nkrumah
+                <em>Somewhere beyond the horizon, 1966–∞</em>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;">
+              <div class="envelope-stamp">⭐</div>
+              <span class="par-avion">Par Avion</span>
+            </div>
+          </div>
+          <hr class="envelope-divider"/>
+          <div class="envelope-subject">${esc(s.title)}</div>
+          <p class="envelope-preview">&ldquo;${esc(plainText.substring(0,130))}${plainText.length>130?'…':''}&rdquo;</p>
+          <hr class="envelope-divider"/>
+          <div class="envelope-footer">
+            <div style="display:flex;flex-direction:column;gap:0.3rem;">
+              <div class="envelope-from">From: ${esc(s.penName || 'Anonymous')}</div>
+              <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+                <span class="envelope-category">${esc(s.category||'General')}</span>
+                ${s.isAdmin ? '<span class="envelope-new">New</span>' : ''}
+              </div>
+            </div>
+            <div class="envelope-meta">
+              <span class="envelope-date-badge">${esc(dateStr)}</span>
+              <a href="#" class="read-link" onclick="event.stopPropagation(); openModal('${modalId}')">Open &#9993;</a>
+            </div>
+          </div>
+          <div class="letter-audio" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed rgba(0,0,0,0.08);">
+            <button class="audio-player-btn" onclick="event.stopPropagation(); playDynamicLetterAudio('${modalId}', this)">&#9654; Listen</button>
+            <span class="audio-status">0:00</span>
+          </div>
+        </div>
+      `;
+      grid.prepend(article);
+
+      // Store letter data for modal use
+      if (!window._letterData) window._letterData = {};
+      window._letterData[s.id] = s;
+
+      // Modal (content loaded on open via API)
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.id = modalId;
+      overlay.addEventListener('click', e => closeModalOnOverlay(e, modalId));
+      const modalCoverHTML = s.coverImage ? `<img src="${s.coverImage}" style="width:100%;max-height:350px;object-fit:cover;border-radius:8px;margin-bottom:1.5rem;" alt="Cover"/>` : '';
+      overlay.innerHTML = `
+        <div class="modal">
+          <button class="modal-close" onclick="closeModal('${modalId}')">&times;</button>
+          <div class="modal-hero"><div class="modal-hero-inner">
+            <h2 class="modal-title" style="font-size:1rem;color:${badgeColor};letter-spacing:2px;">${badgeLabel}</h2>
+            <h3 class="modal-subtitle">${esc(s.title)}</h3>
+          </div></div>
+          <div class="modal-content-area">
+            <div class="modal-body" id="modal-body-${s.id}">
+              <p style="color:#888;font-size:0.85rem;margin-bottom:1.5rem;">By <strong>${esc(s.penName||'Anonymous')}</strong> &middot; ${esc(dateStr)}</p>
+              ${modalCoverHTML}
+              <p style="color:#aaa;">Loading…</p>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    });
+
+    // Update "All" count
+    const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allBtn) {
+      const countEl = allBtn.querySelector('.filter-count');
+      if (countEl) countEl.textContent = parseInt(countEl.textContent||0) + allNew.length;
+    }
+  })();
+
+  // Open modal and fetch full content from API
+  function fetchWithTimeout(url, ms = 5000) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(timer));
+  }
+  async function openModalWithFetch(modalId, s) {
+    openModal(modalId);
+    if (!s) return;
+    const bodyEl = document.getElementById('modal-body-' + s.id);
+    if (!bodyEl || bodyEl.dataset.loaded === 'true') return;
+
+    function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    const dateStr = s.submittedAt ? new Date(s.submittedAt).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '';
+    const coverHTML = s.coverImage ? `<img src="${s.coverImage}" style="width:100%;max-height:350px;object-fit:cover;border-radius:8px;margin-bottom:1.5rem;" alt="Cover"/>` : '';
+
+    try {
+      let fullContent = '';
+      const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? '' : 'https://api.dearosagyefo.com';
+      if (s.isAdmin && s.apiId) {
+        const res = await fetchWithTimeout(API + '/api/public/letters/' + s.apiId);
+        if (res.ok) { const data = await res.json(); fullContent = data.content || ''; }
+      } else if (s.apiType === 'visitor' && s.apiId) {
+        const res = await fetchWithTimeout(API + '/api/visitors/letters/' + s.apiId);
+        if (res.ok) { const data = await res.json(); fullContent = data.content || ''; }
+      }
+      if (!fullContent) fullContent = s.content || s.preview || '';
+
+      const bodyHTML = s.isRichHTML ? fullContent : fullContent.split(/\n+/).filter(p=>p.trim()).map(p=>`<p>${esc(p.trim())}</p>`).join('');
+      bodyEl.innerHTML = `
+        <p style="color:#888;font-size:0.85rem;margin-bottom:1.5rem;">By <strong>${esc(s.penName||'Anonymous')}</strong> &middot; ${esc(dateStr)}</p>
+        ${coverHTML}
+        ${bodyHTML}
+      `;
+      bodyEl.dataset.loaded = 'true';
+    } catch(e) {
+      console.error('Error loading letter content:', e);
+      bodyEl.innerHTML += '<p style="color:#c00;">Could not load full content.</p>';
+    }
+  }
+  // Make globally accessible
+  window.openModalWithFetch = openModalWithFetch;
+
+  // Add metadata badges to modals
+  document.querySelectorAll('.modal-overlay').forEach((modal, index) => {    const letterNum = index + 1;
+    const meta = letterMetadata[letterNum];
+    if (meta) {
+      const modalMeta = document.createElement('div');
+      modalMeta.className = 'modal-meta';
+      modalMeta.innerHTML = `
+        <span class="modal-category">${meta.category}</span>
+        <div class="modal-tags">
+          ${meta.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+        </div>
+      `;
+      const subtitle = modal.querySelector('.modal-subtitle');
+      if (subtitle) {
+        subtitle.parentNode.insertBefore(modalMeta, subtitle.nextSibling);
+      }
+    }
+  });
+});
+
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (!el) { console.warn('Modal not found:', id); return; }
+  el.classList.add('open');
+  document.body.classList.add('modal-open');
+  const modalInner = el.querySelector('.modal');
+  if (modalInner) trapFocus(modalInner);
+}
+
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+
+function closeModalOnOverlay(event, id) {
+  if (event.target.id === id) {
+    closeModal(id);
+  }
+}
+
+// Share dropdown toggle
+function toggleShareMenu(btn) {
+  const dropdown = btn.nextElementSibling;
+  document.querySelectorAll('.share-dropdown.open').forEach(d => {
+    if (d !== dropdown) d.classList.remove('open');
+  });
+  dropdown.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.letter-share-btn') && !e.target.closest('.share-dropdown')) {
+    document.querySelectorAll('.share-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// ===== IMAGE OPTIMIZATION & LAZY LOADING POLYFILL =====
+// Support for browsers that don't support native lazy loading
+if (!('loading' in HTMLImageElement.prototype)) {
+  // Fallback: use Intersection Observer for lazy loading
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        // Image already has src attribute
+        observer.unobserve(img);
+      }
+    });
+  }, {
+    rootMargin: '50px'
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(modal => {
+      modal.classList.remove('open');
+    });
+    document.body.classList.remove('modal-open');
+  }
+});
+
+// ===== TEXT-TO-SPEECH (Browser TTS with Dan's deep voice) =====
+// Using browser's built-in speech - works immediately, no API needed
+const ELEVEN_API_KEY = '';  // Disabled - using browser TTS instead
+const ELEVEN_VOICE_ID = 'pNInz6obpgDQGcFmaJgB'; // Not used
+
+const audioState = {
+  currentPlaying: null,
+  usingBrowserTTS: false,
+  elevenLabsAudio: null,  // current HTMLAudio for ElevenLabs playback
+  cache: {}               // modalId/letterNum → blob URL
+};
+
+// Pre-generated MP3 paths for the original 10 letters
+const LETTER_AUDIO = {};
+for (let i = 1; i <= 10; i++) {
+  LETTER_AUDIO[i] = `audio/letters/letter-${i}.m4a`;
+}
+
+// ── ElevenLabs TTS ──────────────────────────────────────────
+async function elevenLabsTTS(text, cacheKey) {
+  if (!ELEVEN_API_KEY) return null;
+  if (audioState.cache[cacheKey]) return audioState.cache[cacheKey];
+
+  // Trim to ~5000 chars to stay within free tier limits
+  const trimmed = text.length > 5000 ? text.substring(0, 5000) + '…' : text;
+
+  try {
+    const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVEN_VOICE_ID}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'xi-api-key': ELEVEN_API_KEY
+      },
+      body: JSON.stringify({
+        text: trimmed,
+        model_id: 'eleven_monolingual_v1',
+        voice_settings: {
+          stability: 0.55,
+          similarity_boost: 0.78,
+          style: 0.15,
+          use_speaker_boost: true
+        }
+      })
+    });
+    if (!res.ok) throw new Error(`ElevenLabs ${res.status}`);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    audioState.cache[cacheKey] = url;
+    return url;
+  } catch (e) {
+    console.warn('ElevenLabs TTS failed:', e.message);
+    return null;
+  }
+}
+
+// ── Shared helpers ──────────────────────────────────────────
+function attachAudioEvents(letterNum) {
+  const audioEl = document.getElementById(`audio-${letterNum}`);
+  const btn = document.querySelector(`button[onclick*="generateAndPlayAudio(${letterNum})"]`);
+  const statusSpan = document.getElementById(`status-${letterNum}`);
+  if (!audioEl) return;
+  audioEl.ontimeupdate = () => {
+    if (!statusSpan) return;
+    const m = Math.floor(audioEl.currentTime / 60);
+    const s = Math.floor(audioEl.currentTime % 60).toString().padStart(2, '0');
+    statusSpan.textContent = `${m}:${s}`;
+  };
+  audioEl.onended = () => {
+    if (btn) { btn.classList.remove('playing'); btn.innerHTML = '▶ Listen'; }
+    if (statusSpan) statusSpan.textContent = '0:00';
+    audioState.currentPlaying = null;
+    audioState.usingBrowserTTS = false;
+    audioState.elevenLabsAudio = null;
+  };
+}
+
+function getLetterText(letterNum) {
+  const modal = document.getElementById(`modal${letterNum}`);
+  if (!modal) return '';
+  const bodyDiv = modal.querySelector('.modal-body');
+  if (!bodyDiv) return '';
+  let text = '';
+  bodyDiv.querySelectorAll('p, h1, h2, h3, li, blockquote').forEach(el => {
+    const t = el.textContent.trim();
+    if (t) text += t + ' ';
+  });
+  return text.trim();
+}
+
+function getModalText(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return '';
+  const bodyDiv = modal.querySelector('.modal-body');
+  if (!bodyDiv) return '';
+  let text = '';
+  bodyDiv.querySelectorAll('p, h1, h2, h3, li, blockquote').forEach(el => {
+    const t = el.textContent.trim();
+    if (t) text += t + ' ';
+  });
+  return text.trim();
+}
+
+// ── Improved browser TTS fallback (deep male voice, natural speed) ────
+function playWithBrowserTTS(id, text, btn, statusSpan) {
+  if (!window.speechSynthesis) {
+    if (statusSpan) statusSpan.textContent = 'TTS unavailable';
+    if (btn) { btn.disabled = false; btn.innerHTML = '▶ Listen'; }
+    return;
+  }
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 1.0;
+  utterance.pitch = 0.85;  // Slightly deeper
+  utterance.volume = 1.0;
+
+  const voices = speechSynthesis.getVoices();
+  // Prefer deep male voices
+  const preferred = voices.find(v => v.name === 'Daniel' && v.lang === 'en-GB')
+    || voices.find(v => v.name.includes('Google UK English Male'))
+    || voices.find(v => v.name.includes('Microsoft Guy'))
+    || voices.find(v => v.name.includes('Microsoft Ryan'))
+    || voices.find(v => v.name === 'Aaron')
+    || voices.find(v => v.name.includes('Microsoft David'))
+    || voices.find(v => v.name.includes('Microsoft Mark'))
+    || voices.find(v => v.lang === 'en-GB' && v.localService)
+    || voices.find(v => v.lang.startsWith('en'));
+  if (preferred) utterance.voice = preferred;
+
+  let startTime = Date.now();
+  const timer = setInterval(() => {
+    if (!speechSynthesis.speaking) { clearInterval(timer); return; }
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    if (statusSpan) statusSpan.textContent = `${Math.floor(elapsed/60)}:${(elapsed%60).toString().padStart(2,'0')}`;
+  }, 500);
+
+  utterance.onstart = () => {
+    if (btn) { btn.disabled = false; btn.classList.add('playing'); btn.innerHTML = '⏸ Pause'; }
+    audioState.currentPlaying = id;
+    audioState.usingBrowserTTS = true;
+  };
+  utterance.onend = () => {
+    clearInterval(timer);
+    if (btn) { btn.classList.remove('playing'); btn.innerHTML = '▶ Listen'; }
+    if (statusSpan) statusSpan.textContent = '0:00';
+    audioState.currentPlaying = null;
+    audioState.usingBrowserTTS = false;
+  };
+  utterance.onerror = () => {
+    clearInterval(timer);
+    if (btn) { btn.classList.remove('playing'); btn.innerHTML = '▶ Listen'; btn.disabled = false; }
+    if (statusSpan) statusSpan.textContent = '0:00';
+    audioState.currentPlaying = null;
+    audioState.usingBrowserTTS = false;
+  };
+  speechSynthesis.speak(utterance);
+}
+
+// ── Play ElevenLabs audio blob with an HTML Audio element ────
+function playElevenLabsBlob(blobUrl, id, btn, statusSpan) {
+  const audio = new Audio(blobUrl);
+  audioState.elevenLabsAudio = audio;
+  audioState.currentPlaying = id;
+  audioState.usingBrowserTTS = false;
+
+  audio.ontimeupdate = () => {
+    if (!statusSpan) return;
+    const m = Math.floor(audio.currentTime / 60);
+    const s = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+    statusSpan.textContent = `${m}:${s}`;
+  };
+  audio.onended = () => {
+    btn.classList.remove('playing'); btn.innerHTML = '▶ Listen';
+    if (statusSpan) statusSpan.textContent = '0:00';
+    audioState.currentPlaying = null;
+    audioState.elevenLabsAudio = null;
+  };
+  audio.onerror = () => {
+    btn.classList.remove('playing'); btn.innerHTML = '▶ Listen';
+    if (statusSpan) statusSpan.textContent = '0:00';
+    audioState.currentPlaying = null;
+    audioState.elevenLabsAudio = null;
+  };
+  audio.play();
+  btn.disabled = false;
+  btn.classList.add('playing');
+  btn.innerHTML = '⏸ Pause';
+}
+
+// ── Dynamic letter audio (localStorage letters) ─────────────
+let dynamicAudioPlaying = null;
+async function playDynamicLetterAudio(modalId, btn) {
+  const statusSpan = btn.parentElement.querySelector('.audio-status');
+
+  // Stop anything currently playing
+  stopAllAudio();
+  if (dynamicAudioPlaying && dynamicAudioPlaying !== modalId) {
+    const prevBtn = document.querySelector(`button[onclick*="playDynamicLetterAudio('${dynamicAudioPlaying}'"]`);
+    if (prevBtn) { prevBtn.classList.remove('playing'); prevBtn.innerHTML = '▶ Listen'; }
+    dynamicAudioPlaying = null;
+  }
+
+  // Toggle pause/resume if same letter
+  if (dynamicAudioPlaying === modalId) {
+    if (audioState.elevenLabsAudio) {
+      if (audioState.elevenLabsAudio.paused) {
+        audioState.elevenLabsAudio.play();
+        btn.classList.add('playing'); btn.innerHTML = '⏸ Pause';
+      } else {
+        audioState.elevenLabsAudio.pause();
+        btn.classList.remove('playing'); btn.innerHTML = '▶ Resume';
+      }
+      return;
+    }
+    if (audioState.usingBrowserTTS && speechSynthesis.speaking) {
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        btn.classList.add('playing'); btn.innerHTML = '⏸ Pause';
+      } else {
+        speechSynthesis.pause();
+        btn.classList.remove('playing'); btn.innerHTML = '▶ Resume';
+      }
+      return;
+    }
+    dynamicAudioPlaying = null;
+    btn.classList.remove('playing'); btn.innerHTML = '▶ Listen';
+    return;
+  }
+
+  const text = getModalText(modalId);
+  if (!text) { if (statusSpan) statusSpan.textContent = 'No text'; return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Loading…';
+  if (statusSpan) statusSpan.textContent = 'Loading…';
+  dynamicAudioPlaying = modalId;
+
+  // Try ElevenLabs first
+  const blobUrl = await elevenLabsTTS(text, 'dyn-' + modalId);
+  if (blobUrl) {
+    playElevenLabsBlob(blobUrl, modalId, btn, statusSpan);
+    return;
+  }
+
+  // Fallback to browser TTS
+  btn.disabled = false;
+  playWithBrowserTTS(modalId, text, btn, statusSpan);
+  dynamicAudioPlaying = modalId;
+}
+
+// ── Static letter audio (original 10 letters) ───────────────
+async function generateAndPlayAudio(letterNum) {
+  const audioEl = document.getElementById(`audio-${letterNum}`);
+  const btn = document.querySelector(`button[onclick*="generateAndPlayAudio(${letterNum})"]`);
+  const statusSpan = document.getElementById(`status-${letterNum}`);
+  if (!btn) return;
+
+  // Stop anything playing
+  stopAllAudio();
+  if (dynamicAudioPlaying) {
+    const prevBtn = document.querySelector(`button[onclick*="playDynamicLetterAudio('${dynamicAudioPlaying}'"]`);
+    if (prevBtn) { prevBtn.classList.remove('playing'); prevBtn.innerHTML = '▶ Listen'; }
+    dynamicAudioPlaying = null;
+  }
+
+  // Toggle play/pause for same letter
+  if (audioState.currentPlaying === letterNum) {
+    if (audioState.elevenLabsAudio) {
+      if (audioState.elevenLabsAudio.paused) {
+        audioState.elevenLabsAudio.play();
+        btn.classList.add('playing'); btn.innerHTML = '⏸ Pause';
+      } else {
+        audioState.elevenLabsAudio.pause();
+        btn.classList.remove('playing'); btn.innerHTML = '▶ Resume';
+      }
+      return;
+    }
+    if (audioState.usingBrowserTTS) {
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        btn.classList.add('playing'); btn.innerHTML = '⏸ Pause';
+      } else {
+        speechSynthesis.pause();
+        btn.classList.remove('playing'); btn.innerHTML = '▶ Resume';
+      }
+      return;
+    }
+    if (audioEl) {
+      if (audioEl.paused) {
+        try { await audioEl.play(); } catch(_) {}
+        btn.classList.add('playing'); btn.innerHTML = '⏸ Pause';
+      } else {
+        audioEl.pause();
+        btn.classList.remove('playing'); btn.innerHTML = '▶ Resume';
+      }
+    }
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Loading…';
+  if (statusSpan) statusSpan.textContent = 'Loading…';
+
+  // 1) Try ElevenLabs for premium voice
+  const text = getLetterText(letterNum);
+  if (text) {
+    const blobUrl = await elevenLabsTTS(text, 'letter-' + letterNum);
+    if (blobUrl) {
+      playElevenLabsBlob(blobUrl, letterNum, btn, statusSpan);
+      return;
+    }
+  }
+
+  // 2) Try pre-generated MP3
+  if (LETTER_AUDIO[letterNum] && audioEl) {
+    try {
+      audioEl.src = LETTER_AUDIO[letterNum];
+      attachAudioEvents(letterNum);
+      await audioEl.play();
+      audioState.currentPlaying = letterNum;
+      audioState.usingBrowserTTS = false;
+      btn.disabled = false;
+      btn.classList.add('playing');
+      btn.innerHTML = '⏸ Pause';
+      if (statusSpan) statusSpan.textContent = '0:00';
+      return;
+    } catch (e) {
+      console.warn('MP3 playback failed:', e.message);
+    }
+  }
+
+  // 3) Fallback to browser TTS
+  if (!text) {
+    btn.disabled = false;
+    btn.innerHTML = '▶ Listen';
+    if (statusSpan) statusSpan.textContent = 'No text';
+    return;
+  }
+  btn.disabled = false;
+  if (statusSpan) statusSpan.textContent = '0:00';
+  playWithBrowserTTS(letterNum, text, btn, statusSpan);
+}
+
+// ── Stop all audio ──────────────────────────────────────────
+function stopAllAudio() {
+  // Stop ElevenLabs audio
+  if (audioState.elevenLabsAudio) {
+    audioState.elevenLabsAudio.pause();
+    audioState.elevenLabsAudio.currentTime = 0;
+    audioState.elevenLabsAudio = null;
+  }
+  // Stop browser TTS
+  if (audioState.usingBrowserTTS) {
+    speechSynthesis.cancel();
+    audioState.usingBrowserTTS = false;
+  }
+  // Stop any HTML audio elements
+  if (audioState.currentPlaying && typeof audioState.currentPlaying === 'number') {
+    const el = document.getElementById(`audio-${audioState.currentPlaying}`);
+    if (el) { el.pause(); el.currentTime = 0; }
+  }
+  // Reset buttons
+  if (audioState.currentPlaying !== null) {
+    const oldBtn = document.querySelector(`button[onclick*="generateAndPlayAudio(${audioState.currentPlaying})"]`);
+    const oldStatus = document.getElementById(`status-${audioState.currentPlaying}`);
+    if (oldBtn) { oldBtn.classList.remove('playing'); oldBtn.innerHTML = '▶ Listen'; }
+    if (oldStatus) oldStatus.textContent = '0:00';
+  }
+  audioState.currentPlaying = null;
+}
+
+function stopAudio(letterNum) {
+  stopAllAudio();
+}
+
+// Preload browser voices so they're ready before first play
+if (window.speechSynthesis) {
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
+// Mobile share button toggle
+function toggleMobileShare() {
+  const dropdown = document.getElementById('mobileShareDropdown');
+  if (dropdown) {
+    dropdown.classList.toggle('open');
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const btn = document.getElementById('mobileShareBtn');
+  const dropdown = document.getElementById('mobileShareDropdown');
+  if (btn && dropdown && !btn.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.remove('open');
+  }
+});
+</script>
+
+<script>
+function toggleMobileNav() {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('open');
+}
+document.querySelectorAll('#main-nav a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('main-nav').classList.remove('open'));
+});
+
+// ── LETTER FILTERS ──
+function filterLetters(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.letter-card').forEach(card => {
+    const match = category === 'all' || card.dataset.category === category;
+    card.style.display = match ? '' : 'none';
+  });
+}
+
+// ── MODAL FOCUS TRAP ──
+function trapFocus(modal) {
+  if (!modal) return;
+  const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+  modal.addEventListener('keydown', function handler(e) {
+    if (e.key !== 'Tab') {
+      if (e.key === 'Escape') { 
+        const overlay = modal.closest('.modal-overlay'); 
+        if (overlay) {
+          overlay.classList.remove('open');
+          document.body.classList.remove('modal-open');
+        }
+      }
+      return;
+    }
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, { once: false });
+  if (first) first.focus();
+}
+</script>
+
+<script>
+(function(){
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<!-- Letter Stack Controller -->
+<script>
+(function() {
+  let currentIndex = 0;
+  let visibleCards = [];
+  let isAnimating = false;
+
+  // Paper sound effects using Web Audio API
+  function playPaperSound() {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Create a noise buffer for paper rustling effect
+      const bufferSize = audioContext.sampleRate * 0.15; // 150ms
+      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const output = buffer.getChannelData(0);
+      
+      // Generate filtered white noise for paper sound
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize) * 0.15; // Fading noise
+      }
+      
+      // Apply high-pass filtering for crisp paper texture
+      for (let i = 1; i < bufferSize; i++) {
+        output[i] = output[i] + output[i-1] * -0.3;
+      }
+      
+      const source = audioContext.createBufferSource();
+      const gainNode = audioContext.createGain();
+      
+      source.buffer = buffer;
+      gainNode.gain.setValueAtTime(0.8, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+      
+      source.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      source.start(audioContext.currentTime);
+    } catch (e) {
+      // Fallback: no sound if Web Audio API fails
+    }
+  }
+
+  function getVisibleCards() {
+    const allCards = Array.from(document.querySelectorAll('.letter-card'));
+    return allCards.filter(c => c.style.display !== 'none');
+  }
+
+  function arrangeStack() {
+    visibleCards = getVisibleCards();
+    const total = visibleCards.length;
+    document.getElementById('stackTotal').textContent = total;
+    document.getElementById('stackCurrent').textContent = total > 0 ? currentIndex + 1 : 0;
+    document.getElementById('stackPrev').disabled = currentIndex <= 0;
+    document.getElementById('stackNext').disabled = currentIndex >= total - 1;
+
+    visibleCards.forEach((card, i) => {
+      card.classList.remove('stack-0','stack-1','stack-2','stack-3','stack-hidden','flip-away','flip-back-in');
+      const offset = i - currentIndex;
+      if (offset < 0) {
+        card.classList.add('stack-hidden');
+      } else if (offset <= 3) {
+        card.classList.add('stack-' + offset);
+      } else {
+        card.classList.add('stack-hidden');
+      }
+    });
+  }
+
+  function flipNext() {
+    if (isAnimating || currentIndex >= visibleCards.length - 1) return;
+    isAnimating = true;
+    playPaperSound(); // Add paper rustling sound
+    const current = visibleCards[currentIndex];
+    current.classList.add('flip-away');
+    current.addEventListener('animationend', function handler() {
+      current.removeEventListener('animationend', handler);
+      currentIndex++;
+      arrangeStack();
+      isAnimating = false;
+    }, { once: true });
+  }
+
+  function flipPrev() {
+    if (isAnimating || currentIndex <= 0) return;
+    isAnimating = true;
+    playPaperSound(); // Add paper rustling sound
+    currentIndex--;
+    const target = visibleCards[currentIndex];
+    target.classList.remove('stack-hidden');
+    target.classList.add('flip-back-in');
+    target.addEventListener('animationend', function handler() {
+      target.removeEventListener('animationend', handler);
+      arrangeStack();
+      isAnimating = false;
+    }, { once: true });
+  }
+
+  // Touch/swipe support
+  let touchStartY = 0;
+  const wrapper = document.querySelector('.letters-stack-wrapper');
+  if (wrapper) {
+    wrapper.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    wrapper.addEventListener('touchend', e => {
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? flipNext() : flipPrev();
+      }
+    }, { passive: true });
+  }
+
+  document.getElementById('stackNext').addEventListener('click', flipNext);
+  document.getElementById('stackPrev').addEventListener('click', flipPrev);
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (document.querySelector('.modal-overlay.open')) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') flipNext();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') flipPrev();
+  });
+
+  // Override filter to reset stack
+  const origFilter = window.filterLetters;
+  window.filterLetters = function(category, btn) {
+    origFilter(category, btn);
+    currentIndex = 0;
+    setTimeout(arrangeStack, 10);
+  };
+
+  // SOCIAL SHARING FUNCTIONS
+  function shareOnFacebook() {
+    const currentLetter = getCurrentLetterData();
+    const url = encodeURIComponent(window.location.href + `#letter-${currentIndex + 1}`);
+    const title = encodeURIComponent(`Letter to Osagyefo: ${currentLetter.title}`);
+    const description = encodeURIComponent(currentLetter.excerpt);
+    
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title} - ${description}`,
+      '_blank',
+      'width=600,height=400'
+    );
+  }
+
+  function shareOnTwitter() {
+    const currentLetter = getCurrentLetterData();
+    const url = encodeURIComponent(window.location.href + `#letter-${currentIndex + 1}`);
+    const text = encodeURIComponent(`📜 "${currentLetter.title}" - A letter to Osagyefo Kwame Nkrumah about modern Ghana. ${currentLetter.hashtags || '#Ghana #Nkrumah #History'}`);
+    
+    window.open(
+      `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+      '_blank',
+      'width=600,height=400'
+    );
+  }
+
+  function shareOnWhatsApp() {
+    const currentLetter = getCurrentLetterData();
+    const url = window.location.href + `#letter-${currentIndex + 1}`;
+    const text = encodeURIComponent(`📜 *${currentLetter.title}*\n\n${currentLetter.excerpt}\n\nRead the full letter: ${url}`);
+    
+    if (window.innerWidth <= 768) {
+      window.open(`whatsapp://send?text=${text}`, '_blank');
+    } else {
+      window.open(`https://web.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  }
+
+  function copyLetterLink() {
+    const url = window.location.href + `#letter-${currentIndex + 1}`;
+    
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        showShareToast('Link copied to clipboard!');
+      }).catch(() => {
+        fallbackCopyToClipboard(url);
+      });
+    } else {
+      fallbackCopyToClipboard(url);
+    }
+  }
+
+  function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showShareToast('Link copied to clipboard!');
+    } catch (err) {
+      showShareToast('Failed to copy link. Please copy manually.');
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
+  function getCurrentLetterData() {
+    const letters = [
+      { title: 'On Power Outages and Infrastructure', excerpt: 'A letter about Ghana\'s ongoing electricity challenges and infrastructure development needs.', hashtags: '#Ghana #Power #Infrastructure #Dumsor' },
+      { title: 'On Mobile Money and Digital Finance', excerpt: 'Exploring Ghana\'s digital payment revolution and the future of financial inclusion.', hashtags: '#Ghana #MobileMoney #Fintech #DigitalPayments' },
+      { title: 'On Governance and Democratic Progress', excerpt: 'Reflecting on Ghana\'s democratic journey and governance challenges since independence.', hashtags: '#Ghana #Democracy #Governance #Politics' },
+      { title: 'On Education and Youth Development', excerpt: 'Addressing the state of education and opportunities for Ghana\'s young population.', hashtags: '#Ghana #Education #Youth #Development' },
+      { title: 'On Healthcare and Public Wellness', excerpt: 'Discussing healthcare accessibility and public health initiatives in modern Ghana.', hashtags: '#Ghana #Healthcare #PublicHealth #NHIS' },
+      { title: 'On Economic Growth and Development', excerpt: 'Analyzing Ghana\'s economic progress and future growth opportunities.', hashtags: '#Ghana #Economy #Development #Growth' },
+      { title: 'On Cultural Identity and Modernization', excerpt: 'Balancing traditional Ghanaian values with modern global influences.', hashtags: '#Ghana #Culture #Identity #Tradition' },
+      { title: 'On Agriculture and Food Security', excerpt: 'Examining Ghana\'s agricultural sector and food security challenges.', hashtags: '#Ghana #Agriculture #Food #PlantingForFood' },
+      { title: 'On Technology and Innovation', excerpt: 'Ghana\'s journey toward becoming a technology hub in West Africa.', hashtags: '#Ghana #Technology #Innovation #DigitalGhana' },
+      { title: 'On Unity and National Progress', excerpt: 'A call for national unity and collective progress toward a better Ghana.', hashtags: '#Ghana #Unity #Progress #OneGhana' }
+    ];
+    
+    return letters[currentIndex] || letters[0];
+  }
+
+  function showShareToast(message) {
+    // Remove existing toast
+    const existingToast = document.querySelector('.share-toast');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'share-toast';
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(45,95,63,0.95);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 10000;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      transition: opacity 0.3s;
+    `;
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    setTimeout(() => toast.style.opacity = '1', 10);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // Init after DOM + dynamic cards load
+  setTimeout(() => {
+    arrangeStack();
+  }, 600);
+})();
+</script>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader"><div class="loader-spinner"></div></div>
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress"></div>
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
+<!-- Dark Mode Toggle -->
+<button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">&#9790;</button>
+
+<script>
+window.addEventListener('load', () => { setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 300); });
+window.addEventListener('scroll', () => {
+  const s = document.documentElement.scrollTop, h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('readingProgress').style.width = (h > 0 ? (s/h)*100 : 0) + '%';
+}, { passive: true });
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
+scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+const darkToggle = document.getElementById('darkToggle');
+function setDarkMode(on) { 
+  document.documentElement.classList.toggle('dark', on); 
+  darkToggle.innerHTML = on ? '&#9788;' : '&#9790;'; 
+  document.cookie = `darkMode=${on ? '1' : '0'}; path=/; max-age=31536000`; 
+}
+darkToggle.addEventListener('click', () => { setDarkMode(!document.documentElement.classList.contains('dark')); });
+const darkCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkCookie && darkCookie.split('=')[1] === '1') setDarkMode(true);
+</script>
+
+<script src="magic.js"></script>
+
+</body>
+</html>
