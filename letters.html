@@ -316,21 +316,22 @@
 
     /* ── Listen 3D floating tab ── */
     .modal-listen-tab-wrap {
-      display: flex; justify-content: center; padding: 1.2rem 3rem 0; margin-bottom: -0.5rem;
+      display: flex; justify-content: center; padding: 1.2rem 3rem 1rem; margin-bottom: 0; z-index: 10; position: relative;
     }
     .modal-listen-3d {
       position: relative;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.4rem 1.1rem 0.4rem 0.9rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.5rem 1.3rem 0.5rem 1rem;
       background: linear-gradient(175deg, #3da865 0%, #2D5F3F 60%, #1e4a2e 100%);
       color: #fff;
       border: none;
-      border-radius: 9px;
+      border-radius: 11px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.4px;
       cursor: pointer;
-      box-shadow: 0 4px 0 #16392a, 0 6px 14px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.28);
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      box-shadow: 0 6px 0 #16392a, 0 10px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      will-change: transform;
     }
     .modal-listen-3d::before {
       content: '';
@@ -341,26 +342,27 @@
     }
     @media (hover: hover) {
       .modal-listen-3d:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 0 #16392a, 0 10px 22px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.28);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 0 #16392a, 0 14px 28px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
       }
     }
     .modal-listen-3d:active {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #16392a, 0 3px 8px rgba(0,0,0,0.25);
+      transform: translateY(4px);
+      box-shadow: 0 1.5px 0 #16392a, 0 3px 8px rgba(0,0,0,0.25);
     }
     .modal-listen-3d.playing {
-      background: linear-gradient(175deg, #e35d57 0%, #c0332e 60%, #922020 100%);
-      box-shadow: 0 4px 0 #6e1515, 0 6px 14px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+      background: linear-gradient(175deg, #e84f40 0%, #d12e22 60%, #a01e18 100%);
+      box-shadow: 0 6px 0 #6e1515, 0 10px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.28);
     }
     @media (hover: hover) {
       .modal-listen-3d.playing:hover {
-        box-shadow: 0 6px 0 #6e1515, 0 10px 22px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 0 #6e1515, 0 14px 28px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.28);
       }
     }
-    .modal-listen-3d-icon { font-size: 0.65rem; }
-    .modal-listen-3d-label { display: flex; flex-direction: column; gap: 0.02rem; }
-    .modal-listen-3d-title { font-size: 0.75rem; font-weight: 700; line-height: 1; }
+    .modal-listen-3d-icon { font-size: 0.7rem; }
+    .modal-listen-3d-label { display: flex; flex-direction: column; gap: 0.05rem; }
+    .modal-listen-3d-title { font-size: 0.8rem; font-weight: 700; line-height: 1.1; }
     .modal-listen-3d-sub { font-size: 0.62rem; font-weight: 500; opacity: 0.78; letter-spacing: 0.1px; }
     .modal-listen-progress { display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem; min-width: 55px; }
     .modal-listen-bar { width: 55px; height: 2.5px; background: rgba(255,255,255,0.25); border-radius: 3px; overflow: hidden; }
