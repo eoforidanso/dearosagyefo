@@ -563,6 +563,7 @@
     .tl-spine-parallax { position: absolute; left: 22px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, rgba(201,168,106,0.5) 15%, rgba(201,168,106,0.5) 85%, transparent); pointer-events: none; will-change: transform; z-index: 0; }
     @media (max-width: 768px) { .tl-spine-parallax { display: none; } }
   </style>
+  <link rel="stylesheet" href="SEMANTIC_INTERACTIONS.css">
 </head>
 <body>
 <div id="fb-root"></div>
@@ -616,7 +617,7 @@
 
 <div class="letter-modal-overlay" id="letterModal">
   <div class="letter-modal">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     <div id="modal-inner"></div>
   </div>
 </div>
@@ -953,6 +954,14 @@ document.addEventListener('keydown', function(e){
     if(e.key==='ArrowRight' && currentIdx<allLetters.length-1) openModal(currentIdx+1);
     if(e.key==='ArrowLeft' && currentIdx>0) openModal(currentIdx-1);
   }
+});
+
+var closeButtons = document.querySelectorAll('.modal-close');
+closeButtons.forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    closeModal();
+  });
 });
 
 var fbPendingParse = null;

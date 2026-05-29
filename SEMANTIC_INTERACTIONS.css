@@ -1,0 +1,605 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEMANTIC INTERACTION STATES — CSS ENHANCEMENTS
+   
+   This file contains comprehensive CSS additions to align all interactive
+   elements with the canonical semantic system:
+   - Idle (neutral)
+   - Hover (invitation)
+   - Active (commitment)
+   - Focus (clarity/keyboard)
+   
+   Deploy by linking AFTER the main stylesheet.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   GLOBAL: Accessibility & Reduced Motion Support
+   ────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0 !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   BUTTONS: Primary (Red)
+   States: Idle | Hover | Active | Focus | Disabled
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Idle State ── */
+.btn-primary,
+button:not(.modal-nav-btn):not(.modal-close):not(.hamburger):not(.dark-toggle):not(.back-to-top),
+.modal-listen-3d,
+.share-pill {
+  position: relative;
+  transition: all var(--motion-duration-sm) var(--motion-ease-smooth);
+}
+
+/* ── Hover State: Invitation ── */
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled),
+  button:not(.modal-nav-btn):not(.modal-close):hover:not(:disabled),
+  .share-pill:hover {
+    /* Small lift + scale increase + shadow depth + color boost */
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-depth-md);
+  }
+}
+
+/* ── Active State: Commitment ── */
+.btn-primary:active:not(:disabled),
+button:not(.modal-nav-btn):not(.modal-close):active:not(:disabled),
+.share-pill:active {
+  /* Downward motion + scale reduction + shadow collapse */
+  transform: translateY(2px) scale(0.96);
+  box-shadow: var(--shadow-depth-sm);
+}
+
+/* ── Focus State: Clarity (NO lift, NO scale) ── */
+.btn-primary:focus-visible,
+button:focus-visible,
+.share-pill:focus-visible,
+.tl-listen-btn:focus-visible {
+  /* Keyboard visibility — outline ring only */
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(232, 185, 35, 0.2);
+}
+
+/* ── Disabled State ── */
+.btn-primary:disabled,
+button:disabled,
+.share-pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MODAL TABS: Interactive Tabs
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Idle State ── */
+.modal-tab {
+  transition: all var(--motion-duration-sm) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .modal-tab:hover:not(.active) {
+    transform: translateY(-2px);
+    color: var(--green);
+  }
+}
+
+/* ── Active State ── */
+.modal-tab.active {
+  /* No additional transform — clarity through color + border */
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+/* ── Focus State ── */
+.modal-tab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   TIMELINE CARDS: Card Navigation
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Idle State ── */
+.tl-card {
+  transition: opacity var(--motion-duration-lg) var(--motion-ease-smooth),
+              transform var(--motion-duration-lg) var(--motion-ease-spring),
+              box-shadow var(--motion-duration-md) var(--motion-ease-spring),
+              border-color var(--motion-duration-md) var(--motion-ease-spring);
+}
+
+/* ── Hover State: Lift + Shadow Elevation ── */
+@media (hover: hover) {
+  .tl-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-depth-lg);
+    border-color: rgba(201, 168, 106, 0.45);
+  }
+
+  .tl-card:hover .tl-dot {
+    transform: scale(1.25);
+    background: #7A1E1E;
+    box-shadow: 0 3px 10px rgba(122, 30, 30, 0.4);
+  }
+}
+
+/* ── Focus State: Ring Focus ── */
+.tl-card:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   FORM INPUTS: Text Inputs, Textareas, Selects
+   States: Idle | Hover | Focus | Disabled | Required
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Idle State ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+textarea,
+select {
+  transition: border-color var(--motion-duration-sm) var(--motion-ease-smooth),
+              box-shadow var(--motion-duration-sm) var(--motion-ease-smooth),
+              background-color var(--motion-duration-sm) var(--motion-ease-smooth);
+}
+
+/* ── Hover State: Subtle Border + Glow ── */
+@media (hover: hover) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):hover:not(:focus),
+  textarea:hover:not(:focus),
+  select:hover:not(:focus) {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px rgba(232, 185, 35, 0.3);
+  }
+}
+
+/* ── Focus State: Gold Border + Ring Glow ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 185, 35, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Focus-Visible: Keyboard Focus (Extra Visibility) ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+
+/* ── Disabled State ── */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* ── Required State (Visual Indicator) ── */
+input:required:invalid:focus,
+textarea:required:invalid:focus {
+  border-color: #D43F3A;
+  box-shadow: 0 0 0 3px rgba(212, 63, 58, 0.1);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   CHECKBOXES & RADIO BUTTONS: Form Controls
+   States: Idle | Hover | Focus | Checked | Disabled
+   ────────────────────────────────────────────────────────────────────────── */
+
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  transition: all var(--motion-duration-sm) var(--motion-ease-spring);
+  accent-color: var(--gold);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  input[type="checkbox"]:hover:not(:disabled),
+  input[type="radio"]:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+}
+
+/* ── Focus State ── */
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ── Disabled State ── */
+input[type="checkbox"]:disabled,
+input[type="radio"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   NAVIGATION LINKS: Semantic Link States
+   States: Idle | Hover | Active | Focus | Visited
+   ────────────────────────────────────────────────────────────────────────── */
+
+.nav-links a {
+  transition: color var(--motion-duration-sm) var(--motion-ease-spring),
+              transform var(--motion-duration-sm) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .nav-links a:hover:not(.active) {
+    color: var(--red);
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Focus State ── */
+.nav-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MODAL NAV BUTTONS: Previous/Next Navigation
+   States: Idle | Hover | Active | Focus | Disabled
+   ────────────────────────────────────────────────────────────────────────── */
+
+.modal-nav-btn {
+  transition: all var(--motion-duration-md) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .modal-nav-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--red);
+    color: var(--red);
+    box-shadow: 0 6px 16px rgba(212, 63, 58, 0.2);
+  }
+}
+
+/* ── Active State ── */
+.modal-nav-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: var(--shadow-depth-sm);
+}
+
+/* ── Focus State ── */
+.modal-nav-btn:focus-visible:not(:disabled) {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+
+/* ── Disabled State ── */
+.modal-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   CLOSE BUTTON: Modal Dismiss
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+.modal-close {
+  transition: all var(--motion-duration-sm) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .modal-close:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+  }
+}
+
+/* ── Focus State ── */
+.modal-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   TERTIARY LINKS: Underline Expansion
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+.archive-cta-link {
+  transition: letter-spacing 0.35s ease,
+              border-color 0.35s ease,
+              color 0.25s ease;
+  position: relative;
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .archive-cta-link:hover {
+    letter-spacing: 0.05em;
+    border-color: #7A1E1E;
+    color: #5a1515;
+  }
+}
+
+/* ── Focus State ── */
+.archive-cta-link:focus-visible {
+  outline: 2px dashed var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SOCIAL LINKS: Footer Social Icons
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+.social-icon-link {
+  transition: transform var(--motion-duration-lg) var(--motion-ease-spring),
+              border-color var(--motion-duration-lg) var(--motion-ease-spring),
+              color var(--motion-duration-lg) var(--motion-ease-spring),
+              background var(--motion-duration-lg) var(--motion-ease-spring),
+              box-shadow var(--motion-duration-lg) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .social-icon-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(232, 185, 35, 0.1);
+    box-shadow: 0 6px 24px rgba(232, 185, 35, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.1);
+  }
+}
+
+/* ── Active State ── */
+.social-icon-link:active {
+  transform: translateY(-1px) scale(0.95);
+}
+
+/* ── Focus State ── */
+.social-icon-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   BACK TO TOP: Floating Action Button
+   States: Idle | Hover | Active | Focus | Hidden
+   ────────────────────────────────────────────────────────────────────────── */
+
+.back-to-top {
+  transition: opacity 0.3s, transform 0.3s, box-shadow 0.2s;
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .back-to-top:hover:not(.hidden) {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ── Active State ── */
+.back-to-top:active:not(.hidden) {
+  transform: translateY(-2px) scale(0.95);
+}
+
+/* ── Focus State ── */
+.back-to-top:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   DARK MODE TOGGLE: Theme Switcher
+   States: Idle | Hover | Active | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+.dark-toggle {
+  transition: all 0.3s var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .dark-toggle:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 20px rgba(232, 185, 35, 0.35);
+  }
+}
+
+/* ── Active State ── */
+.dark-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ── Focus State ── */
+.dark-toggle:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   LISTEN BUTTONS: Card Audio Playback
+   States: Idle | Hover | Active | Playing | Paused | Focus
+   ────────────────────────────────────────────────────────────────────────── */
+
+.tl-listen-btn {
+  transition: transform var(--motion-duration-sm) var(--motion-ease-spring),
+              box-shadow var(--motion-duration-sm) var(--motion-ease-spring),
+              background var(--motion-duration-sm) var(--motion-ease-spring),
+              color var(--motion-duration-sm) var(--motion-ease-spring),
+              border-color var(--motion-duration-sm) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .tl-listen-btn:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 16px rgba(31, 77, 58, 0.3);
+    background: #265c46;
+  }
+
+  .tl-listen-btn.playing:hover {
+    box-shadow: 0 6px 16px rgba(31, 77, 58, 0.25);
+  }
+
+  .tl-listen-btn.paused:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+}
+
+/* ── Active State ── */
+.tl-listen-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 1px 4px rgba(26, 122, 66, 0.15);
+}
+
+/* ── Focus State ── */
+.tl-listen-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3D LISTEN BUTTON: Modal Audio Playback
+   States: Idle | Hover | Active | Playing | Focus
+   Note: This uses CSS 3D shadow effect for tactile feedback
+   ────────────────────────────────────────────────────────────────────────── */
+
+.modal-listen-3d {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ── Hover State: Enhanced Lift ── */
+@media (hover: hover) {
+  .modal-listen-3d:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #16392a, 0 14px 28px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .modal-listen-3d.playing:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #6e1515, 0 14px 28px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+}
+
+/* ── Active State: Compressed (Press) ── */
+.modal-listen-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 1.5px 0 #16392a, 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Focus State ── */
+.modal-listen-3d:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   HAMBURGER MENU: Mobile Navigation Toggle
+   States: Idle | Hover | Active | Focus | Closed
+   ────────────────────────────────────────────────────────────────────────── */
+
+.hamburger {
+  transition: transform var(--motion-duration-sm) var(--motion-ease-spring),
+              background var(--motion-duration-sm) var(--motion-ease-spring),
+              color var(--motion-duration-sm) var(--motion-ease-spring),
+              box-shadow var(--motion-duration-sm) var(--motion-ease-spring);
+}
+
+/* ── Hover State ── */
+@media (hover: hover) {
+  .hamburger:hover {
+    transform: translateY(-2px);
+    background: var(--red);
+    color: #fff;
+    box-shadow: var(--shadow-depth-sm);
+  }
+}
+
+/* ── Active State ── */
+.hamburger:active {
+  transform: translateY(0px);
+  box-shadow: var(--shadow-depth-xs);
+}
+
+/* ── Focus State ── */
+.hamburger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   DARK MODE ADJUSTMENTS: Semantic States in Dark Mode
+   ────────────────────────────────────────────────────────────────────────── */
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 185, 35, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .modal-nav-btn:focus-visible {
+  outline-color: var(--gold);
+}
+
+html.dark .social-icon-link:hover {
+  box-shadow: 0 6px 24px rgba(232, 185, 35, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+html.dark .back-to-top:hover:not(.hidden) {
+  box-shadow: 0 8px 24px rgba(232, 185, 35, 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   FOCUS VISIBLE POLYFILL: Ensure Universal Focus Visibility
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Fallback for older browsers without :focus-visible support */
+*:focus {
+  /* Only show outline for keyboard focus (will be overridden by :focus-visible) */
+}
+
+/* ─── END SEMANTIC INTERACTION STATES ─────────────────────────────────── */
