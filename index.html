@@ -184,6 +184,16 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
     body, html {
       width: 100%;
@@ -427,11 +437,17 @@
       filter: contrast(1.05) saturate(0.95) brightness(0.82);
       transform: none;
       transition: transform var(--motion-duration-lg) var(--motion-ease-smooth), filter var(--motion-duration-lg) var(--motion-ease-smooth);
-      will-change: transform;
     }
-    .hero:hover .hero-bg-image {
-      transform: var(--motion-lift-sm) scale(1.015);
-      filter: contrast(1.08) saturate(1.03) brightness(0.86);
+    @media (min-width: 1024px) {
+      .hero-bg-image {
+        will-change: transform;
+      }
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .hero:hover .hero-bg-image {
+        transform: var(--motion-lift-sm) scale(1.015);
+        filter: contrast(1.08) saturate(1.03) brightness(0.86);
+      }
     }
     @media (min-width: 1024px) {
       .hero-bg-image {
@@ -442,8 +458,10 @@
         min-width: 100%; min-height: 100%;
         max-width: none; max-height: none;
       }
-      .hero:hover .hero-bg-image {
-        transform: translateX(-50%) var(--motion-lift-sm) scale(1.015);
+      @media (hover: hover) and (pointer: fine) {
+        .hero:hover .hero-bg-image {
+          transform: translateX(-50%) var(--motion-lift-sm) scale(1.015);
+        }
       }
     }
     .hero-overlay {
@@ -476,6 +494,18 @@
     .floating-star:nth-child(6) { top: 50%; right: 10%; animation-delay: 1.5s; font-size: 2rem; }
     .floating-star:nth-child(7) { top: 75%; left: 50%;  animation-delay: 2.5s; font-size: 1.6rem; }
     .floating-star:nth-child(8) { top: 45%; left: 70%;  animation-delay: 0.5s; font-size: 1.9rem; }
+    
+    @media (max-width: 768px) {
+      .floating-star {
+        animation: floatingStar 10s ease-in-out infinite;
+      }
+    }
+    @media (max-width: 480px) {
+      .floating-star {
+        animation: none;
+        opacity: 0.6;
+      }
+    }
     .hero-content {
       position: relative;
       z-index: 3;
@@ -538,6 +568,32 @@
       animation: heroFadeUp 0.75s cubic-bezier(0.4,0,0.2,1) both;
       animation-delay: 140ms;
     }
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        animation: heroFadeUp 0.6s cubic-bezier(0.4,0,0.2,1) both;
+      }
+      .hero-content p {
+        animation: heroFadeUp 0.6s cubic-bezier(0.4,0,0.2,1) both;
+        animation-delay: 40ms;
+      }
+      .hero-actions {
+        animation: heroFadeUp 0.6s cubic-bezier(0.4,0,0.2,1) both;
+        animation-delay: 80ms;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        animation: heroFadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both;
+      }
+      .hero-content p {
+        animation: heroFadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both;
+        animation-delay: 30ms;
+      }
+      .hero-actions {
+        animation: heroFadeUp 0.5s cubic-bezier(0.4,0,0.2,1) both;
+        animation-delay: 60ms;
+      }
+    }
     /* ═══════════════════════════════════════════
        CTA SYSTEM — Primary · Secondary · Tertiary
     ═══════════════════════════════════════════ */
@@ -576,10 +632,12 @@
       color: #fff;
       box-shadow: var(--shadow-depth-md);
     }
-    .btn.primary:hover, .btn-primary:hover {
-      background: #c0332e;
-      box-shadow: var(--shadow-glow-red), 0 0 20px rgba(232,185,35,0.25);
-      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+    @media (hover: hover) and (pointer: fine) {
+      .btn.primary:hover, .btn-primary:hover {
+        background: #c0332e;
+        box-shadow: var(--shadow-glow-red), 0 0 20px rgba(232,185,35,0.25);
+        transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+      }
     }
     .btn.primary:active, .btn-primary:active {
       transform: scale(var(--motion-scale-active));
@@ -597,12 +655,14 @@
       border-color: var(--gold);
       border-width: 1.5px;
     }
-    .btn.secondary:hover, .btn-secondary:hover {
-      background: var(--gold);
-      color: #0f0f0f;
-      box-shadow: var(--shadow-glow-gold), inset 0 1px 0 rgba(255,255,255,0.2);
-      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
-      border-color: var(--gold);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.secondary:hover, .btn-secondary:hover {
+        background: var(--gold);
+        color: #0f0f0f;
+        box-shadow: var(--shadow-glow-gold), inset 0 1px 0 rgba(255,255,255,0.2);
+        transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+        border-color: var(--gold);
+      }
     }
     .btn.secondary:active, .btn-secondary:active {
       transform: scale(var(--motion-scale-active));
@@ -641,13 +701,15 @@
       transform-origin: center;
       transition: transform var(--motion-duration-sm) var(--motion-ease-smooth);
     }
-    .btn.tertiary:hover, .btn-tertiary:hover {
-      color: var(--gold);
-      opacity: 1;
-      transform: translateX(2px);
-    }
-    .btn.tertiary:hover::after, .btn-tertiary:hover::after {
-      transform: scaleX(1);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.tertiary:hover, .btn-tertiary:hover {
+        color: var(--gold);
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      .btn.tertiary:hover::after, .btn-tertiary:hover::after {
+        transform: scaleX(1);
+      }
     }
 
     /*  FOOTER  */
@@ -2449,13 +2511,17 @@ scrollTopBtn.addEventListener('click', () => {
   const heroEl = document.querySelector('.hero');
   if (!heroBg || !heroEl) return;
   const isDesktop = () => window.innerWidth >= 1024;
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    if (scrollY < heroEl.offsetHeight * 1.5) {
-      const offset = scrollY * 0.40;  // 0.6x parallax speed (bg moves at 60% of scroll)
-      heroBg.style.transform = `translateY(${offset}px)`;
-    }
-  }, { passive: true });
+  const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (isDesktop() && !prefersReducedMotion()) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < heroEl.offsetHeight * 1.5) {
+        const offset = scrollY * 0.40;
+        heroBg.style.transform = `translateY(${offset}px)`;
+      }
+    }, { passive: true });
+  }
 })();
 const darkToggle = document.getElementById('darkToggle');
 function setDarkMode(on) {
