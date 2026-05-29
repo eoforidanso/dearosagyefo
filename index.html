@@ -429,9 +429,11 @@
       transition: transform var(--motion-duration-lg) var(--motion-ease-smooth), filter var(--motion-duration-lg) var(--motion-ease-smooth);
       will-change: transform;
     }
-    .hero:hover .hero-bg-image {
-      transform: var(--motion-lift-sm) scale(1.015);
-      filter: contrast(1.08) saturate(1.03) brightness(0.86);
+    @media (hover: hover) and (pointer: fine) {
+      .hero:hover .hero-bg-image {
+        transform: var(--motion-lift-sm) scale(1.015);
+        filter: contrast(1.08) saturate(1.03) brightness(0.86);
+      }
     }
     @media (min-width: 1024px) {
       .hero-bg-image {
@@ -576,10 +578,12 @@
       color: #fff;
       box-shadow: var(--shadow-depth-md);
     }
-    .btn.primary:hover, .btn-primary:hover {
-      background: #c0332e;
-      box-shadow: var(--shadow-glow-red), 0 0 20px rgba(232,185,35,0.25);
-      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+    @media (hover: hover) and (pointer: fine) {
+      .btn.primary:hover, .btn-primary:hover {
+        background: #c0332e;
+        box-shadow: var(--shadow-glow-red), 0 0 20px rgba(232,185,35,0.25);
+        transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+      }
     }
     .btn.primary:active, .btn-primary:active {
       transform: scale(var(--motion-scale-active));
@@ -597,12 +601,14 @@
       border-color: var(--gold);
       border-width: 1.5px;
     }
-    .btn.secondary:hover, .btn-secondary:hover {
-      background: var(--gold);
-      color: #0f0f0f;
-      box-shadow: var(--shadow-glow-gold), inset 0 1px 0 rgba(255,255,255,0.2);
-      transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
-      border-color: var(--gold);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.secondary:hover, .btn-secondary:hover {
+        background: var(--gold);
+        color: #0f0f0f;
+        box-shadow: var(--shadow-glow-gold), inset 0 1px 0 rgba(255,255,255,0.2);
+        transform: var(--motion-lift-lg) scale(var(--motion-scale-hover));
+        border-color: var(--gold);
+      }
     }
     .btn.secondary:active, .btn-secondary:active {
       transform: scale(var(--motion-scale-active));
@@ -641,13 +647,15 @@
       transform-origin: center;
       transition: transform var(--motion-duration-sm) var(--motion-ease-smooth);
     }
-    .btn.tertiary:hover, .btn-tertiary:hover {
-      color: var(--gold);
-      opacity: 1;
-      transform: translateX(2px);
-    }
-    .btn.tertiary:hover::after, .btn-tertiary:hover::after {
-      transform: scaleX(1);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.tertiary:hover, .btn-tertiary:hover {
+        color: var(--gold);
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      .btn.tertiary:hover::after, .btn-tertiary:hover::after {
+        transform: scaleX(1);
+      }
     }
 
     /*  FOOTER  */

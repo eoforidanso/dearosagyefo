@@ -476,10 +476,12 @@
       box-shadow: 0 4px 16px rgba(212, 63, 58, 0.4);
       border-color: var(--red);
     }
-    .btn.primary:hover {
-      background: #b93530;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(212, 63, 58, 0.5);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.primary:hover {
+        background: #b93530;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(212, 63, 58, 0.5);
+      }
     }
     .btn.secondary {
       background: rgba(255,255,255,0.15);
@@ -488,11 +490,13 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .btn.secondary:hover {
-      background: rgba(255,255,255,0.25);
-      border-color: rgba(255,255,255,0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.secondary:hover {
+        background: rgba(255,255,255,0.25);
+        border-color: rgba(255,255,255,0.6);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      }
     }
     @media (max-width: 768px) {
       .btn {
@@ -556,10 +560,12 @@
       border: 1px solid var(--gray-border);
       transition: all 0.3s;
     }
-    .purpose-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      border-color: var(--gold);
+    @media (hover: hover) and (pointer: fine) {
+      .purpose-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        border-color: var(--gold);
+      }
     }
     .purpose-icon {
       font-size: 3rem;
@@ -619,10 +625,12 @@
       transition: all 0.3s;
       position: relative;
     }
-    .step-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
-      border-color: var(--red);
+    @media (hover: hover) and (pointer: fine) {
+      .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        border-color: var(--red);
+      }
     }
     .step-number {
       display: inline-flex;
@@ -660,11 +668,13 @@
       border-radius: 999px;
       transition: all 0.2s;
     }
-    .step-link:hover {
-      background: var(--red);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(212, 63, 58, 0.3);
+    @media (hover: hover) and (pointer: fine) {
+      .step-link:hover {
+        background: var(--red);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 63, 58, 0.3);
+      }
     }
 
     /*  FOOTER  */
@@ -727,12 +737,14 @@
       background: rgba(255,255,255,0.04);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    .social-icon-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(232,185,35,0.1);
-      box-shadow: 0 4px 16px rgba(232,185,35,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
-      transform: translateY(-2px);
+    @media (hover: hover) and (pointer: fine) {
+      .social-icon-link:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(232,185,35,0.1);
+        box-shadow: 0 4px 16px rgba(232,185,35,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+        transform: translateY(-2px);
+      }
     }
     .social-icon-link svg {
       width: 17px;
@@ -988,7 +1000,9 @@
       white-space: nowrap;
       transition: color 0.2s;
     }
-    .featured-view-all:hover { color: #b00d1f; }
+    @media (hover: hover) and (pointer: fine) {
+      .featured-view-all:hover { color: #b00d1f; }
+    }
     .featured-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -1018,9 +1032,11 @@
     }
     .featured-card.gold  { border-left-color: var(--gold);  }
     .featured-card.green { border-left-color: var(--green); }
-    .featured-card:hover {
-      transform: translateY(-8px) scale(1.015);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.14), 0 8px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+    @media (hover: hover) and (pointer: fine) {
+      .featured-card:hover {
+        transform: translateY(-8px) scale(1.015);
+        box-shadow: 0 20px 48px rgba(0,0,0,0.14), 0 8px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+      }
     }
     .feat-category {
       display: inline-block;
@@ -1118,7 +1134,9 @@
       transition: transform 0.2s, box-shadow 0.2s;
       letter-spacing: 0.3px;
     }
-    .feat-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    @media (hover: hover) and (pointer: fine) {
+      .feat-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    }
     .feat-listen { background: var(--red); color: #fff; }
     .feat-open   { background: #1a1a2e; color: #fff; }
     .feat-share  { background: #f0f0f0; color: #333; }
@@ -1195,10 +1213,12 @@
       box-shadow: 0 4px 20px rgba(212,63,58,0.35), 0 2px 6px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
       text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
-    .btn.primary:hover {
-      background: linear-gradient(180deg, #e85550 0%, #b22a25 100%);
-      box-shadow: 0 8px 32px rgba(212,63,58,0.5), 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.25);
-      transform: translateY(-3px);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.primary:hover {
+        background: linear-gradient(180deg, #e85550 0%, #b22a25 100%);
+        box-shadow: 0 8px 32px rgba(212,63,58,0.5), 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.25);
+        transform: translateY(-3px);
+      }
     }
     .btn.primary:active {
       transform: translateY(0);
@@ -1211,12 +1231,14 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.12);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     }
-    .btn.secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(232,185,35,0.08);
-      box-shadow: 0 6px 24px rgba(232,185,35,0.15), inset 0 1px 0 rgba(255,255,255,0.15);
-      transform: translateY(-3px);
+    @media (hover: hover) and (pointer: fine) {
+      .btn.secondary:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(232,185,35,0.08);
+        box-shadow: 0 6px 24px rgba(232,185,35,0.15), inset 0 1px 0 rgba(255,255,255,0.15);
+        transform: translateY(-3px);
+      }
     }
     .btn.secondary:active {
       transform: translateY(0);
