@@ -10,6 +10,7 @@ const userRoutes = require('./backend/routes/users');
 const letterRoutes = require('./backend/routes/letters');
 const publicRoutes = require('./backend/routes/public');
 const visitorRoutes = require('./backend/routes/visitors');
+const fixAudioUrlsRoutes = require('./backend/routes/fixAudioUrls');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/letters', letterRoutes);
 app.use('/api/public', publicRoutes);
 app.use('/api/visitors', visitorRoutes);
+app.use('/api/admin', fixAudioUrlsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
