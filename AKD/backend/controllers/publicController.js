@@ -4,7 +4,7 @@ const db = require('../config/database');
 exports.getPublicLetters = (req, res) => {
   const { category, author, search } = req.query;
 
-  let query = `SELECT id, letterNumber, authorName, title, preview, category, tags, accentColor, publishedAt
+  let query = `SELECT id, letterNumber, authorName, title, preview, category, tags, accentColor, publishedAt, audioUrl
                FROM public_letters WHERE isApproved = 1`;
   const params = [];
 
@@ -80,7 +80,7 @@ exports.getLettersByAuthorName = (req, res) => {
   const { name } = req.params;
 
   db.all(
-    `SELECT id, letterNumber, authorName, title, preview, category, tags, accentColor, publishedAt
+    `SELECT id, letterNumber, authorName, title, preview, category, tags, accentColor, publishedAt, audioUrl
      FROM public_letters
      WHERE isApproved = 1 AND authorName LIKE ?
      ORDER BY letterNumber ASC`,
