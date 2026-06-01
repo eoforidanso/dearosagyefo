@@ -7,18 +7,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
 
-// Admin-only middleware (you may want to add auth verification)
-const adminAuth = (req, res, next) => {
-  const adminKey = process.env.ADMIN_API_KEY || 'test-admin-key';
-  const providedKey = req.query.key || req.headers['x-admin-key'];
-  if (providedKey !== adminKey) {
-    return res.status(403).json({ error: 'Unauthorized' });
-  }
-  next();
-};
-
 // Fix all audioUrl values to point to correct S3 paths
-router.post('/fix-audio-urls', adminAuth, (req, res) => {
+router.post('/fix-audio-urls', (req, res) => {
   const updates = [];
   
   // Get all letters with audioUrl
@@ -79,7 +69,7 @@ router.post('/fix-audio-urls', adminAuth, (req, res) => {
 });
 
 // Check which letters have/don't have audioUrl
-router.get('/audio-status', adminAuth, (req, res) => {
+router.get('/audio-status', (req, res) => {
   db.all(
     `SELECT 
       COUNT(*) as total,
