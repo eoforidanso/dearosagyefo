@@ -2808,7 +2808,7 @@ document.addEventListener('keydown', function(e) {
 <div id="pwa-install-banner" role="complementary" aria-label="Install app">
   <div class="pwa-banner-text">
     <span aria-hidden="true">📲</span>
-    <div>
+    <div id="pwa-banner-msg">
       <strong>Install Dear Osagyefo</strong><br>
       <span style="font-size:12px;opacity:0.85">Add to your home screen for quick access — works offline too.</span>
     </div>
@@ -2830,42 +2830,55 @@ if ('serviceWorker' in navigator) {
 // ── PWA install prompt ───────────────────────────────────────────────────────
 (function () {
   const DISMISSED_KEY = 'pwa_install_dismissed';
-  let deferredPrompt = null;
-  const banner  = document.getElementById('pwa-install-banner');
+  const banner     = document.getElementById('pwa-install-banner');
   const installBtn = document.getElementById('pwa-install-btn');
   const dismissBtn = document.getElementById('pwa-dismiss-btn');
+  const msgEl      = document.getElementById('pwa-banner-msg');
 
-  // Don't show if user already dismissed or installed
+  // Already dismissed or already running as installed PWA — don't show
   if (localStorage.getItem(DISMISSED_KEY)) return;
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
 
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  let deferredPrompt = null;
+
+  function show() { setTimeout(() => banner.classList.add('visible'), 1200); }
+  function hide(save) {
+    banner.classList.remove('visible');
+    if (save) localStorage.setItem(DISMISSED_KEY, '1');
+  }
+
+  // ── iOS Safari: beforeinstallprompt never fires — show manual instructions ─
+  if (isIOS) {
+    msgEl.innerHTML = '<strong>Install Dear Osagyefo</strong><br>'
+      + '<span style="font-size:12px;opacity:0.85">Tap <strong>Share ↑</strong> then <strong>Add to Home Screen</strong></span>';
+    installBtn.textContent = 'Got it';
+    installBtn.addEventListener('click', () => hide(true));
+    dismissBtn.addEventListener('click', () => hide(true));
+    show();
+    return;
+  }
+
+  // ── Chrome / Android / Edge: use native install prompt ────────────────────
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    // Small delay so the page can finish loading before the banner pops in
-    setTimeout(() => banner.classList.add('visible'), 1500);
+    show();
   });
 
   installBtn.addEventListener('click', async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      localStorage.setItem(DISMISSED_KEY, '1');
-    }
     deferredPrompt = null;
-    banner.classList.remove('visible');
+    hide(outcome === 'accepted');
   });
 
-  dismissBtn.addEventListener('click', () => {
-    localStorage.setItem(DISMISSED_KEY, '1');
-    banner.classList.remove('visible');
-  });
+  dismissBtn.addEventListener('click', () => hide(true));
 
-  // Also hide after successful install via appinstalled event
   window.addEventListener('appinstalled', () => {
-    localStorage.setItem(DISMISSED_KEY, '1');
-    banner.classList.remove('visible');
     deferredPrompt = null;
+    hide(true);
   });
 })();
 </script>
