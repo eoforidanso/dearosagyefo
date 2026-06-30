@@ -2851,7 +2851,9 @@ if ('serviceWorker' in navigator) {
   // ── iOS Safari: beforeinstallprompt never fires — show manual instructions ─
   if (isIOS) {
     msgEl.innerHTML = '<strong>Install Dear Osagyefo</strong><br>'
-      + '<span style="font-size:12px;opacity:0.85">Tap <strong>Share ↑</strong> then <strong>Add to Home Screen</strong></span>';
+      + '<span style="font-size:12px;opacity:0.85">In Safari: tap the <strong>'
+      + '<svg style="display:inline;vertical-align:middle;margin:0 2px" width="14" height="14" viewBox="0 0 50 50" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M25 2 L25 32 M14 13 L25 2 L36 13 M10 22 L10 44 L40 44 L40 22"/></svg>'
+      + ' share icon</strong> at the bottom of Safari, then tap <strong>Add to Home Screen</strong></span>';
     installBtn.textContent = 'Got it';
     installBtn.addEventListener('click', () => hide(true));
     dismissBtn.addEventListener('click', () => hide(true));
