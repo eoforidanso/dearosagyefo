@@ -18,6 +18,14 @@
   Fonts: Inter, Montserrat | Line-height: 1.6
 -->
 <head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1ECQR5VWH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K1ECQR5VWH');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/png" href="/thumbnail.png">
@@ -50,7 +58,8 @@
   <!-- Additional Meta Tags for Search Engines -->
   <link rel="canonical" href="https://dearosagyefo.com/">
   <link rel="alternate" hreflang="en" href="https://dearosagyefo.com/">
-  <meta name="theme-color" content="#D43F3A">
+  <meta name="theme-color" content="#2D5F3F">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Structured Data for Homepage -->
   <script type="application/ld+json">
@@ -2097,11 +2106,93 @@
     }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+
+    <!-- Announcement bar + PWA install banner styles -->
+    <style>
+    /* ── Inauguration announcement bar ── */
+    .announce-bar {
+      background: #1a3d25;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      flex-wrap: wrap;
+      line-height: 1.4;
+    }
+    .announce-bar .announce-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #E8B923;
+      flex-shrink: 0;
+    }
+    .announce-bar strong { font-weight: 700; }
+    .announce-bar a.announce-link {
+      color: #E8B923;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .announce-bar a.announce-link:hover { border-bottom-color: #E8B923; }
+
+    /* ── PWA install banner ── */
+    #pwa-install-banner {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #2D5F3F;
+      color: #fff;
+      padding: 14px 20px;
+      z-index: 9999;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.18);
+      flex-wrap: wrap;
+    }
+    #pwa-install-banner.visible { display: flex; }
+    .pwa-banner-text {
+      display: flex; align-items: center; gap: 10px; font-size: 14px; flex: 1;
+    }
+    .pwa-banner-text span { font-size: 20px; }
+    .pwa-banner-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    #pwa-install-btn {
+      background: #E8B923; color: #1a3d25;
+      border: none; border-radius: 6px;
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    #pwa-install-btn:hover { opacity: 0.88; }
+    #pwa-dismiss-btn {
+      background: rgba(255,255,255,0.15); color: #fff;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 6px;
+      padding: 8px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+    }
+    #pwa-dismiss-btn:hover { background: rgba(255,255,255,0.25); }
+    @media (max-width: 480px) {
+      .pwa-banner-text { font-size: 13px; }
+      #pwa-install-banner { padding: 12px 16px; }
+    }
+    </style>
 </head>
 <body>
 
 <div class="flag-stripe">
   <span></span><span></span><span></span>
+</div>
+
+<!-- INAUGURATION 2026 ANNOUNCEMENT -->
+<div class="announce-bar" role="banner" aria-label="Upcoming event">
+  <span class="announce-dot" aria-hidden="true"></span>
+  <span><strong>Inauguration 2026</strong> &ndash; October 9, 2026 at Chicago Marriott Southwest at Burr Ridge</span>
+  <a href="about.html#inauguration" class="announce-link">View Details &rarr;</a>
 </div>
 
 <!-- SITE HEADER -->
@@ -2750,6 +2841,72 @@ function fmCopyLink(btn) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeFeaturedModal();
 });
+</script>
+
+<!-- PWA INSTALL BANNER -->
+<div id="pwa-install-banner" role="complementary" aria-label="Install app">
+  <div class="pwa-banner-text">
+    <span aria-hidden="true">📲</span>
+    <div>
+      <strong>Install Dear Osagyefo</strong><br>
+      <span style="font-size:12px;opacity:0.85">Add to your home screen for quick access — works offline too.</span>
+    </div>
+  </div>
+  <div class="pwa-banner-actions">
+    <button id="pwa-install-btn">Install</button>
+    <button id="pwa-dismiss-btn" aria-label="Dismiss">Not now</button>
+  </div>
+</div>
+
+<script>
+// ── Service worker registration ──────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+  });
+}
+
+// ── PWA install prompt ───────────────────────────────────────────────────────
+(function () {
+  const DISMISSED_KEY = 'pwa_install_dismissed';
+  let deferredPrompt = null;
+  const banner  = document.getElementById('pwa-install-banner');
+  const installBtn = document.getElementById('pwa-install-btn');
+  const dismissBtn = document.getElementById('pwa-dismiss-btn');
+
+  // Don't show if user already dismissed or installed
+  if (localStorage.getItem(DISMISSED_KEY)) return;
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Small delay so the page can finish loading before the banner pops in
+    setTimeout(() => banner.classList.add('visible'), 1500);
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      localStorage.setItem(DISMISSED_KEY, '1');
+    }
+    deferredPrompt = null;
+    banner.classList.remove('visible');
+  });
+
+  dismissBtn.addEventListener('click', () => {
+    localStorage.setItem(DISMISSED_KEY, '1');
+    banner.classList.remove('visible');
+  });
+
+  // Also hide after successful install via appinstalled event
+  window.addEventListener('appinstalled', () => {
+    localStorage.setItem(DISMISSED_KEY, '1');
+    banner.classList.remove('visible');
+    deferredPrompt = null;
+  });
+})();
 </script>
 </body>
 </html>
