@@ -1197,6 +1197,25 @@
       transform-origin: center;
     }
     /* object-position variants — add class to <img> as needed */
+    /* ── Dear Osagyefo mark ──
+       The linocut portrait, small, floated right beside the card text. It sits
+       alongside each letter's own picture rather than standing in for it. */
+    .feat-card-mark {
+      float: right;
+      width: 46px;
+      margin: 0 0 0.5rem 0.75rem;
+    }
+    .feat-card-mark img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 348 / 444;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(26,26,26,0.08);
+    }
+    @media (max-width: 768px) {
+      .feat-card-mark { width: 40px; margin: 0 0 0.45rem 0.7rem; }
+    }
     .card-img.landscape { object-position: center center; }
     .card-img.cultural  { object-position: 50% 35%; }
     .featured-card:hover .card-img { transform: scale(1.03); }
@@ -1215,8 +1234,7 @@
     .featured-card:hover .card-img-placeholder { transform: scale(1.03); }
     .card-body {
       padding: 28px;
-      display: flex;
-      flex-direction: column;
+      display: flow-root;
       flex: 1;
     }
     .feat-category {
@@ -1256,7 +1274,7 @@
       color: #aaa;
       font-style: italic;
     }
-    .feat-card-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(0,0,0,0.06); min-height: 44px; }
+    .feat-card-actions { clear: right; display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(0,0,0,0.06); min-height: 44px; }
     .feat-listen-btn {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.38rem;
@@ -2243,6 +2261,7 @@
       <article class="featured-card reveal" onclick="openFeaturedModal(0)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>
         <div class="card-body">
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Environment">Environment</span>
           <h3>Smoke at Akosombo</h3>
           <p>The dam you built was meant to light up a continent. What nobody warned us about was the smoke that would follow — literal and otherwise.</p>
@@ -2259,6 +2278,7 @@
       <article class="featured-card gold reveal reveal-delay-2" onclick="openFeaturedModal(1)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">✦</div></div>
         <div class="card-body">
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Culture">Culture</span>
           <h3>Thank You for the Akosombo Dam</h3>
           <p>You built a colossal monument to ambition. We built an entire ecosystem around the lights going off. Both are achievements, in their own way.</p>
@@ -2275,6 +2295,7 @@
       <article class="featured-card green reveal reveal-delay-3" onclick="openFeaturedModal(2)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">◈</div></div>
         <div class="card-body">
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Politics">Politics</span>
           <h3>The Amnesia of a Liberated Country</h3>
           <p>We remember independence. We forget what it was for. Each election cycle, the forgetting deepens — and the speeches sound more familiar.</p>
@@ -2429,8 +2450,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         const imgHtml = l.imageData
           ? `<div class="card-img-wrap"><img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy"></div>`
           : `<div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>`;
-        const encodedTitle = encodeURIComponent(l.title||'');
-        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${encodedTitle}'">\n          ${imgHtml}\n          <div class="card-body">\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
+        const linkId = l.id != null ? l.id : encodeURIComponent(l.title||'').replace(/'/g, '%27');
+        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
       }).join('');
       // re-observe for reveal animation
       recentGrid.querySelectorAll('.reveal').forEach(el => {

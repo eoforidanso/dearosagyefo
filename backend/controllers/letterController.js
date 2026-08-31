@@ -60,7 +60,7 @@ exports.getUserLetters = (req, res) => {
     `SELECT l.id, l.recipientName, l.recipientEmail, l.subject, l.content, l.category, l.tags, l.summary, l.status, l.imageData, l.createdAt, l.updatedAt, l.sentAt,
             pl.id AS publicId
      FROM letters l
-     LEFT JOIN public_letters pl ON pl.userId = l.userId AND pl.title = l.subject AND pl.isApproved = 1
+     LEFT JOIN public_letters pl ON pl.sourceLetterId = l.id AND pl.isApproved = 1
      WHERE l.userId = ? ORDER BY l.createdAt DESC`,
     [req.user.id],
     (err, letters) => {
@@ -105,70 +105,63 @@ exports.updateLetter = (req, res) => {
     img = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
   }
 
-  // First fetch the current subject so we can match the public_letters row
-  db.get(`SELECT subject FROM letters WHERE id = ? AND userId = ?`, [id, req.user.id], (err, existing) => {
-    if (err) return res.status(500).json({ message: 'Server error' });
-    if (!existing) return res.status(404).json({ message: 'Letter not found' });
+  db.run(
+    `UPDATE letters
+     SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?,
+         customSalutation = ?, customClosing = ?, updatedAt = CURRENT_TIMESTAMP
+     WHERE id = ? AND userId = ?`,
+    [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img,
+     customSalutation || null, customClosing || null, id, req.user.id],
+    async (err2) => {
+      if (err2) return res.status(500).json({ message: 'Server error' });
 
-    const oldSubject = existing.subject;
-
-    db.run(
-      `UPDATE letters 
-       SET recipientName = ?, recipientEmail = ?, subject = ?, content = ?, category = ?, tags = ?, summary = ?, status = ?, imageData = ?,
-           customSalutation = ?, customClosing = ?, updatedAt = CURRENT_TIMESTAMP
-       WHERE id = ? AND userId = ?`,
-      [recipientName, recipientEmail, subject, content, category || 'General', tags || '', summary || '', status || 'draft', img,
-       customSalutation || null, customClosing || null, id, req.user.id],
-      (err2) => {
-        if (err2) return res.status(500).json({ message: 'Server error' });
-
-        // Keep the published public copy in sync (if one exists)
+      // Keep the published public copy in sync (if one exists)
+      const publicChanges = await new Promise((resolve) => {
         db.run(
           `UPDATE public_letters
            SET title = ?, content = ?, preview = ?, category = ?, tags = ?, imageData = ?,
                customSalutation = ?, customClosing = ?, updatedAt = datetime('now')
-           WHERE userId = ? AND title = ?`,
-          [subject || oldSubject, content, summary || '', category || 'General', tags || '', img,
-           customSalutation || null, customClosing || null, req.user.id, oldSubject],
-          () => {} // Ignore — public copy may not exist yet
+           WHERE sourceLetterId = ?`,
+          [subject, content, summary || '', category || 'General', tags || '', img,
+           customSalutation || null, customClosing || null, id],
+          function() { resolve(this.changes); }
         );
+      });
 
-        res.json({ message: 'Letter updated successfully' });
+      res.json({ message: 'Letter updated successfully' });
+
+      // Regenerate audio after response if content changed and a public copy was updated
+      if (content && publicChanges > 0) {
+        try {
+          const row = await new Promise((resolve, reject) => {
+            db.get(`SELECT id, title FROM public_letters WHERE sourceLetterId = ?`,
+              [id], (e, r) => e ? reject(e) : resolve(r));
+          });
+          if (row) {
+            const url = await generateAndStoreAudio(row.id, content, row.title);
+            console.log('[Audio] Regenerated after user edit for letter', row.id, '→', url);
+          }
+        } catch (e) {
+          console.error('[Audio] User edit regen error:', e.message);
+        }
       }
-    );
-  });
+    }
+  );
 };
 
 // Delete letter
 exports.deleteLetter = (req, res) => {
   const { id } = req.params;
 
-  // First fetch the letter's subject so we can match the public_letters row
-  db.get(
-    `SELECT subject FROM letters WHERE id = ? AND userId = ?`,
+  // Delete the private letter (the sync_delete_public_on_letter_delete trigger
+  // removes the linked public_letters row via sourceLetterId)
+  db.run(
+    `DELETE FROM letters WHERE id = ? AND userId = ?`,
     [id, req.user.id],
-    (err, letter) => {
+    function(err) {
       if (err) return res.status(500).json({ message: 'Server error' });
-      if (!letter) return res.status(404).json({ message: 'Letter not found' });
-
-      // Delete the private letter
-      db.run(
-        `DELETE FROM letters WHERE id = ? AND userId = ?`,
-        [id, req.user.id],
-        (err2) => {
-          if (err2) return res.status(500).json({ message: 'Server error' });
-
-          // Also remove the published public copy (if any)
-          db.run(
-            `DELETE FROM public_letters WHERE userId = ? AND title = ?`,
-            [req.user.id, letter.subject],
-            () => {
-              // Ignore errors here — public letter may not exist
-              res.json({ message: 'Letter deleted successfully' });
-            }
-          );
-        }
-      );
+      if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
+      res.json({ message: 'Letter deleted successfully' });
     }
   );
 };
@@ -180,7 +173,7 @@ exports.adminGetAllLetters = (req, res) => {
     `SELECT l.id, l.userId, l.recipientName, l.subject, l.content, l.category, l.tags, l.summary, l.status, l.imageData, l.createdAt, l.updatedAt,
             pl.id as publicId, pl.title as publicTitle, pl.authorName, pl.publishedAt, pl.isApproved
      FROM letters l
-     LEFT JOIN public_letters pl ON pl.userId = l.userId AND pl.title = l.subject AND pl.isApproved = 1
+     LEFT JOIN public_letters pl ON pl.sourceLetterId = l.id AND pl.isApproved = 1
      ORDER BY l.createdAt DESC`,
     [],
     (err, rows) => {
@@ -191,13 +184,12 @@ exports.adminGetAllLetters = (req, res) => {
 };
 
 // ADMIN: Update any public letter by publicId
-exports.adminUpdatePublicLetter = (req, res) => {
+exports.adminUpdatePublicLetter = async (req, res) => {
   if (!checkAdmin(req, res)) return;
   const { id } = req.params;
   const { title, content, preview, authorName, category, tags, imageData } = req.body;
-  // imageData === null means explicitly remove; undefined means leave unchanged
   const imgUpdate = imageData === null ? null : (imageData !== undefined ? imageData : undefined);
-  const useImgCoalesce = imgUpdate === undefined; // if not provided, keep existing value
+  const useImgCoalesce = imgUpdate === undefined;
 
   let sql, params;
   if (useImgCoalesce) {
@@ -215,12 +207,35 @@ exports.adminUpdatePublicLetter = (req, res) => {
     params = [title || null, content || null, preview || null, authorName || null, category || null, tags || null, imgUpdate, id];
   }
 
-  db.run(sql, params, function(err) {
-      if (err) return res.status(500).json({ message: 'Server error' });
-      if (this.changes === 0) return res.status(404).json({ message: 'Letter not found' });
-      res.json({ message: 'Letter updated', id });
+  try {
+    const changes = await new Promise((resolve, reject) => {
+      db.run(sql, params, function(err) {
+        if (err) return reject(err);
+        resolve(this.changes);
+      });
+    });
+
+    if (changes === 0) return res.status(404).json({ message: 'Letter not found' });
+
+    res.json({ message: 'Letter updated', id });
+
+    // Regenerate audio after response is sent if content was updated
+    if (content) {
+      const row = await new Promise((resolve, reject) => {
+        db.get(`SELECT id, title, content FROM public_letters WHERE id = ?`, [id], (e, r) => {
+          if (e) return reject(e);
+          resolve(r);
+        });
+      });
+      if (row) {
+        const url = await generateAndStoreAudio(row.id, row.content, row.title);
+        console.log('[Audio] Regenerated after edit for letter', row.id, '→', url);
+      }
     }
-  );
+  } catch (err) {
+    console.error('[Audio] adminUpdatePublicLetter error:', err.message);
+    if (!res.headersSent) res.status(500).json({ message: 'Server error' });
+  }
 };
 
 // ADMIN: Get single public letter by publicId
@@ -329,8 +344,8 @@ exports.publishToSite = (req, res) => {
       if (!letter) return res.status(404).json({ message: 'Letter not found' });
 
       // Check if already published to avoid duplicates
-      db.get(`SELECT id FROM public_letters WHERE userId = ? AND title = ? AND isApproved = 1`,
-        [req.user.id, letter.subject || 'Untitled'],
+      db.get(`SELECT id FROM public_letters WHERE sourceLetterId = ? AND isApproved = 1`,
+        [id],
         (err2, existing) => {
           if (err2) return res.status(500).json({ message: 'Server error' });
           if (existing) return res.json({ message: 'Letter already published to site', publicId: existing.id });
@@ -341,16 +356,16 @@ exports.publishToSite = (req, res) => {
 
             const letterNumber = row.nextNum;
             // Use customClosing as the public author/signature if set; fall back to user's name
-            const authorName = letter.customClosing || req.user.firstName || 'A Concerned Ghanaian';
+            const authorName = letter.customClosing || req.user.firstName || '';
             const rawPreview = letter.summary || letter.content || '';
             const preview = rawPreview.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().substring(0, 200);
 
             db.run(
-              `INSERT INTO public_letters (letterNumber, authorName, title, preview, content, category, tags, accentColor, publishedAt, isApproved, userId, imageData, customSalutation, customClosing)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, date('now'), 1, ?, ?, ?, ?)`,
+              `INSERT INTO public_letters (letterNumber, authorName, title, preview, content, category, tags, accentColor, publishedAt, isApproved, userId, imageData, customSalutation, customClosing, sourceLetterId)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, date('now'), 1, ?, ?, ?, ?, ?)`,
               [letterNumber, authorName, letter.subject || 'Untitled', preview, letter.content,
                letter.category || 'General', letter.tags || '', '#D43F3A', req.user.id, letter.imageData || null,
-               letter.customSalutation || null, letter.customClosing || null],
+               letter.customSalutation || null, letter.customClosing || null, id],
               function(err4) {
                 if (err4) return res.status(500).json({ message: 'Server error' });
 

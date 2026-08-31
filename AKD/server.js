@@ -11,6 +11,7 @@ const letterRoutes = require('./backend/routes/letters');
 const publicRoutes = require('./backend/routes/public');
 const visitorRoutes = require('./backend/routes/visitors');
 const fixAudioUrlsRoutes = require('./backend/routes/fixAudioUrls');
+const audioGenerationRoutes = require('./backend/routes/audioGeneration');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,7 @@ app.use('/api/letters', letterRoutes);
 app.use('/api/public', publicRoutes);
 app.use('/api/visitors', visitorRoutes);
 app.use('/api/admin', fixAudioUrlsRoutes);
+app.use('/api/admin', audioGenerationRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

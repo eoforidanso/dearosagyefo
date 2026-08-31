@@ -6,20 +6,22 @@ exports.getPublicLetters = (req, res) => {
 
   // Query from public_letters table (canonical published/curated letters)
   let query = `
-    SELECT 
+    SELECT
       pl.id,
       pl.letterNumber,
       pl.authorName,
       pl.title,
-      pl.preview,
       pl.content,
+      pl.preview,
       pl.category,
       pl.tags,
       COALESCE(pl.accentColor, '#D43F3A') as accentColor,
       pl.publishedAt,
       pl.imageData,
-      pl.audioUrl
+      pl.audioUrl,
+      COUNT(lr.id) as reactionCount
     FROM public_letters pl
+    LEFT JOIN letter_reactions lr ON lr.letterId = pl.id
     WHERE pl.isApproved = 1
   `;
   const params = [];
@@ -35,11 +37,11 @@ exports.getPublicLetters = (req, res) => {
   }
 
   if (search) {
-    query += ` AND (pl.title LIKE ? OR pl.preview LIKE ? OR pl.authorName LIKE ?)`;
-    params.push(`%${search}%`, `%${search}%`, `%${search}%`);
+    query += ` AND (pl.title LIKE ? OR pl.preview LIKE ? OR pl.authorName LIKE ? OR pl.content LIKE ?)`;
+    params.push(`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`);
   }
 
-  query += ` ORDER BY pl.id DESC`;
+  query += ` GROUP BY pl.id ORDER BY pl.id DESC`;
 
   db.all(query, params, (err, letters) => {
     if (err) {
@@ -141,6 +143,33 @@ exports.getCategories = (req, res) => {
         return res.status(500).json({ message: 'Server error' });
       }
       res.json(categories);
+    }
+  );
+};
+
+// POST toggle a heart reaction on a letter (fingerprint-based, one per browser)
+exports.reactToLetter = (req, res) => {
+  const { id } = req.params;
+  const { fingerprint } = req.body;
+  if (!fingerprint) return res.status(400).json({ message: 'fingerprint required' });
+
+  db.get(
+    `SELECT id FROM letter_reactions WHERE letterId = ? AND fingerprint = ?`,
+    [id, fingerprint],
+    (err, row) => {
+      if (err) return res.status(500).json({ message: 'Server error' });
+
+      const finish = () => {
+        db.get(`SELECT COUNT(*) as count FROM letter_reactions WHERE letterId = ?`, [id], (e, r) => {
+          res.json({ reacted: !row, count: r ? r.count : 0 });
+        });
+      };
+
+      if (row) {
+        db.run(`DELETE FROM letter_reactions WHERE letterId = ? AND fingerprint = ?`, [id, fingerprint], finish);
+      } else {
+        db.run(`INSERT OR IGNORE INTO letter_reactions (letterId, fingerprint) VALUES (?, ?)`, [id, fingerprint], finish);
+      }
     }
   );
 };

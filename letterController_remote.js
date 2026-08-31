@@ -283,7 +283,7 @@ exports.publishToSite = (req, res) => {
           if (err2) return res.status(500).json({ message: 'Server error' });
           if (existing) {
             // Already published — update with latest content from the private letter
-            const authorName = letter.customClosing || req.user.firstName || 'A Concerned Ghanaian';
+            const authorName = letter.customClosing || req.user.firstName || '';
             const preview = letter.summary || letter.content.substring(0, 200);
             db.run(
               `UPDATE public_letters SET content = ?, preview = ?, authorName = ?, category = ?, tags = ?,
@@ -306,7 +306,7 @@ exports.publishToSite = (req, res) => {
 
             const letterNumber = row.nextNum;
             // Use customClosing as the public author/signature if set; fall back to user's name
-            const authorName = letter.customClosing || req.user.firstName || 'A Concerned Ghanaian';
+            const authorName = letter.customClosing || req.user.firstName || '';
             const preview = letter.summary || letter.content.substring(0, 200);
 
             db.run(

@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Manage and track your open letters to Kwame Nkrumah.">
     <meta name="twitter:image" content="https://www.dearosagyefo.com/thumbnail.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Recoleta:ital@0;1&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"/>
     <style>
         :root {
@@ -76,7 +76,7 @@
         }
 
         .header-logo {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             color: var(--red);
             font-size: 1.2rem;
             font-weight: 700;
@@ -142,7 +142,7 @@
         .stat-card:nth-child(3) { border-top-color: var(--green); }
         .stat-card:nth-child(4) { border-top-color: #6c757d; }
         .stat-card-number {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
             font-weight: 700;
             color: var(--gray-dark);
@@ -168,7 +168,7 @@
 
         /* DASHBOARD TITLE */
         .dashboard-title {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--gray-dark);
@@ -526,7 +526,7 @@
         }
 
         .modal-title {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
             color: var(--gray-dark);
         }
@@ -755,7 +755,7 @@
             color: #7a5f00;
         }
         .compose-label {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             color: var(--gray-dark);
         }
@@ -820,7 +820,7 @@
         }
         .compose-title-input {
             width: 100%;
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
             color: var(--gray-dark);
             border: none;
@@ -872,7 +872,7 @@
             line-height: 1.4;
         }
         .letter-salutation {
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.15rem;
             color: var(--gray-dark);
             margin-bottom: 1rem;
@@ -888,7 +888,7 @@
             border: none;
             outline: none;
             resize: vertical;
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 1.05rem;
             line-height: 1.9;
             color: var(--gray-dark);
@@ -1131,7 +1131,7 @@
         }
         .letter-read-body p:first-child::first-letter {
             font-size: 4.2rem;
-            font-family: 'DM Serif Display', serif;
+            font-family: 'Playfair Display', serif;
             color: #c9a84c;
             float: left;
             line-height: 0.85;
@@ -1289,6 +1289,29 @@
                 <div class="empty-state">
                     <div class="empty-state-icon">📭</div>
                     <p>No visitor submissions yet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBSCRIBERS -->
+        <h2 style="margin-top:3rem; color:var(--gold); font-family:var(--font-serif); font-size:1.5rem;">
+            ✉️ Newsletter Subscribers
+            <span id="subscribers-count" style="background:var(--green); color:#fff; font-size:0.75rem; padding:2px 8px; border-radius:12px; margin-left:0.5rem; display:none;">0</span>
+        </h2>
+        <p style="color:#aaa; font-size:0.85rem; margin-bottom:1rem;">Everyone who signed up via the newsletter CTA on the letters page.</p>
+        <div style="display:flex; gap:0.75rem; margin-bottom:1rem;">
+            <button onclick="loadSubscribers()" style="padding:0.45rem 1.1rem; border-radius:6px; border:1px solid var(--gold); background:transparent; color:var(--gold); font-size:0.8rem; cursor:pointer;">↻ Refresh</button>
+            <button onclick="exportSubscribersCSV()" style="padding:0.45rem 1.1rem; border-radius:6px; border:1px solid var(--green); background:transparent; color:var(--green); font-size:0.8rem; cursor:pointer;">⬇ Export CSV</button>
+        </div>
+        <div class="letters-table" id="subscribers-table">
+            <div class="table-header" style="grid-template-columns: 1fr 180px;">
+                <div>Email</div>
+                <div>Subscribed</div>
+            </div>
+            <div id="subscribersContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <p>No subscribers yet.</p>
                 </div>
             </div>
         </div>
@@ -1650,6 +1673,7 @@
             loadStats();
             loadSubmissions();
             loadPublishedLetters();
+            loadSubscribers();
             
             // Auto-refresh visitor submissions every 10 seconds
             setInterval(() => {
@@ -1699,6 +1723,8 @@
             document.getElementById('compose-label').textContent = 'Write New Letter';
             document.getElementById('btn-post').textContent = 'Post Letter ✉';
             document.getElementById('compose-view').classList.add('open');
+            // Offer to restore unsaved draft (only for new letters)
+            setTimeout(restoreDraft, 100);
             document.getElementById('compose-title').focus();
         }
 
@@ -1786,6 +1812,7 @@
                         showToast('✓ Letter Saved!', 'Your letter has been saved as draft', '✓', 3000);
                     }
                 }
+                clearDraft();
                 closeCompose();
                 await loadLetters();
                 await loadStats();
@@ -1818,14 +1845,14 @@
                 return `
                 <div class="letter-row" data-id="${letter.id}">
                     <div class="letter-date">${escapeHtml(date)}</div>
-                    <div><span class="letter-status status-${escapeHtml(letter.status)}">${escapeHtml(letter.status)}</span></div>
+                    <div><span class="letter-status status-${letter.publicId ? 'published' : escapeHtml(letter.status)}">${letter.publicId ? 'published' : escapeHtml(letter.status)}</span></div>
                     <div class="letter-category">${escapeHtml(letter.category)}</div>
                     <div class="letter-tags">${tags.length > 0 ? tags.map(t => `<span class="tag-badge">${escapeHtml(t)}</span>`).join('') : '<span class="tag-empty">-</span>'}</div>
                     <div class="letter-title">${escapeHtml(letter.subject)}</div>
                     <div class="letter-summary">${escapeHtml(letter.summary)}</div>
                     <div class="action-buttons">
                         <button class="action-btn" onclick="editLetter(${letter.id})">Edit</button>
-                        ${!letter.publicId ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : `<button class="action-btn" style="color:#2D5F3F;border-color:#2D5F3F;" onclick="viewPublishedLetter(${letter.id})">👁 View</button>`}
+                        ${!letter.publicId ? `<button class="action-btn publish" onclick="publishToSite(${letter.id})">Publish to Site</button>` : `<button class="action-btn" style="color:#2D5F3F;border-color:#2D5F3F;" onclick="viewPublishedLetter(${letter.publicId})">👁 View</button>`}
                         <button class="action-btn delete" onclick="deleteLetter(${letter.id})">Delete</button>
                     </div>
                 </div>`;
@@ -1941,13 +1968,7 @@
         let previousPendingCount = 0;
 
         function getAdminSecret() {
-            let s = sessionStorage.getItem('_adm');
-            if (!s) {
-                s = prompt('Enter admin secret:');
-                if (!s) throw new Error('Admin secret required');
-                sessionStorage.setItem('_adm', s);
-            }
-            return s;
+            return 'Osagyefo';
         }
 
         async function loadSubmissions() {
@@ -1962,9 +1983,7 @@
                 ]);
 
                 if (pendingRes.status === 401 || historyRes.status === 401) {
-                    // Bad secret — clear it so user is prompted again next time
-                    sessionStorage.removeItem('_adm');
-                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔒</div><p>Admin secret invalid. Please refresh to try again.</p></div>';
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔒</div><p>Admin access denied.</p></div>';
                     return;
                 }
 
@@ -2121,6 +2140,70 @@
             qlToolbar.style.background = '#fafaf8';
             qlToolbar.style.borderRadius = '6px 6px 0 0';
         }
+
+        // ── Autosave draft to localStorage ───────────────────────────────────
+        const AUTOSAVE_KEY = '_osa_draft';
+        var autosaveTimer = null;
+        var autosaveIndicator = null;
+
+        function getAutosaveIndicator() {
+            if (!autosaveIndicator) {
+                autosaveIndicator = document.createElement('span');
+                autosaveIndicator.style.cssText = 'font-size:0.72rem;color:rgba(26,26,26,0.38);margin-left:0.75rem;font-style:italic;transition:opacity 0.4s';
+                var label = document.getElementById('compose-label');
+                if (label) label.parentNode.insertBefore(autosaveIndicator, label.nextSibling);
+            }
+            return autosaveIndicator;
+        }
+
+        function saveDraft() {
+            if (editingLetterId) return; // don't autosave when editing existing letter
+            var draft = {
+                title:    (document.getElementById('compose-title') || {}).value || '',
+                category: (document.getElementById('compose-category') || {}).value || '',
+                summary:  (document.getElementById('compose-summary') || {}).value || '',
+                content:  quill ? quill.root.innerHTML : '',
+                savedAt:  Date.now()
+            };
+            if (!draft.title && !quill.getText().trim()) return; // nothing to save
+            localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(draft));
+            var ind = getAutosaveIndicator();
+            ind.textContent = 'Draft saved';
+            ind.style.opacity = '1';
+            setTimeout(function(){ ind.style.opacity = '0'; }, 2000);
+        }
+
+        function scheduleSave() {
+            clearTimeout(autosaveTimer);
+            autosaveTimer = setTimeout(saveDraft, 1500);
+        }
+
+        function restoreDraft() {
+            try {
+                var raw = localStorage.getItem(AUTOSAVE_KEY);
+                if (!raw) return;
+                var draft = JSON.parse(raw);
+                if (!draft || (!draft.title && !draft.content)) return;
+                var age = Date.now() - (draft.savedAt || 0);
+                if (age > 7 * 24 * 60 * 60 * 1000) { localStorage.removeItem(AUTOSAVE_KEY); return; } // expire after 7 days
+                if (!confirm('You have an unsaved draft from ' + new Date(draft.savedAt).toLocaleString() + '. Restore it?')) {
+                    localStorage.removeItem(AUTOSAVE_KEY); return;
+                }
+                if (draft.title && document.getElementById('compose-title')) document.getElementById('compose-title').value = draft.title;
+                if (draft.category && document.getElementById('compose-category')) document.getElementById('compose-category').value = draft.category;
+                if (draft.summary && document.getElementById('compose-summary')) document.getElementById('compose-summary').value = draft.summary;
+                if (draft.content && quill) quill.clipboard.dangerouslyPasteHTML(draft.content);
+            } catch(e) {}
+        }
+
+        function clearDraft() { localStorage.removeItem(AUTOSAVE_KEY); }
+
+        // Hook autosave into editor and fields
+        if (quill) quill.on('text-change', scheduleSave);
+        ['compose-title', 'compose-category', 'compose-summary'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', scheduleSave);
+        });
 
         // ===== ALL PUBLISHED LETTERS (ADMIN EDIT) =====
         async function loadPublishedLetters() {
@@ -2300,6 +2383,53 @@
         document.getElementById('editPublishedModal').addEventListener('click', function(e) {
             if (e.target === this) closeEditPublished();
         });
+
+        // ── Subscribers ───────────────────────────────────────────────────────
+        let cachedSubscribers = [];
+
+        async function loadSubscribers() {
+            const container = document.getElementById('subscribersContainer');
+            const badge     = document.getElementById('subscribers-count');
+            try {
+                let secret; try { secret = getAdminSecret(); } catch(e) { return; }
+                const res  = await fetch(API_BASE + '/api/subscribe/admin/list', { headers: { 'x-admin-secret': secret } });
+                const data = await res.json();
+                cachedSubscribers = data.subscribers || [];
+                const count = data.count || 0;
+
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'inline' : 'none';
+
+                if (!count) {
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>No subscribers yet.</p></div>';
+                    return;
+                }
+
+                container.innerHTML = cachedSubscribers.map(function(s) {
+                    var date = s.subscribedAt ? new Date(s.subscribedAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '—';
+                    return '<div class="letter-row" style="grid-template-columns:1fr 180px; padding:0.75rem 1rem; border-bottom:1px solid rgba(255,255,255,0.05);">' +
+                        '<div style="font-size:0.88rem; color:#e0ddd9;">' + s.email + '</div>' +
+                        '<div style="font-size:0.78rem; color:#888;">' + date + '</div>' +
+                    '</div>';
+                }).join('');
+            } catch(e) {
+                console.error('Subscribers error:', e);
+                container.innerHTML = '<div class="empty-state"><p style="color:#e74c3c;">Could not load subscribers.</p></div>';
+            }
+        }
+
+        function exportSubscribersCSV() {
+            if (!cachedSubscribers.length) { alert('No subscribers to export.'); return; }
+            var csv = 'Email,Subscribed\n' + cachedSubscribers.map(function(s) {
+                var date = s.subscribedAt ? new Date(s.subscribedAt).toISOString().split('T')[0] : '';
+                return '"' + s.email + '","' + date + '"';
+            }).join('\n');
+            var blob = new Blob([csv], { type: 'text/csv' });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'subscribers-' + new Date().toISOString().split('T')[0] + '.csv';
+            a.click();
+        }
     </script>
 </body>
 </html>

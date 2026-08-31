@@ -57,6 +57,32 @@ function initializeTables() {
     db.run(`ALTER TABLE public_letters ADD COLUMN customClosing TEXT`, () => {});
     // Audio URL for pre-generated Polly TTS (stored on S3)
     db.run(`ALTER TABLE public_letters ADD COLUMN audioUrl TEXT`, () => {});
+    // Real link back to the private letter it was published from (replaces fragile title matching)
+    db.run(`ALTER TABLE public_letters ADD COLUMN sourceLetterId INTEGER`, () => {
+      // One-time backfill for rows published before this column existed.
+      // Best-effort match on userId+title — only fills rows that are still unlinked.
+      db.run(`
+        UPDATE public_letters
+        SET sourceLetterId = (
+          SELECT l.id FROM letters l
+          WHERE l.userId = public_letters.userId AND l.subject = public_letters.title
+          LIMIT 1
+        )
+        WHERE sourceLetterId IS NULL
+      `, () => {});
+    });
+
+    // Letter reactions (heart / resonates)
+    db.run(`
+      CREATE TABLE IF NOT EXISTS letter_reactions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        letterId INTEGER NOT NULL,
+        fingerprint TEXT NOT NULL,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE(letterId, fingerprint),
+        FOREIGN KEY (letterId) REFERENCES public_letters(id)
+      )
+    `);
 
     // Private user-drafted letters (portal feature)
     db.run(`
@@ -131,13 +157,19 @@ function initializeTables() {
     `);
 
     // ── DB-level safety triggers: keep public_letters in sync with letters ──
+    // Linked via sourceLetterId (a real FK), not title text — title matching let
+    // unrelated letters with the same subject cross-link to the wrong public copy.
+    // Drop old title-matching versions first: CREATE TRIGGER IF NOT EXISTS would
+    // otherwise leave a stale trigger from before this fix in place forever.
+    db.run(`DROP TRIGGER IF EXISTS sync_delete_public_on_letter_delete`);
+    db.run(`DROP TRIGGER IF EXISTS sync_title_on_letter_update`);
     // Trigger 1: when a private letter is deleted, remove its public copy
     db.run(`
       CREATE TRIGGER IF NOT EXISTS sync_delete_public_on_letter_delete
       AFTER DELETE ON letters
       BEGIN
         DELETE FROM public_letters
-        WHERE userId = OLD.userId AND title = OLD.subject;
+        WHERE sourceLetterId = OLD.id;
       END
     `);
 
@@ -148,7 +180,7 @@ function initializeTables() {
       BEGIN
         UPDATE public_letters
         SET title = NEW.subject, updatedAt = datetime('now')
-        WHERE userId = OLD.userId AND title = OLD.subject;
+        WHERE sourceLetterId = OLD.id;
       END
     `);
 

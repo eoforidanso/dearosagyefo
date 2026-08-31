@@ -9,12 +9,13 @@
   status = 200
   force = true
 
-# Handle client-side routing
+# Root path must serve hero page
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/index.html"
   status = 200
 
+# Handle all other client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"

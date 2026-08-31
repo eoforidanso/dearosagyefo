@@ -1,4 +1,5 @@
 const db = require('../config/database');
+const { generateAndStoreAudio } = require('./audioController');
 
 // Create a new letter
 exports.createLetter = (req, res) => {
@@ -185,10 +186,21 @@ exports.publishToSite = (req, res) => {
               function(err4) {
                 if (err4) return res.status(500).json({ message: 'Server error' });
 
+                const publicLetterId = this.lastID;
+
                 // Mark the private letter as published
                 db.run(`UPDATE letters SET status = 'published', updatedAt = CURRENT_TIMESTAMP WHERE id = ?`, [id]);
 
-                res.json({ message: 'Letter published to site', publicId: this.lastID });
+                // Auto-generate audio in the background (don't block response)
+                generateAndStoreAudio(publicLetterId, letter.content, letter.subject || 'Untitled')
+                  .then((audioUrl) => {
+                    console.log(`✓ Audio auto-generated for letter #${publicLetterId}: ${audioUrl}`);
+                  })
+                  .catch((err) => {
+                    console.error(`✗ Audio generation failed for letter #${publicLetterId}: ${err.message}`);
+                  });
+
+                res.json({ message: 'Letter published to site', publicId: publicLetterId });
               }
             );
           });

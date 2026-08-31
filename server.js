@@ -95,6 +95,310 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Verify admin secret server-side — never expose the secret in client code
+app.post('/api/admin/verify', (req, res) => {
+  const secret = process.env.ADMIN_SECRET;
+  if (!secret) return res.status(500).json({ error: 'ADMIN_SECRET not configured' });
+  if (req.headers['x-admin-secret'] !== secret) {
+    return res.status(401).json({ error: 'Invalid secret' });
+  }
+  res.json({ ok: true });
+});
+
+// ── SEO routes (sitemap, RSS, individual letter OG pages) ────────────────────
+const letterDb = require('./backend/config/database');
+const sharp    = require('sharp');
+
+const xmlEsc = s => String(s || '')
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+
+// ── Dynamic OG image — /og/:id.png ────────────────────────────────────────────
+const ogCache = new Map();
+
+function wrapTitle(text, maxCh, maxLines = 3) {
+  // A token longer than the line budget can't be wrapped, and the SVG has no
+  // clip path — so hard-break it into chunks rather than let it run off the card.
+  const chunk = new RegExp(`.{1,${maxCh}}`, 'g');
+  const words = String(text || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .flatMap(w => (w.length <= maxCh ? [w] : w.match(chunk)));
+
+  const lines = [];
+  let curr = '';
+
+  for (let i = 0; i < words.length; i++) {
+    const test = curr ? curr + ' ' + words[i] : words[i];
+
+    if (test.length > maxCh && curr) {
+      lines.push(curr);
+      curr = words[i];
+
+      // On the last allowed line, pack in as much as fits and mark anything
+      // left over with an ellipsis — otherwise a long title is silently cut
+      // and the card reads as finished when it isn't.
+      if (lines.length === maxLines - 1) {
+        const rest = words.slice(i);
+        let last = '';
+        let j = 0;
+        for (; j < rest.length; j++) {
+          const t = last ? last + ' ' + rest[j] : rest[j];
+          if (t.length > maxCh) break;
+          last = t;
+        }
+        if (j < rest.length) last = trimTrailing(last) + '…';
+        lines.push(last);
+        return lines;
+      }
+    } else {
+      curr = test;
+    }
+  }
+
+  if (curr) lines.push(curr);
+  return lines;
+}
+
+// Drop trailing punctuation/space so we never render "Sights,…"
+function trimTrailing(s) {
+  return String(s).replace(/[\s,;:.!?—–-]+$/, '');
+}
+
+// Truncate on a word boundary. Falls back to a hard cut only when a single
+// token is longer than the budget.
+function clipText(text, maxCh) {
+  const s = String(text || '').trim();
+  if (s.length <= maxCh) return s;
+  const cut = s.slice(0, maxCh);
+  const sp  = cut.lastIndexOf(' ');
+  return trimTrailing(sp > maxCh * 0.6 ? cut.slice(0, sp) : cut) + '…';
+}
+
+function buildOgSvg(title, author, category) {
+  const lines  = wrapTitle(title, 28);
+  const baseY  = lines.length === 1 ? 310 : 270;
+  const titleSvg = lines.map((l, i) =>
+    `<text x="80" y="${baseY + i * 84}" font-family="serif" font-size="68" font-weight="bold" fill="#F7F3EB" xml:space="preserve">${xmlEsc(l)}</text>`
+  ).join('');
+  const authorY = baseY + lines.length * 84 + 16;
+  const catTag = category
+    ? `<rect x="80" y="108" width="${Math.min(category.length * 9.5 + 32, 300)}" height="30" rx="15" fill="rgba(201,168,106,0.14)"/>
+       <text x="96" y="128" font-family="sans-serif" font-size="13" font-weight="700" fill="#C9A86A" letter-spacing="2">${xmlEsc(category.toUpperCase())}</text>`
+    : '';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+        <stop offset="0%" stop-color="#0f1419"/>
+        <stop offset="100%" stop-color="#1c2640"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="630" fill="url(#g)"/>
+    <rect x="0" y="0" width="400" height="6" fill="#D43F3A"/>
+    <rect x="400" y="0" width="400" height="6" fill="#E8B923"/>
+    <rect x="800" y="0" width="400" height="6" fill="#2D5F3F"/>
+    <rect x="80" y="82" width="56" height="3" rx="1.5" fill="#E8B923"/>
+    ${catTag}
+    ${titleSvg}
+    <text x="80" y="${authorY}" font-family="serif" font-size="28" fill="rgba(247,243,235,0.45)">— ${xmlEsc(author || 'Anonymous')}</text>
+    <text x="80" y="600" font-family="sans-serif" font-size="19" fill="rgba(247,243,235,0.2)">dearosagyefo.com</text>
+    <text x="1120" y="600" font-family="serif" font-size="21" fill="rgba(201,168,106,0.45)" text-anchor="end">Dear Osagyefo</text>
+  </svg>`;
+}
+
+app.get('/og/:id.png', async (req, res) => {
+  const { id } = req.params;
+  if (!/^\d+$/.test(id)) return res.status(404).end();
+  const cached = ogCache.get(id);
+  if (cached && Date.now() - cached.ts < 3_600_000) {
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    return res.end(cached.buf);
+  }
+  try {
+    const letter = await new Promise((resolve, reject) =>
+      letterDb.get('SELECT title, authorName, category FROM public_letters WHERE id = ? AND isApproved = 1', [id], (err, row) => err ? reject(err) : resolve(row))
+    );
+    if (!letter) return res.redirect('/thumbnail.png');
+    const svg = buildOgSvg(letter.title, letter.authorName, letter.category);
+    const buf = await sharp(Buffer.from(svg)).png().toBuffer();
+    ogCache.set(id, { buf, ts: Date.now() });
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.end(buf);
+  } catch (e) {
+    console.error('OG image error:', e.message);
+    res.redirect('/thumbnail.png');
+  }
+});
+
+// Dynamic sitemap — includes every published letter at /l/:id
+app.get('/sitemap.xml', (req, res) => {
+  letterDb.all(
+    `SELECT id, updatedAt, publishedAt FROM public_letters WHERE isApproved = 1 ORDER BY id DESC`,
+    [],
+    (err, letters) => {
+      const base = 'https://dearosagyefo.com';
+      const today = new Date().toISOString().split('T')[0];
+      const staticPages = [
+        { u: '/',                    p: '1.0', f: 'weekly'  },
+        { u: '/letters.html',        p: '0.9', f: 'daily'   },
+        { u: '/from-osagyefo.html',  p: '0.8', f: 'monthly' },
+        { u: '/about.html',          p: '0.7', f: 'monthly' },
+        { u: '/quiz.html',           p: '0.7', f: 'monthly' },
+        { u: '/write.html',          p: '0.7', f: 'monthly' },
+      ];
+      const staticXml = staticPages.map(p =>
+        `  <url><loc>${base}${p.u}</loc><lastmod>${today}</lastmod><changefreq>${p.f}</changefreq><priority>${p.p}</priority></url>`
+      ).join('\n');
+      const toDate = v => {
+        if (!v) return today;
+        const part = String(v).split(/[T ]/)[0];
+        return /^\d{4}-\d{2}-\d{2}$/.test(part) ? part : today;
+      };
+      const letterXml = (letters || []).map(l => {
+        const d = toDate(l.updatedAt || l.publishedAt);
+        return `  <url><loc>${base}/l/${l.id}</loc><lastmod>${d}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`;
+      }).join('\n');
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=3600');
+      res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${staticXml}\n${letterXml}\n</urlset>`);
+    }
+  );
+});
+
+// RSS 2.0 feed — latest 50 published letters
+app.get('/rss.xml', (req, res) => {
+  letterDb.all(
+    `SELECT id, title, preview, authorName, category, publishedAt FROM public_letters WHERE isApproved = 1 ORDER BY id DESC LIMIT 50`,
+    [],
+    (err, letters) => {
+      const base = 'https://dearosagyefo.com';
+      const now = new Date().toUTCString();
+      const items = (letters || []).map(l => {
+        const pubDate = l.publishedAt ? new Date(l.publishedAt).toUTCString() : now;
+        return `    <item>
+      <title>${xmlEsc(l.title)}</title>
+      <link>${base}/l/${l.id}</link>
+      <guid isPermaLink="true">${base}/l/${l.id}</guid>
+      <description>${xmlEsc(l.preview || '')}</description>
+      <author>${xmlEsc(l.authorName || 'Anonymous')}</author>
+      <category>${xmlEsc(l.category || 'General')}</category>
+      <pubDate>${pubDate}</pubDate>
+    </item>`;
+      }).join('\n');
+      res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=1800');
+      res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Dear Osagyefo — Open Letters to Kwame Nkrumah</title>
+    <link>${base}/letters.html</link>
+    <description>A living archive of open letters from Ghanaians and Africans to Kwame Nkrumah — witty, heartfelt dispatches from the present to the past.</description>
+    <language>en-us</language>
+    <copyright>© ${new Date().getFullYear()} Dr. Ato Kwamena Danso. All rights reserved.</copyright>
+    <lastBuildDate>${now}</lastBuildDate>
+    <ttl>60</ttl>
+    <atom:link href="${base}/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>${base}/thumbnail.png</url>
+      <title>Dear Osagyefo</title>
+      <link>${base}</link>
+    </image>
+${items}
+  </channel>
+</rss>`);
+    }
+  );
+});
+
+// Individual letter OG page — /l/:id
+// Social crawlers read OG tags + JSON-LD here; humans are redirected instantly
+app.get('/l/:id', (req, res) => {
+  const { id } = req.params;
+  if (!/^\d+$/.test(id)) return res.redirect('/letters.html');
+  letterDb.get(
+    `SELECT id, title, preview, content, authorName, category, imageData, publishedAt, updatedAt FROM public_letters WHERE id = ? AND isApproved = 1`,
+    [id],
+    (err, letter) => {
+      if (err || !letter) return res.redirect('/letters.html');
+      const title   = xmlEsc(letter.title);
+      const desc    = xmlEsc(clipText(letter.preview, 200));
+      const author  = xmlEsc(letter.authorName || 'Anonymous');
+      const cat     = xmlEsc(letter.category || 'General');
+      const image   = `https://dearosagyefo.com/og/${id}.png`;
+      const canonUrl = `https://dearosagyefo.com/l/${id}`;
+      const destUrl  = `/letters.html?letter=${id}`;
+      const pubDate  = letter.publishedAt || letter.updatedAt || new Date().toISOString();
+      const jsonld   = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: letter.title || 'Untitled Letter',
+        description: clipText(letter.preview, 200),
+        image,
+        datePublished: pubDate,
+        dateModified: letter.updatedAt || pubDate,
+        author: { '@type': 'Person', name: letter.authorName || 'Anonymous' },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Dear Osagyefo',
+          url: 'https://dearosagyefo.com',
+          logo: { '@type': 'ImageObject', url: 'https://dearosagyefo.com/thumbnail.png' }
+        },
+        url: canonUrl,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonUrl },
+        isPartOf: {
+          '@type': 'CollectionPage',
+          name: 'Open Letters to Osagyefo',
+          url: 'https://dearosagyefo.com/letters.html'
+        },
+        keywords: `Kwame Nkrumah, Ghana, open letter, ${cat}, African history`,
+        inLanguage: 'en-US',
+        about: { '@type': 'Person', name: 'Kwame Nkrumah', sameAs: 'https://en.wikipedia.org/wiki/Kwame_Nkrumah' }
+      });
+      // Bots/crawlers get this page as-is, with real visible content, so it's
+      // actually indexable — an immediate redirect (meta-refresh or JS) fired
+      // at every visitor, including Googlebot, meant Google only ever saw "this
+      // page redirects, nothing to index here" and never credited the rich
+      // OG/JSON-LD metadata to a real page. Human visitors still get bounced
+      // to the interactive SPA experience; bots stay put and read the article.
+      const ua = (req.headers['user-agent'] || '').toLowerCase();
+      const isBot = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegrambot|slackbot|discordbot|linkedinbot|pinterest|embedly|quora|redditbot|w3c_validator|duckduckbot|baiduspider|yandex/i.test(ua);
+      const redirectTags = isBot ? '' : `<meta http-equiv="refresh" content="0;url=${destUrl}">
+<script>window.location.replace('${destUrl}');</script>`;
+      const pubDateStr = new Date(pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.send(`<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<title>${title} by ${author} | Dear Osagyefo</title>
+<meta name="description" content="${desc}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${desc}">
+<meta property="og:image" content="${image}">
+<meta property="og:url" content="${canonUrl}">
+<meta property="og:type" content="article">
+<meta property="og:article:author" content="${author}">
+<meta property="og:site_name" content="Dear Osagyefo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${desc}">
+<meta name="twitter:image" content="${image}">
+<link rel="canonical" href="${canonUrl}">
+<link rel="alternate" type="application/rss+xml" title="Dear Osagyefo RSS" href="https://dearosagyefo.com/rss.xml">
+<script type="application/ld+json">${jsonld}</script>
+${redirectTags}
+</head><body>
+<article>
+<h1>${title}</h1>
+<p><em>By ${author} &middot; ${pubDateStr} &middot; ${cat}</em></p>
+${letter.content || `<p>${desc}</p>`}
+<p><a href="${destUrl}">Read and react to this letter on Dear Osagyefo &rarr;</a></p>
+</article>
+</body></html>`);
+    }
+  );
+});
+
 // API 404 — return JSON, not HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ message: `API route not found: ${req.method} ${req.originalUrl}` });

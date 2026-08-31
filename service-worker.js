@@ -26,7 +26,9 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Network-first for HTML, cache-first for everything else
+// Network-first for HTML/API, cache-first (with revalidation) for everything else.
+// Every branch is guaranteed to resolve respondWith() to a real Response — never
+// undefined or a rejected promise — so a network hiccup can't leave the page hanging.
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
@@ -35,27 +37,37 @@ self.addEventListener('fetch', e => {
   if (url.origin !== self.location.origin) return;
 
   const isHTML = e.request.headers.get('accept')?.includes('text/html');
+  const isAPI = url.pathname.startsWith('/api/');
 
-  if (isHTML) {
-    // Network-first: always try to get fresh HTML; fall back to cache
+  if (isHTML || isAPI) {
+    // Network-first: always try to get fresh content.
+    // HTML falls back to cache if offline; API responses are never cached (dynamic data).
     e.respondWith(
       fetch(e.request)
         .then(res => {
-          const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
+          if (!isAPI) {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
           return res;
         })
-        .catch(() => caches.match(e.request))
+        .catch(() =>
+          isAPI
+            ? Response.error()
+            : caches.match(e.request).then(cached => cached || Response.error())
+        )
     );
   } else {
-    // Cache-first: serve from cache instantly; revalidate in background
+    // Cache-first: serve from cache instantly; revalidate in background.
     e.respondWith(
       caches.match(e.request).then(cached => {
-        const network = fetch(e.request).then(res => {
-          caches.open(CACHE).then(c => c.put(e.request, res.clone()));
-          return res;
-        });
-        return cached || network;
+        const revalidate = fetch(e.request)
+          .then(res => {
+            caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+            return res;
+          })
+          .catch(() => undefined);
+        return cached || revalidate.then(res => res || Response.error());
       })
     );
   }

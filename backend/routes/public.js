@@ -13,6 +13,9 @@ router.get('/letters', publicController.getPublicLetters);
 // GET /api/public/letters/:id          - Single letter with full content
 router.get('/letters/:id', publicController.getPublicLetter);
 
+// POST /api/public/letters/:id/react   - Toggle heart reaction (fingerprint-based)
+router.post('/letters/:id/react', publicController.reactToLetter);
+
 // GET /api/public/authors              - All authors with letter counts
 router.get('/authors', publicController.getLettersByAuthor);
 

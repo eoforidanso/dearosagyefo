@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "letter-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "5500", "."],
+      "port": 5500
+    },
+    {
+      "name": "letter-backend",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.js"],
+      "port": 3000
+    }
+  ]
+}

@@ -18,6 +18,9 @@ echo "════════════════════════�
 # ── 1. Frontend → S3 ─────────────────────────────────────────────────────────
 echo ""
 echo "▶ [1/3] Syncing frontend to S3..."
+# No --delete: this bucket also holds runtime-generated assets (Polly TTS
+# output under audio/letter-*.mp3) that exist ONLY in S3, with no local
+# source file to sync from. --delete here previously wiped all of them.
 aws s3 sync . "$S3_BUCKET" \
   --exclude ".git/*" \
   --exclude "node_modules/*" \
@@ -25,6 +28,9 @@ aws s3 sync . "$S3_BUCKET" \
   --exclude "data/*" \
   --exclude "kokoro_env/*" \
   --exclude "tts-env/*" \
+  --exclude "AKD/*" \
+  --exclude "Folder-tts/*" \
+  --exclude "audio/voice-test/*" \
   --exclude "*.sh" \
   --exclude "*.md" \
   --exclude "*.py" \
@@ -33,24 +39,32 @@ aws s3 sync . "$S3_BUCKET" \
   --exclude "*.txt" \
   --exclude "*.log" \
   --exclude "*.sql" \
+  --exclude "*.db" \
+  --exclude "*.sqlite*" \
+  --exclude "*.pem" \
+  --exclude "*.key" \
+  --exclude "*.bat" \
+  --exclude "*.ps1" \
+  --exclude ".DS_Store" \
+  --exclude "*/.DS_Store" \
+  --exclude ".env*" \
   --exclude "Dockerfile" \
   --exclude "docker-compose.yml" \
+  --exclude "netlify.toml" \
+  --exclude "amplify.yml" \
   --exclude "package-lock.json" \
-  --exclude ".env" \
   --exclude "temp-deploy/*" \
   --include "magic.js" \
   --include "manifest.json" \
-  --include "api-config.js"
+  --include "api-config.js" \
+  --include "service-worker.js"
 echo "   ✓ Frontend uploaded"
 
 # ── 2. Backend → EC2 ─────────────────────────────────────────────────────────
 echo ""
 echo "▶ [2/3] Deploying backend to EC2..."
 scp -i "$EC2_KEY" -o StrictHostKeyChecking=no -r \
-  backend/controllers \
-  backend/routes \
-  backend/middleware \
-  backend/config \
+  backend \
   server.js \
   "$EC2_USER@$EC2_HOST:$EC2_APP/"
 echo "   ✓ Backend files copied"

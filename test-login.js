@@ -9,11 +9,9 @@ const path = require('path');
 
 const DB_PATH = path.join(__dirname, 'data/letters.db');
 
-// Test credentials
+// Test credentials — load from env, never hardcode
 const testCredentials = [
-  { email: 'admin@dearosagyefo.com', password: 'GhanaIndependence1957!' },
-  { email: 'admin@lettertoosagyefo.com', password: 'GhanaIndependence1957!' },
-  { email: 'eoforid@gmail.com', password: 'GhanaIndependence1957!' },
+  { email: process.env.ADMIN_EMAIL || 'admin@dearosagyefo.com', password: process.env.ADMIN_PASSWORD || '' },
 ];
 
 // Connect to database

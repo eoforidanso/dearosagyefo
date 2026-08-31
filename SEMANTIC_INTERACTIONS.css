@@ -44,7 +44,7 @@
 
 /* ── Idle State ── */
 .btn-primary,
-button:not(.modal-nav-btn):not(.modal-close):not(.hamburger):not(.dark-toggle):not(.back-to-top),
+button:not(.modal-nav-btn):not(.modal-close):not(.hamburger):not(.dark-toggle):not(.back-to-top):not(.tl-card-play-overlay),
 .modal-listen-3d,
 .share-pill {
   position: relative;

@@ -33,7 +33,7 @@
       --border: #e0ddd8;
       --text:   #1a1a1a;
       --muted:  #666666;
-      --font-serif: 'DM Serif Display', serif;
+      --font-serif: 'Playfair Display', serif;
       --font-sans:  'Inter', sans-serif;
       --radius: 8px;
       --shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -58,43 +58,11 @@
 
     /* ── LOCK SCREEN ── */
     #lock-screen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
+      display: none;
     }
     .lock-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
+      display: none;
     }
-    .lock-card h1 {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
-    .lock-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-    .lock-card input {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      outline: none;
-    }
-    .lock-card input:focus { border-color: var(--red); }
     .lock-error {
       color: var(--red);
       font-size: 0.85rem;
@@ -103,7 +71,7 @@
     }
 
     /* ── MAIN APP ── */
-    #app { display: none; }
+    #app { display: block; }
 
     header {
       background: var(--white);
@@ -133,8 +101,8 @@
     .tabs {
       display: flex;
       gap: 0;
-      border-bottom: 2px solid var(--border);
-      background: var(--white);
+      border-bottom: 2px solid rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, #1a2233 0%, #141b27 100%);
       padding: 0 2rem;
     }
 
@@ -502,17 +470,6 @@
 
 <div class="flag-stripe"><span></span><span></span><span></span></div>
 
-<!-- ── LOCK SCREEN ── -->
-<div id="lock-screen">
-  <div class="lock-card">
-    <h1>Admin Review</h1>
-    <p>Enter your admin secret to access the letter review panel.</p>
-    <div class="lock-error" id="lock-error">Incorrect secret. Try again.</div>
-    <input type="password" id="secret-input" placeholder="Admin secret…" autocomplete="off" />
-    <button class="btn btn-primary" style="width:100%" onclick="unlock()">Unlock</button>
-  </div>
-</div>
-
 <!-- ── MAIN APP ── -->
 <div id="app">
 
@@ -567,7 +524,7 @@
 <div id="toast"></div>
 
 <script>
-  let adminSecret = '';
+  let adminSecret = 'Osagyefo';
   let pendingLetters = [];
   let historyLetters = [];
   let historyLoaded = false;
@@ -577,40 +534,16 @@
   function saveSubs(arr) { /* No-op - use dashboard API instead */ }
 
   // ── AUTH ────────────────────────────────────────────────────
-  document.getElementById('secret-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') unlock();
-  });
+  function logout() {
+    // Reload to reset state
+    window.location.reload();
+  }
 
-  async function unlock() {
-    const input = document.getElementById('secret-input').value.trim();
-    if (!input) return;
-
-    // Client-side admin secret check
-    if (input !== 'osagyefo_admin_2024_secret') {
-      document.getElementById('lock-error').style.display = 'block';
-      return;
-    }
-
-    adminSecret = input;
-    document.getElementById('lock-error').style.display = 'none';
-    document.getElementById('lock-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-
-    const subs = getSubs();
-    pendingLetters = subs.filter(s => s.status === 'pending');
+  // Auto-initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
     renderPending();
     loadStats();
-  }
-
-  function logout() {
-    adminSecret = '';
-    document.getElementById('lock-screen').style.display = 'flex';
-    document.getElementById('app').style.display = 'none';
-    document.getElementById('secret-input').value = '';
-    pendingLetters = [];
-    historyLetters = [];
-    historyLoaded = false;
-  }
+  });
 
   // ── STATS ───────────────────────────────────────────────────
   function loadStats() {

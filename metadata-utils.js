@@ -21,7 +21,7 @@ const MetadataUtils = {
       .trim();
 
     const fullDescription = `Letter from ${authorName} to Kwame Nkrumah: "${title}". ${preview}...`;
-    const letterUrl = `https://dearosagyefo.com/letters.html?letter=${letter.id}`;
+    const letterUrl = `https://dearosagyefo.com/l/${letter.id}`;
 
     // Update document title
     document.title = `${title} – by ${authorName} | Dear Osagyefo`;
@@ -32,8 +32,7 @@ const MetadataUtils = {
     this.updateMetaTag('og:url', letterUrl);
     this.updateMetaTag('og:type', 'article');
     
-    // Use thumbnail as image if letter doesn't have a specific image
-    this.updateMetaTag('og:image', 'https://dearosagyefo.com/thumbnail.png');
+    this.updateMetaTag('og:image', `https://dearosagyefo.com/og/${letter.id}.png`);
     this.updateMetaTag('og:image:width', '1200');
     this.updateMetaTag('og:image:height', '630');
 
@@ -48,8 +47,14 @@ const MetadataUtils = {
     // Update Article Structured Data
     this.updateArticleSchema(letter, letterUrl, authorName);
 
-    // Update URL without page reload for sharing purposes
-    window.history.replaceState({ letter: letter.id }, title, letterUrl);
+    // First open: push a new history entry so the back button closes the modal.
+    // Subsequent prev/next navigation: replace the current entry to avoid history bloat.
+    var currentState = window.history.state;
+    if (currentState && currentState.letter) {
+      window.history.replaceState({ letter: letter.id }, title, `/l/${letter.id}`);
+    } else {
+      window.history.pushState({ letter: letter.id }, title, `/l/${letter.id}`);
+    }
   },
 
   /**
@@ -71,7 +76,7 @@ const MetadataUtils = {
     // Remove article schema when not viewing a specific letter
     this.removeArticleSchema();
 
-    window.history.replaceState({}, '', 'https://dearosagyefo.com/letters.html');
+    window.history.replaceState({}, '', '/letters.html');
   },
 
   /**
@@ -118,7 +123,7 @@ const MetadataUtils = {
       "@type": "Article",
       "headline": letter.title || 'Untitled Letter',
       "description": (letter.content || letter.preview || '').slice(0, 160),
-      "image": "https://dearosagyefo.com/thumbnail.png",
+      "image": `https://dearosagyefo.com/og/${letter.id}.png`,
       "datePublished": datePublished,
       "dateModified": dateModified,
       "author": {
