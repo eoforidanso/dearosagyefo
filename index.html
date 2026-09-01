@@ -2449,8 +2449,18 @@ document.addEventListener('DOMContentLoaded', async function() {
   try {
     const res = await fetch('/api/public/letters');
     if (!res.ok) return;
-    const letters = await res.json();
-    if (!Array.isArray(letters) || !letters.length) return;
+    const rawLetters = await res.json();
+    if (!Array.isArray(rawLetters) || !rawLetters.length) return;
+    /* Rows predating the backend's authorName default (see 75b6393) still
+       store placeholder bylines. Blank them here so the card byline is
+       omitted rather than printed, matching letters.html. */
+    const PLACEHOLDER_AUTHORS = ['a concerned ghanaian', 'anonymous citizen'];
+    const letters = rawLetters.map(function(l){
+      var n = String(l.authorName == null ? '' : l.authorName).trim();
+      return Object.assign({}, l, {
+        authorName: PLACEHOLDER_AUTHORS.indexOf(n.toLowerCase()) >= 0 ? '' : n
+      });
+    });
     const statEl = document.getElementById('stat-letters');
     if (statEl) statEl.textContent = letters.length;
     const recentGrid = document.getElementById('recent-added-grid');
@@ -2463,7 +2473,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           ? `<div class="card-img-wrap"><img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy"></div>`
           : `<div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>`;
         const linkId = l.id != null ? l.id : encodeURIComponent(l.title||'').replace(/'/g, '%27');
-        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
+        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            ${l.authorName ? `<span class="feat-author">${l.authorName}</span>` : ''}\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
       }).join('');
       // re-observe for reveal animation
       recentGrid.querySelectorAll('.reveal').forEach(el => {

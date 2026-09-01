@@ -1241,11 +1241,26 @@ function cleanForTTS(str) {
 }
 
 
+/* Author names that are placeholders rather than real bylines. The backend
+   stopped defaulting to these (see 75b6393), but rows created before that
+   still carry the literal string, so the `authorName ? ... : ''` checks
+   downstream never fire for them. Normalising to '' at ingest makes every
+   consumer — modal author link, modal signature, card byline, author filter,
+   search — omit the byline entirely, which is already what a genuinely empty
+   authorName does. Compared case-insensitively and trimmed, since the stored
+   values were hand-entered. */
+var PLACEHOLDER_AUTHORS = ['a concerned ghanaian', 'anonymous citizen'];
+function realAuthorName(name) {
+  var n = String(name == null ? '' : name).trim();
+  return PLACEHOLDER_AUTHORS.indexOf(n.toLowerCase()) >= 0 ? '' : n;
+}
+
 async function loadLetters() {
   try {
     var res = await fetch((window.API_BASE || '') + '/api/public/letters');
     var data = await res.json();
-    allLetters = Array.isArray(data) ? data : (data.letters || []);
+    allLetters = (Array.isArray(data) ? data : (data.letters || []))
+      .map(function(l){ l.authorName = realAuthorName(l.authorName); return l; });
     buildCategoryPills();
     applyFilters();
     document.getElementById('letters-toolbar').style.display = allLetters.length ? '' : 'none';
