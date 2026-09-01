@@ -188,7 +188,12 @@
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .page-hero { background: linear-gradient(160deg, #0a0d11 0%, #1a1f2e 40%, #2a1a0e 80%, #0d1117 100%); padding: 6rem 2rem 5rem; text-align: center; position: relative; overflow: hidden; border-bottom: 3px solid var(--gold); --hero-bg-y: 0px; --hero-copy-y: 0px; }
+    /* A masthead, not a landing page. Anyone here has already clicked
+       "Open Letters" — they are past being sold the idea, so this only needs
+       to name the page and get out of the way. The old 6rem/5rem padding put
+       the first letter roughly 1,000px down, which is what the (now removed)
+       "Read the letters" button existed to skip. */
+    .page-hero { background: linear-gradient(160deg, #0a0d11 0%, #1a1f2e 40%, #2a1a0e 80%, #0d1117 100%); padding: 3rem 2rem 2.5rem; text-align: center; position: relative; overflow: hidden; border-bottom: 3px solid var(--gold); --hero-bg-y: 0px; --hero-copy-y: 0px; }
     /* Background parallax layer - isolated, no other transforms */
     .page-hero::before { content: ""; position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; will-change: transform; transform: translate3d(0, 0, 0); }
     .page-hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(transparent, #F7F3EB); pointer-events: none; }
@@ -212,13 +217,16 @@
       .hero-cta, .hero-btn { width: min(100%, 320px); }
     }
 
-    .page-hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; }
+    /* Set inline and small: supporting detail under the title, not a
+       stat block competing with it. */
+    .page-hero-stats { display: flex; justify-content: center; align-items: baseline; gap: 1.6rem; margin-top: 0.9rem; }
+    .page-hero-stat { display: inline-flex; align-items: baseline; gap: 0.4rem; }
     .page-hero-stat { text-align: center; }
-    .page-hero-stat .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); display: block; }
+    .page-hero-stat .stat-num { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); display: inline; }
     .page-hero-stat .stat-label { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
 
-    .era-section { padding: 4rem 2rem 4rem; position: relative; }
-    .era-header { max-width: 860px; margin: 0 auto 6rem; text-align: left; padding: 0 0 2.5rem; border-bottom: 1px solid rgba(26,26,26,0.1); opacity: 0; transform: translateY(18px); transition: opacity var(--motion-duration-md) var(--motion-ease-smooth), transform var(--motion-duration-md) var(--motion-ease-smooth); will-change: opacity, transform; }
+    .era-section { padding: 2rem 2rem 4rem; position: relative; }
+    .era-header { max-width: 860px; margin: 0 auto 2rem; text-align: left; padding: 0 0 2.5rem; border-bottom: 1px solid rgba(26,26,26,0.1); opacity: 0; transform: translateY(18px); transition: opacity var(--motion-duration-md) var(--motion-ease-smooth), transform var(--motion-duration-md) var(--motion-ease-smooth); will-change: opacity, transform; }
     .era-header.visible { opacity: 1; transform: translateY(0); }
     .era-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 0; margin-bottom: 1.2rem; color: #C9A86A; background: none; border: none; transition: transform var(--motion-duration-sm) var(--motion-ease-spring), color var(--motion-duration-sm) var(--motion-ease-spring); }
     .era-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 3.5rem); color: #1A1A1A; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; transition: transform var(--motion-duration-sm) var(--motion-ease-spring), color var(--motion-duration-sm) var(--motion-ease-spring); }
@@ -966,13 +974,18 @@
     <span class="page-hero-tag">✍ Dispatches from the Present</span>
     <h1>Open Letters to Osagyefo</h1>
     <p>Ghanaians and Africans writing across time — to the man who dared to dream the biggest dream a continent has ever dreamed.</p>
+    <!-- "Years Spanning: ∞" was a glyph in a slot that promises a number, so
+         it is gone. The remaining two are real counts, set inline rather than
+         as a three-column block. -->
     <div class="page-hero-stats">
       <div class="page-hero-stat"><span class="stat-num" id="stat-count">—</span><span class="stat-label">Published Letters</span></div>
       <div class="page-hero-stat"><span class="stat-num" id="stat-voices">—</span><span class="stat-label">Voices</span></div>
-      <div class="page-hero-stat"><span class="stat-num">∞</span><span class="stat-label">Years Spanning</span></div>
     </div>
+    <!-- The "Read the letters" button linked to #letters-container — an anchor
+         that existed only to scroll past this header, on the page that is the
+         letters. Removing the reason to skip is better than keeping the skip.
+         "Write your own" stays: it is a real action, and it leads elsewhere. -->
     <div class="page-hero-actions">
-      <a href="#letters-container" class="btn primary hero-cta hero-cta-primary">READ THE LETTERS →</a>
       <a href="write.html" class="btn secondary hero-cta hero-cta-secondary">WRITE YOUR OWN</a>
     </div>
   </div>
@@ -1405,7 +1418,10 @@ function renderTimeline() {
   // Update hero stats from allLetters
   if (allLetters.length) {
     document.getElementById('stat-count').textContent = allLetters.length;
-    var authors = new Set(allLetters.map(function(l){ return l.authorName || 'Anonymous'; }));
+    // Count named writers only. This previously mapped every unbylined letter
+    // to 'Anonymous' and then counted that as a voice, so the figure was one
+    // higher than the number of people who had actually signed anything.
+    var authors = new Set(allLetters.map(function(l){ return l.authorName; }).filter(Boolean));
     document.getElementById('stat-voices').textContent = authors.size;
   }
 
