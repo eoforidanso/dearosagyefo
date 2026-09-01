@@ -354,7 +354,38 @@
     .modal-body-text ul, .modal-body-text ol { padding-left: 2rem; margin-bottom: 1rem; text-indent: 0; }
     .modal-body-text li { margin-bottom: 0.3rem; }
     .modal-body-text blockquote { border-left: 3px solid var(--gold); padding: 0.25rem 0 0.25rem 1rem; margin: 1rem 0; color: var(--earth); font-style: italic; text-indent: 0; }
-    .modal-signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--gray-dark); margin: 1.8rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid rgba(139,115,85,0.15); }
+    .modal-signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--gray-dark); margin: 1.8rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid rgba(139,115,85,0.15); display: flow-root; }
+    /* ── Author signature mark (opened letter) ──
+       The stipple portrait signing off the letter body, beside the author's
+       name — the one slot in the system that is literally a letter's
+       sign-off rather than a page credit, so it gets the author mark and
+       never the Dear Osagyefo linocut (that one is series identity and
+       stays on cards). Floats right against the body column's own edge,
+       the same grid logic as the footer byline mark, but larger here since
+       the modal is the long-form reading context where the stipple texture
+       is meant to read. Sits bare on the modal's cream panel — ink on the
+       letter paper itself, no chip needed. */
+    .modal-signature-mark {
+      float: right;
+      width: 84px;
+      margin: 0 0 0.5rem 1.25rem;
+    }
+    .modal-signature-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0.82;
+    }
+    /* Dark mode flips the panel to near-navy (see html.dark .letter-modal),
+       where dark ink would vanish — so it takes the same cream chip the
+       dark footer uses rather than inventing a second treatment. */
+    html.dark .modal-signature-mark {
+      background: #F7F4EE;
+      border: 1px solid rgba(201,168,106,0.3);
+      border-radius: 8px;
+      padding: 6px;
+      box-sizing: border-box;
+    }
 
     /* ── Guardian-style waveform player (modal) ── */
     .modal-guardian-player {
@@ -453,23 +484,35 @@
     }
 
     /* ── Dear Osagyefo mark ──
-       The linocut portrait, small, floated to the right of the card text. It
-       sits alongside each letter's own picture rather than standing in for it. */
+       Brand signature, not a section marker — it runs unconditionally on every
+       card in this series (see the render loop below), the same way a
+       masthead ornament sits beside a title without competing with it.
+       Floated right, its outer edge lands flush with .tl-card-inner's right
+       padding (3.2rem), mirroring the title's left inset on the opposite
+       side — that shared padding value is the grid lock; keep both in sync
+       if the card padding ever changes. Kept deliberately quiet: reduced
+       size, muted contrast, no hover motion, so it never competes with the
+       category tag or title for focal weight. */
     .tl-card-mark {
       float: right;
-      width: 64px;
-      margin: 0.1rem 0 0.75rem 1.25rem;
+      width: 54px;
+      margin: 0 0 0.625rem 0.625rem;
     }
     .tl-card-mark img {
       display: block;
       width: 100%;
-      aspect-ratio: 348 / 444;
-      object-fit: cover;
-      border-radius: 5px;
-      border: 1px solid rgba(139,115,85,0.22);
+      aspect-ratio: 25 / 32;
+      object-fit: contain;
+      opacity: 0.88;
+      /* osagyefo-linocut-mono.png is a true single-ink cutout — the
+         crosshatch/stipple linework extracted from the full-color source and
+         re-inked as one warm charcoal (#241F1A) with real alpha, transparent
+         everywhere else. No border/frame (there's no rectangular photo to
+         contain any more) and no color-correction filter (the duotone is
+         baked into the pixels now, not approximated on top of them). */
     }
     @media (max-width: 768px) {
-      .tl-card-mark { width: 52px; margin: 0.1rem 0 0.6rem 0.85rem; }
+      .tl-card-mark { width: 44px; margin: 0 0 0.5rem 0.5rem; }
     }
     /* Clips only the <img> — the play button lives outside this element so it
        can never be cut off, regardless of the image's loaded size/ratio. */
@@ -638,6 +681,37 @@
     footer .footer-brand { text-align: center; margin-bottom: 2.5rem; }
     footer .footer-brand-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.8rem; display: block; }
     footer .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 420px; margin: 0 auto 0.4rem; }
+    /* ── Author identity block ──
+       Separate from the Dear Osagyefo brand mark on cards (which stands for
+       the letter series itself). This one stands for the author, so it
+       lives only here, right-aligned against the byline it signs — the same
+       grid logic as the card mark (float right, flush to the block's own
+       edge, text flows to its left) rather than the centered symmetry the
+       rest of .footer-brand uses. Wrapped in a light chip since the footer
+       is near-black and the mark is dark ink on transparent. */
+    footer .footer-byline {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    footer .footer-byline::after { content: ""; display: table; clear: both; }
+    footer .footer-byline-mark {
+      float: right;
+      width: 72px;
+      margin: 0 0 0.5rem 1rem;
+      background: #F7F4EE;
+      border: 1px solid rgba(201,168,106,0.3);
+      border-radius: 8px;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+    footer .footer-byline-mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0.82;
+    }
+    footer .footer-byline-text { margin: 0; padding-top: 0.3rem; }
     footer .footer-socials { display: flex; gap: 0.6rem; justify-content: center; margin-top: 1.5rem; }
     footer .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,185,35,0.35), transparent); opacity: 0.72; transition: opacity var(--motion-duration-md) var(--motion-ease-smooth); margin-bottom: 2.5rem; }
     @media (hover: hover) {
@@ -987,7 +1061,12 @@
       <div class="footer-brand">
         <span class="footer-brand-title">Dear Osagyefo</span>
         <p>A living archive of open letters to Kwame Nkrumah — witty dispatches from the present to the past.</p>
-        <p>By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        <div class="footer-byline">
+          <div class="footer-byline-mark">
+            <img src="/osagyefo-stipple-signature.png" alt="" role="presentation">
+          </div>
+          <p class="footer-byline-text">By <strong style="color:rgba(255,255,255,0.75);">Dr. Ato Kwamena Danso</strong></p>
+        </div>
         <div class="footer-socials">
           <a href="https://twitter.com/share" target="_blank" rel="noopener" class="social-icon-link" aria-label="X/Twitter">
             <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -1375,7 +1454,7 @@ function renderTimeline() {
       ) : '') +
       '<div class="tl-card-inner">' +
         '<div class="tl-card-mark">' +
-          '<img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy">' +
+          '<img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy">' +
         '</div>' +
         '<div class="tl-meta">' +
           (dateStr ? '<span class="tl-date">'+dateStr+'</span>' : '') +
@@ -1488,7 +1567,14 @@ function openModal(idx) {
       '<div class="modal-body-wrap">' +
         '<p class="modal-salutation">Dear Osagyefo,</p>' +
         '<div class="modal-body-text" id="modal-body-text">'+bodyHtml+'</div>' +
-        (ltr.authorName ? '<div class="modal-signature">'+escHtml(ltr.authorName)+'</div>' : '') +
+        (ltr.authorName ?
+          '<div class="modal-signature">' +
+            '<div class="modal-signature-mark">' +
+              '<img src="/osagyefo-stipple-signature.png" alt="" role="presentation" loading="lazy">' +
+            '</div>' +
+            escHtml(ltr.authorName) +
+          '</div>'
+        : '') +
       '</div>' +
       '<div class="modal-react-row">' +
         '<button class="react-btn'+(reacted?' reacted':'')+'" id="react-modal-'+ltr.id+'" onclick="toggleReaction('+ltr.id+',this)" aria-label="Heart this letter">' +

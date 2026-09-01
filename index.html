@@ -1198,23 +1198,35 @@
     }
     /* object-position variants — add class to <img> as needed */
     /* ── Dear Osagyefo mark ──
-       The linocut portrait, small, floated right beside the card text. It sits
-       alongside each letter's own picture rather than standing in for it. */
+       Brand signature, not a section marker — it runs unconditionally on
+       every featured card (see the render loop below), the same way a
+       masthead ornament sits beside a title without competing with it.
+       Floated right, its outer edge lands flush with .card-body's padding
+       (28px), mirroring feat-category/h3's left inset on the opposite side
+       — that shared padding value is the grid lock; keep both in sync if
+       the card padding ever changes. Kept deliberately quiet: reduced
+       size, muted contrast, no hover motion, so it never competes with the
+       category tag or title for focal weight. */
     .feat-card-mark {
       float: right;
-      width: 46px;
-      margin: 0 0 0.5rem 0.75rem;
+      width: 39px;
+      margin: 0 0 0.625rem 0.625rem;
     }
     .feat-card-mark img {
       display: block;
       width: 100%;
-      aspect-ratio: 348 / 444;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(26,26,26,0.08);
+      aspect-ratio: 25 / 32;
+      object-fit: contain;
+      opacity: 0.88;
+      /* osagyefo-linocut-mono.png is a true single-ink cutout — the
+         crosshatch/stipple linework extracted from the full-color source and
+         re-inked as one warm charcoal (#241F1A) with real alpha, transparent
+         everywhere else. No border/frame (there's no rectangular photo to
+         contain any more) and no color-correction filter (the duotone is
+         baked into the pixels now, not approximated on top of them). */
     }
     @media (max-width: 768px) {
-      .feat-card-mark { width: 40px; margin: 0 0 0.45rem 0.7rem; }
+      .feat-card-mark { width: 34px; margin: 0 0 0.5rem 0.5rem; }
     }
     .card-img.landscape { object-position: center center; }
     .card-img.cultural  { object-position: 50% 35%; }
@@ -2261,7 +2273,7 @@
       <article class="featured-card reveal" onclick="openFeaturedModal(0)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>
         <div class="card-body">
-          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Environment">Environment</span>
           <h3>Smoke at Akosombo</h3>
           <p>The dam you built was meant to light up a continent. What nobody warned us about was the smoke that would follow — literal and otherwise.</p>
@@ -2278,7 +2290,7 @@
       <article class="featured-card gold reveal reveal-delay-2" onclick="openFeaturedModal(1)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">✦</div></div>
         <div class="card-body">
-          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Culture">Culture</span>
           <h3>Thank You for the Akosombo Dam</h3>
           <p>You built a colossal monument to ambition. We built an entire ecosystem around the lights going off. Both are achievements, in their own way.</p>
@@ -2295,7 +2307,7 @@
       <article class="featured-card green reveal reveal-delay-3" onclick="openFeaturedModal(2)" style="cursor:pointer">
         <div class="card-img-wrap"><div class="card-img-placeholder">◈</div></div>
         <div class="card-body">
-          <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>
+          <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>
           <span class="feat-category" data-cat="Politics">Politics</span>
           <h3>The Amnesia of a Liberated Country</h3>
           <p>We remember independence. We forget what it was for. Each election cycle, the forgetting deepens — and the speeches sound more familiar.</p>
@@ -2451,7 +2463,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           ? `<div class="card-img-wrap"><img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy"></div>`
           : `<div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>`;
         const linkId = l.id != null ? l.id : encodeURIComponent(l.title||'').replace(/'/g, '%27');
-        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-thumb.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
+        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <span class="feat-author">${l.authorName || 'Anonymous'}</span>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
       }).join('');
       // re-observe for reveal animation
       recentGrid.querySelectorAll('.reveal').forEach(el => {

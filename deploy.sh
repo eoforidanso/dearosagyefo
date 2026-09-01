@@ -16,6 +16,10 @@ EXCLUDE_DIRS=(
   "--exclude" "Folder-tts/*"
   "--exclude" "letters_to_process/*"
   "--exclude" "go/*"
+  # Archival masters for the linocut/stipple marks — full-res sources kept in
+  # git for future re-exports. The site only ever loads the web-sized copies
+  # at the repo root, so these must never ship.
+  "--exclude" "assets-mono/*"
   "--exclude" "*-backup*"
   "--exclude" "*-old*"
   "--exclude" "temp-deploy/*"
