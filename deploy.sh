@@ -37,14 +37,27 @@ EXCLUDE_DIRS=(
 
 echo "🚀 Deploying to S3..."
 
-# ── HTML — no-cache so updates are always live immediately ───────────────────
-echo "  → HTML (no-cache)..."
-aws s3 sync . "$S3_BUCKET" \
+# ── HTML — cached at the edge, freshness guaranteed by the invalidation below ─
+#    This was 'no-store', which meant every page view and every navigation went
+#    back to the origin in Virginia — CloudFront reported a miss every time. The
+#    header was there so deploys appeared instantly, but that is already
+#    guaranteed by the CloudFront invalidation at the end of this script, so
+#    'no-store' was buying nothing and costing a trans-Atlantic round trip on
+#    every request.
+#    s-maxage lets CloudFront hold the page for a day (cleared on each deploy),
+#    while the short max-age caps how long an already-loaded browser can hold a
+#    stale copy after a deploy.
+#    NOTE: cp, not sync. sync only transfers files whose *content* changed, so
+#    a header-only change is silently skipped and the old Cache-Control stays
+#    on the object forever. HTML here is a few hundred KB, so copying it every
+#    deploy costs nothing and guarantees the headers are actually applied.
+echo "  → HTML (edge-cached, invalidated on deploy)..."
+aws s3 cp . "$S3_BUCKET" --recursive \
   --exclude "*" --include "*.html" \
   "${EXCLUDE_DIRS[@]}" \
   --content-type "text/html; charset=utf-8" \
-  --cache-control "no-cache, no-store, must-revalidate" \
-  --metadata-directive REPLACE
+  --cache-control "public, max-age=300, s-maxage=86400, stale-while-revalidate=86400" \
+  --no-progress
 
 # ── CSS — 1 day (filenames aren't hashed, so keep TTL short) ────────────────
 echo "  → CSS (1 day)..."
