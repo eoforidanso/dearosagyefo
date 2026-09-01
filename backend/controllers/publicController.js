@@ -48,7 +48,13 @@ exports.getPublicLetters = (req, res) => {
       console.error('Error fetching public letters:', err);
       return res.status(500).json({ message: 'Server error' });
     }
-    res.set('Cache-Control', 'no-store');
+    // This list is public and identical for everyone, so it was needlessly
+    // uncacheable: 'no-store' meant every page view — and every navigation
+    // between the homepage and the archive — refetched the whole payload from
+    // the origin, and CloudFront could never serve it. A short TTL keeps new
+    // letters and reaction counts appearing promptly while letting the CDN
+    // absorb the repeat traffic; stale-while-revalidate hides the refresh.
+    res.set('Cache-Control', 'public, max-age=60, stale-while-revalidate=300');
     res.json(letters);
   });
 };
