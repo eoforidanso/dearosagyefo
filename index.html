@@ -1439,7 +1439,10 @@
     .why-letters {
       background: #0d1117;
       border-top: 4px solid var(--gold);
-      padding: 100px 2rem 90px;
+      /* Was 100px/90px. With the pillar cards gone this is a short statement
+         of premise between the hero and the letters, so it no longer needs
+         the vertical presence of a full section. */
+      padding: 60px 2rem 50px;
       position: relative;
       overflow: hidden;
     }
@@ -1534,7 +1537,9 @@
     .why-pillar.reveal-delay-1 { transition-delay: 0.06s; }
     .why-pillar.reveal-delay-2 { transition-delay: 0.12s; }
     .why-close {
-      margin: 3.5rem auto 0;
+      /* 3.5rem was clearing the pillar-card grid; it now follows the lead
+         paragraph directly and only needs to read as a separate beat. */
+      margin: 2rem auto 0;
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: clamp(1rem, 2vw, 1.15rem);
@@ -2233,29 +2238,11 @@
     <p class="why-letters-lead">
       A letter is the most intimate act of public thought. It says: <em>I have something to tell you, and I believe you are worth the effort of honesty.</em> Kwame Nkrumah dreamed of a free, unified Africa — and 69 years later, his dream remains unfinished. These letters are our reckoning.
     </p>
-    <div class="why-pillars">
-      <div class="why-pillar reveal">
-        <div class="why-pillar-header">
-          <span class="why-pillar-icon">✍️</span>
-          <h3>Why Letters?</h3>
-        </div>
-        <p>Letters slow us down. They demand clarity, care, and courage. In an age of hot takes, a letter is an act of discipline — a commitment to say something true rather than something fast.</p>
-      </div>
-      <div class="why-pillar reveal reveal-delay-1">
-        <div class="why-pillar-header">
-          <span class="why-pillar-icon">👑</span>
-          <h3>Why Osagyefo?</h3>
-        </div>
-        <p>Kwame Nkrumah was the first to name our freedom out loud on the world stage. He is not a finished monument — he is an open question. His choices, his flaws, his vision still shape the Ghana we inherit today.</p>
-      </div>
-      <div class="why-pillar reveal reveal-delay-2">
-        <div class="why-pillar-header">
-          <span class="why-pillar-icon">⏳</span>
-          <h3>Why Now?</h3>
-        </div>
-        <p>Because the distance between 1957 and today is both enormous and razor-thin. Because democracy is not guaranteed. Because every generation must decide, again, what it stands for — and write it down.</p>
-      </div>
-    </div>
+    <!-- The three "Why Letters? / Why Osagyefo? / Why Now?" pillar cards were
+         removed. They restated, at 105 words, the argument the lead paragraph
+         above already makes in full — and their headings repeated the three
+         questions in the h2 verbatim, so each question appeared twice on
+         screen. The section now states the premise once and moves on. -->
     <p class="why-close reveal">History is not a museum. It is a mirror — and these letters are our attempt to look clearly.</p>
   </div>
 </section>
