@@ -23,6 +23,17 @@ EXCLUDE_DIRS=(
   "--exclude" "*-backup*"
   "--exclude" "*-old*"
   "--exclude" "temp-deploy/*"
+  # Superseded drafts and developer scratch pages. These were reachable in
+  # public — indexable duplicates of the real pages, competing with them in
+  # search and serving stale content to anyone who landed on one. They are
+  # kept in git for reference but must not ship.
+  "--exclude" "letters-revamped.html"
+  "--exclude" "index-from-s3.html"
+  "--exclude" "from-osagyefo-restore.html"
+  "--exclude" "backend-integration-example.html"
+  "--exclude" "design-system.html"
+  "--exclude" "view-images.html"
+  "--exclude" "preview.html"
   "--exclude" "*.sh"
   "--exclude" "*.md"
   "--exclude" "*.log"
