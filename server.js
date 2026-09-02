@@ -116,6 +116,17 @@ const xmlEsc = s => String(s || '')
 // ── Dynamic OG image — /og/:id.png ────────────────────────────────────────────
 const ogCache = new Map();
 
+// The linocut mark, pre-rendered as a cream medallion. Read once at boot —
+// null if absent, in which case cards render without it rather than erroring.
+const OG_MARK = (() => {
+  try {
+    return require('fs').readFileSync(require('path').join(__dirname, 'backend/assets/og-mark.png'));
+  } catch (e) {
+    console.warn('[OG] mark asset not found — cards will render without it');
+    return null;
+  }
+})();
+
 function wrapTitle(text, maxCh, maxLines = 3) {
   // A token longer than the line budget can't be wrapped, and the SVG has no
   // clip path — so hard-break it into chunks rather than let it run off the card.
@@ -175,17 +186,40 @@ function clipText(text, maxCh) {
   return trimTrailing(sp > maxCh * 0.6 ? cut.slice(0, sp) : cut) + '…';
 }
 
+// The text column is narrowed to leave room for the linocut medallion on the
+// right (composited after render — see MARK_PATH). The block is centred as a
+// unit rather than pinned near the top, which previously left the lower third
+// of the card empty regardless of how long the title was.
 function buildOgSvg(title, author, category) {
-  const lines  = wrapTitle(title, 28);
-  const baseY  = lines.length === 1 ? 310 : 270;
+  const lines = wrapTitle(title, 22);          // was 28; narrower column
+  const LH = 82, TITLE_SIZE = 62;
+
+  // Height of the title + byline block, so it can be centred vertically.
+  const hasAuthor = Boolean(author && String(author).trim());
+  const blockH = lines.length * LH + (hasAuthor ? 44 : 0);
+  // Floor the first baseline so a three-line title cannot ride up into the
+  // category pill (which occupies y 108–138) as the block grows taller.
+  const startY = Math.max(
+    Math.round((630 - blockH) / 2) + TITLE_SIZE * 0.34,
+    205
+  );
+
   const titleSvg = lines.map((l, i) =>
-    `<text x="80" y="${baseY + i * 84}" font-family="serif" font-size="68" font-weight="bold" fill="#F7F3EB" xml:space="preserve">${xmlEsc(l)}</text>`
+    `<text x="80" y="${Math.round(startY + i * LH)}" font-family="serif" font-size="${TITLE_SIZE}" font-weight="bold" fill="#F7F3EB" xml:space="preserve">${xmlEsc(l)}</text>`
   ).join('');
-  const authorY = baseY + lines.length * 84 + 16;
+
+  // No "Anonymous" fallback: every letter is attributed, and where one is not
+  // the byline is omitted rather than filled with a placeholder — matching the
+  // cards and the modal sign-off.
+  const authorSvg = hasAuthor
+    ? `<text x="80" y="${Math.round(startY + lines.length * LH + 12)}" font-family="serif" font-size="27" fill="rgba(247,243,235,0.52)">— ${xmlEsc(author)}</text>`
+    : '';
+
   const catTag = category
-    ? `<rect x="80" y="108" width="${Math.min(category.length * 9.5 + 32, 300)}" height="30" rx="15" fill="rgba(201,168,106,0.14)"/>
+    ? `<rect x="80" y="108" width="${Math.min(category.length * 9.5 + 32, 300)}" height="30" rx="15" fill="rgba(201,168,106,0.16)"/>
        <text x="96" y="128" font-family="sans-serif" font-size="13" font-weight="700" fill="#C9A86A" letter-spacing="2">${xmlEsc(category.toUpperCase())}</text>`
     : '';
+
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
     <defs>
       <linearGradient id="g" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
@@ -200,9 +234,10 @@ function buildOgSvg(title, author, category) {
     <rect x="80" y="82" width="56" height="3" rx="1.5" fill="#E8B923"/>
     ${catTag}
     ${titleSvg}
-    <text x="80" y="${authorY}" font-family="serif" font-size="28" fill="rgba(247,243,235,0.45)">— ${xmlEsc(author || 'Anonymous')}</text>
-    <text x="80" y="600" font-family="sans-serif" font-size="19" fill="rgba(247,243,235,0.2)">dearosagyefo.com</text>
-    <text x="1120" y="600" font-family="serif" font-size="21" fill="rgba(201,168,106,0.45)" text-anchor="end">Dear Osagyefo</text>
+    ${authorSvg}
+    <line x1="80" y1="566" x2="1120" y2="566" stroke="rgba(247,243,235,0.10)" stroke-width="1"/>
+    <text x="80" y="600" font-family="sans-serif" font-size="19" fill="rgba(247,243,235,0.42)">dearosagyefo.com</text>
+    <text x="1120" y="600" font-family="serif" font-size="21" fill="rgba(201,168,106,0.62)" text-anchor="end">Dear Osagyefo</text>
   </svg>`;
 }
 
@@ -221,7 +256,13 @@ app.get('/og/:id.png', async (req, res) => {
     );
     if (!letter) return res.redirect('/thumbnail.png');
     const svg = buildOgSvg(letter.title, letter.authorName, letter.category);
-    const buf = await sharp(Buffer.from(svg)).png().toBuffer();
+    // Composite the Dear Osagyefo mark into the space the text column leaves.
+    // Loaded once at startup; if the asset is missing the card still renders,
+    // just without the mark, rather than failing the whole request.
+    const base = sharp(Buffer.from(svg));
+    const buf = OG_MARK
+      ? await base.composite([{ input: OG_MARK, top: 175, left: 875 }]).png().toBuffer()
+      : await base.png().toBuffer();
     ogCache.set(id, { buf, ts: Date.now() });
     res.setHeader('Content-Type', 'image/png');
     res.setHeader('Cache-Control', 'public, max-age=86400');
