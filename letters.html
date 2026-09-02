@@ -1493,7 +1493,11 @@ function renderTimeline() {
           '<span class="tl-read-time" style="margin-left:auto">⏱ '+mins+' min read</span>' +
         '</div>' +
         '<h3 class="tl-title">'+escHtml(letter.title || 'Untitled Letter')+'</h3>' +
-        (letter.authorName ? '<p class="tl-author">— '+escHtml(letter.authorName)+'</p>' : '') +
+        // No byline on cards. 59 of 62 letters are by the same person, so it
+        // repeated identically down the whole archive and carried no
+        // information. Attribution lives in the letter itself — the modal
+        // sign-off names the author beside the stipple mark — which is where
+        // it distinguishes something rather than restating the masthead.
         '<div class="tl-card-editorial-wrap">' +
           '<div class="tl-card-img-wrap">' +
             '<div class="tl-card-img-clip">' +
@@ -1826,7 +1830,8 @@ function buildRelatedHtml(letter) {
     return '<div class="related-card" onclick="openLetterById('+r.id+')" role="button" tabindex="0">' +
       (r.category ? '<div class="related-card-tag">'+escHtml(r.category)+'</div>' : '') +
       '<div class="related-card-title">'+escHtml(r.title || 'Untitled')+'</div>' +
-      '<div class="related-card-author">— '+escHtml(r.authorName || 'Anonymous')+'</div>' +
+      // Same reasoning as the archive cards — and this one also fell back to
+      // printing "Anonymous", the placeholder pattern removed everywhere else.
     '</div>';
   }).join('');
   return '<div class="related-letters"><p class="related-heading">More letters</p><div class="related-row">'+cards+'</div></div>';

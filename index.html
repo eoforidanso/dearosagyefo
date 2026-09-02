@@ -2277,7 +2277,6 @@
           <span class="feat-category" data-cat="Environment">Environment</span>
           <h3>Smoke at Akosombo</h3>
           <p>The dam you built was meant to light up a continent. What nobody warned us about was the smoke that would follow — literal and otherwise.</p>
-          <span class="feat-author">Dr. Ato Kwamena Danso</span>
           <div class="feat-card-actions">
             <button class="feat-listen-btn" id="feat-listen-btn-0" onclick="(function(e){e.stopPropagation();toggleFeatListen(0);})(event)" aria-label="Listen">
               <span class="feat-listen-icon" id="feat-listen-icon-0">&#9654;</span>
@@ -2294,7 +2293,6 @@
           <span class="feat-category" data-cat="Culture">Culture</span>
           <h3>Thank You for the Akosombo Dam</h3>
           <p>You built a colossal monument to ambition. We built an entire ecosystem around the lights going off. Both are achievements, in their own way.</p>
-          <span class="feat-author">Dr. Ato Kwamena Danso</span>
           <div class="feat-card-actions">
             <button class="feat-listen-btn" id="feat-listen-btn-1" onclick="(function(e){e.stopPropagation();toggleFeatListen(1);})(event)" aria-label="Listen">
               <span class="feat-listen-icon" id="feat-listen-icon-1">&#9654;</span>
@@ -2311,7 +2309,6 @@
           <span class="feat-category" data-cat="Politics">Politics</span>
           <h3>The Amnesia of a Liberated Country</h3>
           <p>We remember independence. We forget what it was for. Each election cycle, the forgetting deepens — and the speeches sound more familiar.</p>
-          <span class="feat-author">Dr. Ato Kwamena Danso</span>
           <div class="feat-card-actions">
             <button class="feat-listen-btn" id="feat-listen-btn-2" onclick="(function(e){e.stopPropagation();toggleFeatListen(2);})(event)" aria-label="Listen">
               <span class="feat-listen-icon" id="feat-listen-icon-2">&#9654;</span>
@@ -2473,7 +2470,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           ? `<div class="card-img-wrap"><img class="card-img" src="${l.imageData}" alt="${l.title}" loading="lazy"></div>`
           : `<div class="card-img-wrap"><div class="card-img-placeholder">★</div></div>`;
         const linkId = l.id != null ? l.id : encodeURIComponent(l.title||'').replace(/'/g, '%27');
-        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            ${l.authorName ? `<span class="feat-author">${l.authorName}</span>` : ''}\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
+        return `<article class="featured-card ${accentClass} reveal ${delayClass}" style="cursor:pointer" onclick="window.location='letters.html?letter=${linkId}'">\n          ${imgHtml}\n          <div class="card-body">\n            <div class="feat-card-mark"><img src="/osagyefo-linocut-mono.png" alt="Dear Osagyefo" loading="lazy"></div>\n            <span class="feat-category" data-cat="${l.category || 'General'}">${l.category || 'General'}</span>\n            <h3>${l.title}</h3>\n            <p>${(l.preview||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}</p>\n            <div class="feat-card-actions">\n              <span class="feat-read-cta">Read letter &rarr;</span>\n            </div>\n          </div>\n        </article>`;
       }).join('');
       // re-observe for reveal animation
       recentGrid.querySelectorAll('.reveal').forEach(el => {
